@@ -1,0 +1,5 @@
+<testsuites>
+  <testsuite name="SLiib Test Suite">
+    <directory suffix="Test.php" phpVersion="5.3.0" phpVersionOperator=">=">./SLiib/</directory>
+  </testsuite>
+</testsuites>
