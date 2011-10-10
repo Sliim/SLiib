@@ -28,7 +28,8 @@
 /**
  * SLiib_Config_Ini
  * 
- * @package Config
+ * @package    Config
+ * @subpackage Ini
  */
 class SLiib_Config_Ini extends SLiib_Config
 {
