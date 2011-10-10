@@ -83,7 +83,7 @@ class SLiib_Log
     $this->_fileOutput = @fopen($fileOutput, $opt);
 
     if (!$this->_fileOutput)
-      throw new Exception('Cannot open file ' . $this->_fileOutput);
+      throw new SLiib_Log_Exception('Cannot open file ' . $this->_fileOutput);
 
   }
 
@@ -114,7 +114,7 @@ class SLiib_Log
     $log = $this->_genLog($string, $type);
     if (!fwrite($this->_fileOutput, $log . PHP_EOL)) {
       $error = error_get_last();
-      throw new Exception(
+      throw new SLiib_Log_Exception(
           'Error ' . $error['type'] . '. ' . $error['file'] .
           ' line ' . $error['line'] . ':' . $error['message']
       );

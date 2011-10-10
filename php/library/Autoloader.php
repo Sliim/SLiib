@@ -59,7 +59,7 @@ class SLiib_Autoloader
   public static function init($namespaces)
   {
     if (static::$_instance != null) {
-      throw new Exception('Autoloader already initialized.');
+      throw new SLiib_Autoloader_Exception('Autoloader already initialized.');
     }
 
     spl_autoload_register(array(__CLASS__, 'autoload'));
