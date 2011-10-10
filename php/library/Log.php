@@ -28,7 +28,7 @@
 /**
  * SLiib_Log
  * 
- * @package Tools
+ * @package Log
  */
 class SLiib_Log
 {
@@ -69,6 +69,8 @@ class SLiib_Log
    * @param string         $fileOutput Nom/Chemin vers le fichier à utiliser.
    * @param bool[optional] $add        True pour ajouter à la suite du fichier.
    * 
+   * @throws SLiib_Log_Exception
+   * 
    * @return void
    */
   public function __construct($fileOutput, $add=false)
@@ -106,6 +108,8 @@ class SLiib_Log
    * @param string         $string Chaine à écrire dans le fichier
    * @param string         $type   Type de log
    * @param bool[optional] $echo   Affiche ou non sur la sortie standard.
+   * 
+   * @throws SLiib_Log_Exception
    * 
    * @return void
    */

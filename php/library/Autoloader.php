@@ -28,7 +28,7 @@
 /**
  * SLiib_Autoloader
  * 
- * @package SLiib
+ * @package Autoloader
  */
 class SLiib_Autoloader
 {
