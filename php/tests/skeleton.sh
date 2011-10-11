@@ -9,6 +9,13 @@ ext=".php"
 pwd=`pwd`
 generate_file=$1"Test"$ext
 deep=`echo $1 | sed 's/_/ /g' | wc -w`
+
+if test $deep -lt 2
+then
+  echo "Class name $1 invalid. Exiting.."
+  exit 2
+fi
+
 dir=`echo $1 | cut -f -$(($deep-1)) -d _ | sed 's/_/\//g'`
 file=`echo $1 | cut -f $deep -d _`"Test"$ext
 destination_directory=$pwd/library/$dir
@@ -21,7 +28,7 @@ then
   echo 'PHPUnit returned an error when generating the skeleton'
   cd $pwd
   echo 'Exiting..'
-  exit 2
+  exit 3
 fi
 
 if test ! -d $destination_directory
