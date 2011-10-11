@@ -11,22 +11,24 @@ generate_file=$1"Test"$ext
 deep=`echo $1 | sed 's/_/ /g' | wc -w`
 dir=`echo $1 | cut -f -$(($deep-1)) -d _ | sed 's/_/\//g'`
 file=`echo $1 | cut -f $deep -d _`"Test"$ext
+destination_directory=$pwd/library/$dir
 
 cd ../library/
-phpunit --skeleton-test $1
+phpunit --bootstrap $pwd/Bootstrap.php --skeleton-test $1
 
 if test $? -ne 0
 then
   echo 'PHPUnit returned an error when generating the skeleton'
+  cd $pwd
   echo 'Exiting..'
   exit 2
 fi
 
-if test ! -d $pwd/$dir
+if test ! -d $destination_directory
 then
-  mkdir -p $pwd/$dir
+  mkdir -p $destination_directory
 fi
-mv $dir/$generate_file $pwd/$dir/$file
+mv $dir/$generate_file $destination_directory/$file
 
 cd $pwd
 echo "done."
