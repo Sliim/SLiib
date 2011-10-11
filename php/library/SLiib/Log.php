@@ -75,9 +75,6 @@ class SLiib_Log
    */
   public function __construct($fileOutput, $add=false)
   {
-    if (!file_exists($fileOutput))
-      echo 'Creating file ' . $fileOutput . '..' . PHP_EOL;
-
     $opt = 'w+b';
     if ($add)
       $opt = 'a+b';

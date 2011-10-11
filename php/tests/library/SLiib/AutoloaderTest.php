@@ -39,18 +39,6 @@ class SLiib_AutoloaderTest extends PHPUnit_Framework_TestCase
 
 
   /**
-   * Autoloader initialisation
-   * 
-   * @return void
-   */
-  public function init()
-  {
-    SLiib_Autoloader::init(array('SLiib'));
-
-  }
-
-
-  /**
    * Test double init. Must be throw a SLiib_Autoloader_Exception
    * 
    * @return void
@@ -59,8 +47,8 @@ class SLiib_AutoloaderTest extends PHPUnit_Framework_TestCase
   {
     try {
       SLiib_Autoloader::init(array('SLiib'));
-    } catch (SLiib_Autoloader_Exception $e) {
-      echo 'SLiib_Autoloader_Exception catched !' . PHP_EOL;
+    } catch (Exception $e) {
+      $this->assertType('SLiib_Autoloader_Exception', $e);
     }
 
   }
