@@ -18,7 +18,7 @@
  * PHP version 5
  *  
  * @category SLiib
- * @package  Library
+ * @package  SLiib_SystemInfos
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.1.3
@@ -28,13 +28,13 @@
 /**
  * SLiib_SystemInfos
  * 
- * @package SystemInfos
+ * @package SLiib_SystemInfos
  */
 class SLiib_SystemInfos implements
-SLiib_SystemInfos_IUname,
-SLiib_SystemInfos_IPhp,
-SLiib_SystemInfos_IApache2,
-SLiib_SystemInfos_ILsbRelease
+SLiib_SystemInfos_Interfaces_IUname,
+SLiib_SystemInfos_Interfaces_IPhp,
+SLiib_SystemInfos_Interfaces_IApache2,
+SLiib_SystemInfos_Interfaces_ILsbRelease
 {
 
 

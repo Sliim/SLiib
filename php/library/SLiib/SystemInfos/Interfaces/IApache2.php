@@ -17,21 +17,22 @@
  *
  * PHP version 5
  *  
- * @category SLiib
- * @package  Library
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.1.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_SystemInfos
+ * @subpackage SLiib_SystemInfos_Interfaces
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.1.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_SystemInfos_IApache2
+ * SLiib_SystemInfos_Interfaces_IApache2
  * 
- * @package    SystemInfos
- * @subpackage Interface
+ * @package    SLiib_SystemInfos
+ * @subpackage SLiib_SystemInfos_Interfaces
  */
-Interface SLiib_SystemInfos_IApache2
+Interface SLiib_SystemInfos_Interfaces_IApache2
 {
 
   /** Commande d'affichage de la version d'apache2 */

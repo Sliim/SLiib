@@ -18,7 +18,7 @@
  * PHP version 5
  *  
  * @category SLiib
- * @package  Library
+ * @package  SLiib_Listing
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.1.3
@@ -28,7 +28,7 @@
 /**
  * SLiib_Listing
  * 
- * @package Listing
+ * @package SLiib_Listing
  */
 class SLiib_Listing
 {

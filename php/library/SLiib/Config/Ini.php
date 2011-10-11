@@ -17,19 +17,20 @@
  *
  * PHP version 5
  *  
- * @category SLiib
- * @package  Library
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.1.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Config
+ * @subpackage SLiib_Config_Ini
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.1.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
  * SLiib_Config_Ini
  * 
- * @package    Config
- * @subpackage Ini
+ * @package    SLiib_Config
+ * @subpackage SLiib_Config_Ini
  */
 class SLiib_Config_Ini extends SLiib_Config
 {
