@@ -113,18 +113,6 @@ class SLiib_Listing
 
 
   /**
-   * Rangement du tableau par ordre alphabetic
-   *
-   * @return void
-   */
-  public function rangeAlpha()
-  {
-    natcasesort($this->_contentArray);
-
-  }
-
-
-  /**
    * Retourne la liste du contenu du dossier listé
    * 
    * @return array Liste des éléments du dossier
@@ -132,6 +120,18 @@ class SLiib_Listing
   public function getList()
   {
     return $this->_contentArray;
+
+  }
+
+
+  /**
+   * Rangement du tableau par ordre alphabetic
+   *
+   * @return void
+   */
+  public function sort()
+  {
+    natcasesort($this->_contentArray);
 
   }
 
