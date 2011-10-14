@@ -52,19 +52,19 @@ class SLiib_Config_Ini extends SLiib_Config
   public function setDirective($directive, $value, $block=null)
   {
     if (is_null($block)) {
-      if (key_exists($directive, $this->_config)
-      && !is_array($this->_config[$directive])) {
-        $this->_config[$directive] = $value;
+      if (isset($this->_config->$directive)
+      && !is_object($this->_config->$directive)) {
+        $this->_config->$directive = $value;
       } else {
         throw new SLiib_Config_Exception(
             'Directive {' . $directive . '} does not exist (maybe a block..)'
         );
       }
     } else {
-      if (key_exists($block, $this->_config)
-      && is_array($this->_config[$block])) {
-        if (key_exists($directive, $this->_config[$block]))
-          $this->_config[$block][$directive] = $value;
+      if (isset($this->_config->$block)
+      && is_object($this->_config->$block)) {
+        if (isset($this->_config->$block->$directive))
+          $this->_config->$block->$directive = $value;
         else
           throw new SLiib_Config_Exception(
               'Directive {' . $directive .
@@ -91,10 +91,10 @@ class SLiib_Config_Ini extends SLiib_Config
   {
     $newContent = '';
     foreach ($this->_config as $key => $value) {
-      if (is_array($value)) {
+      if (is_object($value)) {
         $newContent .= '[' . $key . ']' . "\r\n";
-        foreach ($value as $dirName => $dirValue) {
-          $newContent .= $dirName . ' = ' . $dirValue . "\r\n";
+        foreach ($value as $directive => $value) {
+          $newContent .= $directive . ' = ' . $value . "\r\n";
         }
       } else {
         $newContent .= $key . ' = ' . $value . "\r\n";
@@ -139,7 +139,7 @@ class SLiib_Config_Ini extends SLiib_Config
       );
 
     //Block courant du fichier
-    $block = '';
+    $block = false;
 
     while ($line = fgets($fp, 256)) {
       $line = SLiib_String::clean($line);
@@ -149,7 +149,7 @@ class SLiib_Config_Ini extends SLiib_Config
               break;
           case '[':
             $block = str_replace(array('[', ']'), '', $line);
-            if (key_exists($block, $this->_config)) {
+            if (isset($this->_config->$block)) {
               fclose($fp);
 
               throw new SLiib_Config_Exception(
@@ -158,15 +158,15 @@ class SLiib_Config_Ini extends SLiib_Config
               );
             }
 
-            $this->_config[$block] = array();
+            $this->_config->$block = new stdClass;
               break;
           default:
             $data      = explode('=', $line);
             $directive = SLiib_String::clean($data[0]);
             $value     = SLiib_String::clean($data[1]);
 
-            if (empty($block)) {
-              if (key_exists($directive, $this->_config)) {
+            if (!$block) {
+              if (isset($this->_config->$directive)) {
                 fclose($fp);
 
                 throw new SLiib_Config_Exception(
@@ -175,9 +175,9 @@ class SLiib_Config_Ini extends SLiib_Config
                 );
               }
 
-              $this->_config[$directive] = $value;
+              $this->_config->$directive = $value;
             } else {
-              if (key_exists($directive, $this->_config[$block])) {
+              if (isset($this->_config->$block->$directive)) {
                 fclose($fp);
 
                 throw new SLiib_Config_Exception(
@@ -187,7 +187,7 @@ class SLiib_Config_Ini extends SLiib_Config
                 );
               }
 
-              $this->_config[$block][$directive] = $value;
+              $this->_config->$block->$directive = $value;
             }
               break;
         }

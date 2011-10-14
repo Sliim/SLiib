@@ -38,7 +38,7 @@ abstract class SLiib_Config
    * 
    * @var stdClass
    */
-  protected $_config = array();
+  protected $_config = null;
 
   /**
    * Fichier de configuration à utiliser
@@ -63,6 +63,7 @@ abstract class SLiib_Config
       throw new SLiib_Config_Exception('File ' . $file . ' not found');
     }
 
+    $this->_config = new stdClass;
     $this->_configFile = $file;
     $this->_readFile();
 

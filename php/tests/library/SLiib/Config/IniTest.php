@@ -84,9 +84,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
   {
     $config = $this->_object->getConfig();
 
-    $this->assertArrayHasKey('General', $config);
-    $this->assertType('array', $config['General']);
-    $this->assertArrayHasKey('ajaxToolsMenu', $config['General']);
+    $this->assertObjectHasAttribute('general', $config);
+    $this->assertType('stdClass', $config->general);
+    $this->assertObjectHasAttribute('ajaxToolsMenu', $config->general);
+
+    $this->assertType('string', $this->_object->getConfig()->general->ajaxToolsMenu);
 
   }
 
@@ -96,20 +98,20 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
    * 
    * @return void
    */
-  public function testSetAndRewriteConfig()
+  public function testSetAndSaveConfig()
   {
-    $this->_object->setDirective('sysInfos', 'Off', 'General');
+    $this->_object->setDirective('sysInfos', 'Off', 'general');
     $this->_object->saveConfig();
 
   }
 
 
   /**
-   * Test rewrite configuration with a other value
+   * Test rewrite configuration with an error
    * 
    * @return void
    */
-  public function testSetAndRewriteConfig2()
+  public function testSetAndSaveConfig2()
   {
     try {
       $this->_object->setDirective('sysInfos', 'On');
