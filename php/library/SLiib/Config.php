@@ -79,28 +79,24 @@ abstract class SLiib_Config
     return $this->_config;
 
   }
-  
-  
+
+
   /**
    * Définit une valeur pour une directive du fichier de configuration. Si un
    * block est précisé, alors la méthode définira la directive contenue dans
    * le block.
    * 
-   * @param string           $dirName  Nom de la directive à modifier
-   * @param string           $dirValue Valeur à affecter à la directive
-   * @param string[optional] $block    Nom du block conteneur
-   * 
-   * @throws SLiib_Config_Exception
+   * @param string           $directive Nom de la directive à modifier
+   * @param string           $value     Valeur à affecter à la directive
+   * @param string[optional] $block     Nom du block conteneur
    * 
    * @return void
    */
   abstract public function setDirective($directive, $value, $block=null);
-  
-  
+
+
   /**
    * Réecrit le fichier de configuration
-   * 
-   * @throws SLiib_Config_Exception
    * 
    * @return void
    */
@@ -110,44 +106,9 @@ abstract class SLiib_Config
   /**
    * Lit le fichier de configuration
    * 
-   * @throws SLiib_Config_Exception
-   * 
    * @return void
    */
   abstract protected function _readFile();
-
-
-
-
-
-
-
-  /**
-   * Supprime les espaces indésirables
-   * 
-   * @param string $string Chaine de caractères à nettoyer.
-   * 
-   * @return string La chaine nettoyée
-   * @todo à déplacer dans SLiib_String
-   */
-  protected function _cleanString($string)
-  {
-    //Delete tabulation
-    $count = 1;
-    while ($count != 0)
-      $string = str_replace("\t", ' ', $string, $count);
-
-    //Delete double space into the string
-    $count = 1;
-    while ($count != 0)
-      $string = str_replace('  ', ' ', $string, $count);
-
-    //Delete space around the string
-    $string = trim($string);
-
-    return $string;
-
-  }
 
 
 }

@@ -35,29 +35,40 @@
 class SLiib_Config_Ini extends SLiib_Config
 {
 
-  
+
   /**
+   * Définit une directive de la configuration
+   * 
+   * @param string           $directive Nom de la directive à modifier
+   * @param string           $value     Valeur à affecter à la directive
+   * @param string[optional] $block     Nom du block conteneur
+   * 
    * @see SLiib_Config
+   * 
+   * @throws SLiib_Config_Exception
+   * 
+   * @return void
    */
-  public function setDirective($dirName, $dirValue, $block=null)
+  public function setDirective($directive, $value, $block=null)
   {
     if (is_null($block)) {
-      if (key_exists($dirName, $this->_config)
-      && !is_array($this->_config[$dirName])) {
-        $this->_config[$dirName] = $dirValue;
+      if (key_exists($directive, $this->_config)
+      && !is_array($this->_config[$directive])) {
+        $this->_config[$directive] = $value;
       } else {
         throw new SLiib_Config_Exception(
-            'Directive {' . $dirName . '} does not exist (maybe a block..)'
+            'Directive {' . $directive . '} does not exist (maybe a block..)'
         );
       }
     } else {
       if (key_exists($block, $this->_config)
       && is_array($this->_config[$block])) {
-        if (key_exists($dirName, $this->_config[$block]))
-          $this->_config[$block][$dirName] = $dirValue;
+        if (key_exists($directive, $this->_config[$block]))
+          $this->_config[$block][$directive] = $value;
         else
           throw new SLiib_Config_Exception(
-              'Directive {' . $dirName . '} not found on block [' . $block . ']'
+              'Directive {' . $directive .
+              '} not found on block [' . $block . ']'
           );
       } else {
         throw new SLiib_Config_Exception('Block [' . $block . '] not found');
@@ -65,10 +76,16 @@ class SLiib_Config_Ini extends SLiib_Config
     }
 
   }
-  
-  
+
+
   /**
+   * Enregistre la configuration
+   * 
    * @see SLiib_Config
+   *
+   * @throws SLiib_Config_Exception
+   *
+   * @return void
    */
   public function saveConfig()
   {
@@ -105,7 +122,13 @@ class SLiib_Config_Ini extends SLiib_Config
 
 
   /**
+   * Lit le fichier de configuration
+   * 
    * @see SLiib_Config
+   * 
+   * @throws SLiib_Config_Exception
+   * 
+   * @return void
    */
   protected function _readFile()
   {
@@ -119,7 +142,7 @@ class SLiib_Config_Ini extends SLiib_Config
     $block = '';
 
     while ($line = fgets($fp, 256)) {
-      $line = $this->_cleanString($line);
+      $line = SLiib_String::clean($line);
       if (!empty($line)) {
         switch ($line[0]) {
           case '#':
@@ -139,8 +162,8 @@ class SLiib_Config_Ini extends SLiib_Config
               break;
           default:
             $data      = explode('=', $line);
-            $directive = $this->_cleanString($data[0]);
-            $value     = $this->_cleanString($data[1]);
+            $directive = SLiib_String::clean($data[0]);
+            $value     = SLiib_String::clean($data[1]);
 
             if (empty($block)) {
               if (key_exists($directive, $this->_config)) {
