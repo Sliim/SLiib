@@ -89,7 +89,10 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     $this->assertType('stdClass', $config->general);
     $this->assertObjectHasAttribute('ajaxToolsMenu', $config->general);
 
-    $this->assertType('string', $this->_object->getConfig()->general->ajaxToolsMenu);
+    $this->assertType(
+        'string',
+        $this->_object->getConfig()->general->ajaxToolsMenu
+    );
 
   }
 
