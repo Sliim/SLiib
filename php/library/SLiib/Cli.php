@@ -33,6 +33,13 @@
 abstract class SLiib_Cli
 {
 
+  const NO_DESCRIPTION_LABEL = 'No description';
+  const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
+  const AUTHOR_LABEL         = 'Auteur';
+  const VERSION_LABEL        = 'Version';
+  const SHOW_HELP_LABEL      = 'Affiche l\'aide.';
+  const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
+
   /**
    * Version du script
    *
@@ -45,14 +52,14 @@ abstract class SLiib_Cli
    *
    * @var $_desc
    */
-  protected $_desc = 'Pas de description.';
+  protected $_desc = self::NO_DESCRIPTION_LABEL;
 
   /**
    * Auteur du script
    *
    * @var $_author
    */
-  protected $_author = 'Inconnu';
+  protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
   /**
    * Options par défaut possible du script
@@ -61,11 +68,11 @@ abstract class SLiib_Cli
    */
   protected $_defaultOpt = array(
                             'V' => array(
-                                    'desc' => 'Affiche la version du script.',
+                                    'desc' => self::SHOW_VERSION_LABEL,
                                     'func' => '_version',
                                    ),
                             'h' => array(
-                                    'desc' => 'Affiche l\'aide.',
+                                    'desc' => self::SHOW_HELP_LABEL,
                                     'func' => '_help',
                                    )
                            );
@@ -101,7 +108,7 @@ abstract class SLiib_Cli
       $params = '';
       foreach ($this->_options as $option => $desc) {
         if (!key_exists('desc', $desc)) {
-          $this->_options[$option]['desc'] = 'Pas de description.';
+          $this->_options[$option]['desc'] = self::NO_DESCRIPTION;
         }
 
         $params .= $option;
@@ -143,8 +150,8 @@ abstract class SLiib_Cli
     }
 
     echo PHP_EOL;
-    echo 'Auteur : ' . $this->_author . PHP_EOL;
-    echo 'Version : ' . $this->_version . PHP_EOL;
+    echo self::AUTHOR_LABEL . ' : ' . $this->_author . PHP_EOL;
+    echo self::VERSION_LABEL . ' : ' . $this->_version . PHP_EOL;
     exit();
 
   }
