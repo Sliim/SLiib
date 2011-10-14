@@ -26,7 +26,7 @@
  * @link       http://www.sliim-projects.eu
  */
 require_once 'PHPUnit/Framework.php';
-require_once '/home/sliim/projects/SLiib/php/library/SLiib/Log.php';
+require_once 'SLiib/Log.php';
 
 /**
  * Test class for SLiib_Log.

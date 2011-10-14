@@ -18,8 +18,8 @@
  * PHP version 5
  *  
  * @category   SLiib
- * @package    Test
- * @subpackage Bootstrap
+ * @package    SLiib
+ * @subpackage UnitTests
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.1

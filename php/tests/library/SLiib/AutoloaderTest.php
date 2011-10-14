@@ -26,7 +26,7 @@
  * @link       http://www.sliim-projects.eu
  */
 require_once 'PHPUnit/Framework.php';
-require_once '/home/sliim/projects/SLiib/php/library/SLiib/Autoloader.php';
+require_once 'SLiib/Autoloader.php';
 
 /**
  * Test class for SLiib_Autoloader.
