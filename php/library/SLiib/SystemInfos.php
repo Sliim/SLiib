@@ -49,7 +49,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
    *                          possible : 'serialize' qui permet de récupérer
    *                          le résultat de la commande sérialisé.
    * 
-   * @throws SLiib_SystemInfos_Exception
+   * @throws SLiib_SystemInfos_BadCommandException
    * 
    * @return string résultat de la commande
    */
@@ -73,7 +73,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
    * 
    * @param string $cmd La commande a exécuter
    * 
-   * @throws SLiib_SystemInfos_Exception
+   * @throws SLiib_SystemInfos_CommandFailedException
    * 
    * @return array Tableau contenant le résultat de la commande.
    */

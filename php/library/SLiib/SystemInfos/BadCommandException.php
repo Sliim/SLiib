@@ -30,7 +30,8 @@
  * 
  * @package SLiib_SystemInfos
  */
-class SLiib_SystemInfos_BadCommandException extends SLiib_SystemInfos_Exception
+class SLiib_SystemInfos_BadCommandException
+extends SLiib_SystemInfos_Exception
 {
 
 }

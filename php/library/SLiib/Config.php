@@ -63,7 +63,7 @@ abstract class SLiib_Config
       throw new SLiib_Config_Exception('File ' . $file . ' not found');
     }
 
-    $this->_config = new stdClass;
+    $this->_config     = new stdClass;
     $this->_configFile = $file;
     $this->_readFile();
 
