@@ -43,19 +43,24 @@ class SLiib_String
    */
   static public function clean($string)
   {
-    //Delete tabulation
-    $count = 1;
-    while ($count != 0)
-      $string = str_replace("\t", ' ', $string, $count);
+    $string = preg_replace(
+        array(
+         "/\t\t+/",
+         "/\x20\x20+/",
+         "/\xA0\xA0+/",
+        ), ' ',
+        $string
+    );
 
-    //Delete double space into the string
-    $count = 1;
-    while ($count != 0)
-      $string = str_replace('  ', ' ', $string, $count);
+    $string = preg_replace(
+        array(
+         "/(\n\s*\n)/",
+         "/(\n\s+)/",
+        ), "\n",
+        $string
+    );
 
-    //Delete space around the string
     $string = trim($string);
-
     return $string;
 
   }
