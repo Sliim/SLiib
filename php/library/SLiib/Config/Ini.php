@@ -35,46 +35,45 @@
 class SLiib_Config_Ini extends SLiib_Config
 {
 
-
+  
   /**
-   * Constructeur. Charge le fichier ini passé en paramètre
-   * 
-   * @param string $file Fichier à charger
-   * 
-   * @return void
+   * @see SLiib_Config
    */
-  public function __construct($file)
+  public function setDirective($dirName, $dirValue, $block=null)
   {
-    parent::__construct($file);
-
-    $this->_readIni();
+    if (is_null($block)) {
+      if (key_exists($dirName, $this->_config)
+      && !is_array($this->_config[$dirName])) {
+        $this->_config[$dirName] = $dirValue;
+      } else {
+        throw new SLiib_Config_Exception(
+            'Directive {' . $dirName . '} does not exist (maybe a block..)'
+        );
+      }
+    } else {
+      if (key_exists($block, $this->_config)
+      && is_array($this->_config[$block])) {
+        if (key_exists($dirName, $this->_config[$block]))
+          $this->_config[$block][$dirName] = $dirValue;
+        else
+          throw new SLiib_Config_Exception(
+              'Directive {' . $dirName . '} not found on block [' . $block . ']'
+          );
+      } else {
+        throw new SLiib_Config_Exception('Block [' . $block . '] not found');
+      }
+    }
 
   }
-
-
+  
+  
   /**
-   * Récupère l'ensemble de la configuration.
-   * 
-   * @return array Tableau comportant l'ensemble de la configuration.
+   * @see SLiib_Config
    */
-  public function getAll()
-  {
-    return $this->_directives;
-
-  }
-
-
-  /**
-   * Réecrit le fichier de configuration
-   * 
-   * @throws SLiib_Config_Exception
-   * 
-   * @return void
-   */
-  public function rewriteConfig()
+  public function saveConfig()
   {
     $newContent = '';
-    foreach ($this->_directives as $key => $value) {
+    foreach ($this->_config as $key => $value) {
       if (is_array($value)) {
         $newContent .= '[' . $key . ']' . "\r\n";
         foreach ($value as $dirName => $dirValue) {
@@ -106,13 +105,9 @@ class SLiib_Config_Ini extends SLiib_Config
 
 
   /**
-   * Enregistre les données du fichier .ini dans le tableau $_directives
-   * 
-   * @throws SLiib_Config_Exception
-   * 
-   * @return void
+   * @see SLiib_Config
    */
-  private function _readIni()
+  protected function _readFile()
   {
     $fp = fopen($this->_configFile, 'r');
     if (!$fp)
@@ -131,7 +126,7 @@ class SLiib_Config_Ini extends SLiib_Config
               break;
           case '[':
             $block = str_replace(array('[', ']'), '', $line);
-            if (key_exists($block, $this->_directives)) {
+            if (key_exists($block, $this->_config)) {
               fclose($fp);
 
               throw new SLiib_Config_Exception(
@@ -140,7 +135,7 @@ class SLiib_Config_Ini extends SLiib_Config
               );
             }
 
-            $this->_directives[$block] = array();
+            $this->_config[$block] = array();
               break;
           default:
             $data      = explode('=', $line);
@@ -148,7 +143,7 @@ class SLiib_Config_Ini extends SLiib_Config
             $value     = $this->_cleanString($data[1]);
 
             if (empty($block)) {
-              if (key_exists($directive, $this->_directives)) {
+              if (key_exists($directive, $this->_config)) {
                 fclose($fp);
 
                 throw new SLiib_Config_Exception(
@@ -157,9 +152,9 @@ class SLiib_Config_Ini extends SLiib_Config
                 );
               }
 
-              $this->_directives[$directive] = $value;
+              $this->_config[$directive] = $value;
             } else {
-              if (key_exists($directive, $this->_directives[$block])) {
+              if (key_exists($directive, $this->_config[$block])) {
                 fclose($fp);
 
                 throw new SLiib_Config_Exception(
@@ -169,7 +164,7 @@ class SLiib_Config_Ini extends SLiib_Config
                 );
               }
 
-              $this->_directives[$block][$directive] = $value;
+              $this->_config[$block][$directive] = $value;
             }
               break;
         }

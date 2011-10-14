@@ -34,14 +34,14 @@ abstract class SLiib_Config
 {
 
   /**
-   * Tableau des différentes directives que contient le fichier
+   * Objet de la configuration
    * 
-   * @var array
+   * @var stdClass
    */
-  protected $_directives = array();
+  protected $_config = array();
 
   /**
-   * Fichier de configuration à manipuler
+   * Fichier de configuration à utiliser
    * 
    * @var string
    */
@@ -59,51 +59,28 @@ abstract class SLiib_Config
    */
   public function __construct($file)
   {
-    $this->_configFile = $file;
-
     if (!file_exists($file)) {
       throw new SLiib_Config_Exception('File ' . $file . ' not found');
     }
+
+    $this->_configFile = $file;
+    $this->_readFile();
 
   }
 
 
   /**
-   * Récupère la valeur d'une directive.
+   * Récupère l'ensemble de la configuration.
    * 
-   * @param string           $dirName Nom de la directive à récupérer
-   * @param string[optional] $block   Block dans lequel se trouve la directive.
-   * 
-   * @throws SLiib_Config_Exception
-   * 
-   * @return string Valeur de la directive.
+   * @return stdClass
    */
-  public function getValue($dirName, $block=null)
+  public function getConfig()
   {
-    if (is_null($block)) {
-      if (key_exists($dirName, $this->_directives))
-        return $this->_directives[$dirName];
-      else
-        throw new SLiib_Config_Exception(
-            'Directive {' . $dirName . '} not found'
-        );
-    } else {
-      if (key_exists($block, $this->_directives)
-        && is_array($this->_directives[$block])) {
-        if (key_exists($dirName, $this->_directives[$block]))
-          return $this->_directives[$block][$dirName];
-        else
-          throw new SLiib_Config_Exception(
-              'Directive {' . $dirName . '} not found on block [' . $block . ']'
-          );
-      } else {
-        throw new SLiib_Config_Exception('Block [' . $block . '] not found');
-      }
-    }
+    return $this->_config;
 
   }
-
-
+  
+  
   /**
    * Définit une valeur pour une directive du fichier de configuration. Si un
    * block est précisé, alors la méthode définira la directive contenue dans
@@ -117,32 +94,32 @@ abstract class SLiib_Config
    * 
    * @return void
    */
-  public function setDirective($dirName, $dirValue, $block=null)
-  {
-    if (is_null($block)) {
-      if (key_exists($dirName, $this->_directives)
-      && !is_array($this->_directives[$dirName])) {
-        $this->_directives[$dirName] = $dirValue;
-      } else {
-        throw new SLiib_Config_Exception(
-            'Directive {' . $dirName . '} does not exist (maybe a block..)'
-        );
-      }
-    } else {
-      if (key_exists($block, $this->_directives)
-      && is_array($this->_directives[$block])) {
-        if (key_exists($dirName, $this->_directives[$block]))
-          $this->_directives[$block][$dirName] = $dirValue;
-        else
-          throw new SLiib_Config_Exception(
-              'Directive {' . $dirName . '} not found on block [' . $block . ']'
-          );
-      } else {
-        throw new SLiib_Config_Exception('Block [' . $block . '] not found');
-      }
-    }
+  abstract public function setDirective($directive, $value, $block=null);
+  
+  
+  /**
+   * Réecrit le fichier de configuration
+   * 
+   * @throws SLiib_Config_Exception
+   * 
+   * @return void
+   */
+  abstract public function saveConfig();
 
-  }
+
+  /**
+   * Lit le fichier de configuration
+   * 
+   * @throws SLiib_Config_Exception
+   * 
+   * @return void
+   */
+  abstract protected function _readFile();
+
+
+
+
+
 
 
   /**
@@ -151,6 +128,7 @@ abstract class SLiib_Config
    * @param string $string Chaine de caractères à nettoyer.
    * 
    * @return string La chaine nettoyée
+   * @todo à déplacer dans SLiib_String
    */
   protected function _cleanString($string)
   {

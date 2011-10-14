@@ -80,13 +80,13 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
    * 
    * @return void
    */
-  public function testGetAll()
+  public function testConfig()
   {
-    $directives = $this->_object->getAll();
+    $config = $this->_object->getConfig();
 
-    $this->assertArrayHasKey('General', $directives);
-    $this->assertType('array', $directives['General']);
-    $this->assertArrayHasKey('ajaxToolsMenu', $directives['General']);
+    $this->assertArrayHasKey('General', $config);
+    $this->assertType('array', $config['General']);
+    $this->assertArrayHasKey('ajaxToolsMenu', $config['General']);
 
   }
 
@@ -99,23 +99,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
   public function testSetAndRewriteConfig()
   {
     $this->_object->setDirective('sysInfos', 'Off', 'General');
-    $this->_object->rewriteConfig();
-
-  }
-
-
-  /**
-   * Test get a directive
-   * 
-   * @return void
-   */
-  public function testGetValue()
-  {
-    $directive = $this->_object->getValue('ajaxToolsMenu', 'General');
-    $this->assertEquals('On', $directive);
-
-    $directive = $this->_object->getValue('sysInfos', 'General');
-    $this->assertEquals('Off', $directive);
+    $this->_object->saveConfig();
 
   }
 
@@ -133,7 +117,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
       $this->assertType('SLiib_Config_Exception', $e);
     }
 
-    $this->_object->rewriteConfig();
+    $this->_object->saveConfig();
 
   }
 
