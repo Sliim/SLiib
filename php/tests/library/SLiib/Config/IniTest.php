@@ -81,7 +81,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
    * 
    * @return void
    */
-  public function testConfig()
+  public function testGetConfig()
   {
     $config = $this->_object->getConfig();
 
