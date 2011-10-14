@@ -50,8 +50,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
   {
     try {
       $res = SLiib_SystemInfos::$cmd();
-    } catch (SLiib_SystemInfos_Exception $e) {
-      $this->markTestSkipped();
+    } catch (SLiib_SystemInfos_BadCommandException $e) {
+      $this->markTestSkipped('Command unknown !');
+    } catch (SLiib_SystemInfos_CommandFailedException $e) {
+      $this->markTestSkipped('Command failed !');
     }
 
     return $res;
