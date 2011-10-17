@@ -95,11 +95,23 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
     natcasesort($list);
     $this->_object->sort();
     $listbis = $this->_object->getList();
-    
+
     $this->assertEquals(array_merge($list), $listbis);
 
   }
 
 
+  /**
+   * Test rangement par ordre croissant inversé
+   * 
+   * @return void
+   */
+  public function testUsort()
+  {
+    //TODO
+    $this->markTestIncomplete();
+
+  }
+
+
 }
-?>

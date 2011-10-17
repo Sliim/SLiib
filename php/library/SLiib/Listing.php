@@ -131,10 +131,25 @@ class SLiib_Listing
    */
   public function sort()
   {
-    $list = $this->_list;
+    $list = $this->getList();
     natcasesort($list);
-    
+
     $this->_list = array_merge($list);
+
+  }
+
+
+  /**
+   * Rangement du tableau par ordre alphabetic inversé
+   * 
+   * @return void
+   */
+  public function usort()
+  {
+    $list = $this->getList();
+    natcasesort($list);
+
+    $this->_list = array_reverse(array_merge($list));
 
   }
 
