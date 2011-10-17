@@ -46,6 +46,8 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test Registry
+   * 
+   * @return void
    */
   public function testGetSet()
   {
@@ -57,13 +59,16 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test Registry bis
+   * 
+   * @return void
    */
   public function testGetSet2()
   {
     $object = new stdClass;
-    $object->attr = 'foo';
+
+    $object->attr    = 'foo';
     $object->attrTwo = 'bar';
-    
+
     SLiib_Registry::set('myObj', $object);
     $myObj = SLiib_Registry::get('myObj');
 

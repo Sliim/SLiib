@@ -121,6 +121,7 @@ class SLiib_Log
       );
     }
 
+    //TODO affichage couleur si CLI_MODE
     if ($echo)
       echo $string . PHP_EOL;
 

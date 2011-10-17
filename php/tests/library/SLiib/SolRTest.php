@@ -18,15 +18,15 @@
  * PHP version 5
  *  
  * @category   SLiib
- * @package  SLiib
+ * @package    SLiib
  * @subpackage UnitTests
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 require_once 'PHPUnit/Framework.php';
-require_once '/home/sliim/projects/SLiib/php/library/SLiib/SolR.php';
+require_once 'SLiib/SolR.php';
 
 /**
  * Test class for SLiib_SolR.
@@ -35,7 +35,7 @@ require_once '/home/sliim/projects/SLiib/php/library/SLiib/SolR.php';
  * Ce test s'appuie sur le schema SolR de Solrack
  * https://svn.sliim-projects.eu/public/Solrack/
  * 
- * @package  SLiib
+ * @package    SLiib
  * @subpackage UnitTests
  */
 class SLiib_SolRTest extends PHPUnit_Framework_TestCase
@@ -45,12 +45,12 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
    * @var SLiib_SolR
    */
   protected $_object;
-  
+
   /**
    * @var string Host
    */
   protected $_host = 'localhost';
-  
+
   /**
    * @var int Port
    */
@@ -60,13 +60,17 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
   /**
    * Sets up the fixture, for example, opens a network connection.
    * This method is called before a test is executed.
+   * 
+   * @return void
    */
   public function setUp()
   {
     try {
       $this->_object = new SLiib_SolR($this->_host, $this->_port);
     } catch (SLiib_SolR_Exception $e) {
-      $this->markTestSkipped('Ping to SolR failed at ' . $this->_host . ':' . $this->_port);
+      $this->markTestSkipped(
+          'Ping to SolR failed at ' . $this->_host . ':' . $this->_port
+      );
     }
 
   }
@@ -75,6 +79,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
   /**
    * Tears down the fixture, for example, closes a network connection.
    * This method is called after a test is executed.
+   * 
+   * @return void
    */
   public function tearDown()
   {
@@ -85,6 +91,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test Ping
+   * 
+   * @return void
    */
   public function testPing()
   {
@@ -96,6 +104,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test delete all
+   * 
+   * @return void
    */
   public function testDeleteAll()
   {
@@ -106,17 +116,19 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test update
+   * 
+   * @return void
    */
   public function testUpdate()
   {
-    $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    $xml  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     $xml .= '<add><doc><field name="text">test indexing</field>';
     $xml .= '<field name="md5">d8e8fca2dc0f896fd7cb4cb0031ba249</field>';
-    $xml .= '<field name="sha1">4e1243bd22c66e76c2ba9eddc1f91394e57f9f83</field>';
-    $xml .= '</doc></add>';
-    
+    $xml .= '<field name="sha1">4e1243bd22c66e76c2ba9eddc1f91394e57f9f83';
+    $xml .= '</field></doc></add>';
+
     $res = $this->_object->update($xml);
-    
+
     $this->assertTrue($res);
 
   }
@@ -124,6 +136,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test commit
+   * 
+   * @return void
    */
   public function testCommit()
   {
@@ -134,13 +148,15 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test get
+   * 
+   * @return void
    */
   public function testGet()
   {
-    $query = 'test';
-    $res = $this->_object->get($query);
-    
+    $query  = 'test';
+    $res    = $this->_object->get($query);
     $xmlRes = simplexml_load_string($res);
+
     $this->assertObjectHasAttribute('lst', $xmlRes);
     $this->assertObjectHasAttribute('result', $xmlRes);
 
@@ -149,6 +165,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
   /**
    * Test get total indexed
+   * 
+   * @return void
    */
   public function testGetTotalIndexed()
   {
@@ -159,4 +177,3 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
 
 }
-?>

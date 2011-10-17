@@ -78,6 +78,7 @@ abstract class SLiib_Daemon
       if (!method_exists($this, $daemonFunction)) {
         throw new SLiib_Daemon_BadMethodException('Daemon function unknown.');
       }
+
       $this->$daemonFunction();
     }
 

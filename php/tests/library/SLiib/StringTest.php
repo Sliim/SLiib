@@ -66,4 +66,3 @@ class SLiib_StringTest extends PHPUnit_Framework_TestCase
 
 
 }
-?>

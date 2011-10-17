@@ -34,7 +34,7 @@ class SLiib_Registry
 {
 
   /**
-   * @var array Registre
+   * @var array Tableau contenant le registre
    */
   static private $_registry = array();
 
@@ -42,14 +42,16 @@ class SLiib_Registry
   /**
    * Récupère une valeur dans le registre à partir d'une clé.
    * 
-   * @param string key Key à récupérer
+   * @param string $key Key à récupérer
    * 
    * @return mixed Valeur de la clé.
    */
   static public function get($key)
   {
     if (!key_exists($key, self::$_registry)) {
-      throw new SLiib_Registry_Exception('Key ' . $key . ' not found in registry.');
+      throw new SLiib_Registry_Exception(
+          'Key ' . $key . ' not found in registry.'
+      );
     }
 
     return self::$_registry[$key];
@@ -60,8 +62,8 @@ class SLiib_Registry
   /**
    * Définit une valeur dans le registre
    * 
-   * @param string $key Key à définir
-   * @param mixed $value Valeur à affecter
+   * @param string $key   Key à définir
+   * @param mixed  $value Valeur à affecter
    * 
    * @return void
    */

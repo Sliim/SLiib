@@ -106,7 +106,9 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
       $returnValue = proc_close($process);
 
       if ($returnValue != 0)
-        throw new SLiib_SystemInfos_CommandFailedException('Command `' . $cmd . '` failed!');
+        throw new SLiib_SystemInfos_CommandFailedException(
+            'Command `' . $cmd . '` failed!'
+        );
 
       return $resultValue;
     }
