@@ -30,7 +30,7 @@
  * 
  * @package SLiib_Daemon
  */
-class SLiib_Daemon
+abstract class SLiib_Daemon
 {
 
   /**
@@ -54,7 +54,6 @@ class SLiib_Daemon
   public function __construct()
   {
     $this->_parentPID = getmypid();
-    echo 'Okay, parent PID is ' . $this->_parentPID . PHP_EOL;
 
   }
 
@@ -67,19 +66,19 @@ class SLiib_Daemon
    * 
    * @return bool
    */
-  public function launchDaemon($daemonFunction)
+  public function launch($daemonFunction)
   {
     $pid = pcntl_fork();
     if ($pid == -1) {
-      echo 'Could not launch new daemon' . PHP_EOL;
+      throw new SLiib_Daemon_Exception('Could not launch new daemon.');
     } else if ($pid) {
-      echo 'Launching new daemon with pid ' . $pid . PHP_EOL;
       $this->_daemons[] = $pid;
     } else {
       $pid = getmypid();
-      echo 'Executing daemon\'s code of ' . $pid . PHP_EOL;
+      if (!method_exists($this, $daemonFunction)) {
+        throw new SLiib_Daemon_BadMethodException('Daemon function unknown.');
+      }
       $this->$daemonFunction();
-      exit(0);
     }
 
     return $pid;
@@ -88,20 +87,21 @@ class SLiib_Daemon
 
 
   /**
-   * Tue un démon créé
+   * Tue un démon
    * 
    * @param int $pid PID du démon à tuer
    * 
    * @return bool
    */
-  public function killDaemon($pid)
+  public function kill($pid)
   {
     if (!in_array($pid, $this->_daemons) || !is_numeric($pid)) {
-      echo 'No daemon with PID ' . $pid . ' has launched.' . PHP_EOL;
-      return false;
+      throw new SLiib_Daemon_Exception(
+          'No daemon with PID ' . $pid . ' has launched.'
+      );
     }
 
-    echo 'Killing daemon with PID ' . $pid . PHP_EOL;
+    //TODO Revoir ça c'est crade!
     exec('kill ' . $pid, $out, $code);
     if ($code == 0)
       return true;
@@ -111,26 +111,3 @@ class SLiib_Daemon
 
 
 }
-
-
-/*class Daemon_1 extends Daemon {
-  public function run() {
-    $pid = $this->launchDaemon('daemonCode');
-    sleep(5);
-    echo 'Killing..' . PHP_EOL;
-    $this->killDaemon($pid);
-    echo 'done' . PHP_EOL;
-  }
-
-  public function daemonCode() {
-    sleep(10);
-    echo '3' . PHP_EOL;
-    sleep(10);
-    echo '2' . PHP_EOL;
-    sleep(10);
-    echo '1' . PHP_EOL;
-    sleep(10);
-    echo '0' . PHP_EOL;
-    echo 'End of daemon code!' . PHP_EOL;
-  }
-}*/
