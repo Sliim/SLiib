@@ -248,7 +248,7 @@ class SLiib_SolR
    *
    * @return $string Chaine Traitée.
    */
-  public function escapeSpecialChar($string)
+  protected function escapeSpecialChar($string)
   {
     foreach ($this->_specialChars as $char)
       $string = str_replace($char, '\\' . $char, $string);

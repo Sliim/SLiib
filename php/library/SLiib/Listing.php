@@ -43,9 +43,9 @@ class SLiib_Listing
   /**
    * Tableau comportant les éléments du dossier listé
    * 
-   * @var array $_contentArray
+   * @var array $_list
    */
-  private $_contentArray = array();
+  private $_list = array();
 
   /**
    * Nombre d'élément dans le dossier listé
@@ -103,7 +103,7 @@ class SLiib_Listing
           $ok = -1;
       if ($ok == 1) {
         $this->_contentNb++;
-        $this->_contentArray[] = $dossier;
+        $this->_list[] = $dossier;
       }
     }
 
@@ -119,7 +119,7 @@ class SLiib_Listing
    */
   public function getList()
   {
-    return $this->_contentArray;
+    return $this->_list;
 
   }
 
@@ -131,7 +131,10 @@ class SLiib_Listing
    */
   public function sort()
   {
-    natcasesort($this->_contentArray);
+    $list = $this->_list;
+    natcasesort($list);
+    
+    $this->_list = array_merge($list);
 
   }
 

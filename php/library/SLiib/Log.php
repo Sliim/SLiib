@@ -110,7 +110,7 @@ class SLiib_Log
    * 
    * @return void
    */
-  public function write($string, $type, $echo=false)
+  public function log($string, $type, $echo=false)
   {
     $log = $this->_genLog($string, $type);
     if (!fwrite($this->_fileOutput, $log . PHP_EOL)) {

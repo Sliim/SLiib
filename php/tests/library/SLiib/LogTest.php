@@ -106,13 +106,13 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
    * 
    * @return void
    */
-  public function testWrite()
+  public function testLog()
   {
     $this->_object->setFormat('%m');
     $this->assertFileExists($this->_filename);
     $text = 'w000t from SLiib_LogTest';
 
-    $this->_object->write($text, SLiib_Log::TYPE_INFO, false);
+    $this->_object->log($text, SLiib_Log::TYPE_INFO, false);
 
     $this->assertEquals(
         $text,
