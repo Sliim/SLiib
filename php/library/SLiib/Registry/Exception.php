@@ -26,55 +26,11 @@
  */
 
 /**
- * SLiib_Registry
+ * SLiib_Registry_Exception
  * 
  * @package SLiib_Registry
  */
-class SLiib_Registry
+class SLiib_Registry_Exception
 {
 
-  /**
-   * @var array Registre
-   */
-  static private $_registry = array();
-
-
-  /**
-   * Récupère une valeur dans le registre à partir d'une clé.
-   * 
-   * @param string key Key à récupérer
-   * 
-   * @return mixed Valeur de la clé.
-   */
-  static public function get($key)
-  {
-    if (!key_exists($key, self::$_registry)) {
-      throw new SLiib_Registry_Exception('Key ' . $key . ' not found in registry.');
-    }
-
-    return self::$_registry[$key];
-
-  }
-
-
-  /**
-   * Définit une valeur dans le registre
-   * 
-   * @param string $key Key à définir
-   * @param mixed $value Valeur à affecter
-   * 
-   * @return void
-   */
-  static public function set($key, $value)
-  {
-    if (key_exists($key, self::$_registry)) {
-      throw new SLiib_Registry_Exception('Key ' . $key . ' already exist.');
-    }
-
-    self::$_registry[$key] = $value;
-
-  }
-
-
 }
-  
