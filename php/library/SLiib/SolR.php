@@ -148,9 +148,7 @@ class SLiib_SolR
   public function commit()
   {
     $query = '<commit />';
-    echo 'Committing.. ';
     $this->update($query);
-    echo 'done.' . PHP_EOL;
 
   }
 
@@ -163,9 +161,7 @@ class SLiib_SolR
   public function deleteAll()
   {
     $query = '<delete><query>*:*</query></delete>';
-    echo 'Deleting all document.. ';
     $this->update($query);
-    echo 'done.' . PHP_EOL;
 
     $this->commit();
 
@@ -216,7 +212,7 @@ class SLiib_SolR
   /**
    * Récupère le nombre d'élément indexé dans solr.
    *
-   * @return string Nombre d'élément.
+   * @return int Nombre d'élément.
    */
   public function getTotalIndexed()
   {
@@ -225,7 +221,7 @@ class SLiib_SolR
       return false;
 
     $obj = simplexml_load_string($xml);
-    return $obj->result['numFound'];
+    return (int) $obj->result['numFound'];
 
   }
 
