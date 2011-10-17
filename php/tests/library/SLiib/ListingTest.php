@@ -95,8 +95,8 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
     natcasesort($list);
     $this->_object->sort();
     $listbis = $this->_object->getList();
-
-    $this->assertEquals($list, $listbis);
+    
+    $this->assertEquals(array_merge($list), $listbis);
 
   }
 
