@@ -42,29 +42,25 @@ abstract class SLiib_Cli
 
   /**
    * Version du script
-   *
-   * @var $_version
+   * @var float $_version
    */
   protected $_version = 0;
 
   /**
    * Description du script
-   *
-   * @var $_desc
+   * @var string $_desc
    */
   protected $_desc = self::NO_DESCRIPTION_LABEL;
 
   /**
    * Auteur du script
-   *
-   * @var $_author
+   * @var string $_author
    */
   protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
   /**
    * Options par défaut possible du script
-   *
-   * @var $_defaultOpt
+   * @var array $_defaultOpt
    */
   protected $_defaultOpt = array(
                             'V' => array(
@@ -79,15 +75,13 @@ abstract class SLiib_Cli
 
   /**
    * Options possible du script
-   *
-   * @var $_options
+   * @var array $_options
    */
   protected $_options = null;
 
   /**
    * Chaine utilisée pour etre passée à getopt.
-   *
-   * @var $_param
+   * @var string $_params
    */
   protected $_params;
 

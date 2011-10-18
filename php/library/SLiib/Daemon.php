@@ -35,21 +35,21 @@ abstract class SLiib_Daemon
 
   /**
    * Tableau comprennant les PID des différents démons créés.
-   * 
-   * @var array
+   * @var array $_daemons
    */
   private $_daemons = array();
 
   /**
    * PID du parent
-   * 
-   * @var int
+   * @var int $_parentPID
    */
   private $_parentPID;
 
 
   /**
    * Constructeur, initialise le PID du père des démons
+   * 
+   * @return void
    */
   public function __construct()
   {

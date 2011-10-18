@@ -39,12 +39,14 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 {
 
   /**
-   * @var SLiib_Config_Ini
+   * Objet de test
+   * @var SLiib_Config_Ini $_object
    */
   protected $_object;
 
   /**
-   * @var string
+   * Fichier .ini de test
+   * @var string $_iniFile
    */
   protected $_iniFile;
 

@@ -50,15 +50,13 @@ class SLiib_Log
 
   /**
    * Nom/Chemin du fichier de log.
-   * 
    * @var string $_fileOutput
    */
   private $_fileOutput = null;
 
   /**
    * Format des logs
-   * 
-   * @var string $format
+   * @var string $_format
    */
   private $_format = '[%T][%d %t]%m';
 

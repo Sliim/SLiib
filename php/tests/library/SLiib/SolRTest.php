@@ -42,17 +42,20 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 {
 
   /**
-   * @var SLiib_SolR
+   * Objet de test
+   * @var SLiib_SolR $_object
    */
   protected $_object;
 
   /**
-   * @var string Host
+   * Host
+   * @var string $_host
    */
   protected $_host = 'localhost';
 
   /**
-   * @var int Port
+   * Port
+   * @var int $_port
    */
   protected $_port = 8983;
 

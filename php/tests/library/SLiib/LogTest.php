@@ -39,17 +39,20 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
 {
 
   /**
-   * @var SLiib_Log
+   * Objet de test
+   * @var SLiib_Log $_object
    */
   protected $_object;
 
   /**
-   * @var string
+   * Nom du fichier
+   * @var string $_filename
    */
   protected $_filename;
 
   /**
-   * @var string
+   * Format de test
+   * @var string $_testFormat
    */
   protected $_testFormat;
 

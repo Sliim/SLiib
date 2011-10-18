@@ -35,21 +35,18 @@ class SLiib_SolR
 
   /**
    * Host de l'instance SolR
-   *
    * @var string $_host
    */
   protected $_host;
 
   /**
    * Port écouté par l'instance SolR
-   *
    * @var int $_port
    */
   protected $_port;
 
   /**
    * Tableau des caractères spéciaux spécifiques à Solr
-   *
    * @var array
    */
   protected $_specialChars = array(
@@ -66,14 +63,12 @@ class SLiib_SolR
 
   /**
    * Répertoire SolR pour les update (insertion, commit, delete ..)
-   *
    * @const string UPDATE_DIRECTORY
    */
   const UPDATE_DIRECTORY = '/solr/update';
 
   /**
    * Répertoire de sélection de document avec des requêtes spécifiques
-   *
    * @const string SELECT_DIRECTORY
    */
   const SELECT_DIRECTORY = '/solr/select';

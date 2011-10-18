@@ -34,7 +34,8 @@ class SLiib_Registry
 {
 
   /**
-   * @var array Tableau contenant le registre
+   * Tableau contenant le registre
+   * @var array $_registry
    */
   static private $_registry = array();
 
