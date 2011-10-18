@@ -28,5 +28,5 @@
 require_once 'SLiib/Autoloader.php';
 
 SLiib_Autoloader::init(
-    array('SLiib')
+    array('SLiib' => 'SLiib')
 );
