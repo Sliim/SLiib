@@ -49,7 +49,7 @@ abstract class SLiib_Bootstrap
    * Namespaces optionnels à intégrer
    * @var array $_namespaces
    */
-  protected static $_namespaces = array();
+  protected static $_namespaces = null;
 
 
   /**
@@ -65,10 +65,7 @@ abstract class SLiib_Bootstrap
   {
     static::$_appNamespace = $appNamespace;
     static::$_appPath      = $appPath;
-
-    if (!is_null($namespaces)) {
-      static::$_namespaces = $namespaces;
-    }
+    static::$_namespaces   = $namespaces;
 
   }
 
@@ -80,15 +77,31 @@ abstract class SLiib_Bootstrap
    */
   public static function run()
   {
-    $namespaces = array(
-                   static::$_appNamespace => static::$_appPath,
-                  );
+    static::_setEnvironment();
 
-    if (!empty(static::$_namespaces)) {
-      $namespaces = array_merge(static::$_namespaces, $namespaces);
-    }
+    //TODO SLiib_Dispatcher::dispatch()
+
+  }
+
+
+  /**
+   * Initialise l'environnement de l'application
+   * 
+   * @return void
+   */
+  protected static function _setEnvironment()
+  {
+    $namespaces = array_merge(
+        array(
+         static::$_appNamespace => static::$_appPath,
+        ),
+        (is_null(static::$_namespaces) ? array() : static::$_namespaces)
+    );
 
     SLiib_Autoloader::init($namespaces);
+
+    //TODO SLiib_HTTP_Session
+    //TODO SLiib_HTTP_Request
 
   }
 
