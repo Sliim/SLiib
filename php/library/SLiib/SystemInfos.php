@@ -58,7 +58,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
     if (!defined('self::' . $name))
       throw new SLiib_SystemInfos_BadCommandException('Command not found!');
 
-    $result = self::_execute(constant('self::' . $name));
+    $result = self::_execute(constant('SELF::' . $name));
 
     if (in_array('serialize', $arguments))
       return serialize($result);
