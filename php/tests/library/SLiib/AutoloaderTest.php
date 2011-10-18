@@ -47,7 +47,9 @@ class SLiib_AutoloaderTest extends PHPUnit_Framework_TestCase
   public function testInit()
   {
     try {
-      SLiib_Autoloader::init(array('SLiib'));
+      SLiib_Autoloader::init(
+          array('SLiib' => 'SLiib')
+      );
     } catch (Exception $e) {
       $this->assertType('SLiib_Autoloader_Exception', $e);
     }

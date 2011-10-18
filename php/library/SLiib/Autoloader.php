@@ -34,19 +34,34 @@ class SLiib_Autoloader
 {
 
   /**
-   * @var SLiib_Autoloader $_instance Instance de l'autoloader
-   */
-  private static $_instance = null;
-
-  /**
-   * @var array $_isLoaded Classes chargées par l'autoloader
+   * Classes chargées par l'autoloader
+   * @var array $_isLoaded
    */
   private static $_isLoaded = array();
 
   /**
-   * @var array $_namespaces Namespaces autorisés.
+   * Namespaces autorisées.
+   * @var array $_namespaces
    */
   private static $_namespaces = array();
+
+  /**
+   * Clés des namespaces.
+   * @var array $_namespacesKeys
+   */
+  private static $_namespacesKeys = array();
+
+  /**
+   * Sections spéciales pour la génération des chemins de fichiers
+   * @var $_sections
+   */
+  private static $_sections = array();
+
+  /**
+   * Clés des sections
+   * @var $_sectionsKeys
+   */
+  private static $_sectionsKeys = array();
 
 
   /**
@@ -58,14 +73,23 @@ class SLiib_Autoloader
    */
   public static function init($namespaces)
   {
-    if (static::$_instance != null) {
+    if (!empty(static::$_namespaces)) {
       throw new SLiib_Autoloader_Exception('Autoloader already initialized.');
     }
 
     spl_autoload_register(array(__CLASS__, 'autoload'));
 
-    static::$_namespaces = $namespaces;
-    static::$_instance   = new self();
+    //Init des namespaces
+    static::$_namespaces     = $namespaces;
+    static::$_namespacesKeys = array_keys($namespaces);
+
+    //Init des sections
+    static::$_sections = array(
+                          'Model'      => 'models',
+                          'Controller' => 'controllers',
+                         );
+
+    static::$_sectionsKeys = array_keys(static::$_sections);
 
   }
 
@@ -83,18 +107,25 @@ class SLiib_Autoloader
       return true;
     }
 
-    $seq = explode('_', $class);
-    if (count($seq) < 2) {
+    $segment = explode('_', $class);
+    if (count($segment) < 2) {
       return false;
     }
 
-    $namespace = $seq[0];
+    $namespace = array_shift($segment);
+    $section   = $segment[0];
 
-    if (!in_array($namespace, static::$_namespaces)) {
+    if (!in_array($namespace, static::$_namespacesKeys)) {
       return false;
     }
 
-    $file = implode(DIRECTORY_SEPARATOR, $seq) . '.php';
+    if (in_array($section, static::$_sectionsKeys)) {
+      $segment[0] = static::$_sections[$section];
+    }
+
+    $file =
+      static::$_namespaces[$namespace] . DIRECTORY_SEPARATOR .
+      implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
     try {
       include $file;
