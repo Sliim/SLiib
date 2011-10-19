@@ -24,7 +24,7 @@
  * @version  Release: 0.2
  * @link     http://www.sliim-projects.eu
  */
-include_once 'SLiib/Autoloader.php';
+require_once 'SLiib/Autoloader.php';
 
 /**
  * SLiib_Application
@@ -33,47 +33,104 @@ include_once 'SLiib/Autoloader.php';
  */
 class SLiib_Application
 {
+
+  /**
+   * Instance
+   * @var SLiib_Application $_instance
+   */
   static private $_instance = null;
-  
+
+  /**
+   * Application namespace
+   * @var string $_appNameSpace
+   */
   private $_appNamespace;
-  
+
+  /**
+   * Application path
+   * @var string $_appPath
+   */
   private $_appPath;
-  
+
+  /**
+   * Namespaces to include
+   * @var array $_namespaces
+   */
   private $_namespaces;
-  
+
+  /**
+   * Sections to include
+   * @var array $_sections
+   */
   private $_sections;
-  
+
+  /**
+   * Application bootstrap
+   * @var string $_bootstrap
+   */
   private $_bootstrap;
-  
+
+  /**
+   * Application bootstrap path
+   * @var string $_bootstrapPath
+   */
   private $_bootstrapPath;
 
-  private function __construct($appNamespace, $appPath, array $namespaces, array $sections)
-  {
+
+  /**
+   * Constructor, use static method `init` to get an instance
+   * 
+   * @param string $appNamespace Application namespace
+   * @param string $appPath      Application path
+   * @param array  $namespaces   Namespaces
+   * @param array  $sections     Sections
+   * 
+   * @return void
+   */
+  private function __construct(
+      $appNamespace,
+      $appPath,
+      array $namespaces,
+      array $sections
+  ) {
     $this->_appNamespace = $appNamespace;
     $this->_appPath      = $appPath;
     $this->_namespaces   = $namespaces;
     $this->_sections     = $sections;
-    
+
     $bsPath = $this->_appPath . '/Bootstrap.php';
     if (!file_exists($bsPath)) {
       throw new SLiib_Application_Exception('Error boostraping!');
     }
-    
+
     $this->_bootstrapPath = $bsPath;
     $this->_bootstrap     = $this->_appNamespace . '_Bootstrap';
 
   }
 
 
-  public static function init($appNamespace, $appPath, array $namespaces = array(), array $sections = array())
-  {
+  /**
+   * Application Init
+   * 
+   * @param string          $appNamespace Application namespace
+   * @param string          $appPath      Application path
+   * @param array[optional] $namespaces   Namespaces
+   * @param array[optional] $sections     Sections
+   * 
+   * @return SLiib_Application
+   */
+  public static function init(
+      $appNamespace,
+      $appPath,
+      array $namespaces=array(),
+      array $sections=array()
+  ) {
     if (!is_null(self::$_instance)) {
       return self::$_instance;
     }
-    
-    //SLiib Autoload
+
     SLiib_Autoloader::init(array('SLiib' => 'SLiib'));
-    
+
     self::$_instance = new self(
         $appNamespace,
         $appPath,
@@ -84,25 +141,48 @@ class SLiib_Application
     return self::$_instance;
 
   }
-  
-  
+
+
+  /**
+   * Set namespaces
+   * 
+   * @param array $namespaces Namespaces to set
+   * 
+   * @return void
+   */
   public function setNamespaces(array $namespaces)
   {
     $this->_namespaces = $namespaces;
 
   }
-  
-  
+
+
+  /**
+   * Set sections
+   * 
+   * @param array $sections Sections to set
+   * 
+   * @return void
+   */
   public function setSections(array $sections)
   {
     $this->_sections = $sections;
 
   }
-  
-  
+
+
+  /**
+   * Run application
+   * 
+   * @return void
+   */
   public function run()
   {
-    $namespaces = array_merge(array($this->_appNamespace => $this->_appPath), $this->_namespaces);
+    $namespaces = array_merge(
+        array($this->_appNamespace => $this->_appPath),
+        $this->_namespaces
+    );
+
     SLiib_Autoloader::init($namespaces, $this->_sections);
 
     include $this->_bootstrapPath;
@@ -113,4 +193,3 @@ class SLiib_Application
 
 
 }
-  
