@@ -79,54 +79,12 @@ class SLiib_Config_Ini extends SLiib_Config
 
 
   /**
-   * Enregistre la configuration
-   * 
-   * @see SLiib_Config
-   *
-   * @throws SLiib_Config_Exception
-   *
-   * @return void
-   */
-  public function saveConfig()
-  {
-    $newContent = '';
-    foreach ($this->_config as $key => $value) {
-      if (is_object($value)) {
-        $newContent .= '[' . $key . ']' . "\r\n";
-        foreach ($value as $directive => $value) {
-          $newContent .= $directive . ' = ' . $value . "\r\n";
-        }
-      } else {
-        $newContent .= $key . ' = ' . $value . "\r\n";
-      }
-    }
-
-    $fp = fopen($this->_configFile, 'w');
-    if (!$fp)
-      throw new SLiib_Config_Exception(
-          'Cannot open configuration file ' .
-          $this->_configFile . ' in write mode.'
-      );
-
-    if (!fwrite($fp, $newContent)) {
-      fclose($fp);
-
-      throw new SLiib_Config_Exception(
-          'Cannot write in configuration file ' . $this->_configFile
-      );
-    }
-
-    fclose($fp);
-
-  }
-
-
-  /**
    * Lit le fichier de configuration
    * 
    * @see SLiib_Config
    * 
    * @throws SLiib_Config_Exception
+   * @throws SLiib_Config_Ini_SyntaxErrorException
    * 
    * @return void
    */
@@ -140,25 +98,33 @@ class SLiib_Config_Ini extends SLiib_Config
 
     //Block courant du fichier
     $block = false;
-
+    $count = 0;
     while ($line = fgets($fp, 256)) {
+      $count++;
       $line = SLiib_String::clean($line);
       if (!empty($line)) {
         switch ($line[0]) {
-          case '#':
+          case ';':
               break;
           case '[':
-            $block = str_replace(array('[', ']'), '', $line);
-            if (isset($this->_config->$block)) {
-              fclose($fp);
+            if (preg_match('/ : /', $line)) {
+              $seg    = explode(' : ', $line);
+              $block  = SLiib_String::clean(str_replace('[', '', $seg[0]));
+              $parent = SLiib_String::clean(str_replace(']', '', $seg[1]));
 
-              throw new SLiib_Config_Exception(
-                  'Ini error : Block name [' . $block .
-                  '] is already used in the ini file'
-              );
+              if (!isset($this->_config->$parent)) {
+                throw new SLiib_Config_Ini_SyntaxErrorException(
+                    'Parent `' . $parent . '` undefined in `' .
+                    $this->_configFile . '` at line ' . $count
+                );
+              }
+
+              $this->_config->$block = clone $this->_config->$parent;
+            } else {
+              $block = str_replace(array('[', ']'), '', $line);
+
+              $this->_config->$block = new stdClass;
             }
-
-            $this->_config->$block = new stdClass;
               break;
           default:
             $data      = explode('=', $line);
@@ -166,27 +132,8 @@ class SLiib_Config_Ini extends SLiib_Config
             $value     = SLiib_String::clean($data[1]);
 
             if (!$block) {
-              if (isset($this->_config->$directive)) {
-                fclose($fp);
-
-                throw new SLiib_Config_Exception(
-                    'Ini error : Directive name {' .
-                    $directive . '} is already used in the ini file'
-                );
-              }
-
               $this->_config->$directive = $value;
             } else {
-              if (isset($this->_config->$block->$directive)) {
-                fclose($fp);
-
-                throw new SLiib_Config_Exception(
-                    'Ini error : Directive name is already used' .
-                    ' in the ini file [directive => ' . $directive .
-                    ', block => ' . $block . ']'
-                );
-              }
-
               $this->_config->$block->$directive = $value;
             }
               break;

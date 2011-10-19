@@ -95,14 +95,6 @@ abstract class SLiib_Config
 
 
   /**
-   * Réecrit le fichier de configuration
-   * 
-   * @return void
-   */
-  abstract public function saveConfig();
-
-
-  /**
    * Lit le fichier de configuration
    * 
    * @return void

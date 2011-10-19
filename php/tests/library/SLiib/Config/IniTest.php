@@ -87,45 +87,29 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
   {
     $config = $this->_object->getConfig();
 
-    $this->assertObjectHasAttribute('general', $config);
-    $this->assertType('stdClass', $config->general);
-    $this->assertObjectHasAttribute('ajaxToolsMenu', $config->general);
+    $this->assertObjectHasAttribute('application', $config);
+    $this->assertObjectHasAttribute('development', $config);
+    $this->assertObjectHasAttribute('production', $config);
+
+    $this->assertType('stdClass', $config->application);
+    $this->assertType('stdClass', $config->development);
+    $this->assertType('stdClass', $config->production);
+
+    $this->assertObjectHasAttribute('docsMenu', $config->development);
+    $this->assertObjectHasAttribute('sysInfos', $config->development);
+    $this->assertObjectHasAttribute('docsMenu', $config->production);
+    $this->assertObjectHasAttribute('sysInfos', $config->production);
 
     $this->assertType(
         'string',
-        $this->_object->getConfig()->general->ajaxToolsMenu
+        $this->_object->getConfig()->application->sysInfos
     );
 
-  }
+    $this->assertEquals('On', $config->development->docsMenu);
+    $this->assertEquals('Off', $config->production->docsMenu);
 
-
-  /**
-   * Test rewrite configuration with a other value
-   * 
-   * @return void
-   */
-  public function testSetAndSaveConfig()
-  {
-    $this->_object->setDirective('sysInfos', 'Off', 'general');
-    $this->_object->saveConfig();
-
-  }
-
-
-  /**
-   * Test rewrite configuration with an error
-   * 
-   * @return void
-   */
-  public function testSetAndSaveConfig2()
-  {
-    try {
-      $this->_object->setDirective('sysInfos', 'On');
-    } catch (Exception $e) {
-      $this->assertType('SLiib_Config_Exception', $e);
-    }
-
-    $this->_object->saveConfig();
+    $this->assertEquals('On', $config->development->sysInfos);
+    $this->assertEquals('Off', $config->production->sysInfos);
 
   }
 
