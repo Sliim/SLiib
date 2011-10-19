@@ -85,6 +85,8 @@ class SLiib_Application
    * @param array  $namespaces   Namespaces
    * @param array  $sections     Sections
    * 
+   * @throws SLiib_Application_Exception
+   * 
    * @return void
    */
   private function __construct(

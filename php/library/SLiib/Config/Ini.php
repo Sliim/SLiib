@@ -84,7 +84,7 @@ class SLiib_Config_Ini extends SLiib_Config
    * @see SLiib_Config
    * 
    * @throws SLiib_Config_Exception
-   * @throws SLiib_Config_Ini_SyntaxErrorException
+   * @throws SLiib_Config_Exception_SyntaxError
    * 
    * @return void
    */
@@ -113,7 +113,7 @@ class SLiib_Config_Ini extends SLiib_Config
               $parent = SLiib_String::clean(str_replace(']', '', $seg[1]));
 
               if (!isset($this->_config->$parent)) {
-                throw new SLiib_Config_Ini_SyntaxErrorException(
+                throw new SLiib_Config_Exception_SyntaxError(
                     'Parent `' . $parent . '` undefined in `' .
                     $this->_configFile . '` at line ' . $count
                 );

@@ -64,6 +64,9 @@ abstract class SLiib_Daemon
    * @param string $daemonFunction Nom de la fonction comportant le code à
    *                               exécuter par le démon.
    * 
+   * @throws SLiib_Daemon_Exception
+   * @throws SLiib_Daemon_Exception_BadMethod
+   * 
    * @return bool
    */
   public function launch($daemonFunction)
@@ -76,7 +79,7 @@ abstract class SLiib_Daemon
     } else {
       $pid = getmypid();
       if (!method_exists($this, $daemonFunction)) {
-        throw new SLiib_Daemon_BadMethodException('Daemon function unknown.');
+        throw new SLiib_Daemon_Exception_BadMethod('Daemon function unknown.');
       }
 
       $this->$daemonFunction();
@@ -91,6 +94,8 @@ abstract class SLiib_Daemon
    * Tue un démon
    * 
    * @param int $pid PID du démon à tuer
+   * 
+   * @throws SLiib_Daemon_Exception
    * 
    * @return bool
    */

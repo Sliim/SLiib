@@ -17,22 +17,21 @@
  *
  * PHP version 5
  *  
- * @category   SLiib
- * @package    SLiib_Config
- * @subpackage SLiib_Config_Ini
- * @author     Sliim <sliim@mailoo.org>
- * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.2
- * @link       http://www.sliim-projects.eu
+ * @category SLiib
+ * @package  SLiib_SystemInfos
+ * @author   Sliim <sliim@mailoo.org>
+ * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version  Release: 0.2
+ * @link     http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Config_Ini_SyntaxErrorException
+ * SLiib_SystemInfos_Exception_CommandFailed
  * 
- * @package    SLiib_Config
- * @subpackage SLiib_Config_Ini
+ * @package SLiib_SystemInfos
  */
-class SLiib_Config_Ini_SyntaxErrorException extends SLiib_Config_Exception
+class SLiib_SystemInfos_Exception_CommandFailed
+extends SLiib_SystemInfos_Exception
 {
 
 }

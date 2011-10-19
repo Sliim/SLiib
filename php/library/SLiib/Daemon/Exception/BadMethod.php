@@ -18,7 +18,7 @@
  * PHP version 5
  *  
  * @category SLiib
- * @package  SLiib_SystemInfos
+ * @package  SLiib_Daemon
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,12 +26,11 @@
  */
 
 /**
- * SLiib_SystemInfos_BadCommandException
+ * SLiib_Daemon_Exception_BadMethod
  * 
- * @package SLiib_SystemInfos
+ * @package SLiib_Daemon
  */
-class SLiib_SystemInfos_BadCommandException
-extends SLiib_SystemInfos_Exception
+class SLiib_Daemon_Exception_BadMethod extends BadMethodCallException
 {
 
 }

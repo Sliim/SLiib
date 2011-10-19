@@ -26,11 +26,11 @@
  */
 
 /**
- * SLiib_SystemInfos_CommandFailedException
+ * SLiib_SystemInfos_Exception_BadCommand
  * 
  * @package SLiib_SystemInfos
  */
-class SLiib_SystemInfos_CommandFailedException
+class SLiib_SystemInfos_Exception_BadCommand
 extends SLiib_SystemInfos_Exception
 {
 

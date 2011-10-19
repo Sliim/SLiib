@@ -45,6 +45,8 @@ class SLiib_Registry
    * 
    * @param string $key Key à récupérer
    * 
+   * @throws SLiib_Registry_Exception
+   * 
    * @return mixed Valeur de la clé.
    */
   static public function get($key)
@@ -65,6 +67,8 @@ class SLiib_Registry
    * 
    * @param string $key   Key à définir
    * @param mixed  $value Valeur à affecter
+   * 
+   * @throws SLiib_Registry_Exception
    * 
    * @return void
    */

@@ -49,14 +49,14 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
    *                          possible : 'serialize' qui permet de récupérer
    *                          le résultat de la commande sérialisé.
    * 
-   * @throws SLiib_SystemInfos_BadCommandException
+   * @throws SLiib_SystemInfos_Exception_BadCommand
    * 
    * @return string résultat de la commande
    */
   public static function __callStatic($name, $arguments)
   {
     if (!defined('self::' . $name))
-      throw new SLiib_SystemInfos_BadCommandException('Command not found!');
+      throw new SLiib_SystemInfos_Exception_BadCommand('Command not found!');
 
     $result = self::_execute(constant('SELF::' . $name));
 
@@ -73,7 +73,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
    * 
    * @param string $cmd La commande a exécuter
    * 
-   * @throws SLiib_SystemInfos_CommandFailedException
+   * @throws SLiib_SystemInfos_Exception_CommandFailed
    * 
    * @return array Tableau contenant le résultat de la commande.
    */
@@ -106,7 +106,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
       $returnValue = proc_close($process);
 
       if ($returnValue != 0)
-        throw new SLiib_SystemInfos_CommandFailedException(
+        throw new SLiib_SystemInfos_Exception_CommandFailed(
             'Command `' . $cmd . '` failed!'
         );
 

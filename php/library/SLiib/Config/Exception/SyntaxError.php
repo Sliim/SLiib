@@ -17,20 +17,22 @@
  *
  * PHP version 5
  *  
- * @category SLiib
- * @package  SLiib_Daemon
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Config
+ * @subpackage SLiib_Config_Ini
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Daemon_BadMethodException
+ * SLiib_Config_Ini_SyntaxErrorException
  * 
- * @package SLiib_Daemon
+ * @package    SLiib_Config
+ * @subpackage SLiib_Config_Ini
  */
-class SLiib_Daemon_BadMethodException extends BadMethodCallException
+class SLiib_Config_Exception_SyntaxError extends SLiib_Config_Exception
 {
 
 }
