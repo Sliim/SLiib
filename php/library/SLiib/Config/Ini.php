@@ -61,15 +61,14 @@ class SLiib_Config_Ini extends SLiib_Config
         );
       }
     } else {
-      if (isset($this->_config->$block)
-      && is_object($this->_config->$block)) {
-        if (isset($this->_config->$block->$directive))
+      if (isset($this->_config->$block) && is_object($this->_config->$block)) {
+        if (isset($this->_config->$block->$directive)) {
           $this->_config->$block->$directive = $value;
-        else
+        } else {
           throw new SLiib_Config_Exception(
-              'Directive {' . $directive .
-              '} not found on block [' . $block . ']'
+              'Directive {' . $directive . '} not found on block [' . $block . ']'
           );
+        }
       } else {
         throw new SLiib_Config_Exception('Block [' . $block . '] not found');
       }
@@ -114,8 +113,7 @@ class SLiib_Config_Ini extends SLiib_Config
 
               if (!isset($this->_config->$parent)) {
                 throw new SLiib_Config_Exception_SyntaxError(
-                    'Parent `' . $parent . '` undefined in `' .
-                    $this->_configFile . '` at line ' . $count
+                    '`' . $parent . '` undefined in `' . $this->_configFile . '` at line ' . $count
                 );
               }
 

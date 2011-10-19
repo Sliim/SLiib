@@ -90,10 +90,10 @@ class SLiib_Listing
   private function _list($except)
   {
     $rep = opendir($this->_path);
-    
+
     while ($dossier = readdir($rep)) {
       $ok = 1;
-      
+
       foreach ($except as $e)
         if ($dossier == $e || preg_match('/~$/i', $dossier))
           $ok = -1;

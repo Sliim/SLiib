@@ -55,15 +55,17 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
    */
   public static function __callStatic($name, $arguments)
   {
-    if (!defined('self::' . $name))
+    if (!defined('self::' . $name)) {
       throw new SLiib_SystemInfos_Exception_BadCommand('Command not found!');
+    }
 
     $result = self::_execute(constant('SELF::' . $name));
 
-    if (in_array('serialize', $arguments))
+    if (in_array('serialize', $arguments)) {
       return serialize($result);
-    else
+    } else {
       return implode($result, '');
+    }
 
   }
 

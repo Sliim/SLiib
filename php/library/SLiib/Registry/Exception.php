@@ -30,7 +30,7 @@
  * 
  * @package SLiib_Registry
  */
-class SLiib_Registry_Exception
+class SLiib_Registry_Exception extends SLiib_Exception
 {
 
 }
