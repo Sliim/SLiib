@@ -89,11 +89,11 @@ class SLiib_Listing
    */
   private function _list($except)
   {
-    $rep = opendir($this->_path);//Ouverture du repertoire
-    /************ Remplissage du tableau ********/
+    $rep = opendir($this->_path);
+    
     while ($dossier = readdir($rep)) {
       $ok = 1;
-      //test si le dossier / fichier fait parti des exception
+      
       foreach ($except as $e)
         if ($dossier == $e || preg_match('/~$/i', $dossier))
           $ok = -1;
