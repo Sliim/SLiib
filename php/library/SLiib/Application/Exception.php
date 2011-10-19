@@ -18,7 +18,7 @@
  * PHP version 5
  *  
  * @category SLiib
- * @package  SLiib_Autoloader
+ * @package  SLiib_Application
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,11 @@
  */
 
 /**
- * SLiib_Autoloader_Exception
+ * SLiib_Application_Exception
  * 
- * @package SLiib_Autoloader
+ * @package SLiib_Application
  */
-class SLiib_Autoloader_Exception extends SLiib_Exception
+class SLiib_Application_Exception extends SLiib_Exception
 {
 
 }

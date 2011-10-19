@@ -45,27 +45,19 @@ abstract class SLiib_Bootstrap
    */
   protected static $_appPath;
 
-  /**
-   * Namespaces optionnels à intégrer
-   * @var array $_namespaces
-   */
-  protected static $_namespaces = null;
-
 
   /**
    * Initialisation du bootstrap
    *
-   * @param string          $appNamespace Namespace de l'application
-   * @param string          $appPath      Chemin de l'application
-   * @param array[optional] $namespaces   Namespaces de l'application
+   * @param string $appNamespace Namespace de l'application
+   * @param string $appPath      Chemin de l'application
    *
    * @return void
    */
-  public static function init($appNamespace, $appPath, array $namespaces=null)
+  public static function init($appNamespace, $appPath)
   {
     static::$_appNamespace = $appNamespace;
     static::$_appPath      = $appPath;
-    static::$_namespaces   = $namespaces;
 
   }
 
@@ -91,15 +83,6 @@ abstract class SLiib_Bootstrap
    */
   protected static function _setEnvironment()
   {
-    $namespaces = array_merge(
-        array(
-         static::$_appNamespace => static::$_appPath,
-        ),
-        (is_null(static::$_namespaces) ? array() : static::$_namespaces)
-    );
-
-    SLiib_Autoloader::init($namespaces);
-
     //TODO SLiib_HTTP_Session
     //TODO SLiib_HTTP_Request
 

@@ -57,39 +57,32 @@ class SLiib_Autoloader
    */
   private static $_sections = array();
 
-  /**
-   * Clés des sections
-   * @var $_sectionsKeys
-   */
-  private static $_sectionsKeys = array();
-
 
   /**
    * Initialisation de l'autoloader
    * 
-   * @param array $namespaces Namespaces autorisée pour l'autoload
+   * @param array           $namespaces Namespaces autorisés pour l'autoload
+   * @param array[optional] $sections   Sections autorisées pour l'autoload
    * 
    * @return void
    */
-  public static function init($namespaces)
+  public static function init(array $namespaces, array $sections=array())
   {
     if (!empty(static::$_namespaces)) {
-      throw new SLiib_Autoloader_Exception('Autoloader already initialized.');
+      static::$_namespaces = array_merge(static::$_namespaces, $namespaces);
+    } else {
+      static::$_namespaces = $namespaces;
     }
 
+    if (!empty(static::$_sections)) {
+      static::$_sections = array_merge(static::$_sections, $sections);
+    } else {
+      static::$_sections = $sections;
+    }
+
+    static::$_namespacesKeys = array_keys(static::$_namespaces);
+
     spl_autoload_register(array(__CLASS__, 'autoload'));
-
-    //Init des namespaces
-    static::$_namespaces     = $namespaces;
-    static::$_namespacesKeys = array_keys($namespaces);
-
-    //Init des sections
-    static::$_sections = array(
-                          'Model'      => 'models',
-                          'Controller' => 'controllers',
-                         );
-
-    static::$_sectionsKeys = array_keys(static::$_sections);
 
   }
 
@@ -113,14 +106,16 @@ class SLiib_Autoloader
     }
 
     $namespace = array_shift($segment);
-    $section   = $segment[0];
 
     if (!in_array($namespace, static::$_namespacesKeys)) {
       return false;
     }
 
-    if (in_array($section, static::$_sectionsKeys)) {
-      $segment[0] = static::$_sections[$section];
+    foreach (static::$_sections as $sectionKey => $sectionValue) {
+      if (in_array($sectionKey, $segment)) {
+        $key           = array_search($sectionKey, $segment);
+        $segment[$key] = $sectionValue;
+      }
     }
 
     $file =
