@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Log
  * @author   Sliim <sliim@mailoo.org>
@@ -27,7 +27,7 @@
 
 /**
  * SLiib_Log
- * 
+ *
  * @package SLiib_Log
  */
 class SLiib_Log
@@ -39,14 +39,13 @@ class SLiib_Log
   const TIME_FORMAT = 'h:i:s';
 
   /**
-   * Constantes de type d'erreur
+   * Constantes de type de log
    */
-  const TYPE_DEBUG  = 'DEBUG';
-  const TYPE_INFO   = 'INFO';
-  const TYPE_NOTICE = 'NOTICE';
-  const TYPE_WARN   = 'WARN';
-  const TYPE_ERROR  = 'ERROR';
-  const TYPE_CRIT   = 'CRIT';
+  const DEBUG = 'DEBUG';
+  const INFO  = 'INFO';
+  const WARN  = 'WARN';
+  const ERROR = 'ERROR';
+  const CRIT  = 'CRIT';
 
   /**
    * Nom/Chemin du fichier de log.
@@ -63,12 +62,12 @@ class SLiib_Log
 
   /**
    * Constructor, initialise le file descriptor.
-   * 
+   *
    * @param string         $fileOutput Nom/Chemin vers le fichier à utiliser.
    * @param bool[optional] $add        True pour ajouter à la suite du fichier.
-   * 
+   *
    * @throws SLiib_Log_Exception
-   * 
+   *
    * @return void
    */
   public function __construct($fileOutput, $add=false)
@@ -87,7 +86,7 @@ class SLiib_Log
 
   /**
    * Destructeur : ferme le fichier de log.
-   * 
+   *
    * @return void
    */
   public function __destruct()
@@ -99,13 +98,13 @@ class SLiib_Log
 
   /**
    * Écrit dans le fichier de log
-   * 
+   *
    * @param string         $string Chaine à écrire dans le fichier
    * @param string         $type   Type de log
    * @param bool[optional] $echo   Affiche ou non sur la sortie standard.
-   * 
+   *
    * @throws SLiib_Log_Exception
-   * 
+   *
    * @return void
    */
   public function log($string, $type, $echo=false)
@@ -119,25 +118,140 @@ class SLiib_Log
       );
     }
 
-    //TODO affichage couleur si CLI_MODE
-    if ($echo)
-      echo $string . PHP_EOL;
+    if ($echo) {
+      $this->_printStdout($string, $type);
+    }
+
+  }
+
+
+  /**
+   * Ecrit un log de type DEBUG
+   *
+   * @param string            $string Message du log
+   * @param boolean[optional] $echo   Afficher le log dans le stdout
+   *
+   * @return void
+   */
+  public function debug($string, $echo=false)
+  {
+    try {
+      $this->log($string, self::DEBUG, $echo);
+    } catch (SLiib_Log_Exception $e) {
+      $this->_printStdout($e->getMessage(), self::ERROR);
+
+      if ($echo) {
+        $this->_printStdout($string, self::DEBUG);
+      }
+    }
+
+  }
+
+
+  /**
+   * Ecrit un log de type INFO
+   *
+   * @param string            $string Message du log
+   * @param boolean[optional] $echo   Afficher le log dans le stdout
+   *
+   * @return void
+   */
+  public function info($string, $echo=false)
+  {
+    try {
+      $this->log($string, self::INFO, $echo);
+    } catch (SLiib_Log_Exception $e) {
+      $this->_printStdout($e->getMessage(), self::ERROR);
+
+      if ($echo) {
+        $this->_printStdout($string, self::INFO);
+      }
+    }
+
+  }
+
+
+  /**
+   * Ecrit un log de type WARN
+   *
+   * @param string            $string Message du log
+   * @param boolean[optional] $echo   Afficher le log dans le stdout
+   *
+   * @return void
+   */
+  public function warn($string, $echo=false)
+  {
+    try {
+      $this->log($string, self::WARN, $echo);
+    } catch (SLiib_Log_Exception $e) {
+      $this->_printStdout($e->getMessage(), self::ERROR);
+
+      if ($echo) {
+        $this->_printStdout($string, self::WARN);
+      }
+    }
+
+  }
+
+
+  /**
+   * Ecrit un log de type ERROR
+   *
+   * @param string            $string Message du log
+   * @param boolean[optional] $echo   Afficher le log dans le stdout
+   *
+   * @return void
+   */
+  public function error($string, $echo=false)
+  {
+    try {
+      $this->log($string, self::ERROR, $echo);
+    } catch (SLiib_Log_Exception $e) {
+      $this->_printStdout($e->getMessage(), self::ERROR);
+
+      if ($echo) {
+        $this->_printStdout($string, self::ERROR);
+      }
+    }
+
+  }
+
+
+  /**
+   * Ecrit un log de type CRIT
+   *
+   * @param string            $string Message du log
+   * @param boolean[optional] $echo   Afficher le log dans le stdout
+   *
+   * @return void
+   */
+  public function crit($string, $echo=false)
+  {
+    try {
+      $this->log($string, self::CRIT, $echo);
+    } catch (SLiib_Log_Exception $e) {
+      $this->_printStdout($e->getMessage(), self::ERROR);
+
+      if ($echo) {
+        $this->_printStdout($string, self::CRIT);
+      }
+    }
 
   }
 
 
   /**
    * Définit le format utilisé pour les logs
-   * Les différents éléments sont : 
+   * Les différents éléments sont :
    * -date : %d
    * -time : %t
    * -ip : %@
    * -user-agent : %U
    * -message : %m
    * -type : %T
-   * 
+   *
    * @param string $format Format à définir.
-   * 
+   *
    * @return void
    */
   public function setFormat($format)
@@ -149,7 +263,7 @@ class SLiib_Log
 
   /**
    * Retourne le format actuel des logs
-   * 
+   *
    * @return string format actuel des logs
    */
   public function getFormat()
@@ -161,10 +275,10 @@ class SLiib_Log
 
   /**
    * Génère le log en foncton du format spécifié
-   * 
+   *
    * @param string $message Message à écrire
    * @param string $type    Type de log (error, crit, warn, info..)
-   * 
+   *
    * @return log formatté
    */
   private function _genLog($message, $type)
@@ -184,7 +298,7 @@ class SLiib_Log
 
   /**
    * Callback pour le format date (%d)
-   * 
+   *
    * @return string Date actuelle
    */
   private static function _getDate()
@@ -196,8 +310,8 @@ class SLiib_Log
 
   /**
    * Callback pour le format heure (%t)
-   * 
-   * @return string Heure actuelle 
+   *
+   * @return string Heure actuelle
    */
   private static function _getTime()
   {
@@ -208,8 +322,8 @@ class SLiib_Log
 
   /**
    * Callback pour le format IP (%@)
-   * 
-   * @return string Adresse IP du client ou false si inexistante 
+   *
+   * @return string Adresse IP du client ou false si inexistante
    */
   private static function _getIp()
   {
@@ -222,7 +336,7 @@ class SLiib_Log
 
   /**
    * Callback pour le format User-Agent (%U)
-   * 
+   *
    * @return string User-Agent du client ou false si inexistant
    */
   private static function _getUserAgent()
@@ -230,6 +344,40 @@ class SLiib_Log
     if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
       return $_SERVER['HTTP_USER_AGENT'];
     return false;
+
+  }
+
+
+  /**
+   * Ecrit le message sur le stdout
+   *
+   * @param string $string Chaine à afficher
+   * @param string $type   Type de log
+   *
+   * @return void
+   */
+  private function _printStdout($string, $type)
+  {
+    $color        = "\033[0m";
+    $defaultColor = $color;
+
+    switch ($type) {
+      case self::DEBUG:
+        $color = "\033[34m";
+          break;
+      case self::WARN:
+        $color = "\033[33m";
+          break;
+      case self::ERROR:
+      case self::CRIT:
+        $color = "\033[31m";
+          break;
+      default:
+        //No color
+          break;
+    }
+
+    echo $color . $string . $defaultColor . PHP_EOL;
 
   }
 
