@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category   SLiib
  * @package    SLiib_Config
  * @subpackage SLiib_Config_Ini
@@ -28,7 +28,7 @@
 
 /**
  * SLiib_Config_Ini
- * 
+ *
  * @package    SLiib_Config
  * @subpackage SLiib_Config_Ini
  */
@@ -37,54 +37,13 @@ class SLiib_Config_Ini extends SLiib_Config
 
 
   /**
-   * Définit une directive de la configuration
-   * 
-   * @param string           $directive Nom de la directive à modifier
-   * @param string           $value     Valeur à affecter à la directive
-   * @param string[optional] $block     Nom du block conteneur
-   * 
-   * @see SLiib_Config
-   * 
-   * @throws SLiib_Config_Exception
-   * 
-   * @return void
-   */
-  public function setDirective($directive, $value, $block=null)
-  {
-    if (is_null($block)) {
-      if (isset($this->_config->$directive)
-      && !is_object($this->_config->$directive)) {
-        $this->_config->$directive = $value;
-      } else {
-        throw new SLiib_Config_Exception(
-            'Directive {' . $directive . '} does not exist (maybe a block..)'
-        );
-      }
-    } else {
-      if (isset($this->_config->$block) && is_object($this->_config->$block)) {
-        if (isset($this->_config->$block->$directive)) {
-          $this->_config->$block->$directive = $value;
-        } else {
-          throw new SLiib_Config_Exception(
-              'Directive {' . $directive . '} not found on block [' . $block . ']'
-          );
-        }
-      } else {
-        throw new SLiib_Config_Exception('Block [' . $block . '] not found');
-      }
-    }
-
-  }
-
-
-  /**
    * Lit le fichier de configuration
-   * 
+   *
    * @see SLiib_Config
-   * 
+   *
    * @throws SLiib_Config_Exception
    * @throws SLiib_Config_Exception_SyntaxError
-   * 
+   *
    * @return void
    */
   protected function _readFile()

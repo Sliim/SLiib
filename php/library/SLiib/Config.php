@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Config
  * @author   Sliim <sliim@mailoo.org>
@@ -27,7 +27,7 @@
 
 /**
  * SLiib_Config
- * 
+ *
  * @package SLiib_Config
  */
 abstract class SLiib_Config
@@ -48,11 +48,11 @@ abstract class SLiib_Config
 
   /**
    * Constructeur. Charge le fichier de configuration passé en paramètre
-   * 
+   *
    * @param string $file Fichier à charger
-   * 
+   *
    * @throws SLiib_Config_Exception
-   * 
+   *
    * @return void
    */
   public function __construct($file)
@@ -70,7 +70,7 @@ abstract class SLiib_Config
 
   /**
    * Récupère l'ensemble de la configuration.
-   * 
+   *
    * @return stdClass
    */
   public function getConfig()
@@ -81,22 +81,8 @@ abstract class SLiib_Config
 
 
   /**
-   * Définit une valeur pour une directive du fichier de configuration. Si un
-   * block est précisé, alors la méthode définira la directive contenue dans
-   * le block.
-   * 
-   * @param string           $directive Nom de la directive à modifier
-   * @param string           $value     Valeur à affecter à la directive
-   * @param string[optional] $block     Nom du block conteneur
-   * 
-   * @return void
-   */
-  abstract public function setDirective($directive, $value, $block=null);
-
-
-  /**
    * Lit le fichier de configuration
-   * 
+   *
    * @return void
    */
   abstract protected function _readFile();
