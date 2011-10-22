@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Daemon
  * @author   Sliim <sliim@mailoo.org>
@@ -27,7 +27,7 @@
 
 /**
  * SLiib_Daemon
- * 
+ *
  * @package SLiib_Daemon
  */
 abstract class SLiib_Daemon
@@ -48,28 +48,30 @@ abstract class SLiib_Daemon
 
   /**
    * Constructeur, initialise le PID du père des démons
-   * 
+   *
    * @return void
    */
   public function __construct()
   {
     $this->_parentPID = getmypid();
 
+    pcntl_signal(SIGTERM, array($this, '_handler'));
+
   }
 
 
   /**
    * Créé un démon
-   * 
-   * @param string $daemonFunction Nom de la fonction comportant le code à
-   *                               exécuter par le démon.
-   * 
+   *
+   * @param string $daemonCode Nom de la fonction comportant le code à
+   *                           exécuter par le démon.
+   *
    * @throws SLiib_Daemon_Exception
    * @throws SLiib_Daemon_Exception_BadMethod
-   * 
+   *
    * @return bool
    */
-  public function launch($daemonFunction)
+  public function launch($daemonCode)
   {
     $pid = pcntl_fork();
     if ($pid == -1) {
@@ -78,11 +80,11 @@ abstract class SLiib_Daemon
       $this->_daemons[] = $pid;
     } else {
       $pid = getmypid();
-      if (!method_exists($this, $daemonFunction)) {
+      if (!method_exists($this, $daemonCode)) {
         throw new SLiib_Daemon_Exception_BadMethod('Daemon function unknown.');
       }
 
-      $this->$daemonFunction();
+      $this->$daemonCode();
     }
 
     return $pid;
@@ -92,14 +94,15 @@ abstract class SLiib_Daemon
 
   /**
    * Tue un démon
-   * 
-   * @param int $pid PID du démon à tuer
-   * 
+   *
+   * @param int           $pid    PID du démon à tuer
+   * @param int[optional] $signal Signal à envoyer au daemon
+   *
    * @throws SLiib_Daemon_Exception
-   * 
+   *
    * @return bool
    */
-  public function kill($pid)
+  public function kill($pid, $signal=SIGKILL)
   {
     if (!in_array($pid, $this->_daemons) || !is_numeric($pid)) {
       throw new SLiib_Daemon_Exception(
@@ -107,11 +110,28 @@ abstract class SLiib_Daemon
       );
     }
 
-    //TODO Revoir ça c'est crade!
-    exec('kill ' . $pid, $out, $code);
-    if ($code == 0)
-      return true;
-    return false;
+    return posix_kill($pid, $signal);
+
+  }
+
+
+  /**
+   * Signal handler
+   *
+   * @param int $signal Signal
+   *
+   * @return void
+   */
+  protected function _handler($signal)
+  {
+    switch ($signal) {
+      case SIGTERM:
+        echo 'Daemon killed with SIGTERM!' . PHP_EOL;
+          break;
+      default:
+        echo 'Daemon killed!' . PHP_EOL;
+          break;
+    }
 
   }
 
