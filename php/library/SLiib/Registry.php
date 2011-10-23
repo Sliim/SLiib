@@ -37,7 +37,7 @@ class SLiib_Registry
      * Tableau contenant le registre
      * @var array $_registry
      */
-    static private $_registry = array();
+    private static $_registry = array();
 
 
     /**
@@ -49,7 +49,7 @@ class SLiib_Registry
      *
      * @return mixed Valeur de la clé.
      */
-    static public function get($key)
+    public static function get($key)
     {
         if (!key_exists($key, self::$_registry)) {
             throw new SLiib_Registry_Exception(
@@ -72,7 +72,7 @@ class SLiib_Registry
      *
      * @return void
      */
-    static public function set($key, $value)
+    public static function set($key, $value)
     {
         if (key_exists($key, self::$_registry)) {
             throw new SLiib_Registry_Exception('Key ' . $key . ' already exist.');
