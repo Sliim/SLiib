@@ -54,8 +54,8 @@ class SLiib_Config_Ini extends SLiib_Config
             );
         }
 
-        $section = false;
         $this->_pointer = 0;
+        $section        = false;
         while ($line = fgets($fp, 256)) {
             $this->_pointer++;
             $line = SLiib_String::clean($line);

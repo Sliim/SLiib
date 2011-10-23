@@ -83,8 +83,8 @@ abstract class SLiib_Bootstrap
      */
     protected static function _setEnvironment()
     {
+        SLiib_HTTP_Request::init();
         //TODO SLiib_HTTP_Session
-        //TODO SLiib_HTTP_Request
 
     }
 
