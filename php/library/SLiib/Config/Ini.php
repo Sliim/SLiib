@@ -42,63 +42,128 @@ class SLiib_Config_Ini extends SLiib_Config
    * @see SLiib_Config
    *
    * @throws SLiib_Config_Exception
-   * @throws SLiib_Config_Exception_SyntaxError
    *
-   * @return void
+   * @return int Nombre de ligne lue
    */
   protected function _readFile()
   {
     $fp = fopen($this->_configFile, 'r');
-    if (!$fp)
+    if (!$fp) {
       throw new SLiib_Config_Exception(
           'Opening file ' . $this->_configFile . ' failed'
       );
+    }
 
-    //Block courant du fichier
-    $block = false;
-    $count = 0;
+    $section = false;
+    $this->_pointer = 0;
     while ($line = fgets($fp, 256)) {
-      $count++;
+      $this->_pointer++;
       $line = SLiib_String::clean($line);
       if (!empty($line)) {
         switch ($line[0]) {
           case ';':
               break;
           case '[':
-            if (preg_match('/ : /', $line)) {
-              $seg    = explode(' : ', $line);
-              $block  = SLiib_String::clean(str_replace('[', '', $seg[0]));
-              $parent = SLiib_String::clean(str_replace(']', '', $seg[1]));
-
-              if (!isset($this->_config->$parent)) {
-                throw new SLiib_Config_Exception_SyntaxError(
-                    '`' . $parent . '` undefined in `' . $this->_configFile . '` at line ' . $count
-                );
-              }
-
-              $this->_config->$block = clone $this->_config->$parent;
-            } else {
-              $block = str_replace(array('[', ']'), '', $line);
-
-              $this->_config->$block = new stdClass;
-            }
+              $section = $this->_initSection($line);
               break;
           default:
-            $data      = explode('=', $line);
-            $directive = SLiib_String::clean($data[0]);
-            $value     = SLiib_String::clean($data[1]);
-
-            if (!$block) {
-              $this->_config->$directive = $value;
-            } else {
-              $this->_config->$block->$directive = $value;
-            }
+              $this->_initParam($line, $section);
               break;
         }
       }
     }
 
     fclose($fp);
+
+    return $this->_pointer;
+
+  }
+
+
+  /**
+   * Init d'une section du fichier
+   *
+   * @param string $section Section definition
+   *
+   * @throws SLiib_Config_Exception_SyntaxError
+   *
+   * @return string Section name
+   */
+  private function _initSection($section)
+  {
+    if (preg_match('/ : /', $section)) {
+      $segment = explode(' : ', $section);
+
+      if (count($segment) != 2) {
+        throw new SLiib_Config_Exception_SyntaxError(
+            'Section definition incorrect at line ' . $this->_pointer
+        );
+      }
+
+      $section = SLiib_String::clean(str_replace('[', '', $segment[0]));
+      $parent  = SLiib_String::clean(str_replace(']', '', $segment[1]));
+
+      if (!isset($this->_config->$parent)) {
+        throw new SLiib_Config_Exception_SyntaxError(
+            '`' . $parent . '` undefined in `' . $this->_configFile . '` at line ' . $this->_pointer
+        );
+      }
+
+      $this->_config->$section = clone $this->_config->$parent;
+    } else {
+      $section = str_replace(array('[', ']'), '', $section);
+
+      $this->_config->$section = new stdClass;
+    }
+
+    return $section;
+
+  }
+
+
+  /**
+   * Init un paramètre du fichier
+   *
+   * @param string $param   Paramètre à initialiser
+   * @param string $section Section concernée
+   *
+   * @return void
+   */
+  private function _initParam($param, $section=false)
+  {
+    $datas = explode('=', $param);
+    $key   = SLiib_String::clean($datas[0]);
+    $value = SLiib_String::clean($datas[1]);
+
+    if (strpos($key, '.')) {
+      $segment = explode('.', $key);
+      $key     = array_shift($segment);
+      $cSeg    = count($segment);
+      $object  = new stdClass;
+      $parent  = null;
+
+      foreach ($segment as $k => $p) {
+        if (is_null($parent)) {
+          $object->$p = new stdClass;
+          $parent     = $object->$p;
+        } else {
+          if ($k != $cSeg - 1) {
+            $parent->$p = new stdClass;
+            $parent     = $parent->$p;
+          } else {
+            $parent->$p = $value;
+          }
+        }
+      }
+
+      $value = $object;
+    }
+
+    if (!$section) {
+      $this->_config->$key = $value;
+    } else {
+      $this->_config->$section->$key = $value;
+    }
 
   }
 

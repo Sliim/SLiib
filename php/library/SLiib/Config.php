@@ -45,6 +45,12 @@ abstract class SLiib_Config
    */
   protected $_configFile;
 
+  /**
+   * Ligne actuelle du fichier lors d'un parsing
+   * @var int $_pointer
+   */
+  protected $_pointer = 0;
+
 
   /**
    * Constructeur. Charge le fichier de configuration passé en paramètre
