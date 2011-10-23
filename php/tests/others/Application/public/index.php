@@ -32,8 +32,6 @@ define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
-echo $_SERVER['REQUEST_URI'];
-
 $app = SLiib_Application::init(APP_NS, APP_PATH);
 
 $app->setNamespaces(
@@ -52,6 +50,6 @@ $app->setSections(
 
 $app->run();
 
-$model = new Test_Model_MyModel();
+/*$model = new Test_Model_MyModel();
 Test_Controller_Index::indexAction();
-$lib = new Lib_Class();
+$lib = new Lib_Class();*/

@@ -189,6 +189,7 @@ class SLiib_Application
 
         include $this->_bootstrapPath;
         class_alias($this->_bootstrap, 'Bootstrap');
+        Bootstrap::init($this->_appNamespace, $this->_appPath);
         Bootstrap::run();
 
     }

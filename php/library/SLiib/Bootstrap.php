@@ -71,7 +71,8 @@ abstract class SLiib_Bootstrap
     {
         static::_setEnvironment();
 
-        //TODO SLiib_Dispatcher::dispatch()
+        SLiib_Dispatcher::init(static::$_appNamespace);
+        SLiib_Dispatcher::dispatch();
 
     }
 

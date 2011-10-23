@@ -43,7 +43,6 @@ class Test_Bootstrap extends SLiib_Bootstrap
      */
     public static function run()
     {
-        echo 'AppBoostraping !!';
         parent::run();
 
     }

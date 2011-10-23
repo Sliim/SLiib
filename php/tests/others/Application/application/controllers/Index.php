@@ -39,9 +39,12 @@ class Test_Controller_Index
     /**
      * Constructor
      *
+     * TODO Faire en sorte d'instancier un controller pour appeler la méthode convenable non statiquement
+     * (Peut etre une classe abstraite SLiib_Controller qui effectue les tâches adéquate!)
+     *
      * @return void
      */
-    public function indexAction()
+    public static function indexAction()
     {
         echo 'Index action!';
 
