@@ -38,7 +38,7 @@ class SLiib_Application
      * Instance
      * @var SLiib_Application $_instance
      */
-    static private $_instance = null;
+    private static $_instance = null;
 
     /**
      * Application namespace

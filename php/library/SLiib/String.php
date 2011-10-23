@@ -41,7 +41,7 @@ class SLiib_String
      *
      * @return string La chaine nettoyée
      */
-    static public function clean($string)
+    public static function clean($string)
     {
         $string = preg_replace(
             array(

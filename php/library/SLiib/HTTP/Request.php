@@ -38,19 +38,19 @@ class SLiib_HTTP_Request
      * Current controller
      * @var string $_controller
      */
-    static private $_controller = null;
+    private static $_controller = null;
 
     /**
      * Current action
      * @var string $_action
      */
-    static private $_action = null;
+    private static $_action = null;
 
     /**
      * Current parameters
      * @var array
      */
-    static private $_params = null;
+    private static $_params = null;
 
 
     /**
