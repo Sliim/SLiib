@@ -78,7 +78,7 @@ abstract class SLiib_Bootstrap
 
   /**
    * Initialise l'environnement de l'application
-   * 
+   *
    * @return void
    */
   protected static function _setEnvironment()
