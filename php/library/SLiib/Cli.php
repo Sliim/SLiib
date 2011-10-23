@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Cli
  * @author   Sliim <sliim@mailoo.org>
@@ -27,142 +27,142 @@
 
 /**
  * SLiib_Cli
- * 
+ *
  * @package SLiib_Cli
  */
 abstract class SLiib_Cli
 {
 
-  const NO_DESCRIPTION_LABEL = 'No description';
-  const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
-  const AUTHOR_LABEL         = 'Auteur';
-  const VERSION_LABEL        = 'Version';
-  const SHOW_HELP_LABEL      = 'Affiche l\'aide.';
-  const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
+    const NO_DESCRIPTION_LABEL = 'No description';
+    const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
+    const AUTHOR_LABEL         = 'Auteur';
+    const VERSION_LABEL        = 'Version';
+    const SHOW_HELP_LABEL      = 'Affiche l\'aide.';
+    const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
 
-  /**
-   * Version du script
-   * @var float $_version
-   */
-  protected $_version = 0;
+    /**
+     * Version du script
+     * @var float $_version
+     */
+    protected $_version = 0;
 
-  /**
-   * Description du script
-   * @var string $_desc
-   */
-  protected $_desc = self::NO_DESCRIPTION_LABEL;
+    /**
+     * Description du script
+     * @var string $_desc
+     */
+    protected $_desc = self::NO_DESCRIPTION_LABEL;
 
-  /**
-   * Auteur du script
-   * @var string $_author
-   */
-  protected $_author = self::AUTHOR_UNKNOWN_LABEL;
+    /**
+     * Auteur du script
+     * @var string $_author
+     */
+    protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
-  /**
-   * Options par défaut possible du script
-   * @var array $_defaultOpt
-   */
-  protected $_defaultOpt = array(
-                            'V' => array(
-                                    'desc' => self::SHOW_VERSION_LABEL,
-                                    'func' => '_version',
-                                   ),
-                            'h' => array(
-                                    'desc' => self::SHOW_HELP_LABEL,
-                                    'func' => '_help',
-                                   )
-                           );
+    /**
+     * Options par défaut possible du script
+     * @var array $_defaultOpt
+     */
+    protected $_defaultOpt = array(
+                              'V' => array(
+                                      'desc' => self::SHOW_VERSION_LABEL,
+                                      'func' => '_version',
+                                     ),
+                              'h' => array(
+                                      'desc' => self::SHOW_HELP_LABEL,
+                                      'func' => '_help',
+                                     )
+                             );
 
-  /**
-   * Options possible du script
-   * @var array $_options
-   */
-  protected $_options = null;
+    /**
+     * Options possible du script
+     * @var array $_options
+     */
+    protected $_options = null;
 
-  /**
-   * Chaine utilisée pour etre passée à getopt.
-   * @var string $_params
-   */
-  protected $_params;
+    /**
+     * Chaine utilisée pour etre passée à getopt.
+     * @var string $_params
+     */
+    protected $_params;
 
 
-  /**
-   * Constructeur
-   *
-   * @param array[optional] $options Options possible pour le script
-   *
-   * @return void
-   */
-  public function __construct ($options=null)
-  {
-    if (!is_null($options)) {
-      $this->_options = array_merge($this->_defaultOpt, $options);
+    /**
+     * Constructeur
+     *
+     * @param array[optional] $options Options possible pour le script
+     *
+     * @return void
+     */
+    public function __construct ($options=null)
+    {
+        if (!is_null($options)) {
+            $this->_options = array_merge($this->_defaultOpt, $options);
 
-      //Initialisation des paramètres passés au script
-      $params = '';
-      foreach ($this->_options as $option => $desc) {
-        if (!key_exists('desc', $desc)) {
-          $this->_options[$option]['desc'] = self::NO_DESCRIPTION;
+            //Initialisation des paramètres passés au script
+            $params = '';
+            foreach ($this->_options as $option => $desc) {
+                if (!key_exists('desc', $desc)) {
+                    $this->_options[$option]['desc'] = self::NO_DESCRIPTION;
+                }
+
+                $params .= $option;
+
+                $this->_options[str_replace(':', '', $option, $count)] =
+                  $this->_options[$option];
+                if ($count > 0)
+                    unset($this->_options[$option]);
+            }
+
+            //Récupération des paramètres passés au script
+            $this->_params = getopt($params);
+
+            //Exécution de la fonction demandée s'il y a.
+            foreach ($this->_params as $param => $value) {
+                if (key_exists('func', $this->_options[$param])) {
+                    $func = $this->_options[$param]['func'];
+                    if (function_exists($this->$func($value)))
+                        $this->$func($value);
+                }
+            }
         }
 
-        $params .= $option;
+    }
 
-        $this->_options[str_replace(':', '', $option, $count)] =
-          $this->_options[$option];
-        if ($count > 0)
-          unset($this->_options[$option]);
-      }
 
-      //Récupération des paramètres passés au script
-      $this->_params = getopt($params);
-
-      //Exécution de la fonction demandée s'il y a.
-      foreach ($this->_params as $param => $value) {
-        if (key_exists('func', $this->_options[$param])) {
-          $func = $this->_options[$param]['func'];
-          if (function_exists($this->$func($value)))
-            $this->$func($value);
+    /**
+     * Affiche l'aide du script.
+     * (Méthode utilisée par le paramètre -h par défaut)
+     *
+     * @return void
+     */
+    protected function _help ()
+    {
+        echo $this->_desc . PHP_EOL . PHP_EOL;
+        if (!is_null($this->_options)) {
+            foreach ($this->_options as $opt => $optDesc)
+                echo "\t-" . $opt . "\t" . $optDesc['desc'] . PHP_EOL;
         }
-      }
+
+        echo PHP_EOL;
+        echo self::AUTHOR_LABEL . ' : ' . $this->_author . PHP_EOL;
+        echo self::VERSION_LABEL . ' : ' . $this->_version . PHP_EOL;
+        exit();
+
     }
 
-  }
 
+    /**
+     * Affiche la version du script.
+     * (Méthode utilisée par le paramètre -V par défaut)
+     *
+     * @return void
+     */
+    protected function _version ()
+    {
+        echo $this->_version . PHP_EOL;
+        exit();
 
-  /**
-   * Affiche l'aide du script.
-   * (Méthode utilisée par le paramètre -h par défaut)
-   *
-   * @return void
-   */
-  protected function _help ()
-  {
-    echo $this->_desc . PHP_EOL . PHP_EOL;
-    if (!is_null($this->_options)) {
-      foreach ($this->_options as $opt => $optDesc)
-        echo "\t-" . $opt . "\t" . $optDesc['desc'] . PHP_EOL;
     }
-
-    echo PHP_EOL;
-    echo self::AUTHOR_LABEL . ' : ' . $this->_author . PHP_EOL;
-    echo self::VERSION_LABEL . ' : ' . $this->_version . PHP_EOL;
-    exit();
-
-  }
-
-
-  /**
-   * Affiche la version du script.
-   * (Méthode utilisée par le paramètre -V par défaut)
-   *
-   * @return void
-   */
-  protected function _version ()
-  {
-    echo $this->_version . PHP_EOL;
-    exit();
-
-  }
 
 
 }

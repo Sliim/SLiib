@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Listing
  * @author   Sliim <sliim@mailoo.org>
@@ -27,127 +27,127 @@
 
 /**
  * SLiib_Listing
- * 
+ *
  * @package SLiib_Listing
  */
 class SLiib_Listing
 {
 
-  /**
-   * Chemin du dossier à lister
-   * @var string $_path
-   */
-  private $_path = '';
+    /**
+     * Chemin du dossier à lister
+     * @var string $_path
+     */
+    private $_path = '';
 
-  /**
-   * Tableau comportant les éléments du dossier listé
-   * @var array $_list
-   */
-  private $_list = array();
+    /**
+     * Tableau comportant les éléments du dossier listé
+     * @var array $_list
+     */
+    private $_list = array();
 
-  /**
-   * Nombre d'élément dans le dossier listé
-   * @var string $_contentNb
-   */
-  private $_contentNb;
+    /**
+     * Nombre d'élément dans le dossier listé
+     * @var string $_contentNb
+     */
+    private $_contentNb;
 
-  /**
-   * Nom du dossier
-   * @var string $_name
-   */
-  private $_name;
-
-
-  /**
-   * Constructeur, récupère le chemin du dossier qui sera à lister
-   * 
-   * @param string $dirPath    Chemin du dossier à lister
-   * @param string $listName   Nom de la liste
-   * @param array  $exceptions Liste des exceptions à ne pas lister
-   *
-   * @return void
-   */
-  public function __construct($dirPath, $listName, $exceptions)
-  {
-    $this->_path      = $dirPath;
-    $this->_contentNb = 0;
-    $this->_name      = $listName;
-
-    $this->_list($exceptions);
-
-  }
+    /**
+     * Nom du dossier
+     * @var string $_name
+     */
+    private $_name;
 
 
-  /**
-   * Methode de remplissage du tableau. Créé la liste des dossiers et
-   * fichiers présents. 1 paramètre : tableau contenant une liste de
-   * fichier / dossier à ne pas lister.
-   * 
-   * @param array $except Les exceptions à ne pas lister
-   *
-   * @return void
-   */
-  private function _list($except)
-  {
-    $rep = opendir($this->_path);
+    /**
+     * Constructeur, récupère le chemin du dossier qui sera à lister
+     *
+     * @param string $dirPath    Chemin du dossier à lister
+     * @param string $listName   Nom de la liste
+     * @param array  $exceptions Liste des exceptions à ne pas lister
+     *
+     * @return void
+     */
+    public function __construct($dirPath, $listName, $exceptions)
+    {
+        $this->_path      = $dirPath;
+        $this->_contentNb = 0;
+        $this->_name      = $listName;
 
-    while ($dossier = readdir($rep)) {
-      $ok = 1;
+        $this->_list($exceptions);
 
-      foreach ($except as $e)
-        if ($dossier == $e || preg_match('/~$/i', $dossier))
-          $ok = -1;
-      if ($ok == 1) {
-        $this->_contentNb++;
-        $this->_list[] = $dossier;
-      }
     }
 
-    closedir($rep);
 
-  }
+    /**
+     * Methode de remplissage du tableau. Créé la liste des dossiers et
+     * fichiers présents. 1 paramètre : tableau contenant une liste de
+     * fichier / dossier à ne pas lister.
+     *
+     * @param array $except Les exceptions à ne pas lister
+     *
+     * @return void
+     */
+    private function _list($except)
+    {
+        $rep = opendir($this->_path);
+
+        while ($dossier = readdir($rep)) {
+            $ok = 1;
+
+            foreach ($except as $e)
+                if ($dossier == $e || preg_match('/~$/i', $dossier))
+                    $ok = -1;
+            if ($ok == 1) {
+                $this->_contentNb++;
+                $this->_list[] = $dossier;
+            }
+        }
+
+        closedir($rep);
+
+    }
 
 
-  /**
-   * Retourne la liste du contenu du dossier listé
-   * 
-   * @return array Liste des éléments du dossier
-   */
-  public function getList()
-  {
-    return $this->_list;
+    /**
+     * Retourne la liste du contenu du dossier listé
+     *
+     * @return array Liste des éléments du dossier
+     */
+    public function getList()
+    {
+        return $this->_list;
 
-  }
-
-
-  /**
-   * Rangement du tableau par ordre alphabetic
-   *
-   * @return void
-   */
-  public function sort()
-  {
-    $list = $this->getList();
-    natcasesort($list);
-
-    $this->_list = array_merge($list);
-
-  }
+    }
 
 
-  /**
-   * Rangement du tableau par ordre alphabetic inversé
-   * 
-   * @return void
-   */
-  public function usort()
-  {
-    $list = $this->getList();
-    natcasesort($list);
+    /**
+     * Rangement du tableau par ordre alphabetic
+     *
+     * @return void
+     */
+    public function sort()
+    {
+        $list = $this->getList();
+        natcasesort($list);
 
-    $this->_list = array_reverse(array_merge($list));
+        $this->_list = array_merge($list);
 
-  }
+    }
+
+
+    /**
+     * Rangement du tableau par ordre alphabetic inversé
+     *
+     * @return void
+     */
+    public function usort()
+    {
+        $list = $this->getList();
+        natcasesort($list);
+
+        $this->_list = array_reverse(array_merge($list));
+
+    }
 
 
 }

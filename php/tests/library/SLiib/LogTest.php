@@ -38,134 +38,134 @@ require_once 'SLiib/Log.php';
 class SLiib_LogTest extends PHPUnit_Framework_TestCase
 {
 
-  /**
-   * Objet de test
-   * @var SLiib_Log $_object
-   */
-  protected $_object;
+    /**
+     * Objet de test
+     * @var SLiib_Log $_object
+     */
+    protected $_object;
 
-  /**
-   * Nom du fichier
-   * @var string $_filename
-   */
-  protected $_filename;
+    /**
+     * Nom du fichier
+     * @var string $_filename
+     */
+    protected $_filename;
 
-  /**
-   * Format de test
-   * @var string $_testFormat
-   */
-  protected $_testFormat;
-
-
-  /**
-   * Sets up the fixture, for example, opens a network connection.
-   * This method is called before a test is executed.
-   *
-   * @return void
-   */
-  public function setUp()
-  {
-    $this->_filename   = 'LogTest.log';
-    $this->_testFormat = '[%T][%d]%m';
-
-    $this->_object = new SLiib_Log($this->_filename);
-
-  }
+    /**
+     * Format de test
+     * @var string $_testFormat
+     */
+    protected $_testFormat;
 
 
-  /**
-   * Tears down the fixture, for example, closes a network connection.
-   * This method is called after a test is executed.
-   *
-   * @return void
-   */
-  public function tearDown()
-  {
-    unlink($this->_filename);
-    unset($this->_object);
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        $this->_filename   = 'LogTest.log';
+        $this->_testFormat = '[%T][%d]%m';
 
-  }
+        $this->_object = new SLiib_Log($this->_filename);
 
-
-  /**
-   * Test Get/Set Format method
-   *
-   * @return void
-   */
-  public function testSetGetFormat()
-  {
-    $format = $this->_object->getFormat();
-    $this->assertEquals('[%T][%d %t]%m', $format);
-
-    $this->_object->setFormat($this->_testFormat);
-    $format = $this->_object->getFormat();
-    $this->assertEquals($this->_testFormat, $format);
-
-  }
-
-
-  /**
-   * Test write log
-   *
-   * @return void
-   */
-  public function testLog()
-  {
-    $this->_object->setFormat('%m');
-    $this->assertFileExists($this->_filename);
-    $text = 'w000t from SLiib_LogTest';
-
-    $this->_object->log($text, SLiib_Log::INFO, false);
-
-    $this->assertEquals(
-        $text,
-        str_replace(
-            array(
-             "\r",
-             "\n",
-            ),
-            '',
-            file_get_contents($this->_filename)
-        )
-    );
-
-  }
-
-
-  /**
-   * Test écriture dans fichier sans les permissions
-   *
-   * @return void
-   */
-  public function testWriteFailure()
-  {
-    try {
-      $log = new SLiib_Log('files/unwritable.log');
-      $log->debug('not permit to write');
-    } catch (SLiib_Log_Exception $e) {
-      $this->assertType('SLiib_Log_Exception', $e);
-      return;
     }
 
-    $this->fail();
 
-  }
+    /**
+     * Tears down the fixture, for example, closes a network connection.
+     * This method is called after a test is executed.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unlink($this->_filename);
+        unset($this->_object);
+
+    }
 
 
-  /**
-   * Test d'affichage pour les couleur
-   *
-   * @return void
-   */
-  public function testColor()
-  {
-    echo PHP_EOL;
-    $this->_object->debug('Log DEBUG, blue color ?', true);
-    $this->_object->warn('Log WARN, yellow color ?', true);
-    $this->_object->error('Log ERROR, red color ?', true);
-    $this->_object->info('Log INFO, no color ?', true);
+    /**
+     * Test Get/Set Format method
+     *
+     * @return void
+     */
+    public function testSetGetFormat()
+    {
+        $format = $this->_object->getFormat();
+        $this->assertEquals('[%T][%d %t]%m', $format);
 
-  }
+        $this->_object->setFormat($this->_testFormat);
+        $format = $this->_object->getFormat();
+        $this->assertEquals($this->_testFormat, $format);
+
+    }
+
+
+    /**
+     * Test write log
+     *
+     * @return void
+     */
+    public function testLog()
+    {
+        $this->_object->setFormat('%m');
+        $this->assertFileExists($this->_filename);
+        $text = 'w000t from SLiib_LogTest';
+
+        $this->_object->log($text, SLiib_Log::INFO, false);
+
+        $this->assertEquals(
+            $text,
+            str_replace(
+                array(
+                 "\r",
+                 "\n",
+                ),
+                '',
+                file_get_contents($this->_filename)
+            )
+        );
+
+    }
+
+
+    /**
+     * Test écriture dans fichier sans les permissions
+     *
+     * @return void
+     */
+    public function testWriteFailure()
+    {
+        try {
+            $log = new SLiib_Log('files/unwritable.log');
+            $log->debug('not permit to write');
+        } catch (SLiib_Log_Exception $e) {
+            $this->assertType('SLiib_Log_Exception', $e);
+            return;
+        }
+
+        $this->fail();
+
+    }
+
+
+    /**
+     * Test d'affichage pour les couleur
+     *
+     * @return void
+     */
+    public function testColor()
+    {
+        echo PHP_EOL;
+        $this->_object->debug('Log DEBUG, blue color ?', true);
+        $this->_object->warn('Log WARN, yellow color ?', true);
+        $this->_object->error('Log ERROR, red color ?', true);
+        $this->_object->info('Log INFO, no color ?', true);
+
+    }
 
 
 }

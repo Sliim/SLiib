@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category   SLiib
  * @package    SLiib_SystemInfos
  * @subpackage SLiib_SystemInfos_Interfaces
@@ -28,20 +28,20 @@
 
 /**
  * SLiib_SystemInfos_Interfaces_IPhp
- * 
+ *
  * @package    SLiib_SystemInfos
  * @subpackage SLiib_SystemInfos_Interfaces
  */
 Interface SLiib_SystemInfos_Interfaces_IPhp
 {
 
-  /** Commande d'affichage de la version de php */
-  const CMD_PHP_VERSION = 'php -v';
-  /** Commande d'affichage d'information sur php */
-  const CMD_PHP_INFOS = 'php -i';
-  /** Commande d'affichage des modules compilés de php */
-  const CMD_PHP_MODULES = 'php -m';
-  /** Commande d'affichage de la configuration de php */
-  const CMD_PHP_INI = 'php --ini';
+    /** Commande d'affichage de la version de php */
+    const CMD_PHP_VERSION = 'php -v';
+    /** Commande d'affichage d'information sur php */
+    const CMD_PHP_INFOS = 'php -i';
+    /** Commande d'affichage des modules compilés de php */
+    const CMD_PHP_MODULES = 'php -m';
+    /** Commande d'affichage de la configuration de php */
+    const CMD_PHP_INI = 'php --ini';
 
 }

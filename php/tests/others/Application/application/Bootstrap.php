@@ -36,17 +36,17 @@ class Test_Bootstrap extends SLiib_Bootstrap
 {
 
 
-  /**
-   * Boostrap init
-   *
-   * @return void
-   */
-  public static function run()
-  {
-    echo 'AppBoostraping !!';
-    parent::run();
+    /**
+     * Boostrap init
+     *
+     * @return void
+     */
+    public static function run()
+    {
+        echo 'AppBoostraping !!';
+        parent::run();
 
-  }
+    }
 
 
 }

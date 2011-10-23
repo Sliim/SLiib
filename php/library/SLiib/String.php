@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_String
  * @author   Sliim <sliim@mailoo.org>
@@ -27,43 +27,43 @@
 
 /**
  * Traitement de chaine de caractères
- * 
+ *
  * @package SLiib_String
  */
 class SLiib_String
 {
 
 
-  /**
-   * Supprime les espaces indésirables
-   * 
-   * @param string $string Chaine de caractères à nettoyer.
-   * 
-   * @return string La chaine nettoyée
-   */
-  static public function clean($string)
-  {
-    $string = preg_replace(
-        array(
-         "/\t\t+/",
-         "/\x20\x20+/",
-         "/\xA0\xA0+/",
-        ), ' ',
-        $string
-    );
+    /**
+     * Supprime les espaces indésirables
+     *
+     * @param string $string Chaine de caractères à nettoyer.
+     *
+     * @return string La chaine nettoyée
+     */
+    static public function clean($string)
+    {
+        $string = preg_replace(
+            array(
+             "/\t\t+/",
+             "/\x20\x20+/",
+             "/\xA0\xA0+/",
+            ), ' ',
+            $string
+        );
 
-    $string = preg_replace(
-        array(
-         "/(\n\s*\n)/",
-         "/(\n\s+)/",
-        ), "\n",
-        $string
-    );
+        $string = preg_replace(
+            array(
+             "/(\n\s*\n)/",
+             "/(\n\s+)/",
+            ), "\n",
+            $string
+        );
 
-    $string = trim($string);
-    return $string;
+        $string = trim($string);
+        return $string;
 
-  }
+    }
 
 
 }

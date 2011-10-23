@@ -33,71 +33,71 @@
 abstract class SLiib_Bootstrap
 {
 
-  /**
-   * Namespace de l'application
-   * @var string $_appNamespace
-   */
-  protected static $_appNamespace;
+    /**
+     * Namespace de l'application
+     * @var string $_appNamespace
+     */
+    protected static $_appNamespace;
 
-  /**
-   * Chemin de l'application
-   * @var string $_appPath
-   */
-  protected static $_appPath;
-
-
-  /**
-   * Initialisation du bootstrap
-   *
-   * @param string $appNamespace Namespace de l'application
-   * @param string $appPath      Chemin de l'application
-   *
-   * @return void
-   */
-  public static function init($appNamespace, $appPath)
-  {
-    static::$_appNamespace = $appNamespace;
-    static::$_appPath      = $appPath;
-
-  }
+    /**
+     * Chemin de l'application
+     * @var string $_appPath
+     */
+    protected static $_appPath;
 
 
-  /**
-   * Démarrage du bootstrap
-   *
-   * @return void
-   */
-  public static function run()
-  {
-    static::_setEnvironment();
+    /**
+     * Initialisation du bootstrap
+     *
+     * @param string $appNamespace Namespace de l'application
+     * @param string $appPath      Chemin de l'application
+     *
+     * @return void
+     */
+    public static function init($appNamespace, $appPath)
+    {
+        static::$_appNamespace = $appNamespace;
+        static::$_appPath      = $appPath;
 
-    //TODO SLiib_Dispatcher::dispatch()
-
-  }
-
-
-  /**
-   * Initialise l'environnement de l'application
-   *
-   * @return void
-   */
-  protected static function _setEnvironment()
-  {
-    //TODO SLiib_HTTP_Session
-    //TODO SLiib_HTTP_Request
-
-  }
+    }
 
 
-  /**
-   * Gestion des erreurs de l'application
-   *
-   * @return void
-   */
-  protected static function _error()
-  {
+    /**
+     * Démarrage du bootstrap
+     *
+     * @return void
+     */
+    public static function run()
+    {
+        static::_setEnvironment();
 
-  }
+        //TODO SLiib_Dispatcher::dispatch()
+
+    }
+
+
+    /**
+     * Initialise l'environnement de l'application
+     *
+     * @return void
+     */
+    protected static function _setEnvironment()
+    {
+        //TODO SLiib_HTTP_Session
+        //TODO SLiib_HTTP_Request
+
+    }
+
+
+    /**
+     * Gestion des erreurs de l'application
+     *
+     * @return void
+     */
+    protected static function _error()
+    {
+
+    }
 
 
 }

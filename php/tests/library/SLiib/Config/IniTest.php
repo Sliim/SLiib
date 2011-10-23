@@ -38,82 +38,82 @@ require_once 'SLiib/Config/Ini.php';
 class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 {
 
-  /**
-   * Objet de test
-   * @var SLiib_Config_Ini $_object
-   */
-  protected $_object;
+    /**
+     * Objet de test
+     * @var SLiib_Config_Ini $_object
+     */
+    protected $_object;
 
-  /**
-   * Fichier .ini de test
-   * @var string $_iniFile
-   */
-  protected $_iniFile;
-
-
-  /**
-   * Sets up the fixture, for example, opens a network connection.
-   * This method is called before a test is executed.
-   *
-   * @return void
-   */
-  public function setUp()
-  {
-    $this->_iniFile = 'files/config.ini';
-    $this->_object  = new SLiib_Config_Ini($this->_iniFile);
-
-  }
+    /**
+     * Fichier .ini de test
+     * @var string $_iniFile
+     */
+    protected $_iniFile;
 
 
-  /**
-   * Tears down the fixture, for example, closes a network connection.
-   * This method is called after a test is executed.
-   *
-   * @return void
-   */
-  public function tearDown()
-  {
-    unset($this->_object);
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        $this->_iniFile = 'files/config.ini';
+        $this->_object  = new SLiib_Config_Ini($this->_iniFile);
 
-  }
+    }
 
 
-  /**
-   * Test get all directives
-   *
-   * @return void
-   */
-  public function testGetConfig()
-  {
-    $config = $this->_object->getConfig();
+    /**
+     * Tears down the fixture, for example, closes a network connection.
+     * This method is called after a test is executed.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->_object);
 
-    $this->assertObjectHasAttribute('application', $config);
-    $this->assertObjectHasAttribute('development', $config);
-    $this->assertObjectHasAttribute('production', $config);
+    }
 
-    $this->assertType('stdClass', $config->application);
-    $this->assertType('stdClass', $config->development);
-    $this->assertType('stdClass', $config->production);
 
-    $this->assertObjectHasAttribute('docsMenu', $config->development);
-    $this->assertObjectHasAttribute('sysInfos', $config->development);
-    $this->assertObjectHasAttribute('docsMenu', $config->production);
-    $this->assertObjectHasAttribute('sysInfos', $config->production);
+    /**
+     * Test get all directives
+     *
+     * @return void
+     */
+    public function testGetConfig()
+    {
+        $config = $this->_object->getConfig();
 
-    $this->assertType(
-        'string',
-        $this->_object->getConfig()->application->sysInfos
-    );
+        $this->assertObjectHasAttribute('application', $config);
+        $this->assertObjectHasAttribute('development', $config);
+        $this->assertObjectHasAttribute('production', $config);
 
-    $this->assertEquals('On', $config->development->docsMenu);
-    $this->assertEquals('Off', $config->production->docsMenu);
+        $this->assertType('stdClass', $config->application);
+        $this->assertType('stdClass', $config->development);
+        $this->assertType('stdClass', $config->production);
 
-    $this->assertEquals('On', $config->development->sysInfos);
-    $this->assertEquals('Off', $config->production->sysInfos);
+        $this->assertObjectHasAttribute('docsMenu', $config->development);
+        $this->assertObjectHasAttribute('sysInfos', $config->development);
+        $this->assertObjectHasAttribute('docsMenu', $config->production);
+        $this->assertObjectHasAttribute('sysInfos', $config->production);
 
-    $this->assertEquals('w00t', $config->application->test->foo->bar->z1337);
+        $this->assertType(
+            'string',
+            $this->_object->getConfig()->application->sysInfos
+        );
 
-  }
+        $this->assertEquals('On', $config->development->docsMenu);
+        $this->assertEquals('Off', $config->production->docsMenu);
+
+        $this->assertEquals('On', $config->development->sysInfos);
+        $this->assertEquals('Off', $config->production->sysInfos);
+
+        $this->assertEquals('w00t', $config->application->test->foo->bar->z1337);
+
+    }
 
 
 }

@@ -33,108 +33,108 @@
 abstract class SLiib_Daemon
 {
 
-  /**
-   * Tableau comprennant les PID des différents démons créés.
-   * @var array $_daemons
-   */
-  private $_daemons = array();
+    /**
+     * Tableau comprennant les PID des différents démons créés.
+     * @var array $_daemons
+     */
+    private $_daemons = array();
 
-  /**
-   * PID du parent
-   * @var int $_parentPID
-   */
-  private $_parentPID;
-
-
-  /**
-   * Constructeur, initialise le PID du père des démons
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    throw new SLiib_Daemon_Exception('SLiib_Daemon doesn\'t work yet :/');
-    $this->_parentPID = getmypid();
-
-    pcntl_signal(SIGTERM, array($this, '_handler'));
-
-  }
+    /**
+     * PID du parent
+     * @var int $_parentPID
+     */
+    private $_parentPID;
 
 
-  /**
-   * Créé un démon
-   *
-   * @param string $daemonCode Nom de la fonction comportant le code à
-   *                           exécuter par le démon.
-   *
-   * @throws SLiib_Daemon_Exception
-   * @throws SLiib_Daemon_Exception_BadMethod
-   *
-   * @return bool
-   */
-  public function launch($daemonCode)
-  {
-    $pid = pcntl_fork();
-    if ($pid == -1) {
-      throw new SLiib_Daemon_Exception('Could not launch new daemon.');
-    } else if ($pid) {
-      $this->_daemons[] = $pid;
-    } else {
-      $pid = getmypid();
-      if (!method_exists($this, $daemonCode)) {
-        throw new SLiib_Daemon_Exception_BadMethod('Daemon function unknown.');
-      }
+    /**
+     * Constructeur, initialise le PID du père des démons
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        throw new SLiib_Daemon_Exception('SLiib_Daemon doesn\'t work yet :/');
+        $this->_parentPID = getmypid();
 
-      $this->$daemonCode();
+        pcntl_signal(SIGTERM, array($this, '_handler'));
+
     }
 
-    return $pid;
 
-  }
+    /**
+     * Créé un démon
+     *
+     * @param string $daemonCode Nom de la fonction comportant le code à
+     *                           exécuter par le démon.
+     *
+     * @throws SLiib_Daemon_Exception
+     * @throws SLiib_Daemon_Exception_BadMethod
+     *
+     * @return bool
+     */
+    public function launch($daemonCode)
+    {
+        $pid = pcntl_fork();
+        if ($pid == -1) {
+            throw new SLiib_Daemon_Exception('Could not launch new daemon.');
+        } else if ($pid) {
+            $this->_daemons[] = $pid;
+        } else {
+            $pid = getmypid();
+            if (!method_exists($this, $daemonCode)) {
+                throw new SLiib_Daemon_Exception_BadMethod('Daemon function unknown.');
+            }
 
+            $this->$daemonCode();
+        }
 
-  /**
-   * Tue un démon
-   *
-   * @param int           $pid    PID du démon à tuer
-   * @param int[optional] $signal Signal à envoyer au daemon
-   *
-   * @throws SLiib_Daemon_Exception
-   *
-   * @return bool
-   */
-  public function kill($pid, $signal=SIGKILL)
-  {
-    if (!in_array($pid, $this->_daemons) || !is_numeric($pid)) {
-      throw new SLiib_Daemon_Exception(
-          'No daemon with PID ' . $pid . ' has launched.'
-      );
+        return $pid;
+
     }
 
-    return posix_kill($pid, $signal);
 
-  }
+    /**
+     * Tue un démon
+     *
+     * @param int           $pid    PID du démon à tuer
+     * @param int[optional] $signal Signal à envoyer au daemon
+     *
+     * @throws SLiib_Daemon_Exception
+     *
+     * @return bool
+     */
+    public function kill($pid, $signal=SIGKILL)
+    {
+        if (!in_array($pid, $this->_daemons) || !is_numeric($pid)) {
+            throw new SLiib_Daemon_Exception(
+                'No daemon with PID ' . $pid . ' has launched.'
+            );
+        }
 
+        return posix_kill($pid, $signal);
 
-  /**
-   * Signal handler
-   *
-   * @param int $signal Signal
-   *
-   * @return void
-   */
-  protected function _handler($signal)
-  {
-    switch ($signal) {
-      case SIGTERM:
-        echo 'Daemon killed with SIGTERM!' . PHP_EOL;
-          break;
-      default:
-        echo 'Daemon killed!' . PHP_EOL;
-          break;
     }
 
-  }
+
+    /**
+     * Signal handler
+     *
+     * @param int $signal Signal
+     *
+     * @return void
+     */
+    protected function _handler($signal)
+    {
+        switch ($signal) {
+            case SIGTERM:
+                echo 'Daemon killed with SIGTERM!' . PHP_EOL;
+                break;
+            default:
+                echo 'Daemon killed!' . PHP_EOL;
+                break;
+        }
+
+    }
 
 
 }

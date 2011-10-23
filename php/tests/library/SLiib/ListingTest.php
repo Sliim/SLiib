@@ -38,86 +38,86 @@ require_once 'SLiib/Listing.php';
 class SLiib_ListingTest extends PHPUnit_Framework_TestCase
 {
 
-  /**
-   * Objet de test
-   * @var SLiib_Listing $_object
-   */
-  protected $_object;
+    /**
+     * Objet de test
+     * @var SLiib_Listing $_object
+     */
+    protected $_object;
 
 
-  /**
-   * Sets up the fixture, for example, opens a network connection.
-   * This method is called before a test is executed.
-   *
-   * @return void
-   */
-  public function setUp()
-  {
-    $this->_object = new SLiib_Listing('./', 'tests', array('.', '..'));
+    /**
+     * Sets up the fixture, for example, opens a network connection.
+     * This method is called before a test is executed.
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        $this->_object = new SLiib_Listing('./', 'tests', array('.', '..'));
 
-  }
-
-
-  /**
-   * Tears down the fixture, for example, closes a network connection.
-   * This method is called after a test is executed.
-   *
-   * @return void
-   */
-  public function tearDown()
-  {
-    unset($this->_objet);
-
-  }
+    }
 
 
-  /**
-   * Test get list
-   *
-   * @return void
-   */
-  public function testGetList()
-  {
-    $list = $this->_object->getList();
+    /**
+     * Tears down the fixture, for example, closes a network connection.
+     * This method is called after a test is executed.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->_objet);
 
-    $this->assertType('array', $list);
-
-  }
-
-
-  /**
-   * Test rangement par ordre croissant
-   *
-   * @return void
-   */
-  public function testSort()
-  {
-    $list = $this->_object->getList();
-    natcasesort($list);
-    $this->_object->sort();
-    $listbis = $this->_object->getList();
-
-    $this->assertEquals(array_merge($list), $listbis);
-
-  }
+    }
 
 
-  /**
-   * Test rangement par ordre croissant inversé
-   *
-   * @return void
-   */
-  public function testUsort()
-  {
-    $this->_object->sort();
-    $list = $this->_object->getList();
+    /**
+     * Test get list
+     *
+     * @return void
+     */
+    public function testGetList()
+    {
+        $list = $this->_object->getList();
 
-    $list = array_reverse($list);
-    $this->_object->usort();
+        $this->assertType('array', $list);
 
-    $this->assertEquals($list, $this->_object->getList());
+    }
 
-  }
+
+    /**
+     * Test rangement par ordre croissant
+     *
+     * @return void
+     */
+    public function testSort()
+    {
+        $list = $this->_object->getList();
+        natcasesort($list);
+        $this->_object->sort();
+        $listbis = $this->_object->getList();
+
+        $this->assertEquals(array_merge($list), $listbis);
+
+    }
+
+
+    /**
+     * Test rangement par ordre croissant inversé
+     *
+     * @return void
+     */
+    public function testUsort()
+    {
+        $this->_object->sort();
+        $list = $this->_object->getList();
+
+        $list = array_reverse($list);
+        $this->_object->usort();
+
+        $this->assertEquals($list, $this->_object->getList());
+
+    }
 
 
 }

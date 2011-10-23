@@ -37,39 +37,39 @@ class Daemon extends SLiib_Daemon
 {
 
 
-  /**
-   * Daemon runner
-   *
-   * @return void
-   */
-  public function run()
-  {
-    $pid = $this->launch('daemonCode');
-    sleep(50);
-    echo 'Killing..' . PHP_EOL;
-    $this->kill($pid);
-    echo 'done.' . PHP_EOL;
+    /**
+     * Daemon runner
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $pid = $this->launch('daemonCode');
+        sleep(50);
+        echo 'Killing..' . PHP_EOL;
+        $this->kill($pid);
+        echo 'done.' . PHP_EOL;
 
-  }
-
-
-  /**
-   * Code du Daemon
-   *
-   * @return void
-   */
-  public function daemonCode()
-  {
-    $i = 4;
-    while ($i != 0) {
-      $i--;
-      sleep(5);
-      echo $i . PHP_EOL;
     }
 
-    echo 'End of Daemon Code!' . PHP_EOL;
 
-  }
+    /**
+     * Code du Daemon
+     *
+     * @return void
+     */
+    public function daemonCode()
+    {
+        $i = 4;
+        while ($i != 0) {
+            $i--;
+            sleep(5);
+            echo $i . PHP_EOL;
+        }
+
+        echo 'End of Daemon Code!' . PHP_EOL;
+
+    }
 
 
 }

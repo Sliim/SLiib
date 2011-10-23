@@ -36,16 +36,16 @@ class Test_Controller_Index
 {
 
 
-  /**
-   * Constructor
-   *
-   * @return void
-   */
-  public function indexAction()
-  {
-    echo 'Index action!';
+    /**
+     * Constructor
+     *
+     * @return void
+     */
+    public function indexAction()
+    {
+        echo 'Index action!';
 
-  }
+    }
 
 
 }

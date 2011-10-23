@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category   SLiib
  * @package    SLiib_SystemInfos
  * @subpackage SLiib_SystemInfos_Interfaces
@@ -28,22 +28,22 @@
 
 /**
  * SLiib_SystemInfos_Interfaces_ILsbRelease
- * 
+ *
  * @package    SLiib_SystemInfos
  * @subpackage SLiib_SystemInfos_Interfaces
  */
 Interface SLiib_SystemInfos_Interfaces_ILsbRelease
 {
 
-  /** ID du distributeur */
-  const CMD_LSB_RELEASE_ID = 'lsb_release -i';
-  /** Description de la distribution*/
-  const CMD_LSB_RELEASE_DESC = 'lsb_release -d';
-  /** Release de la distribution */
-  const CMD_LSB_RELEASE_RELEASE = 'lsb_release -r';
-  /** Nom de code de la distribution */
-  const CMD_LSB_RELEASE_CODENAME = 'lsb_release -c';
-  /** Toute les informations ci-dessus */
-  const CMD_LSB_RELEASE_ALL = 'lsb_release -idrc';
+    /** ID du distributeur */
+    const CMD_LSB_RELEASE_ID = 'lsb_release -i';
+    /** Description de la distribution*/
+    const CMD_LSB_RELEASE_DESC = 'lsb_release -d';
+    /** Release de la distribution */
+    const CMD_LSB_RELEASE_RELEASE = 'lsb_release -r';
+    /** Nom de code de la distribution */
+    const CMD_LSB_RELEASE_CODENAME = 'lsb_release -c';
+    /** Toute les informations ci-dessus */
+    const CMD_LSB_RELEASE_ALL = 'lsb_release -idrc';
 
 }

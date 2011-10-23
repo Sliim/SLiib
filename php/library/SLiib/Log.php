@@ -32,354 +32,354 @@
  */
 class SLiib_Log
 {
-  /**
-   * Constantes de format utilisé pour les logs
-   */
-  const DATE_FORMAT = 'Y-m-d';
-  const TIME_FORMAT = 'h:i:s';
+    /**
+     * Constantes de format utilisé pour les logs
+     */
+    const DATE_FORMAT = 'Y-m-d';
+    const TIME_FORMAT = 'h:i:s';
 
-  /**
-   * Constantes de type de log
-   */
-  const DEBUG = 'DEBUG';
-  const INFO  = 'INFO';
-  const WARN  = 'WARN';
-  const ERROR = 'ERROR';
-  const CRIT  = 'CRIT';
+    /**
+     * Constantes de type de log
+     */
+    const DEBUG = 'DEBUG';
+    const INFO  = 'INFO';
+    const WARN  = 'WARN';
+    const ERROR = 'ERROR';
+    const CRIT  = 'CRIT';
 
-  /**
-   * Nom/Chemin du fichier de log.
-   * @var string $_fileOutput
-   */
-  private $_fileOutput = null;
+    /**
+     * Nom/Chemin du fichier de log.
+     * @var string $_fileOutput
+     */
+    private $_fileOutput = null;
 
-  /**
-   * Format des logs
-   * @var string $_format
-   */
-  private $_format = '[%T][%d %t]%m';
-
-
-  /**
-   * Constructor, initialise le file descriptor.
-   *
-   * @param string         $fileOutput Nom/Chemin vers le fichier à utiliser.
-   * @param bool[optional] $add        True pour ajouter à la suite du fichier.
-   *
-   * @throws SLiib_Log_Exception
-   *
-   * @return void
-   */
-  public function __construct($fileOutput, $add=false)
-  {
-    $opt = 'w+b';
-    if ($add)
-      $opt = 'a+b';
-
-    $this->_fileOutput = @fopen($fileOutput, $opt);
-
-    if (!$this->_fileOutput)
-      throw new SLiib_Log_Exception('Cannot open file ' . $this->_fileOutput);
-
-  }
+    /**
+     * Format des logs
+     * @var string $_format
+     */
+    private $_format = '[%T][%d %t]%m';
 
 
-  /**
-   * Destructeur : ferme le fichier de log.
-   *
-   * @return void
-   */
-  public function __destruct()
-  {
-    fclose($this->_fileOutput);
+    /**
+     * Constructor, initialise le file descriptor.
+     *
+     * @param string         $fileOutput Nom/Chemin vers le fichier à utiliser.
+     * @param bool[optional] $add        True pour ajouter à la suite du fichier.
+     *
+     * @throws SLiib_Log_Exception
+     *
+     * @return void
+     */
+    public function __construct($fileOutput, $add=false)
+    {
+        $opt = 'w+b';
+        if ($add)
+            $opt = 'a+b';
 
-  }
+        $this->_fileOutput = @fopen($fileOutput, $opt);
 
+        if (!$this->_fileOutput)
+            throw new SLiib_Log_Exception('Cannot open file ' . $this->_fileOutput);
 
-  /**
-   * Écrit dans le fichier de log
-   *
-   * @param string         $string Chaine à écrire dans le fichier
-   * @param string         $type   Type de log
-   * @param bool[optional] $echo   Affiche ou non sur la sortie standard.
-   *
-   * @throws SLiib_Log_Exception
-   *
-   * @return void
-   */
-  public function log($string, $type, $echo=false)
-  {
-    $log = $this->_genLog($string, $type);
-    if (!fwrite($this->_fileOutput, $log . PHP_EOL)) {
-      $error = error_get_last();
-      throw new SLiib_Log_Exception(
-          'Error ' . $error['type'] . '. ' . $error['file'] .
-          ' line ' . $error['line'] . ':' . $error['message']
-      );
     }
 
-    if ($echo) {
-      $this->_printStdout($string, $type);
+
+    /**
+     * Destructeur : ferme le fichier de log.
+     *
+     * @return void
+     */
+    public function __destruct()
+    {
+        fclose($this->_fileOutput);
+
     }
 
-  }
 
+    /**
+     * Écrit dans le fichier de log
+     *
+     * @param string         $string Chaine à écrire dans le fichier
+     * @param string         $type   Type de log
+     * @param bool[optional] $echo   Affiche ou non sur la sortie standard.
+     *
+     * @throws SLiib_Log_Exception
+     *
+     * @return void
+     */
+    public function log($string, $type, $echo=false)
+    {
+        $log = $this->_genLog($string, $type);
+        if (!fwrite($this->_fileOutput, $log . PHP_EOL)) {
+            $error = error_get_last();
+            throw new SLiib_Log_Exception(
+                'Error ' . $error['type'] . '. ' . $error['file'] .
+                ' line ' . $error['line'] . ':' . $error['message']
+            );
+        }
 
-  /**
-   * Ecrit un log de type DEBUG
-   *
-   * @param string            $string Message du log
-   * @param boolean[optional] $echo   Afficher le log dans le stdout
-   *
-   * @return void
-   */
-  public function debug($string, $echo=false)
-  {
-    try {
-      $this->log($string, self::DEBUG, $echo);
-    } catch (SLiib_Log_Exception $e) {
-      $this->_printStdout($e->getMessage(), self::ERROR);
+        if ($echo) {
+            $this->_printStdout($string, $type);
+        }
 
-      if ($echo) {
-        $this->_printStdout($string, self::DEBUG);
-      }
     }
 
-  }
 
+    /**
+     * Ecrit un log de type DEBUG
+     *
+     * @param string            $string Message du log
+     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     *
+     * @return void
+     */
+    public function debug($string, $echo=false)
+    {
+        try {
+            $this->log($string, self::DEBUG, $echo);
+        } catch (SLiib_Log_Exception $e) {
+            $this->_printStdout($e->getMessage(), self::ERROR);
 
-  /**
-   * Ecrit un log de type INFO
-   *
-   * @param string            $string Message du log
-   * @param boolean[optional] $echo   Afficher le log dans le stdout
-   *
-   * @return void
-   */
-  public function info($string, $echo=false)
-  {
-    try {
-      $this->log($string, self::INFO, $echo);
-    } catch (SLiib_Log_Exception $e) {
-      $this->_printStdout($e->getMessage(), self::ERROR);
+            if ($echo) {
+                $this->_printStdout($string, self::DEBUG);
+            }
+        }
 
-      if ($echo) {
-        $this->_printStdout($string, self::INFO);
-      }
     }
 
-  }
 
+    /**
+     * Ecrit un log de type INFO
+     *
+     * @param string            $string Message du log
+     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     *
+     * @return void
+     */
+    public function info($string, $echo=false)
+    {
+        try {
+            $this->log($string, self::INFO, $echo);
+        } catch (SLiib_Log_Exception $e) {
+            $this->_printStdout($e->getMessage(), self::ERROR);
 
-  /**
-   * Ecrit un log de type WARN
-   *
-   * @param string            $string Message du log
-   * @param boolean[optional] $echo   Afficher le log dans le stdout
-   *
-   * @return void
-   */
-  public function warn($string, $echo=false)
-  {
-    try {
-      $this->log($string, self::WARN, $echo);
-    } catch (SLiib_Log_Exception $e) {
-      $this->_printStdout($e->getMessage(), self::ERROR);
+            if ($echo) {
+                $this->_printStdout($string, self::INFO);
+            }
+        }
 
-      if ($echo) {
-        $this->_printStdout($string, self::WARN);
-      }
     }
 
-  }
 
+    /**
+     * Ecrit un log de type WARN
+     *
+     * @param string            $string Message du log
+     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     *
+     * @return void
+     */
+    public function warn($string, $echo=false)
+    {
+        try {
+            $this->log($string, self::WARN, $echo);
+        } catch (SLiib_Log_Exception $e) {
+            $this->_printStdout($e->getMessage(), self::ERROR);
 
-  /**
-   * Ecrit un log de type ERROR
-   *
-   * @param string            $string Message du log
-   * @param boolean[optional] $echo   Afficher le log dans le stdout
-   *
-   * @return void
-   */
-  public function error($string, $echo=false)
-  {
-    try {
-      $this->log($string, self::ERROR, $echo);
-    } catch (SLiib_Log_Exception $e) {
-      $this->_printStdout($e->getMessage(), self::ERROR);
+            if ($echo) {
+                $this->_printStdout($string, self::WARN);
+            }
+        }
 
-      if ($echo) {
-        $this->_printStdout($string, self::ERROR);
-      }
     }
 
-  }
 
+    /**
+     * Ecrit un log de type ERROR
+     *
+     * @param string            $string Message du log
+     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     *
+     * @return void
+     */
+    public function error($string, $echo=false)
+    {
+        try {
+            $this->log($string, self::ERROR, $echo);
+        } catch (SLiib_Log_Exception $e) {
+            $this->_printStdout($e->getMessage(), self::ERROR);
 
-  /**
-   * Ecrit un log de type CRIT
-   *
-   * @param string            $string Message du log
-   * @param boolean[optional] $echo   Afficher le log dans le stdout
-   *
-   * @return void
-   */
-  public function crit($string, $echo=false)
-  {
-    try {
-      $this->log($string, self::CRIT, $echo);
-    } catch (SLiib_Log_Exception $e) {
-      $this->_printStdout($e->getMessage(), self::ERROR);
+            if ($echo) {
+                $this->_printStdout($string, self::ERROR);
+            }
+        }
 
-      if ($echo) {
-        $this->_printStdout($string, self::CRIT);
-      }
     }
 
-  }
 
+    /**
+     * Ecrit un log de type CRIT
+     *
+     * @param string            $string Message du log
+     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     *
+     * @return void
+     */
+    public function crit($string, $echo=false)
+    {
+        try {
+            $this->log($string, self::CRIT, $echo);
+        } catch (SLiib_Log_Exception $e) {
+            $this->_printStdout($e->getMessage(), self::ERROR);
 
-  /**
-   * Définit le format utilisé pour les logs
-   * Les différents éléments sont :
-   * -date : %d
-   * -time : %t
-   * -ip : %@
-   * -user-agent : %U
-   * -message : %m
-   * -type : %T
-   *
-   * @param string $format Format à définir.
-   *
-   * @return void
-   */
-  public function setFormat($format)
-  {
-    $this->_format = $format;
+            if ($echo) {
+                $this->_printStdout($string, self::CRIT);
+            }
+        }
 
-  }
-
-
-  /**
-   * Retourne le format actuel des logs
-   *
-   * @return string format actuel des logs
-   */
-  public function getFormat()
-  {
-    return $this->_format;
-
-  }
-
-
-  /**
-   * Génère le log en foncton du format spécifié
-   *
-   * @param string $message Message à écrire
-   * @param string $type    Type de log (error, crit, warn, info..)
-   *
-   * @return log formatté
-   */
-  private function _genLog($message, $type)
-  {
-    $log = $this->getFormat();
-    $log = preg_replace_callback('/%d/', 'self::_getDate', $log);
-    $log = preg_replace_callback('/%t/', 'self::_getTime', $log);
-    $log = preg_replace_callback('/%@/', 'self::_getIp', $log);
-    $log = preg_replace_callback('/%U/', 'self::_getUserAgent', $log);
-    $log = preg_replace('/%T/', $type, $log);
-    $log = preg_replace('/%m/', $message, $log);
-
-    return $log;
-
-  }
-
-
-  /**
-   * Callback pour le format date (%d)
-   *
-   * @return string Date actuelle
-   */
-  private static function _getDate()
-  {
-    return date(self::DATE_FORMAT);
-
-  }
-
-
-  /**
-   * Callback pour le format heure (%t)
-   *
-   * @return string Heure actuelle
-   */
-  private static function _getTime()
-  {
-    return date(self::TIME_FORMAT);
-
-  }
-
-
-  /**
-   * Callback pour le format IP (%@)
-   *
-   * @return string Adresse IP du client ou false si inexistante
-   */
-  private static function _getIp()
-  {
-    if (array_key_exists('REMOTE_ADDR', $_SERVER))
-      return $_SERVER['REMOTE_ADDR'];
-    return false;
-
-  }
-
-
-  /**
-   * Callback pour le format User-Agent (%U)
-   *
-   * @return string User-Agent du client ou false si inexistant
-   */
-  private static function _getUserAgent()
-  {
-    if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
-      return $_SERVER['HTTP_USER_AGENT'];
-    return false;
-
-  }
-
-
-  /**
-   * Ecrit le message sur le stdout
-   *
-   * @param string $string Chaine à afficher
-   * @param string $type   Type de log
-   *
-   * @return void
-   */
-  private function _printStdout($string, $type)
-  {
-    $color        = "\033[0m";
-    $defaultColor = $color;
-
-    switch ($type) {
-      case self::DEBUG:
-        $color = "\033[34m";
-          break;
-      case self::WARN:
-        $color = "\033[33m";
-          break;
-      case self::ERROR:
-      case self::CRIT:
-        $color = "\033[31m";
-          break;
-      default:
-        //No color
-          break;
     }
 
-    echo $color . $string . $defaultColor . PHP_EOL;
 
-  }
+    /**
+     * Définit le format utilisé pour les logs
+     * Les différents éléments sont :
+     * -date : %d
+     * -time : %t
+     * -ip : %@
+     * -user-agent : %U
+     * -message : %m
+     * -type : %T
+     *
+     * @param string $format Format à définir.
+     *
+     * @return void
+     */
+    public function setFormat($format)
+    {
+        $this->_format = $format;
+
+    }
+
+
+    /**
+     * Retourne le format actuel des logs
+     *
+     * @return string format actuel des logs
+     */
+    public function getFormat()
+    {
+        return $this->_format;
+
+    }
+
+
+    /**
+     * Génère le log en foncton du format spécifié
+     *
+     * @param string $message Message à écrire
+     * @param string $type    Type de log (error, crit, warn, info..)
+     *
+     * @return log formatté
+     */
+    private function _genLog($message, $type)
+    {
+        $log = $this->getFormat();
+        $log = preg_replace_callback('/%d/', 'self::_getDate', $log);
+        $log = preg_replace_callback('/%t/', 'self::_getTime', $log);
+        $log = preg_replace_callback('/%@/', 'self::_getIp', $log);
+        $log = preg_replace_callback('/%U/', 'self::_getUserAgent', $log);
+        $log = preg_replace('/%T/', $type, $log);
+        $log = preg_replace('/%m/', $message, $log);
+
+        return $log;
+
+    }
+
+
+    /**
+     * Callback pour le format date (%d)
+     *
+     * @return string Date actuelle
+     */
+    private static function _getDate()
+    {
+        return date(self::DATE_FORMAT);
+
+    }
+
+
+    /**
+     * Callback pour le format heure (%t)
+     *
+     * @return string Heure actuelle
+     */
+    private static function _getTime()
+    {
+        return date(self::TIME_FORMAT);
+
+    }
+
+
+    /**
+     * Callback pour le format IP (%@)
+     *
+     * @return string Adresse IP du client ou false si inexistante
+     */
+    private static function _getIp()
+    {
+        if (array_key_exists('REMOTE_ADDR', $_SERVER))
+            return $_SERVER['REMOTE_ADDR'];
+        return false;
+
+    }
+
+
+    /**
+     * Callback pour le format User-Agent (%U)
+     *
+     * @return string User-Agent du client ou false si inexistant
+     */
+    private static function _getUserAgent()
+    {
+        if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
+            return $_SERVER['HTTP_USER_AGENT'];
+        return false;
+
+    }
+
+
+    /**
+     * Ecrit le message sur le stdout
+     *
+     * @param string $string Chaine à afficher
+     * @param string $type   Type de log
+     *
+     * @return void
+     */
+    private function _printStdout($string, $type)
+    {
+        $color        = "\033[0m";
+        $defaultColor = $color;
+
+        switch ($type) {
+            case self::DEBUG:
+                $color = "\033[34m";
+                break;
+            case self::WARN:
+                $color = "\033[33m";
+                break;
+            case self::ERROR:
+            case self::CRIT:
+                $color = "\033[31m";
+                break;
+            default:
+                //No color
+                break;
+        }
+
+        echo $color . $string . $defaultColor . PHP_EOL;
+
+    }
 
 
 }

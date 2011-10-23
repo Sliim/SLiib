@@ -36,16 +36,16 @@ class Lib_Class
 {
 
 
-  /**
-   * Constructor
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    echo 'Hello World!';
+    /**
+     * Constructor
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        echo 'Hello World!';
 
-  }
+    }
 
 
 }

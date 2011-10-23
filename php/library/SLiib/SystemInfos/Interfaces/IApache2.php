@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category   SLiib
  * @package    SLiib_SystemInfos
  * @subpackage SLiib_SystemInfos_Interfaces
@@ -28,25 +28,25 @@
 
 /**
  * SLiib_SystemInfos_Interfaces_IApache2
- * 
+ *
  * @package    SLiib_SystemInfos
  * @subpackage SLiib_SystemInfos_Interfaces
  */
 Interface SLiib_SystemInfos_Interfaces_IApache2
 {
 
-  /** Commande d'affichage de la version d'apache2 */
-  const CMD_APACHE2_VERSION = 'apache2 -v';
-  /** Commande d'affichage d'information de la configuration d'apache2 */
-  const CMD_APACHE2_SETTINGS = 'apache2 -V';
-  /** Commande d'affichage des modules compilés d'apache2 */
-  const CMD_APACHE2_COMPILED_MODULES = 'apache2 -l';
-  /** Commande d'affichage de la configuration des directives d'apache2 */
-  const CMD_APACHE2_DIRECTIVES_CONFIG = 'apache2 -L';
-  /** Commande d'affichage de la config d'apache2 */
-  const CMD_APACHE2_PARSED_SETTINGS = 'apache2 -S';
-  /** Commande d'affichage des modules chargés d'apache2 */
-  const CMD_APACHE2_LOADED_MODULES = 'apache2 -M';
+    /** Commande d'affichage de la version d'apache2 */
+    const CMD_APACHE2_VERSION = 'apache2 -v';
+    /** Commande d'affichage d'information de la configuration d'apache2 */
+    const CMD_APACHE2_SETTINGS = 'apache2 -V';
+    /** Commande d'affichage des modules compilés d'apache2 */
+    const CMD_APACHE2_COMPILED_MODULES = 'apache2 -l';
+    /** Commande d'affichage de la configuration des directives d'apache2 */
+    const CMD_APACHE2_DIRECTIVES_CONFIG = 'apache2 -L';
+    /** Commande d'affichage de la config d'apache2 */
+    const CMD_APACHE2_PARSED_SETTINGS = 'apache2 -S';
+    /** Commande d'affichage des modules chargés d'apache2 */
+    const CMD_APACHE2_LOADED_MODULES = 'apache2 -M';
 
 }
 

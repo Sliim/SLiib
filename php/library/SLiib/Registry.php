@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Registry
  * @author   Sliim <sliim@mailoo.org>
@@ -27,61 +27,60 @@
 
 /**
  * SLiib_Registry
- * 
+ *
  * @package SLiib_Registry
  */
 class SLiib_Registry
 {
 
-  /**
-   * Tableau contenant le registre
-   * @var array $_registry
-   */
-  static private $_registry = array();
+    /**
+     * Tableau contenant le registre
+     * @var array $_registry
+     */
+    static private $_registry = array();
 
 
-  /**
-   * Récupère une valeur dans le registre à partir d'une clé.
-   * 
-   * @param string $key Key à récupérer
-   * 
-   * @throws SLiib_Registry_Exception
-   * 
-   * @return mixed Valeur de la clé.
-   */
-  static public function get($key)
-  {
-    if (!key_exists($key, self::$_registry)) {
-      throw new SLiib_Registry_Exception(
-          'Key ' . $key . ' not found in registry.'
-      );
+    /**
+     * Récupère une valeur dans le registre à partir d'une clé.
+     *
+     * @param string $key Key à récupérer
+     *
+     * @throws SLiib_Registry_Exception
+     *
+     * @return mixed Valeur de la clé.
+     */
+    static public function get($key)
+    {
+        if (!key_exists($key, self::$_registry)) {
+            throw new SLiib_Registry_Exception(
+                'Key ' . $key . ' not found in registry.'
+            );
+        }
+
+        return self::$_registry[$key];
+
     }
 
-    return self::$_registry[$key];
 
-  }
+    /**
+     * Définit une valeur dans le registre
+     *
+     * @param string $key   Key à définir
+     * @param mixed  $value Valeur à affecter
+     *
+     * @throws SLiib_Registry_Exception
+     *
+     * @return void
+     */
+    static public function set($key, $value)
+    {
+        if (key_exists($key, self::$_registry)) {
+            throw new SLiib_Registry_Exception('Key ' . $key . ' already exist.');
+        }
 
+        self::$_registry[$key] = $value;
 
-  /**
-   * Définit une valeur dans le registre
-   * 
-   * @param string $key   Key à définir
-   * @param mixed  $value Valeur à affecter
-   * 
-   * @throws SLiib_Registry_Exception
-   * 
-   * @return void
-   */
-  static public function set($key, $value)
-  {
-    if (key_exists($key, self::$_registry)) {
-      throw new SLiib_Registry_Exception('Key ' . $key . ' already exist.');
     }
-
-    self::$_registry[$key] = $value;
-
-  }
 
 
 }
-  

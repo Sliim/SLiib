@@ -36,16 +36,16 @@ class Test_Model_MyModel
 {
 
 
-  /**
-   * Constructor
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-    echo 'This is my model !';
+    /**
+     * Constructor
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        echo 'This is my model !';
 
-  }
+    }
 
 
 }
