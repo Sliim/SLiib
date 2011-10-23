@@ -53,6 +53,7 @@ abstract class SLiib_Daemon
    */
   public function __construct()
   {
+    throw new SLiib_Daemon_Exception('SLiib_Daemon doesn\'t work yet :/');
     $this->_parentPID = getmypid();
 
     pcntl_signal(SIGTERM, array($this, '_handler'));

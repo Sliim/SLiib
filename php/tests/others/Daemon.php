@@ -25,6 +25,9 @@
  * @link     http://www.sliim-projects.eu
  */
 require_once 'SLiib/Daemon.php';
+require_once 'SLiib/Exception.php';
+require_once 'SLiib/Daemon/Exception.php';
+require_once 'SLiib/Daemon/Exception/BadMethod.php';
 /**
  * Test Class for SLiib_Daemon
  *
