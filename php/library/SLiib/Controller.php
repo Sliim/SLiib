@@ -17,59 +17,49 @@
  *
  * PHP version 5
  *
- * @category   SLiib
- * @package    SLiib
- * @subpackage Tests
- * @author     Sliim <sliim@mailoo.org>
- * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.2
- * @link       http://www.sliim-projects.eu
+ * @category SLiib
+ * @package  SLiib_Controller
+ * @author   Sliim <sliim@mailoo.org>
+ * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version  Release: 0.2
+ * @link     http://www.sliim-projects.eu
  */
 
 /**
- * Test controller
+ * SLiib_Controller
  *
- * @package    SLiib
- * @subpackage Tests
+ * @package SLiib_Controller
  */
-class Test_Controller_Test extends SLiib_Controller
+abstract class SLiib_Controller
 {
 
 
     /**
-     * Init controller
+     * Init controller, called before action
      *
      * @return void
      */
-    public function init()
-    {
-        echo '<h1>Test controller!</h1>' . PHP_EOL;
-
-    }
+    abstract public function init();
 
 
     /**
-     * Test model
+     * Appel des action du controller.
+     *
+     * @param string $action Action to call
+     * @param array  $params unused
      *
      * @return void
      */
-    public function modelAction()
+    public function __call($action, $params)
     {
-        echo '<h2>Test model!</h2>' . PHP_EOL;
-        $model = new Test_Model_MyModel();
+        $action = $action . 'Action';
 
-    }
+        if (!method_exists($this, $action)) {
+            throw new SLiib_Controller_Exception_ActionNotFound('No action found');
+        }
 
-
-    /**
-     * Test library
-     *
-     * @return void
-     */
-    public function libraryAction()
-    {
-        echo '<h2>Test library!</h2>' . PHP_EOL;
-        $lib = new Lib_Class();
+        $this->init();
+        $this->$action();
 
     }
 

@@ -63,7 +63,7 @@ class SLiib_Dispatcher
      */
     public static function dispatch()
     {
-        $action = ucfirst(SLiib_HTTP_Request::getAction());
+        $action = SLiib_HTTP_Request::getAction();
         $ctrl   = ucfirst(SLiib_HTTP_Request::getController());
 
         $controllerName = sprintf(
@@ -72,17 +72,8 @@ class SLiib_Dispatcher
             $ctrl
         );
 
-        $actionName = sprintf(
-            "%sAction",
-            $action
-        );
-
         $controller = new $controllerName();
-        if (!method_exists($controller, $actionName)) {
-            throw new SLiib_Dispatcher_Exception('Action `' . $action . '` not found.');
-        }
-
-        $controller->$actionName();
+        $controller->$action();
 
     }
 

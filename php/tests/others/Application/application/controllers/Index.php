@@ -32,8 +32,20 @@
  * @package    SLiib
  * @subpackage Tests
  */
-class Test_Controller_Index
+class Test_Controller_Index extends SLiib_Controller
 {
+
+
+    /**
+     * Init controller
+     *
+     * @return void
+     */
+    public function init()
+    {
+        echo '<h1>Index controller!</h1>' . PHP_EOL;
+
+    }
 
 
     /**
@@ -43,7 +55,7 @@ class Test_Controller_Index
      */
     public function indexAction()
     {
-        echo '<h1>Index action!</h1>' . PHP_EOL;
+        echo '<h2>Index action!</h2>' . PHP_EOL;
         echo '<pre>Cette application est un test pour les composants SLiib_Application, ';
         echo 'SLiib_Autoloader, SLiib_Bootstrap, SLiib_Dispatcher, SLiib_HTTP_Request.</pre>';
         echo '<br /><br />' . PHP_EOL;
@@ -51,6 +63,9 @@ class Test_Controller_Index
         echo '<ul>' . PHP_EOL;
         echo '<li>Test <a href="/test/model/">Model</a></li>' . PHP_EOL;
         echo '<li>Test <a href="/test/library/">Library</a></li>' . PHP_EOL;
+        echo '<li>Test <a href="/test/pget/">Param Get</a></li>' . PHP_EOL;//TODO
+        echo '<li>Test <a href="/test/ppost/">Param Post</a></li>' . PHP_EOL;//TODO
+        echo '<li>Test <a href="/test/session/">Session</a></li>' . PHP_EOL;//TODO
         echo '</ul>' . PHP_EOL;
 
     }
