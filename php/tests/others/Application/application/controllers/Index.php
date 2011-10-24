@@ -41,7 +41,7 @@ class Test_Controller_Index extends SLiib_Controller
      *
      * @return void
      */
-    public function init()
+    protected function _init()
     {
         echo '<h1>Index controller!</h1>' . PHP_EOL;
 

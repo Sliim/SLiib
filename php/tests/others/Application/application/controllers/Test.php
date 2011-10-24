@@ -41,7 +41,7 @@ class Test_Controller_Test extends SLiib_Controller
      *
      * @return void
      */
-    public function init()
+    protected function _init()
     {
         echo '<h1>Test controller!</h1>' . PHP_EOL;
 

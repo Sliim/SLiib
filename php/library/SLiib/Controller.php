@@ -39,7 +39,7 @@ abstract class SLiib_Controller
      *
      * @return void
      */
-    abstract public function init();
+    abstract protected function _init();
 
 
     /**
@@ -58,7 +58,7 @@ abstract class SLiib_Controller
             throw new SLiib_Controller_Exception_ActionNotFound('No action found');
         }
 
-        $this->init();
+        $this->_init();
         $this->$action();
 
     }

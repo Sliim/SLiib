@@ -53,9 +53,9 @@ class Test_Bootstrap extends SLiib_Bootstrap
         $this->setSections(
             array(
              'Test' => array(
-                'Model'      => 'models',
-                'Controller' => 'controllers',
-             )
+                        'Model'      => 'models',
+                        'Controller' => 'controllers',
+                       )
             )
         );
 

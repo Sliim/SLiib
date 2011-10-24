@@ -96,14 +96,14 @@ class SLiib_Application
      */
     public static function init($appNamespace, $appPath)
     {
-        if (!is_null(self::$_instance)) {
-            return self::$_instance;
+        if (!is_null(static::$_instance)) {
+            return static::$_instance;
         }
 
         SLiib_Autoloader::init(array('SLiib' => 'SLiib'));
 
-        self::$_instance = new self($appNamespace, $appPath);
-        return self::$_instance;
+        static::$_instance = new self($appNamespace, $appPath);
+        return static::$_instance;
 
     }
 

@@ -63,17 +63,17 @@ class SLiib_Dispatcher
      */
     public static function dispatch()
     {
-        $action = SLiib_HTTP_Request::getAction();
-        $ctrl   = ucfirst(SLiib_HTTP_Request::getController());
+        $action     = SLiib_HTTP_Request::getAction();
+        $controller = ucfirst(SLiib_HTTP_Request::getController());
 
         $controllerName = sprintf(
             "%s_Controller_%s",
             static::$_namespace,
-            $ctrl
+            $controller
         );
 
-        $controller = new $controllerName();
-        $controller->$action();
+        $c = new $controllerName();
+        $c->$action();
 
     }
 

@@ -72,11 +72,7 @@ abstract class SLiib_Bootstrap
      *
      * @return void
      */
-    public function init()
-    {
-        //Something to do before running..
-
-    }
+    abstract public function init();
 
 
     /**
@@ -164,7 +160,7 @@ abstract class SLiib_Bootstrap
      *
      * @return void
      */
-    protected static function _error()
+    protected static function _errorHandler()
     {
 
     }
