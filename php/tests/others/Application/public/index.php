@@ -33,7 +33,3 @@ define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
 SLiib_Application::init(APP_NS, APP_PATH)->run();
-
-/*$model = new Test_Model_MyModel();
-Test_Controller_Index::indexAction();
-$lib = new Lib_Class();*/

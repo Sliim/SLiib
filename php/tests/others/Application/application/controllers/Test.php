@@ -17,20 +17,49 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Config
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib
+ * @subpackage Tests
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Config_Exception
+ * Test controller
  *
- * @package SLiib_Config
+ * @package    SLiib
+ * @subpackage Tests
  */
-class SLiib_Config_Exception extends SLiib_Exception
+class Test_Controller_Test
 {
+
+
+    /**
+     * Test model
+     *
+     * @return void
+     */
+    public function modelAction()
+    {
+        echo '<h1>Test model!</h1>' . PHP_EOL;
+        $model = new Test_Model_MyModel();
+
+    }
+
+
+    /**
+     * Test library
+     *
+     * @return void
+     */
+    public function libraryAction()
+    {
+        echo '<h1>Test library!</h1>' . PHP_EOL;
+        $lib = new Lib_Class();
+
+    }
+
 
 }

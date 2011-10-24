@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Bootstrap
+ * @package  SLiib_Dispatcher
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,9 +26,9 @@
  */
 
 /**
- * SLiib_Bootstrap
+ * SLiib_Dispatcher
  *
- * @package SLiib_Bootstrap
+ * @package SLiib_Dispatcher
  */
 class SLiib_Dispatcher
 {
@@ -57,23 +57,32 @@ class SLiib_Dispatcher
     /**
      * Dispatching..
      *
+     * @throws SLiib_Dispatcher_Exception
+     *
      * @return void
      */
     public static function dispatch()
     {
-        $controller = sprintf(
+        $action = ucfirst(SLiib_HTTP_Request::getAction());
+        $ctrl   = ucfirst(SLiib_HTTP_Request::getController());
+
+        $controllerName = sprintf(
             "%s_Controller_%s",
             static::$_namespace,
-            ucfirst(SLiib_HTTP_Request::getController())
+            $ctrl
         );
 
-        $action = sprintf(
+        $actionName = sprintf(
             "%sAction",
-            ucfirst(SLiib_HTTP_Request::getAction())
+            $action
         );
 
-        class_alias($controller, 'Controller');
-        Controller::$action();
+        $controller = new $controllerName();
+        if (!method_exists($controller, $actionName)) {
+            throw new SLiib_Dispatcher_Exception('Action `' . $action . '` not found.');
+        }
+
+        $controller->$actionName();
 
     }
 

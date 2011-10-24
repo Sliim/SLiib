@@ -37,16 +37,21 @@ class Test_Controller_Index
 
 
     /**
-     * Constructor
-     *
-     * TODO Faire en sorte d'instancier un controller pour appeler la méthode convenable non statiquement
-     * (Peut etre une classe abstraite SLiib_Controller qui effectue les tâches adéquate!)
+     * Index action
      *
      * @return void
      */
-    public static function indexAction()
+    public function indexAction()
     {
-        echo 'Index action!';
+        echo '<h1>Index action!</h1>' . PHP_EOL;
+        echo '<pre>Cette application est un test pour les composants SLiib_Application, ';
+        echo 'SLiib_Autoloader, SLiib_Bootstrap, SLiib_Dispatcher, SLiib_HTTP_Request.</pre>';
+        echo '<br /><br />' . PHP_EOL;
+
+        echo '<ul>' . PHP_EOL;
+        echo '<li>Test <a href="/test/model/">Model</a></li>' . PHP_EOL;
+        echo '<li>Test <a href="/test/library/">Library</a></li>' . PHP_EOL;
+        echo '</ul>' . PHP_EOL;
 
     }
 
