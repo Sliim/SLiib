@@ -37,13 +37,25 @@ class Test_Bootstrap extends SLiib_Bootstrap
 
 
     /**
-     * Boostrap init
+     * Init application's namespaces & sections
      *
      * @return void
      */
-    public static function run()
+    public function init()
     {
-        parent::run();
+        $this->setNamespaces(
+            array(
+             'SLiib' => 'SLiib',
+             'Lib'   => ROOT_PATH . '/library/Test',
+            )
+        );
+
+        $this->setSections(
+            array(
+             'Model'      => 'models',
+             'Controller' => 'controllers',
+            )
+        );
 
     }
 

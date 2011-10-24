@@ -32,23 +32,7 @@ define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
-$app = SLiib_Application::init(APP_NS, APP_PATH);
-
-$app->setNamespaces(
-    array(
-     'SLiib' => 'SLiib',
-     'Lib'   => ROOT_PATH . '/library/Test',
-    )
-);
-
-$app->setSections(
-    array(
-     'Model'      => 'models',
-     'Controller' => 'controllers',
-    )
-);
-
-$app->run();
+SLiib_Application::init(APP_NS, APP_PATH)->run();
 
 /*$model = new Test_Model_MyModel();
 Test_Controller_Index::indexAction();

@@ -37,27 +37,44 @@ abstract class SLiib_Bootstrap
      * Namespace de l'application
      * @var string $_appNamespace
      */
-    protected static $_appNamespace;
+    protected $_appNamespace;
 
     /**
-     * Chemin de l'application
-     * @var string $_appPath
+     * Namespaces to include
+     * @var array $_namespaces
      */
-    protected static $_appPath;
+    private $_namespaces = array();
+
+    /**
+     * Sections to include
+     * @var array $_sections
+     */
+    private $_sections = array();
 
 
     /**
      * Initialisation du bootstrap
      *
      * @param string $appNamespace Namespace de l'application
-     * @param string $appPath      Chemin de l'application
      *
      * @return void
      */
-    public static function init($appNamespace, $appPath)
+    public function __construct($appNamespace)
     {
-        static::$_appNamespace = $appNamespace;
-        static::$_appPath      = $appPath;
+        $this->_appNamespace = $appNamespace;
+        $this->init();
+
+    }
+
+
+    /**
+     * Bootstrap init before running
+     *
+     * @return void
+     */
+    public function init()
+    {
+        //Something to do before running..
 
     }
 
@@ -67,12 +84,64 @@ abstract class SLiib_Bootstrap
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
-        static::_setEnvironment();
+        $this->_setEnvironment();
 
-        SLiib_Dispatcher::init(static::$_appNamespace);
+        SLiib_Dispatcher::init($this->_appNamespace);
         SLiib_Dispatcher::dispatch();
+
+    }
+
+
+    /**
+     * Set namespaces
+     *
+     * @param array $namespaces Namespaces to set
+     *
+     * @return void
+     */
+    public function setNamespaces(array $namespaces)
+    {
+        $this->_namespaces = $namespaces;
+
+    }
+
+
+    /**
+     * Set sections
+     *
+     * @param array $sections Sections to set
+     *
+     * @return void
+     */
+    public function setSections(array $sections)
+    {
+        $this->_sections = $sections;
+
+    }
+
+
+    /**
+     * Get namespaces
+     *
+     * @return array
+     */
+    public function getNamespaces()
+    {
+        return $this->_namespaces;
+
+    }
+
+
+    /**
+     * Get sections
+     *
+     * @return array
+     */
+    public function getSections()
+    {
+        return $this->_sections;
 
     }
 

@@ -53,28 +53,10 @@ class SLiib_Application
     private $_appPath;
 
     /**
-     * Namespaces to include
-     * @var array $_namespaces
-     */
-    private $_namespaces;
-
-    /**
-     * Sections to include
-     * @var array $_sections
-     */
-    private $_sections;
-
-    /**
      * Application bootstrap
-     * @var string $_bootstrap
+     * @var SLiib_Bootstrap $_bootstrap
      */
     private $_bootstrap;
-
-    /**
-     * Application bootstrap path
-     * @var string $_bootstrapPath
-     */
-    private $_bootstrapPath;
 
 
     /**
@@ -82,31 +64,24 @@ class SLiib_Application
      *
      * @param string $appNamespace Application namespace
      * @param string $appPath      Application path
-     * @param array  $namespaces   Namespaces
-     * @param array  $sections     Sections
      *
      * @throws SLiib_Application_Exception
      *
      * @return void
      */
-    private function __construct(
-        $appNamespace,
-        $appPath,
-        array $namespaces,
-        array $sections
-    ) {
+    private function __construct($appNamespace, $appPath)
+    {
         $this->_appNamespace = $appNamespace;
         $this->_appPath      = $appPath;
-        $this->_namespaces   = $namespaces;
-        $this->_sections     = $sections;
 
-        $bsPath = $this->_appPath . '/Bootstrap.php';
-        if (!file_exists($bsPath)) {
+        $bootstrapPath = $this->_appPath . '/Bootstrap.php';
+        if (!file_exists($bootstrapPath)) {
             throw new SLiib_Application_Exception('Error boostraping!');
         }
 
-        $this->_bootstrapPath = $bsPath;
-        $this->_bootstrap     = $this->_appNamespace . '_Bootstrap';
+        include $bootstrapPath;
+        class_alias($this->_appNamespace . '_Bootstrap', 'Bootstrap');
+        $this->_bootstrap = new Bootstrap($this->_appNamespace);
 
     }
 
@@ -114,61 +89,21 @@ class SLiib_Application
     /**
      * Application Init
      *
-     * @param string          $appNamespace Application namespace
-     * @param string          $appPath      Application path
-     * @param array[optional] $namespaces   Namespaces
-     * @param array[optional] $sections     Sections
+     * @param string $appNamespace Application namespace
+     * @param string $appPath      Application path
      *
      * @return SLiib_Application
      */
-    public static function init(
-        $appNamespace,
-        $appPath,
-        array $namespaces=array(),
-        array $sections=array()
-    ) {
+    public static function init($appNamespace, $appPath)
+    {
         if (!is_null(self::$_instance)) {
             return self::$_instance;
         }
 
         SLiib_Autoloader::init(array('SLiib' => 'SLiib'));
 
-        self::$_instance = new self(
-            $appNamespace,
-            $appPath,
-            $namespaces,
-            $sections
-        );
-
+        self::$_instance = new self($appNamespace, $appPath);
         return self::$_instance;
-
-    }
-
-
-    /**
-     * Set namespaces
-     *
-     * @param array $namespaces Namespaces to set
-     *
-     * @return void
-     */
-    public function setNamespaces(array $namespaces)
-    {
-        $this->_namespaces = $namespaces;
-
-    }
-
-
-    /**
-     * Set sections
-     *
-     * @param array $sections Sections to set
-     *
-     * @return void
-     */
-    public function setSections(array $sections)
-    {
-        $this->_sections = $sections;
 
     }
 
@@ -182,15 +117,11 @@ class SLiib_Application
     {
         $namespaces = array_merge(
             array($this->_appNamespace => $this->_appPath),
-            $this->_namespaces
+            $this->_bootstrap->getNamespaces()
         );
 
-        SLiib_Autoloader::init($namespaces, $this->_sections);
-
-        include $this->_bootstrapPath;
-        class_alias($this->_bootstrap, 'Bootstrap');
-        Bootstrap::init($this->_appNamespace, $this->_appPath);
-        Bootstrap::run();
+        SLiib_Autoloader::init($namespaces, $this->_bootstrap->getSections());
+        $this->_bootstrap->run();
 
     }
 
