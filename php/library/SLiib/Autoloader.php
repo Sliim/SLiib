@@ -111,10 +111,14 @@ class SLiib_Autoloader
             return false;
         }
 
-        foreach (static::$_sections as $sectionKey => $sectionValue) {
-            if (in_array($sectionKey, $segment)) {
-                $key           = array_search($sectionKey, $segment);
-                $segment[$key] = $sectionValue;
+        foreach (static::$_sections as $ns => $sections) {
+            if ($ns == $namespace) {
+                foreach ($sections as $sectionKey => $sectionValue) {
+                    if (in_array($sectionKey, $segment)) {
+                        $key           = array_search($sectionKey, $segment);
+                        $segment[$key] = $sectionValue;
+                    }
+                }
             }
         }
 
