@@ -57,7 +57,7 @@ class SLiib_Log
      * Format des logs
      * @var string $_format
      */
-    private $_format = '[%T][%d %t]%m';
+    private $_format = '[%d %t] [%T] - %m';
 
 
     /**
@@ -107,7 +107,7 @@ class SLiib_Log
      *
      * @return void
      */
-    public function log($string, $type, $echo=false)
+    public function log($string, $type=self::INFO, $echo=false)
     {
         $log = $this->_genLog($string, $type);
         if (!fwrite($this->_fileOutput, $log . PHP_EOL)) {
@@ -377,7 +377,9 @@ class SLiib_Log
                 break;
         }
 
-        echo $color . $string . $defaultColor . PHP_EOL;
+        $stdout = new self('php://stdout');
+        $stdout->setFormat('%m');
+        $stdout->log($color . $string . $defaultColor);
 
     }
 

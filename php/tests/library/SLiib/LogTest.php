@@ -65,7 +65,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_filename   = 'LogTest.log';
+        $this->_filename   = 'files/LogTest.log';
         $this->_testFormat = '[%T][%d]%m';
 
         $this->_object = new SLiib_Log($this->_filename);
@@ -95,7 +95,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
     public function testSetGetFormat()
     {
         $format = $this->_object->getFormat();
-        $this->assertEquals('[%T][%d %t]%m', $format);
+        $this->assertEquals('[%d %t] [%T] - %m', $format);
 
         $this->_object->setFormat($this->_testFormat);
         $format = $this->_object->getFormat();
