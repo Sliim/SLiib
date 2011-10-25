@@ -43,7 +43,7 @@ class Test_Controller_Test extends SLiib_Controller
      */
     protected function _init()
     {
-        echo '<h1>Test controller!</h1>' . PHP_EOL;
+        $this->_view->bigtitle = 'Test controller!';
 
     }
 
@@ -55,8 +55,10 @@ class Test_Controller_Test extends SLiib_Controller
      */
     public function modelAction()
     {
-        echo '<h2>Test model!</h2>' . PHP_EOL;
         $model = new Test_Model_MyModel();
+
+        $this->_view->title   = 'Test model!';
+        $this->_view->message = $model->toString();
 
     }
 
@@ -68,8 +70,10 @@ class Test_Controller_Test extends SLiib_Controller
      */
     public function libraryAction()
     {
-        echo '<h2>Test library!</h2>' . PHP_EOL;
         $lib = new Lib_Class();
+
+        $this->_view->title   = 'Test library!';
+        $this->_view->message = $lib->toString();
 
     }
 

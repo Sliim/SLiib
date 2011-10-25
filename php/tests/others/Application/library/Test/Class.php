@@ -37,13 +37,13 @@ class Lib_Class
 
 
     /**
-     * Constructor
+     * Return Hello World!
      *
-     * @return void
+     * @return string
      */
-    public function __construct()
+    public function toString()
     {
-        echo 'Hello World!';
+        return 'Hello World!';
 
     }
 

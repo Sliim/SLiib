@@ -37,13 +37,13 @@ class Test_Model_MyModel
 
 
     /**
-     * Constructor
+     * Return This is my model !
      *
-     * @return void
+     * @return string
      */
-    public function __construct()
+    public function toString()
     {
-        echo 'This is my model !';
+        return 'This is my model !';
 
     }
 
