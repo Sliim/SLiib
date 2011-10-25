@@ -78,4 +78,30 @@ class Test_Controller_Test extends SLiib_Controller
     }
 
 
+    /**
+     * Test No view
+     *
+     * @return void
+     */
+    public function noviewAction()
+    {
+        $this->_view->setNoView();
+        echo 'No view for this controller';
+
+    }
+
+
+    /**
+     * Test library
+     *
+     * @return void
+     */
+    public function customViewAction()
+    {
+        $this->_view->setView('aview');
+        $this->_view->message = 'Test custom view';
+
+    }
+
+
 }

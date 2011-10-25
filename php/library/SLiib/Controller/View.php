@@ -37,9 +37,30 @@ class SLiib_Controller_View
 
     /**
      * Path of the .phtml view
-     * @var string $_view
+     * @var mixed $_view null if undefined, false if disabled, string if isset
      */
     private $_view = null;
+
+
+    /**
+     * Subdirectory of view
+     * @var string $_subView
+     */
+    private $_subView = 'scripts';
+
+
+    /**
+     * View file extension
+     * @var string $_ext
+     */
+    private $_ext = '.phtml';
+
+
+    /**
+     * Views path
+     * @var string $_path
+     */
+    private $_path;
 
 
     /**
@@ -52,13 +73,59 @@ class SLiib_Controller_View
      */
     public function __construct($controller, $action)
     {
-        $path        = SLiib_Application::getInstance()->getViewPath();
-        $this->_view = realpath(
-            $path . DIRECTORY_SEPARATOR .
-            'scripts' . DIRECTORY_SEPARATOR .
-            $controller . DIRECTORY_SEPARATOR .
-            $action . '.phtml'
-        );
+        //TODO Voir si ya pas un moyen plus propre..
+        $this->_path = SLiib_Application::getInstance()->getViewPath();
+
+        $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
+
+        if ($this->_viewExist($defaultView) && $this->_view !== false) {
+            $this->setView($defaultView);
+        }
+
+    }
+
+
+    /**
+     * Display view
+     *
+     * @return void
+     */
+    public function display()
+    {
+        if (!is_null($this->_view) && $this->_view) {
+            include $this->_view;
+        }
+
+    }
+
+
+    /**
+     * Set view
+     *
+     * @param string $view View
+     *
+     * @return void
+     */
+    public function setView($view)
+    {
+        if ($viewPath = $this->_viewExist($view)) {
+            $this->_view = realpath($viewPath);
+        } else {
+            //TODO Change exception to throw
+           throw new SLiib_Controller_Exception('View `' . $view . '` not found.');
+        }
+
+    }
+
+
+    /**
+     * Set no view
+     *
+     * @return void
+     */
+    public function setNoView()
+    {
+        $this->_view = false;
 
     }
 
@@ -71,7 +138,7 @@ class SLiib_Controller_View
      *
      * @return void
      */
-    public function __set($attr, $value)
+    private function __set($attr, $value)
     {
         $this->$attr = $value;
 
@@ -85,7 +152,7 @@ class SLiib_Controller_View
      *
      * @return mixed
      */
-    public function __get($attr)
+    private function __get($attr)
     {
         return $this->$attr;
 
@@ -93,17 +160,22 @@ class SLiib_Controller_View
 
 
     /**
-     * Display view
+     * Check view exists
      *
-     * @return void
+     * @param string View (without extension)
+     *
+     * @return boolean|string False if not exist, else absolute path of view
      */
-    public function display()
+    private function _viewExist($view)
     {
-        if ($this->_view) {
-            include $this->_view;
-        } else {
-            echo 'no render';
+        $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
+        $viewFile     = $view . $this->_ext;
+
+        if (file_exists($absolutePath . $viewFile)) {
+            return $absolutePath . $viewFile;
         }
+
+        return false;
 
     }
 

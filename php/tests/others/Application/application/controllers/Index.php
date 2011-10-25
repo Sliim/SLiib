@@ -60,11 +60,13 @@ class Test_Controller_Index extends SLiib_Controller
         $this->_view->message .= 'SLiib_Application, SLiib_Autoloader, SLiib_Bootstrap, ';
         $this->_view->message .= 'SLiib_Dispatcher, SLiib_HTTP_Request.';
         $this->_view->tests    = array(
-                                  '/test/model/'   => 'Model',
-                                  '/test/library/' => 'Library',
-                                  '/test/pget/'    => 'Param Get',//TODO
-                                  '/test/ppost/'   => 'Param Post',//TODO
-                                  '/test/session/' => 'Session',//TODO
+                                  '/test/model/'     => 'Model',
+                                  '/test/library/'   => 'Library',
+                                  '/test/noview'     => 'NoView',
+                                  '/test/customView' => 'CustomView',
+                                  '/test/pget/'      => 'Param Get',//TODO
+                                  '/test/ppost/'     => 'Param Post',//TODO
+                                  '/test/session/'   => 'Session',//TODO
                                  );
 
     }
