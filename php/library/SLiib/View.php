@@ -17,22 +17,20 @@
  *
  * PHP version 5
  *
- * @category   SLiib
- * @package    SLiib_Controller
- * @subpackage SLiib_Controller_View
- * @author     Sliim <sliim@mailoo.org>
- * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.2
- * @link       http://www.sliim-projects.eu
+ * @category SLiib
+ * @package  SLiib_View
+ * @author   Sliim <sliim@mailoo.org>
+ * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version  Release: 0.2
+ * @link     http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Controller_View
+ * SLiib_View
  *
- * @package    SLiib_Controller
- * @subpackage SLiib_Controller_View
+ * @package SLiib_View
  */
-class SLiib_Controller_View
+class SLiib_View
 {
 
     /**
