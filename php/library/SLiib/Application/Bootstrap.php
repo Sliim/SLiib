@@ -30,7 +30,7 @@
  *
  * @package SLiib_Bootstrap
  */
-abstract class SLiib_Bootstrap
+abstract class SLiib_Application_Bootstrap
 {
 
     /**

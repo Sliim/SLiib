@@ -32,7 +32,7 @@
  * @package    SLiib
  * @subpackage Tests
  */
-class Test_Bootstrap extends SLiib_Bootstrap
+class Test_Bootstrap extends SLiib_Application_Bootstrap
 {
 
 
