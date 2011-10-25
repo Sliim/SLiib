@@ -59,6 +59,29 @@ class Test_Bootstrap extends SLiib_Bootstrap
             )
         );
 
+        error_reporting(E_ALL | E_STRICT);
+        set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);
+    }
+
+
+    /**
+     * Error handler
+     *
+     * @param
+     *
+     * @return void
+     */
+    public function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
+    {
+        $message = sprintf("%s in `%s` on line %s\n Dump Context:\n%s",
+            $errstr,
+            $errfile,
+            $errline,
+            var_export($errcontext, true)
+        );
+
+        throw new RuntimeException($message, $errno);
+
     }
 
 

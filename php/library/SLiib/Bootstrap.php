@@ -155,15 +155,4 @@ abstract class SLiib_Bootstrap
     }
 
 
-    /**
-     * Gestion des erreurs de l'application
-     *
-     * @return void
-     */
-    protected static function _errorHandler()
-    {
-
-    }
-
-
 }
