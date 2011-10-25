@@ -126,4 +126,32 @@ class SLiib_Application
     }
 
 
+    /**
+     * Get application instance
+     *
+     * @return SLiib_Application
+     */
+    public static function getInstance()
+    {
+        if (static::$_instance === null) {
+            throw new SLiib_Application_Exception('Application not initialized.');
+        }
+
+        return static::$_instance;
+
+    }
+
+
+    /**
+     * Get application view path
+     *
+     * @return string
+     */
+    public function getViewPath()
+    {
+        return $this->_bootstrap->getViewPath();
+
+    }
+
+
 }

@@ -43,14 +43,14 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
      */
     public function init()
     {
-        $this->setNamespaces(
+        $this->_setNamespaces(
             array(
              'SLiib' => 'SLiib',
              'Lib'   => ROOT_PATH . '/library/Test',
             )
         );
 
-        $this->setSections(
+        $this->_setSections(
             array(
              'Test' => array(
                         'Model'      => 'models',
@@ -58,6 +58,8 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
                        )
             )
         );
+
+        $this->_setViewPath(APP_PATH . '/views');
 
         error_reporting(E_ALL | E_STRICT);
         set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);
@@ -73,7 +75,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
      */
     public function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
     {
-        $message = sprintf("%s in `%s` on line %s\n Dump Context:\n%s",
+        $message = sprintf("%s in `%s` on line %d\n Dump Context:\n%s",
             $errstr,
             $errfile,
             $errline,

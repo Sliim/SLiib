@@ -33,6 +33,35 @@
 abstract class SLiib_Controller
 {
 
+    /**
+     * Controller name
+     * @var string $_name
+     */
+    private $_name = null;
+
+    /**
+     * View of this controller/action
+     * @var SLiib_Controller_View $_view
+     */
+    protected $_view = null;
+
+
+    /**
+     * Construct
+     * Init name controller and the View
+     *
+     * @param string $name   Controller name
+     * @param string $action Action name
+     *
+     * @return void
+     */
+    public function __construct($name, $action)
+    {
+        $this->_name = $name;
+        $this->_view = new SLiib_Controller_View($name, $action);
+
+    }
+
 
     /**
      * Init controller, called before action
@@ -52,14 +81,15 @@ abstract class SLiib_Controller
      */
     public function __call($action, $params)
     {
-        $action = $action . 'Action';
+        $method = $action . 'Action';
 
-        if (!method_exists($this, $action)) {
-            throw new SLiib_Controller_Exception_ActionNotFound('No action found');
+        if (!method_exists($this, $method)) {
+            throw new SLiib_Controller_Exception_ActionNotFound('No action found.');
         }
 
         $this->_init();
-        $this->$action();
+        $this->$method();
+        $this->_view->display();
 
     }
 

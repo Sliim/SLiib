@@ -64,15 +64,15 @@ class SLiib_Dispatcher
     public static function dispatch()
     {
         $action     = SLiib_HTTP_Request::getAction();
-        $controller = ucfirst(SLiib_HTTP_Request::getController());
+        $controller = SLiib_HTTP_Request::getController();
 
         $controllerName = sprintf(
             "%s_Controller_%s",
             static::$_namespace,
-            $controller
+            ucfirst($controller)
         );
 
-        $c = new $controllerName();
+        $c = new $controllerName($controller, $action);
         $c->$action();
 
     }

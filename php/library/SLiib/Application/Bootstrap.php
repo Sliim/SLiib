@@ -37,7 +37,7 @@ abstract class SLiib_Application_Bootstrap
      * Namespace de l'application
      * @var string $_appNamespace
      */
-    protected $_appNamespace;
+    private $_appNamespace;
 
     /**
      * Namespaces to include
@@ -50,6 +50,12 @@ abstract class SLiib_Application_Bootstrap
      * @var array $_sections
      */
     private $_sections = array();
+
+    /**
+     * Application view path
+     * @var string $_viewPath
+     */
+    private $_viewPath = null;
 
 
     /**
@@ -97,7 +103,7 @@ abstract class SLiib_Application_Bootstrap
      *
      * @return void
      */
-    public function setNamespaces(array $namespaces)
+    protected function _setNamespaces(array $namespaces)
     {
         $this->_namespaces = $namespaces;
 
@@ -111,7 +117,7 @@ abstract class SLiib_Application_Bootstrap
      *
      * @return void
      */
-    public function setSections(array $sections)
+    protected function _setSections(array $sections)
     {
         $this->_sections = $sections;
 
@@ -151,6 +157,36 @@ abstract class SLiib_Application_Bootstrap
     {
         SLiib_HTTP_Request::init();
         //TODO SLiib_HTTP_Session
+
+    }
+
+
+    /**
+     * Set application view path
+     *
+     * @param string $path View path
+     *
+     * @return void
+     */
+    protected function _setViewPath($path)
+    {
+        if (!file_exists($path)) {
+            throw new SLiib_Application_Exception('Directory ' . $path . ' not found.');
+        }
+
+        $this->_viewPath = $path;
+
+    }
+
+
+    /**
+     * Get application view path
+     *
+     * @return string
+     */
+    public function getViewPath()
+    {
+        return $this->_viewPath;
 
     }
 

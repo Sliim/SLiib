@@ -43,7 +43,7 @@ class Test_Controller_Index extends SLiib_Controller
      */
     protected function _init()
     {
-        echo '<h1>Index controller!</h1>' . PHP_EOL;
+        $this->_view->bigtitle = 'Index controller!';
 
     }
 
@@ -55,18 +55,17 @@ class Test_Controller_Index extends SLiib_Controller
      */
     public function indexAction()
     {
-        echo '<h2>Index action!</h2>' . PHP_EOL;
-        echo '<pre>Cette application est un test pour les composants SLiib_Application, ';
-        echo 'SLiib_Autoloader, SLiib_Bootstrap, SLiib_Dispatcher, SLiib_HTTP_Request.</pre>';
-        echo '<br /><br />' . PHP_EOL;
-
-        echo '<ul>' . PHP_EOL;
-        echo '<li>Test <a href="/test/model/">Model</a></li>' . PHP_EOL;
-        echo '<li>Test <a href="/test/library/">Library</a></li>' . PHP_EOL;
-        echo '<li>Test <a href="/test/pget/">Param Get</a></li>' . PHP_EOL;//TODO
-        echo '<li>Test <a href="/test/ppost/">Param Post</a></li>' . PHP_EOL;//TODO
-        echo '<li>Test <a href="/test/session/">Session</a></li>' . PHP_EOL;//TODO
-        echo '</ul>' . PHP_EOL;
+        $this->_view->title    = 'Index action!';
+        $this->_view->message  = 'Cette application est un test pour les composants ';
+        $this->_view->message .= 'SLiib_Application, SLiib_Autoloader, SLiib_Bootstrap, ';
+        $this->_view->message .= 'SLiib_Dispatcher, SLiib_HTTP_Request.';
+        $this->_view->tests    = array(
+                                  '/test/model/'   => 'Model',
+                                  '/test/library/' => 'Library',
+                                  '/test/pget/'    => 'Param Get',//TODO
+                                  '/test/ppost/'   => 'Param Post',//TODO
+                                  '/test/session/' => 'Session',//TODO
+                                 );
 
     }
 
