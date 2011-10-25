@@ -63,19 +63,25 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
 
         error_reporting(E_ALL | E_STRICT);
         set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);
+
     }
 
 
     /**
      * Error handler
      *
-     * @param
+     * @param int    $errno      Error number
+     * @param string $errstr     Error message
+     * @param string $errfile    Error file
+     * @param int    $errline    Error line
+     * @param array  $errcontext Context array
      *
      * @return void
      */
     public function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
     {
-        $message = sprintf("%s in `%s` on line %d\n Dump Context:\n%s",
+        $message = sprintf(
+            "%s in `%s` on line %d\n Dump Context:\n%s",
             $errstr,
             $errfile,
             $errline,
