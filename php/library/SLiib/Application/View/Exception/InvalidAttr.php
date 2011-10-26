@@ -34,6 +34,7 @@
  */
 class SLiib_Application_View_Exception_InvalidAttr
 extends SLiib_Application_View_Exception
+implements SLiib_IException_Invalid
 {
 
 }

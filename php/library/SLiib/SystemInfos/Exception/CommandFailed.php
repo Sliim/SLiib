@@ -32,6 +32,7 @@
  */
 class SLiib_SystemInfos_Exception_CommandFailed
 extends SLiib_SystemInfos_Exception
+implements SLiib_IException_Failure
 {
 
 }

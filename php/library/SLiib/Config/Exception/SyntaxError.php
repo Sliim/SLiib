@@ -32,7 +32,9 @@
  * @package    SLiib_Config
  * @subpackage SLiib_Config_Ini
  */
-class SLiib_Config_Exception_SyntaxError extends SLiib_Config_Exception
+class SLiib_Config_Exception_SyntaxError
+extends SLiib_Config_Exception
+implements SLiib_IException_Failure
 {
 
 }

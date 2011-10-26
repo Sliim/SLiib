@@ -34,6 +34,7 @@
  */
 class SLiib_Application_Controller_Exception_InvalidAction
 extends SLiib_Application_Controller_Exception
+implements SLiib_IException_Invalid
 {
 
 }
