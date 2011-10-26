@@ -67,7 +67,7 @@ abstract class SLiib_Application_Bootstrap
      *
      * @return void
      */
-    public function __construct($appNamespace)
+    public final function __construct($appNamespace)
     {
         $this->_appNamespace = $appNamespace;
         $this->init();
@@ -88,12 +88,48 @@ abstract class SLiib_Application_Bootstrap
      *
      * @return void
      */
-    public function run()
+    public final function run()
     {
         $this->_setEnvironment();
 
         SLiib_Application_Dispatcher::init($this->_appNamespace);
         SLiib_Application_Dispatcher::dispatch();
+
+    }
+
+
+    /**
+     * Get namespaces
+     *
+     * @return array
+     */
+    public function getNamespaces()
+    {
+        return $this->_namespaces;
+
+    }
+
+
+    /**
+     * Get sections
+     *
+     * @return array
+     */
+    public function getSections()
+    {
+        return $this->_sections;
+
+    }
+
+
+    /**
+     * Get application view path
+     *
+     * @return string
+     */
+    public function getViewPath()
+    {
+        return $this->_viewPath;
 
     }
 
@@ -127,35 +163,11 @@ abstract class SLiib_Application_Bootstrap
 
 
     /**
-     * Get namespaces
-     *
-     * @return array
-     */
-    public function getNamespaces()
-    {
-        return $this->_namespaces;
-
-    }
-
-
-    /**
-     * Get sections
-     *
-     * @return array
-     */
-    public function getSections()
-    {
-        return $this->_sections;
-
-    }
-
-
-    /**
      * Initialise l'environnement de l'application
      *
      * @return void
      */
-    protected static function _setEnvironment()
+    protected function _setEnvironment()
     {
         SLiib_HTTP_Request::init();
         //TODO SLiib_HTTP_Session
@@ -168,6 +180,8 @@ abstract class SLiib_Application_Bootstrap
      *
      * @param string $path View path
      *
+     * @throws SLiib_Application_Exception
+     *
      * @return void
      */
     protected function _setViewPath($path)
@@ -177,18 +191,6 @@ abstract class SLiib_Application_Bootstrap
         }
 
         $this->_viewPath = $path;
-
-    }
-
-
-    /**
-     * Get application view path
-     *
-     * @return string
-     */
-    public function getViewPath()
-    {
-        return $this->_viewPath;
 
     }
 

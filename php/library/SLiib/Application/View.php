@@ -36,22 +36,22 @@ class SLiib_Application_View
 {
 
     /**
-     * Path of the .phtml view
-     * @var mixed $_view null if undefined, false if disabled, string if isset
-     */
-    private $_view = null;
-
-    /**
      * Subdirectory of view
      * @var string $_subView
      */
-    private $_subView = 'scripts';
+    protected $_subView = 'scripts';
 
     /**
      * View file extension
      * @var string $_ext
      */
-    private $_ext = '.phtml';
+    protected $_ext = '.phtml';
+
+    /**
+     * Path of the .phtml view
+     * @var mixed $_view null if undefined, false if disabled, string if isset
+     */
+    private $_view = null;
 
     /**
      * Views path
@@ -63,13 +63,13 @@ class SLiib_Application_View
     /**
      * Construct, set view path
      *
-     * @param string $controller Controller name
-     * @param string $action     Action name
-     *
      * @return void
      */
-    public function __construct($controller, $action)
+    public function __construct()
     {
+        $controller = SLiib_HTTP_Request::getController();
+        $action     = SLiib_HTTP_Request::getAction();
+
         //TODO Voir si ya pas un moyen plus propre..
         $this->_path = SLiib_Application::getInstance()->getViewPath();
 
@@ -101,6 +101,8 @@ class SLiib_Application_View
      *
      * @param string $view View
      *
+     * @throws SLiib_Application_View_Exception_InvalidView
+     *
      * @return void
      */
     public function setView($view)
@@ -108,7 +110,7 @@ class SLiib_Application_View
         if ($viewPath = $this->_viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
-            throw new SLiib_Application_View_Exception_ViewInvalid(
+            throw new SLiib_Application_View_Exception_InvalidView(
                 'View `' . $view . '` is invalid.'
             );
         }
@@ -148,10 +150,18 @@ class SLiib_Application_View
      *
      * @param string $attr Attribut name
      *
+     * @throws SLiib_Application_View_Exception_InvalidAttr
+     *
      * @return mixed
      */
     private function __get($attr)
     {
+        if (!isset($this->$attr)) {
+            throw new SLiib_Application_View_Exception_InvalidAttr(
+                'Attribut `' . $attr . '` undefined in view.'
+            );
+        }
+
         return $this->$attr;
 
     }
@@ -164,7 +174,7 @@ class SLiib_Application_View
      *
      * @return boolean|string False if not exist, else absolute path of view
      */
-    private function _viewExist($view)
+    private final function _viewExist($view)
     {
         $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
         $viewFile     = $view . $this->_ext;

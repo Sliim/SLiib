@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_Application_View_Exception
+ * SLiib_Application_View_Exception_InvalidAttr
  *
  * @package    SLiib_Application
  * @subpackage SLiib_Application_View
  */
-class SLiib_Application_View_Exception_ViewInvalid
+class SLiib_Application_View_Exception_InvalidAttr
 extends SLiib_Application_View_Exception
 {
 

@@ -36,12 +36,6 @@ abstract class SLiib_Application_Controller
 {
 
     /**
-     * Controller name
-     * @var string $_name
-     */
-    private $_name = null;
-
-    /**
      * View of this controller/action
      * @var SLiib_Application_View $_view
      */
@@ -49,18 +43,13 @@ abstract class SLiib_Application_Controller
 
 
     /**
-     * Construct
-     * Init name controller and the View
-     *
-     * @param string $name   Controller name
-     * @param string $action Action name
+     * Init view
      *
      * @return void
      */
-    public function __construct($name, $action)
+    public function __construct()
     {
-        $this->_name = $name;
-        $this->_view = new SLiib_Application_View($name, $action);
+        $this->_view = new SLiib_Application_View();
 
     }
 
@@ -79,9 +68,11 @@ abstract class SLiib_Application_Controller
      * @param string $action Action to call
      * @param array  $params unused
      *
+     * @throws SLiib_Application_Controller_Exception_InvalidAction
+     *
      * @return void
      */
-    public function __call($action, $params)
+    private final function __call($action, $params)
     {
         $method = $action . 'Action';
 
