@@ -83,6 +83,43 @@ class SLiib_Application_View
 
 
     /**
+     * Set a view attribut
+     *
+     * @param string $attr  Attribut name
+     * @param mixed  $value Attribut value
+     *
+     * @return void
+     */
+    public function __set($attr, $value)
+    {
+        $this->$attr = $value;
+
+    }
+
+
+    /**
+     * Get a view attribut
+     *
+     * @param string $attr Attribut name
+     *
+     * @throws SLiib_Application_View_Exception_InvalidAttr
+     *
+     * @return mixed
+     */
+    public function __get($attr)
+    {
+        if (!isset($this->$attr)) {
+            throw new SLiib_Application_View_Exception_InvalidParam(
+                'Attribut `' . $attr . '` undefined in view.'
+            );
+        }
+
+        return $this->$attr;
+
+    }
+
+
+    /**
      * Display view
      *
      * @return void
@@ -101,7 +138,7 @@ class SLiib_Application_View
      *
      * @param string $view View
      *
-     * @throws SLiib_Application_View_Exception_InvalidView
+     * @throws SLiib_Application_View_Exception_InvalidParam
      *
      * @return void
      */
@@ -110,7 +147,7 @@ class SLiib_Application_View
         if ($viewPath = $this->_viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
-            throw new SLiib_Application_View_Exception_InvalidView(
+            throw new SLiib_Application_View_Exception_InvalidParam(
                 'View `' . $view . '` is invalid.'
             );
         }
@@ -126,43 +163,6 @@ class SLiib_Application_View
     public function setNoView()
     {
         $this->_view = false;
-
-    }
-
-
-    /**
-     * Set a view attribut
-     *
-     * @param string $attr  Attribut name
-     * @param mixed  $value Attribut value
-     *
-     * @return void
-     */
-    private function __set($attr, $value)
-    {
-        $this->$attr = $value;
-
-    }
-
-
-    /**
-     * Get a view attribut
-     *
-     * @param string $attr Attribut name
-     *
-     * @throws SLiib_Application_View_Exception_InvalidAttr
-     *
-     * @return mixed
-     */
-    private function __get($attr)
-    {
-        if (!isset($this->$attr)) {
-            throw new SLiib_Application_View_Exception_InvalidAttr(
-                'Attribut `' . $attr . '` undefined in view.'
-            );
-        }
-
-        return $this->$attr;
 
     }
 
@@ -184,6 +184,36 @@ class SLiib_Application_View
         }
 
         return false;
+
+    }
+
+
+    /**
+     * include a template
+     * Must be in view path
+     *
+     * @param string $template Template to include
+     *
+     * @throws SLiib_Application_View_Exception_InvalidParam
+     *
+     * @return void
+     */
+    public function partial($template)
+    {
+        $template = preg_replace(
+            '/\.' . substr($this->_ext, 1, strlen($this->_ext)) . '$/',
+            '',
+            $template
+        );
+
+        $file = $this->_path . DIRECTORY_SEPARATOR . $template . $this->_ext;
+        if (!file_exists($file)) {
+            throw new SLiib_Application_View_Exception_InvalidParam(
+                'Partial template ' . $template . ' not found'
+            );
+        }
+
+        include $file;
 
     }
 
