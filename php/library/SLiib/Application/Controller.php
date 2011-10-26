@@ -49,17 +49,10 @@ abstract class SLiib_Application_Controller
      */
     public function __construct()
     {
+        //TODO permettre d'instancier l'object avec une autre class héritée par l'utilisateur
         $this->_view = new SLiib_Application_View();
 
     }
-
-
-    /**
-     * Init controller, called before action
-     *
-     * @return void
-     */
-    abstract protected function _init();
 
 
     /**
@@ -72,12 +65,12 @@ abstract class SLiib_Application_Controller
      *
      * @return void
      */
-    private final function __call($action, $params)
+    public final function __call($action, $params)
     {
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {
-            throw new SLiib_Application_Controller_Exception_InvalidAction(
+            throw new SLiib_Application_Controller_Exception_BadMethodCall(
                 'Action `' . $action . '` is invalid.'
             );
         }
@@ -87,6 +80,14 @@ abstract class SLiib_Application_Controller
         $this->_view->display();
 
     }
+
+
+    /**
+     * Init controller, called before action
+     *
+     * @return void
+     */
+    abstract protected function _init();
 
 
 }

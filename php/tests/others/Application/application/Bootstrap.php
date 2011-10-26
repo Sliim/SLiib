@@ -70,22 +70,20 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
     /**
      * Error handler
      *
-     * @param int    $errno      Error number
-     * @param string $errstr     Error message
-     * @param string $errfile    Error file
-     * @param int    $errline    Error line
-     * @param array  $errcontext Context array
+     * @param int    $errno   Error number
+     * @param string $errstr  Error message
+     * @param string $errfile Error file
+     * @param int    $errline Error line
      *
      * @return void
      */
-    public function errorHandler($errno, $errstr, $errfile, $errline, $errcontext)
+    public function errorHandler($errno, $errstr, $errfile, $errline)
     {
         $message = sprintf(
-            "%s in `%s` on line %d\n Dump Context:\n%s",
+            "%s in `%s` on line %d",
             $errstr,
             $errfile,
-            $errline,
-            var_export($errcontext, true)
+            $errline
         );
 
         throw new RuntimeException($message, $errno);
