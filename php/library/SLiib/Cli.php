@@ -109,8 +109,9 @@ abstract class SLiib_Cli
 
                 $this->_options[str_replace(':', '', $option, $count)] =
                   $this->_options[$option];
-                if ($count > 0)
+                if ($count > 0) {
                     unset($this->_options[$option]);
+                }
             }
 
             //Récupération des paramètres passés au script
@@ -120,8 +121,9 @@ abstract class SLiib_Cli
             foreach ($this->_params as $param => $value) {
                 if (key_exists('func', $this->_options[$param])) {
                     $func = $this->_options[$param]['func'];
-                    if (function_exists($this->$func($value)))
+                    if (function_exists($this->$func($value))) {
                         $this->$func($value);
+                    }
                 }
             }
         }
@@ -139,8 +141,9 @@ abstract class SLiib_Cli
     {
         echo $this->_desc . PHP_EOL . PHP_EOL;
         if (!is_null($this->_options)) {
-            foreach ($this->_options as $opt => $optDesc)
+            foreach ($this->_options as $opt => $optDesc) {
                 echo "\t-" . $opt . "\t" . $optDesc['desc'] . PHP_EOL;
+            }
         }
 
         echo PHP_EOL;

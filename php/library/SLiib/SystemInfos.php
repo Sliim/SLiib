@@ -101,16 +101,18 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
         if (is_resource($process)) {
             fclose($pipes[0]);
 
-            while (!feof($pipes[1]))
+            while (!feof($pipes[1])) {
                 $resultValue[] = fgets($pipes[1], 1024);
+            }
 
             fclose($pipes[1]);
             $returnValue = proc_close($process);
 
-            if ($returnValue != 0)
+            if ($returnValue != 0) {
                 throw new SLiib_SystemInfos_Exception_CommandFailed(
                     'Command `' . $cmd . '` failed!'
                 );
+            }
 
             return $resultValue;
         }

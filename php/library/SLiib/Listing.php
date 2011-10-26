@@ -136,9 +136,12 @@ class SLiib_Listing
         while ($dossier = readdir($rep)) {
             $ok = 1;
 
-            foreach ($except as $e)
-                if ($dossier == $e || preg_match('/~$/i', $dossier))
+            foreach ($except as $e) {
+                if ($dossier == $e || preg_match('/~$/i', $dossier)) {
                     $ok = -1;
+                }
+            }
+
             if ($ok == 1) {
                 $this->_contentNb++;
                 $this->_list[] = $dossier;

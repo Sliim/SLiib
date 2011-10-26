@@ -73,13 +73,15 @@ class SLiib_Log
     public function __construct($fileOutput, $add=false)
     {
         $opt = 'w+b';
-        if ($add)
+        if ($add) {
             $opt = 'a+b';
+        }
 
         $this->_fileOutput = @fopen($fileOutput, $opt);
 
-        if (!$this->_fileOutput)
+        if (!$this->_fileOutput) {
             throw new SLiib_Log_Exception('Cannot open file ' . $this->_fileOutput);
+        }
 
     }
 
@@ -327,8 +329,10 @@ class SLiib_Log
      */
     private static function _getIp()
     {
-        if (array_key_exists('REMOTE_ADDR', $_SERVER))
+        if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
             return $_SERVER['REMOTE_ADDR'];
+        }
+
         return false;
 
     }
@@ -341,8 +345,10 @@ class SLiib_Log
      */
     private static function _getUserAgent()
     {
-        if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
+        if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
             return $_SERVER['HTTP_USER_AGENT'];
+        }
+
         return false;
 
     }

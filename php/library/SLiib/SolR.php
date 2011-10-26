@@ -108,8 +108,9 @@ class SLiib_SolR
     public function update($xmlString)
     {
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
-        if (!$fp)
+        if (!$fp) {
             return false;
+        }
 
         $out  = 'POST ' . self::UPDATE_DIRECTORY . " HTTP/1.1\r\n";
         $out .= 'Host: ' . $this->_host . ':' . $this->_port . "\r\n";
@@ -180,8 +181,9 @@ class SLiib_SolR
 
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
 
-        if (!$fp)
+        if (!$fp) {
             return false;
+        }
 
         $out  = 'GET ' . self::SELECT_DIRECTORY . '/' . $query . " HTTP/1.1\r\n";
         $out .= 'Host: ' . $this->_host . ':' . $this->_port . "\r\n";
@@ -216,8 +218,9 @@ class SLiib_SolR
     public function getTotalIndexed()
     {
         $xml = $this->get('*%3A*');
-        if (!$xml)
+        if (!$xml) {
             return false;
+        }
 
         $obj = simplexml_load_string($xml);
         return (int) $obj->result['numFound'];
@@ -233,8 +236,10 @@ class SLiib_SolR
     public function ping()
     {
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
-        if (!$fp)
+        if (!$fp) {
             return false;
+        }
+
         return true;
 
     }
