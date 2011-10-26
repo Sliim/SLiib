@@ -104,4 +104,16 @@ class Test_Controller_Test extends SLiib_Application_Controller
     }
 
 
+    /**
+     * Test No view
+     *
+     * @return void
+     */
+    public function javascriptAction()
+    {
+        //Test appel script js
+
+    }
+
+
 }
