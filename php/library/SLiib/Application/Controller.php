@@ -41,6 +41,12 @@ abstract class SLiib_Application_Controller
      */
     protected $_view = null;
 
+    /**
+     * View Class
+     * @var string $_viewClass
+     */
+    protected $_viewClass = 'SLiib_Application_View';
+
 
     /**
      * Init view
@@ -49,8 +55,7 @@ abstract class SLiib_Application_Controller
      */
     public function __construct()
     {
-        //TODO permettre d'instancier l'object avec une autre class héritée par l'utilisateur
-        $this->_view = new SLiib_Application_View();
+        $this->_view = new $this->_viewClass();
 
     }
 
