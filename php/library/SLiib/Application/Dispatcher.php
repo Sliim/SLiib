@@ -17,20 +17,22 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Dispatcher
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_Dispatcher
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Dispatcher
+ * SLiib_Application_Dispatcher
  *
- * @package SLiib_Dispatcher
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_Dispatcher
  */
-class SLiib_Dispatcher
+class SLiib_Application_Dispatcher
 {
 
     /**
@@ -57,7 +59,7 @@ class SLiib_Dispatcher
     /**
      * Dispatching..
      *
-     * @throws SLiib_Dispatcher_Exception
+     * @throws SLiib_Application_Dispatcher_Exception
      *
      * @return void
      */

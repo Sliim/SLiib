@@ -32,7 +32,7 @@
  * @package    SLiib
  * @subpackage Tests
  */
-class Test_Controller_Test extends SLiib_Controller
+class Test_Controller_Test extends SLiib_Application_Controller
 {
 
 

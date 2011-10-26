@@ -17,20 +17,22 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_View
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_View
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_View
+ * SLiib_Application_View
  *
- * @package SLiib_View
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_View
  */
-class SLiib_View
+class SLiib_Application_View
 {
 
     /**
@@ -39,20 +41,17 @@ class SLiib_View
      */
     private $_view = null;
 
-
     /**
      * Subdirectory of view
      * @var string $_subView
      */
     private $_subView = 'scripts';
 
-
     /**
      * View file extension
      * @var string $_ext
      */
     private $_ext = '.phtml';
-
 
     /**
      * Views path
@@ -109,8 +108,9 @@ class SLiib_View
         if ($viewPath = $this->_viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
-            //TODO Change exception to throw
-           throw new SLiib_Controller_Exception('View `' . $view . '` not found.');
+            throw new SLiib_Application_View_Exception_ViewInvalid(
+                'View `' . $view . '` is invalid.'
+            );
         }
 
     }
@@ -160,7 +160,7 @@ class SLiib_View
     /**
      * Check view exists
      *
-     * @param string View (without extension)
+     * @param string $view View (without extension)
      *
      * @return boolean|string False if not exist, else absolute path of view
      */

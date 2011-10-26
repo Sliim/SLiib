@@ -32,7 +32,7 @@
  * @package    SLiib
  * @subpackage Tests
  */
-class Test_Controller_Index extends SLiib_Controller
+class Test_Controller_Index extends SLiib_Application_Controller
 {
 
 
@@ -57,8 +57,10 @@ class Test_Controller_Index extends SLiib_Controller
     {
         $this->_view->title    = 'Index action!';
         $this->_view->message  = 'Cette application est un test pour les composants ';
-        $this->_view->message .= 'SLiib_Application, SLiib_Autoloader, SLiib_Bootstrap, ';
-        $this->_view->message .= 'SLiib_Dispatcher, SLiib_HTTP_Request.';
+        $this->_view->message .= 'SLiib_Application, SLiib_Autoloader, ' . PHP_EOL;
+        $this->_view->message .= 'SLiib_Application_Bootstrap, SLiib_Application_Dispatcher, ';
+        $this->_view->message .= 'SLiib_Application_Controller, SLiib_Application_View, ';
+        $this->_view->message .= 'SLiib_HTTP_Request.';
         $this->_view->tests    = array(
                                   '/test/model/'     => 'Model',
                                   '/test/library/'   => 'Library',

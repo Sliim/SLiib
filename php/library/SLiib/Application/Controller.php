@@ -17,20 +17,22 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Controller
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_Controller
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Controller
+ * SLiib_Application_Controller
  *
- * @package SLiib_Controller
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_Controller
  */
-abstract class SLiib_Controller
+abstract class SLiib_Application_Controller
 {
 
     /**
@@ -41,7 +43,7 @@ abstract class SLiib_Controller
 
     /**
      * View of this controller/action
-     * @var SLiib_View $_view
+     * @var SLiib_Application_View $_view
      */
     protected $_view = null;
 
@@ -58,7 +60,7 @@ abstract class SLiib_Controller
     public function __construct($name, $action)
     {
         $this->_name = $name;
-        $this->_view = new SLiib_View($name, $action);
+        $this->_view = new SLiib_Application_View($name, $action);
 
     }
 
@@ -84,7 +86,9 @@ abstract class SLiib_Controller
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {
-            throw new SLiib_Controller_Exception_ActionNotFound('No action found.');
+            throw new SLiib_Application_Controller_Exception_InvalidAction(
+                'Action `' . $action . '` is invalid.'
+            );
         }
 
         $this->_init();

@@ -17,20 +17,22 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Controller
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_View
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Controller_Exception_ActionNotFound
+ * SLiib_Application_View_Exception
  *
- * @package SLiib_Controller
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_View
  */
-class SLiib_Controller_Exception_ActionNotFound extends SLiib_Controller_Exception
+class SLiib_Application_View_Exception extends SLiib_Application_Exception
 {
 
 }
