@@ -79,36 +79,6 @@ class SLiib_Listing
 
 
     /**
-     * Methode de remplissage du tableau. Créé la liste des dossiers et
-     * fichiers présents. 1 paramètre : tableau contenant une liste de
-     * fichier / dossier à ne pas lister.
-     *
-     * @param array $except Les exceptions à ne pas lister
-     *
-     * @return void
-     */
-    private function _list($except)
-    {
-        $rep = opendir($this->_path);
-
-        while ($dossier = readdir($rep)) {
-            $ok = 1;
-
-            foreach ($except as $e)
-                if ($dossier == $e || preg_match('/~$/i', $dossier))
-                    $ok = -1;
-            if ($ok == 1) {
-                $this->_contentNb++;
-                $this->_list[] = $dossier;
-            }
-        }
-
-        closedir($rep);
-
-    }
-
-
-    /**
      * Retourne la liste du contenu du dossier listé
      *
      * @return array Liste des éléments du dossier
@@ -146,6 +116,36 @@ class SLiib_Listing
         natcasesort($list);
 
         $this->_list = array_reverse(array_merge($list));
+
+    }
+
+
+     /**
+     * Methode de remplissage du tableau. Créé la liste des dossiers et
+     * fichiers présents. 1 paramètre : tableau contenant une liste de
+     * fichier / dossier à ne pas lister.
+     *
+     * @param array $except Les exceptions à ne pas lister
+     *
+     * @return void
+     */
+    private function _list($except)
+    {
+        $rep = opendir($this->_path);
+
+        while ($dossier = readdir($rep)) {
+            $ok = 1;
+
+            foreach ($except as $e)
+                if ($dossier == $e || preg_match('/~$/i', $dossier))
+                    $ok = -1;
+            if ($ok == 1) {
+                $this->_contentNb++;
+                $this->_list[] = $dossier;
+            }
+        }
+
+        closedir($rep);
 
     }
 

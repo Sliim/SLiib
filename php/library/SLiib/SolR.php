@@ -34,6 +34,18 @@ class SLiib_SolR
 {
 
     /**
+     * Répertoire SolR pour les update (insertion, commit, delete ..)
+     * @const string UPDATE_DIRECTORY
+     */
+    const UPDATE_DIRECTORY = '/solr/update';
+
+    /**
+     * Répertoire de sélection de document avec des requêtes spécifiques
+     * @const string SELECT_DIRECTORY
+     */
+    const SELECT_DIRECTORY = '/solr/select';
+
+    /**
      * Host de l'instance SolR
      * @var string $_host
      */
@@ -60,18 +72,6 @@ class SLiib_SolR
                                 '*', '?',
                                 ':',
                                );
-
-    /**
-     * Répertoire SolR pour les update (insertion, commit, delete ..)
-     * @const string UPDATE_DIRECTORY
-     */
-    const UPDATE_DIRECTORY = '/solr/update';
-
-    /**
-     * Répertoire de sélection de document avec des requêtes spécifiques
-     * @const string SELECT_DIRECTORY
-     */
-    const SELECT_DIRECTORY = '/solr/select';
 
 
     /**

@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_SystemInfos
  * @author   Sliim <sliim@mailoo.org>
@@ -27,7 +27,7 @@
 
 /**
  * SLiib_SystemInfos_Exception_CommandFailed
- * 
+ *
  * @package SLiib_SystemInfos
  */
 class SLiib_SystemInfos_Exception_CommandFailed

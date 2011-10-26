@@ -35,19 +35,12 @@
 Interface SLiib_SystemInfos_Interfaces_IUname
 {
 
-    /** Commande d'affichage du nom du noyau */
-    const CMD_UNAME_KERNEL_NAME = 'uname -s';
-    /** Affiche le nom d'host */
-    const CMD_UNAME_HOSTNAME = 'uname -n';
-    /** Affiche la release du noyau */
+    const CMD_UNAME_KERNEL_NAME    = 'uname -s';
+    const CMD_UNAME_HOSTNAME       = 'uname -n';
     const CMD_UNAME_KERNEL_RELEASE = 'uname -r';
-    /** Affiche la version du noyau */
     const CMD_UNAME_KERNEL_VERSION = 'uname -v';
-    /** Affiche le type d'architecture de l'host */
-    const CMD_UNAME_ARCH = 'uname -m';
-    /** Affiche le type de processeur */
-    const CMD_UNAME_PROC = 'uname -p';
-    /** Affiche les informations dur l'OS */
-    const CMD_UNAME_OS_INFOS = 'uname -o';
+    const CMD_UNAME_ARCH           = 'uname -m';
+    const CMD_UNAME_PROC           = 'uname -p';
+    const CMD_UNAME_OS_INFOS       = 'uname -o';
 
 }

@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category SLiib
  * @package  SLiib_Log
  * @author   Sliim <sliim@mailoo.org>
@@ -27,7 +27,7 @@
 
 /**
  * SLiib_Log_Exception
- * 
+ *
  * @package SLiib_Log
  */
 class SLiib_Log_Exception extends SLiib_Exception

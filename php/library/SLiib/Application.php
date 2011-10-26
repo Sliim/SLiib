@@ -129,6 +129,8 @@ class SLiib_Application
     /**
      * Get application instance
      *
+     * @throws SLiib_Application_Exception
+     *
      * @return SLiib_Application
      */
     public static function getInstance()

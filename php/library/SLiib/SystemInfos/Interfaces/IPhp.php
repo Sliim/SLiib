@@ -35,13 +35,9 @@
 Interface SLiib_SystemInfos_Interfaces_IPhp
 {
 
-    /** Commande d'affichage de la version de php */
     const CMD_PHP_VERSION = 'php -v';
-    /** Commande d'affichage d'information sur php */
-    const CMD_PHP_INFOS = 'php -i';
-    /** Commande d'affichage des modules compilés de php */
+    const CMD_PHP_INFOS   = 'php -i';
     const CMD_PHP_MODULES = 'php -m';
-    /** Commande d'affichage de la configuration de php */
-    const CMD_PHP_INI = 'php --ini';
+    const CMD_PHP_INI     = 'php --ini';
 
 }

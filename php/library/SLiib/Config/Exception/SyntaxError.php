@@ -16,7 +16,7 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
+ *
  * @category   SLiib
  * @package    SLiib_Config
  * @subpackage SLiib_Config_Ini
@@ -28,7 +28,7 @@
 
 /**
  * SLiib_Config_Ini_SyntaxErrorException
- * 
+ *
  * @package    SLiib_Config
  * @subpackage SLiib_Config_Ini
  */
