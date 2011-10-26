@@ -56,7 +56,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
     public static function __callStatic($name, $arguments)
     {
         if (!defined('self::' . $name)) {
-            throw new SLiib_SystemInfos_Exception_BadCommand('Command not found!');
+            throw new SLiib_SystemInfos_Exception_BadMethodCall('Command not found!');
         }
 
         $result = self::_execute(constant('SELF::' . $name));

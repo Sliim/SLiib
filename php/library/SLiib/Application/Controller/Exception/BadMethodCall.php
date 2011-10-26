@@ -17,20 +17,24 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_IException
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_Controller
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_IException_Invalid
+ * SLiib_Application_Controller_Exception_BadMethodCall
  *
- * @package SLiib_IException
+ * @package    SLiib_Application
+ * @subpackage SLiib_Application_Controller
  */
-Interface SLiib_IException_Invalid
+class SLiib_Application_Controller_Exception_BadMethodCall
+extends SLiib_Application_Controller_Exception
+implements SLiib_IException_BadMethodCall
 {
 
 }
