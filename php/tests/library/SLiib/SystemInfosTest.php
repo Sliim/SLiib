@@ -141,6 +141,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         try {
             $res = SLiib_SystemInfos::CMD_UNKNOWN();
         } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
+            $this->assertType('SLiib_SystemInfos_Exception_BadMethodCall', $e);
             return;
         }
 

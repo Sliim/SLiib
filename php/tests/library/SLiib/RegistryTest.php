@@ -93,6 +93,7 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         try {
             SLiib_Registry::set('myKey', $this->_string);
         } catch (SLiib_Registry_Exception $e) {
+            $this->assertType('SLiib_Registry_Exception', $e);
             return;
         }
 
@@ -113,6 +114,7 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         try {
             $res = SLiib_Registry::get('notexist');
         } catch (SLiib_Registry_Exception $e) {
+            $this->assertType('SLiib_Registry_Exception', $e);
             return;
         }
 

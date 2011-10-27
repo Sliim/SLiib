@@ -161,6 +161,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         try {
             $config = new SLiib_Config_Ini($this->_iniFail);
         } catch (SLiib_Config_Exception $e) {
+            $this->assertType('SLiib_Config_Exception', $e);
             return;
         }
 
@@ -179,6 +180,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         try {
             $config = new SLiib_Config_Ini($this->_iniBadSection);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
+            $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
         }
 
@@ -197,6 +199,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         try {
             $config = new SLiib_Config_Ini($this->_iniNoParent);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
+            $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
         }
 
@@ -215,6 +218,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         try {
             $config = new SLiib_Config_Ini($this->_iniSyntaxError);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
+            $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
         }
 
@@ -233,9 +237,8 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         try {
             $config = new SLiib_Config_Ini($this->_iniSEbis);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
+            $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
-        } catch (Exception $e) {
-            echo $e->getMessage();
         }
 
         $this->fail("Bad exception thrown");
