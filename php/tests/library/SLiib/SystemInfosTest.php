@@ -73,7 +73,6 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdApache2()
     {
-
         $res = $this->_exec('CMD_APACHE2_VERSION', true);
         $this->assertType('string', $res);
 
@@ -146,6 +145,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         }
 
         $this->fail('Bad exception thrown');
+
     }
 
 

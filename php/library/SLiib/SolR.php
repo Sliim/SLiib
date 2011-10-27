@@ -208,8 +208,8 @@ class SLiib_SolR
             )) {
                 return $matches[0];
             }
-
         }
+
         return false;
 
     }

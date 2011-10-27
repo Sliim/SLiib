@@ -86,13 +86,13 @@ class SLiib_Config_Ini extends SLiib_Config
      */
     private function _initSection($section)
     {
-        //TODO afficher fichier concerné dans le message.
         if (preg_match('/ : /', $section)) {
             $segment = explode(' : ', $section);
 
             if (count($segment) != 2) {
                 throw new SLiib_Config_Exception_SyntaxError(
-                    'Section definition incorrect at line ' . $this->_pointer
+                    'Section definition incorrect in ' . $this->_configFile .
+                    ' on line ' . $this->_pointer
                 );
             }
 
@@ -101,8 +101,8 @@ class SLiib_Config_Ini extends SLiib_Config
 
             if (!isset($this->_config->$parent)) {
                 throw new SLiib_Config_Exception_SyntaxError(
-                    '`' . $parent . '` undefined in `' . $this->_configFile .
-                    '` at line ' . $this->_pointer
+                    '`' . $parent . '` undefined in ' . $this->_configFile .
+                    ' on line ' . $this->_pointer
                 );
             }
 
@@ -128,12 +128,12 @@ class SLiib_Config_Ini extends SLiib_Config
      */
     private function _initParam($param, $section=false)
     {
-        //TODO si ya pas de = ==> syntaxerror
         $datas = explode('=', $param);
 
         if (count($datas) != 2) {
             throw new SLiib_Config_Exception_SyntaxError(
-                'Directive declaration incorrect at line ' . $this->_pointer
+                'Directive declaration incorrect in ' . $this->_configFile .
+                ' on line ' . $this->_pointer
             );
         }
 
@@ -142,7 +142,8 @@ class SLiib_Config_Ini extends SLiib_Config
 
         if (strpos($key, ' ')) {
             throw new SLiib_Config_Exception_SyntaxError(
-                'Directive name should not be spaces at line ' . $this->_pointer
+                'Directive name should not be spaces in ' . $this->_configFile .
+                ' on line ' . $this->_pointer
             );
         }
 

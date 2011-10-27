@@ -99,8 +99,6 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 
         $this->fail('Bad exception thrown');
 
-
-
     }
 
 
@@ -119,8 +117,6 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         }
 
         $this->fail('Bad exception thrown');
-
-
 
     }
 

@@ -187,12 +187,15 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test with bad port
+     *
+     * @return void
      */
     public function testBadPort()
     {
         try {
             $object = new SLiib_SolR($this->_host, 1337, true);
         } catch (SLiib_SolR_Exception $e) {
+            $this->assertType('SLiib_SolR_Exception', $e);
         }
 
         $object = new SLiib_SolR($this->_host, 1337, false);
@@ -206,12 +209,13 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
         $res = $object->getTotalIndexed();
         $this->assertFalse($res);
 
-
     }
 
 
     /**
      * Test bad xml string
+     *
+     * @return void
      */
     public function testBadXmlString()
     {
