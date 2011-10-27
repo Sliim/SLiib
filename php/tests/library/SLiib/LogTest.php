@@ -68,7 +68,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
         $this->_filename   = 'files/LogTest.log';
         $this->_testFormat = '[%T][%d]%m';
 
-        $this->_object = new SLiib_Log($this->_filename);
+        $this->_object = new SLiib_Log($this->_filename, true);
 
     }
 
@@ -159,10 +159,12 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function testColor()
     {
+        $this->_object->setFormat('[%T] [%d %t] [%U] [%@] %m');
         echo PHP_EOL;
         $this->_object->debug('Log DEBUG, blue color ?', true);
         $this->_object->warn('Log WARN, yellow color ?', true);
         $this->_object->error('Log ERROR, red color ?', true);
+        $this->_object->crit('Log CRIT, red color ?', true);
         $this->_object->info('Log INFO, no color ?', true);
 
     }

@@ -112,13 +112,7 @@ class SLiib_Log
     public function log($string, $type=self::INFO, $echo=false)
     {
         $log = $this->_genLog($string, $type);
-        if (!fwrite($this->_fileOutput, $log . PHP_EOL)) {
-            $error = error_get_last();
-            throw new SLiib_Log_Exception(
-                'Error ' . $error['type'] . '. ' . $error['file'] .
-                ' line ' . $error['line'] . ':' . $error['message']
-            );
-        }
+        fwrite($this->_fileOutput, $log . PHP_EOL);
 
         if ($echo) {
             $this->_printStdout($string, $type);
@@ -137,15 +131,7 @@ class SLiib_Log
      */
     public function debug($string, $echo=false)
     {
-        try {
-            $this->log($string, self::DEBUG, $echo);
-        } catch (SLiib_Log_Exception $e) {
-            $this->_printStdout($e->getMessage(), self::ERROR);
-
-            if ($echo) {
-                $this->_printStdout($string, self::DEBUG);
-            }
-        }
+        $this->log($string, self::DEBUG, $echo);
 
     }
 
@@ -160,15 +146,7 @@ class SLiib_Log
      */
     public function info($string, $echo=false)
     {
-        try {
-            $this->log($string, self::INFO, $echo);
-        } catch (SLiib_Log_Exception $e) {
-            $this->_printStdout($e->getMessage(), self::ERROR);
-
-            if ($echo) {
-                $this->_printStdout($string, self::INFO);
-            }
-        }
+        $this->log($string, self::INFO, $echo);
 
     }
 
@@ -183,15 +161,7 @@ class SLiib_Log
      */
     public function warn($string, $echo=false)
     {
-        try {
-            $this->log($string, self::WARN, $echo);
-        } catch (SLiib_Log_Exception $e) {
-            $this->_printStdout($e->getMessage(), self::ERROR);
-
-            if ($echo) {
-                $this->_printStdout($string, self::WARN);
-            }
-        }
+        $this->log($string, self::WARN, $echo);
 
     }
 
@@ -206,15 +176,7 @@ class SLiib_Log
      */
     public function error($string, $echo=false)
     {
-        try {
-            $this->log($string, self::ERROR, $echo);
-        } catch (SLiib_Log_Exception $e) {
-            $this->_printStdout($e->getMessage(), self::ERROR);
-
-            if ($echo) {
-                $this->_printStdout($string, self::ERROR);
-            }
-        }
+        $this->log($string, self::ERROR, $echo);
 
     }
 
@@ -229,15 +191,7 @@ class SLiib_Log
      */
     public function crit($string, $echo=false)
     {
-        try {
-            $this->log($string, self::CRIT, $echo);
-        } catch (SLiib_Log_Exception $e) {
-            $this->_printStdout($e->getMessage(), self::ERROR);
-
-            if ($echo) {
-                $this->_printStdout($string, self::CRIT);
-            }
-        }
+        $this->log($string, self::CRIT, $echo);
 
     }
 
