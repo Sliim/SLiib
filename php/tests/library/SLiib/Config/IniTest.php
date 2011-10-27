@@ -50,6 +50,36 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
      */
     protected $_iniFile;
 
+    /**
+     * Not exists file
+     * @var string $_iniFail
+     */
+    protected $_iniFail;
+
+    /**
+     * Bad section definition
+     * @var string $_iniBadSection
+     */
+    protected $_iniBadSection;
+
+    /**
+     * No parent section
+     * @var string $_iniNoParent
+     */
+    protected $_iniNoParent;
+
+    /**
+     * Directive definition syntax error
+     * @var string $_iniSyntaxError
+     */
+    protected $_iniSyntaxError;
+
+    /**
+     * Directive definition syntax error bis
+     * @var string $_iniSEbis
+     */
+    protected $_iniSEbis;
+
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -59,8 +89,13 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_iniFile = 'files/config.ini';
-        $this->_object  = new SLiib_Config_Ini($this->_iniFile);
+        $this->_iniFile        = 'files/configs/config.ini';
+        $this->_iniFail        = 'files/configs/notexist.ini';
+        $this->_iniBadSection  = 'files/configs/badsection.ini';
+        $this->_iniNoParent    = 'files/configs/noparent.ini';
+        $this->_iniSyntaxError = 'files/configs/syntaxerror.ini';
+        $this->_iniSEbis       = 'files/configs/syntaxerror2.ini';
+        $this->_object         = new SLiib_Config_Ini($this->_iniFile);
 
     }
 
@@ -112,6 +147,98 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Off', $config->production->sysInfos);
 
         $this->assertEquals('w00t', $config->application->test->foo->bar->z1337);
+
+    }
+
+
+    /**
+     * Test open inexistant file
+     *
+     * @return void
+     */
+    public function testOpenInexistantFile()
+    {
+        try {
+            $config = new SLiib_Config_Ini($this->_iniFail);
+        } catch (SLiib_Config_Exception $e) {
+            return;
+        }
+
+        $this->fail("Bad exception throws");
+
+    }
+
+
+    /**
+     * Test Bad section
+     *
+     * @return void
+     */
+    public function testBadSection()
+    {
+        try {
+            $config = new SLiib_Config_Ini($this->_iniBadSection);
+        } catch (SLiib_Config_Exception_SyntaxError $e) {
+            return;
+        }
+
+        $this->fail("Bad exception throws");
+
+    }
+
+
+    /**
+     * Test no parent
+     *
+     * @return void
+     */
+    public function testNoParent()
+    {
+        try {
+            $config = new SLiib_Config_Ini($this->_iniNoParent);
+        } catch (SLiib_Config_Exception_SyntaxError $e) {
+            return;
+        }
+
+        $this->fail("Bad exception throws");
+
+    }
+
+
+    /**
+     * Test Syntax error directives
+     *
+     * @return void
+     */
+    public function testSyntaxError()
+    {
+        try {
+            $config = new SLiib_Config_Ini($this->_iniSyntaxError);
+        } catch (SLiib_Config_Exception_SyntaxError $e) {
+            return;
+        }
+
+        $this->fail("Bad exception throws");
+
+    }
+
+
+    /**
+     * Test Syntax error directives bis
+     *
+     * @return void
+     */
+    public function testSyntaxError2()
+    {
+        try {
+            $config = new SLiib_Config_Ini($this->_iniSEbis);
+        } catch (SLiib_Config_Exception_SyntaxError $e) {
+            return;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        $this->fail("Bad exception throws");
 
     }
 

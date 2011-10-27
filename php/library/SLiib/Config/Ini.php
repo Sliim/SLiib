@@ -48,11 +48,6 @@ class SLiib_Config_Ini extends SLiib_Config
     protected function _readFile()
     {
         $fp = fopen($this->_configFile, 'r');
-        if (!$fp) {
-            throw new SLiib_Config_Exception(
-                'Opening file ' . $this->_configFile . ' failed'
-            );
-        }
 
         $this->_pointer = 0;
         $section        = false;
@@ -91,6 +86,7 @@ class SLiib_Config_Ini extends SLiib_Config
      */
     private function _initSection($section)
     {
+        //TODO afficher fichier concerné dans le message.
         if (preg_match('/ : /', $section)) {
             $segment = explode(' : ', $section);
 
@@ -132,9 +128,23 @@ class SLiib_Config_Ini extends SLiib_Config
      */
     private function _initParam($param, $section=false)
     {
+        //TODO si ya pas de = ==> syntaxerror
         $datas = explode('=', $param);
+
+        if (count($datas) != 2) {
+            throw new SLiib_Config_Exception_SyntaxError(
+                'Directive declaration incorrect at line ' . $this->_pointer
+            );
+        }
+
         $key   = SLiib_String::clean($datas[0]);
         $value = SLiib_String::clean($datas[1]);
+
+        if (strpos($key, ' ')) {
+            throw new SLiib_Config_Exception_SyntaxError(
+                'Directive name should not be spaces at line ' . $this->_pointer
+            );
+        }
 
         if (strpos($key, '.')) {
             $segment = explode('.', $key);
