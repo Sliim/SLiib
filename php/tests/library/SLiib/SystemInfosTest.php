@@ -42,14 +42,19 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     /**
      * Exécute une commande
      *
-     * @param string $cmd Commande à exécuter
+     * @param string  $cmd       Commande à exécuter
+     * @param boolean $serialize Sérialize response
      *
      * @return string Retour de la commande
      */
-    private function _exec($cmd)
+    private function _exec($cmd, $serialize=false)
     {
         try {
-            $res = SLiib_SystemInfos::$cmd();
+            if ($serialize) {
+                $res = SLiib_SystemInfos::$cmd('serialize');
+            } else {
+                $res = SLiib_SystemInfos::$cmd();
+            }
         } catch (SLiib_SystemInfos_BadCommandException $e) {
             $this->markTestSkipped('Command unknown !');
         } catch (SLiib_SystemInfos_CommandFailedException $e) {
@@ -68,7 +73,8 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdApache2()
     {
-        $res = $this->_exec('CMD_APACHE2_VERSION');
+
+        $res = $this->_exec('CMD_APACHE2_VERSION', true);
         $this->assertType('string', $res);
 
         $res = $this->_exec('CMD_APACHE2_COMPILED_MODULES');
@@ -87,7 +93,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         $res = $this->_exec('CMD_PHP_VERSION');
         $this->assertType('string', $res);
 
-        $res = $this->_exec('CMD_PHP_MODULES');
+        $res = $this->_exec('CMD_PHP_MODULES', 'serialize');
         $this->assertType('string', $res);
 
     }
@@ -122,6 +128,23 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         $res = $this->_exec('CMD_LSB_RELEASE_RELEASE');
         $this->assertType('string', $res);
 
+    }
+
+
+    /**
+     * Test command unknown
+     *
+     * @return void
+     */
+    public function testCmdUnknown()
+    {
+        try {
+            $res = SLiib_SystemInfos::CMD_UNKNOWN();
+        } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
+            return;
+        }
+
+        $this->fail('Bad exception thrown');
     }
 
 
