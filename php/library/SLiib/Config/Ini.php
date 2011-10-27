@@ -69,7 +69,6 @@ class SLiib_Config_Ini extends SLiib_Config
         }
 
         fclose($fp);
-
         return $this->_pointer;
 
     }
@@ -123,6 +122,8 @@ class SLiib_Config_Ini extends SLiib_Config
      *
      * @param string $param   Paramètre à initialiser
      * @param string $section Section concernée
+     *
+     * @throws SLiib_Config_Exception_SyntaxError
      *
      * @return void
      */

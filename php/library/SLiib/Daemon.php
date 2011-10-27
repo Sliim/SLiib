@@ -49,6 +49,8 @@ abstract class SLiib_Daemon
     /**
      * Constructeur, initialise le PID du père des démons
      *
+     * @throws SLiib_Daemon_Exception
+     *
      * @return void
      */
     public function __construct()

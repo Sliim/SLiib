@@ -75,6 +75,8 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
      * @param string $errfile Error file
      * @param int    $errline Error line
      *
+     * @throws RuntimeException
+     *
      * @return void
      */
     public function errorHandler($errno, $errstr, $errfile, $errline)

@@ -107,7 +107,7 @@ class SLiib_Log
      *
      * @throws SLiib_Log_Exception
      *
-     * @return void
+     * @return SLiib_Log
      */
     public function log($string, $type=self::INFO, $echo=false)
     {
@@ -118,6 +118,8 @@ class SLiib_Log
             $this->_printStdout($string, $type);
         }
 
+        return $this;
+
     }
 
 
@@ -127,11 +129,11 @@ class SLiib_Log
      * @param string            $string Message du log
      * @param boolean[optional] $echo   Afficher le log dans le stdout
      *
-     * @return void
+     * @return SLiib_Log
      */
     public function debug($string, $echo=false)
     {
-        $this->log($string, self::DEBUG, $echo);
+        return $this->log($string, self::DEBUG, $echo);
 
     }
 
@@ -142,11 +144,11 @@ class SLiib_Log
      * @param string            $string Message du log
      * @param boolean[optional] $echo   Afficher le log dans le stdout
      *
-     * @return void
+     * @return SLiib_Log
      */
     public function info($string, $echo=false)
     {
-        $this->log($string, self::INFO, $echo);
+        return $this->log($string, self::INFO, $echo);
 
     }
 
@@ -157,11 +159,11 @@ class SLiib_Log
      * @param string            $string Message du log
      * @param boolean[optional] $echo   Afficher le log dans le stdout
      *
-     * @return void
+     * @return SLiib_Log
      */
     public function warn($string, $echo=false)
     {
-        $this->log($string, self::WARN, $echo);
+        return $this->log($string, self::WARN, $echo);
 
     }
 
@@ -172,11 +174,11 @@ class SLiib_Log
      * @param string            $string Message du log
      * @param boolean[optional] $echo   Afficher le log dans le stdout
      *
-     * @return void
+     * @return SLiib_Log
      */
     public function error($string, $echo=false)
     {
-        $this->log($string, self::ERROR, $echo);
+        return $this->log($string, self::ERROR, $echo);
 
     }
 
@@ -187,11 +189,11 @@ class SLiib_Log
      * @param string            $string Message du log
      * @param boolean[optional] $echo   Afficher le log dans le stdout
      *
-     * @return void
+     * @return SLiib_Log
      */
     public function crit($string, $echo=false)
     {
-        $this->log($string, self::CRIT, $echo);
+        return $this->log($string, self::CRIT, $echo);
 
     }
 

@@ -66,7 +66,7 @@ abstract class SLiib_Application_Controller
      * @param string $action Action to call
      * @param array  $params unused
      *
-     * @throws SLiib_Application_Controller_Exception_InvalidAction
+     * @throws SLiib_Application_Controller_Exception_BadMethodCall
      *
      * @return void
      */

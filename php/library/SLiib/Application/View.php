@@ -102,7 +102,7 @@ class SLiib_Application_View
      *
      * @param string $attr Attribut name
      *
-     * @throws SLiib_Application_View_Exception_InvalidAttr
+     * @throws SLiib_Application_View_Exception_InvalidParam
      *
      * @return mixed
      */
@@ -196,7 +196,7 @@ class SLiib_Application_View
      *
      * @throws SLiib_Application_View_Exception_InvalidParam
      *
-     * @return void
+     * @return SLiib_Application_View
      */
     public function partial($template)
     {
@@ -214,6 +214,7 @@ class SLiib_Application_View
         }
 
         include $file;
+        return $this;
 
     }
 

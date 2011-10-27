@@ -49,7 +49,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
      *                          possible : 'serialize' qui permet de récupérer
      *                          le résultat de la commande sérialisé.
      *
-     * @throws SLiib_SystemInfos_Exception_BadCommand
+     * @throws SLiib_SystemInfos_Exception_BadMethodCall
      *
      * @return string résultat de la commande
      */
