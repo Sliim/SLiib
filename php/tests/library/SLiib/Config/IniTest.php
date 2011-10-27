@@ -164,7 +164,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
             return;
         }
 
-        $this->fail("Bad exception throws");
+        $this->fail("Bad exception thrown");
 
     }
 
@@ -182,7 +182,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
             return;
         }
 
-        $this->fail("Bad exception throws");
+        $this->fail("Bad exception thrown");
 
     }
 
@@ -200,7 +200,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
             return;
         }
 
-        $this->fail("Bad exception throws");
+        $this->fail("Bad exception thrown");
 
     }
 
@@ -218,7 +218,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
             return;
         }
 
-        $this->fail("Bad exception throws");
+        $this->fail("Bad exception thrown");
 
     }
 
@@ -238,7 +238,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
             echo $e->getMessage();
         }
 
-        $this->fail("Bad exception throws");
+        $this->fail("Bad exception thrown");
 
     }
 

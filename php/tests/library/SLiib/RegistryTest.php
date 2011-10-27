@@ -83,4 +83,44 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test set already exists key
+     *
+     * @return void
+     */
+    public function testSetAlreadyExistKey()
+    {
+        try {
+            SLiib_Registry::set('myKey', $this->_string);
+        } catch (SLiib_Registry_Exception $e) {
+            return;
+        }
+
+        $this->fail('Bad exception thrown');
+
+
+
+    }
+
+
+    /**
+     * Test get not exist key
+     *
+     * @return void
+     */
+    public function testGetNotExistKey()
+    {
+        try {
+            $res = SLiib_Registry::get('notexist');
+        } catch (SLiib_Registry_Exception $e) {
+            return;
+        }
+
+        $this->fail('Bad exception thrown');
+
+
+
+    }
+
+
 }
