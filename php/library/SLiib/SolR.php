@@ -77,17 +77,22 @@ class SLiib_SolR
     /**
      * Constructeur, initialise les attributs privés.
      *
-     * @param string $host Host de l'instance SolR
-     * @param int    $port Port écouté par l'instance SolR
+     * @param string  $host Host de l'instance SolR
+     * @param int     $port Port écouté par l'instance SolR
+     * @param boolean $ping Ping SolR
      *
      * @throws SLiib_SolR_Exception
      *
      * @return void
      */
-    public function __construct($host, $port)
+    public function __construct($host, $port, $ping=true)
     {
         $this->_host = $host;
         $this->_port = $port;
+
+        if (!$ping) {
+            return;
+        }
 
         if (!$this->ping()) {
             throw new SLiib_SolR_Exception(
@@ -204,8 +209,8 @@ class SLiib_SolR
                 return $matches[0];
             }
 
-            return false;
         }
+        return false;
 
     }
 
@@ -252,7 +257,7 @@ class SLiib_SolR
      *
      * @return $string Chaine Traitée.
      */
-    protected function _escapeSpecialChar($string)
+    public function escapeSpecialChar($string)
     {
         foreach ($this->_specialChars as $char) {
             $string = str_replace($char, '\\' . $char, $string);

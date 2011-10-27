@@ -59,6 +59,12 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
      */
     protected $_port = 8983;
 
+    /**
+     * XML string to update for test
+     * @var string $_xmlStr
+     */
+    protected $_xmlStr;
+
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -75,6 +81,12 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
                 'Ping to SolR failed at ' . $this->_host . ':' . $this->_port
             );
         }
+
+        $this->_xmlStr  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+        $this->_xmlStr .= '<add><doc><field name="text">test indexing</field>';
+        $this->_xmlStr .= '<field name="md5">d8e8fca2dc0f896fd7cb4cb0031ba249</field>';
+        $this->_xmlStr .= '<field name="sha1">4e1243bd22c66e76c2ba9eddc1f91394e57f9f83';
+        $this->_xmlStr .= '</field></doc></add>';
 
     }
 
@@ -124,13 +136,7 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
      */
     public function testUpdate()
     {
-        $xml  = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
-        $xml .= '<add><doc><field name="text">test indexing</field>';
-        $xml .= '<field name="md5">d8e8fca2dc0f896fd7cb4cb0031ba249</field>';
-        $xml .= '<field name="sha1">4e1243bd22c66e76c2ba9eddc1f91394e57f9f83';
-        $xml .= '</field></doc></add>';
-
-        $res = $this->_object->update($xml);
+        $res = $this->_object->update($this->_xmlStr);
 
         $this->assertTrue($res);
 
@@ -157,7 +163,7 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     public function testGet()
     {
         $query  = 'test';
-        $res    = $this->_object->get($query);
+        $res    = $this->_object->get($this->_object->escapeSpecialChar($query));
         $xmlRes = simplexml_load_string($res);
 
         $this->assertObjectHasAttribute('lst', $xmlRes);
@@ -175,6 +181,45 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     {
         $res = $this->_object->getTotalIndexed();
         $this->assertGreaterThan(0, $res);
+
+    }
+
+
+    /**
+     * Test with bad port
+     */
+    public function testBadPort()
+    {
+        try {
+            $object = new SLiib_SolR($this->_host, 1337, true);
+        } catch (SLiib_SolR_Exception $e) {
+        }
+
+        $object = new SLiib_SolR($this->_host, 1337, false);
+
+        $res = $object->update($this->_xmlStr);
+        $this->assertFalse($res);
+
+        $res = $object->get('*:*');
+        $this->assertFalse($res);
+
+        $res = $object->getTotalIndexed();
+        $this->assertFalse($res);
+
+
+    }
+
+
+    /**
+     * Test bad xml string
+     */
+    public function testBadXmlString()
+    {
+        $res = $this->_object->update('foo');
+        $this->assertFalse($res);
+
+        $res = $this->_object->get('***');
+        $this->assertFalse($res);
 
     }
 
