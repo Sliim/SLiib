@@ -61,6 +61,10 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
 
         $this->_setViewPath(APP_PATH . '/views');
 
+        $this->_setSecurityCheck(array(
+            new SLiib_Security_Checker_LFI(),
+        ));
+
         error_reporting(E_ALL | E_STRICT);
         set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);
 

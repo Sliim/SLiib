@@ -59,6 +59,8 @@ abstract class SLiib_Application_Bootstrap
      */
     private $_viewPath = null;
 
+    protected $_securityCheck = array();
+
 
     /**
      * Initialisation du bootstrap
@@ -170,6 +172,7 @@ abstract class SLiib_Application_Bootstrap
     protected function _setEnvironment()
     {
         SLiib_HTTP_Request::init();
+        SLiib_Security::check($this->_securityCheck);
         //TODO SLiib_HTTP_Session
 
     }
@@ -191,6 +194,13 @@ abstract class SLiib_Application_Bootstrap
         }
 
         $this->_viewPath = $path;
+
+    }
+
+
+    protected function _setSecurityCheck(array $validators)
+    {
+        $this->_securityCheck = $validators;
 
     }
 
