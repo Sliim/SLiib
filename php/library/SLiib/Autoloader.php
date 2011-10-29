@@ -126,7 +126,10 @@ class SLiib_Autoloader
           static::$_namespaces[$namespace] . DIRECTORY_SEPARATOR .
           implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
-        //TODO Check include result
+        if (file_exists(static::$_namespaces[$namespace]) && !file_exists($file)) {
+            return false;
+        }
+
         include $file;
 
         array_push(static::$_isLoaded, $class);

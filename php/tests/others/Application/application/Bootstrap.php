@@ -103,13 +103,13 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
     protected function _exceptionHandler(Exception $e)
     {
         printf(
-            "%s in `%s` on line %d. Trace : %s",
+            "%s : %s in `%s` on line %d.\n\nTrace :\n%s",
+            get_class($e),
             $e->getMessage(),
             $e->getFile(),
             $e->getLine(),
             $e->getTraceAsString()
         );
-
         die();
 
     }
