@@ -24,7 +24,6 @@
  * @version  Release: 0.2
  * @link     http://www.sliim-projects.eu
  */
-require_once 'SLiib/Autoloader.php';
 
 /**
  * SLiib_HTTP_Request

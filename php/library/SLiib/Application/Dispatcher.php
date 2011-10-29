@@ -74,6 +74,12 @@ class SLiib_Application_Dispatcher
             ucfirst($controller)
         );
 
+        if (!class_exists($controllerName)) {
+            throw new SLiib_Application_Controller_Exception(
+                'Controller `' . $controllerName . '` doesn\'t exist.'
+            );
+        }
+
         $c = new $controllerName($controller, $action);
         $c->$action();
 

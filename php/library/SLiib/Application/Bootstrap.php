@@ -90,10 +90,14 @@ abstract class SLiib_Application_Bootstrap
      */
     public final function run()
     {
-        $this->_setEnvironment();
+        try {
+            $this->_setEnvironment();
 
-        SLiib_Application_Dispatcher::init($this->_appNamespace);
-        SLiib_Application_Dispatcher::dispatch();
+            SLiib_Application_Dispatcher::init($this->_appNamespace);
+            SLiib_Application_Dispatcher::dispatch();
+        } catch (SLiib_Exception $e) {
+            $this->_exceptionHandler($e);
+        }
 
     }
 
@@ -191,6 +195,20 @@ abstract class SLiib_Application_Bootstrap
         }
 
         $this->_viewPath = $path;
+
+    }
+
+
+    /**
+     * Exception Handler
+     *
+     * @param Exception $e
+     *
+     * @return void
+     */
+    protected function _exceptionHandler(Exception $e)
+    {
+        throw $e;
 
     }
 

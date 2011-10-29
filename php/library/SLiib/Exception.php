@@ -26,7 +26,7 @@
  */
 
 /**
- * SLiib_Config_Exception
+ * SLiib_Exception
  *
  * @package SLiib
  */
