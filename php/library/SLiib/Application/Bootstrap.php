@@ -202,7 +202,9 @@ abstract class SLiib_Application_Bootstrap
     /**
      * Exception Handler
      *
-     * @param Exception $e
+     * @param Exception $e The exception object
+     *
+     * @throws Exception
      *
      * @return void
      */

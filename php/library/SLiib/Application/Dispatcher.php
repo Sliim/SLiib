@@ -59,7 +59,7 @@ class SLiib_Application_Dispatcher
     /**
      * Dispatching..
      *
-     * @throws SLiib_Application_Dispatcher_Exception
+     * @throws SLiib_Application_Controller_Exception
      *
      * @return void
      */

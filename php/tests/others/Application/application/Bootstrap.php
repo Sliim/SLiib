@@ -96,7 +96,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
     /**
      * Exception Handler
      *
-     * @param Exception $e
+     * @param Exception $e The exception object
      *
      * @return void
      */
