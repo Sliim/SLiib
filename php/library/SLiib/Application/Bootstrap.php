@@ -59,7 +59,11 @@ abstract class SLiib_Application_Bootstrap
      */
     private $_viewPath = null;
 
-    protected $_securityCheck = array();
+    /**
+     * Security checkers
+     * @var array $_securityCheckers
+     */
+    protected $_securityCheckers = array();
 
 
     /**
@@ -172,7 +176,7 @@ abstract class SLiib_Application_Bootstrap
     protected function _setEnvironment()
     {
         SLiib_HTTP_Request::init();
-        SLiib_Security::check($this->_securityCheck);
+        SLiib_Security::check($this->_securityCheckers);
         //TODO SLiib_HTTP_Session
 
     }
@@ -198,9 +202,16 @@ abstract class SLiib_Application_Bootstrap
     }
 
 
-    protected function _setSecurityCheck(array $validators)
+    /**
+     * Define security checker
+     *
+     * @param array $checkers Checkers to set
+     *
+     * @return void
+     */
+    protected function _setSecurityCheckers(array $checkers)
     {
-        $this->_securityCheck = $validators;
+        $this->_securityCheckers = $checkers;
 
     }
 

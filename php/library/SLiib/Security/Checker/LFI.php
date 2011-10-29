@@ -34,16 +34,26 @@
  */
 class SLiib_Security_Checker_LFI extends SLiib_Security_Checker_Abstract
 {
-    protected $_name = 'LFI';
 
-    protected $_patterns = array(
-        '../' => array(//TODO échapper caractère spéciaux pour la regex
-                  'type' => 'Traversal directory',
-                  'locations' => array(
-                                  self::LOCATION_CONTROLLER,
-                                  self::LOCATION_ACTION,
-                                 )
+
+    /**
+     * Checker construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->_setName('LFI');
+        $this->_addPattern(
+            '--',
+            'Traversal directory',
+            array(
+             self::LOCATION_CONTROLLER,
+             self::LOCATION_ACTION,
             )
-    );
+        );
+
+    }
+
 
 }

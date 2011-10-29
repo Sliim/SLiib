@@ -34,6 +34,15 @@ abstract class SLiib_Security
 {
 
 
+    /**
+     * Checkers running
+     *
+     * @param array $checkers Checkers to run
+     *
+     * @throws SLiib_Security_Exception_CheckerError
+     *
+     * @return void
+     */
     public static function check(array $checkers)
     {
         foreach ($checkers as $checker) {
@@ -44,8 +53,9 @@ abstract class SLiib_Security
             }
 
             $checker->run();
-
         }
+
     }
+
 
 }

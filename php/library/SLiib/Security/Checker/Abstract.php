@@ -34,56 +34,121 @@
  */
 abstract class SLiib_Security_Checker_Abstract
 {
+
+    /**
+     * Location contantes
+     */
     const LOCATION_CONTROLLER = 'Controller';
     const LOCATION_ACTION     = 'Action';
     const LOCATION_PARAMS     = 'Params';
 
-    protected $_name;
-    protected $_patterns = array();
+    /**
+     * Checker name
+     * @var string $_name
+     */
+    private $_name;
 
+    /**
+     * List of patterns
+     * @var array $_patterns
+     */
+    private $_patterns = array();
+
+
+    /**
+     * Running checker
+     *
+     * @throws SLiib_Security_Exception_CheckerError
+     * @throws SLiib_Security_Exception_HackingAttempt
+     *
+     * @return void
+     */
     public final function run()
     {
-        foreach ($this->_patterns as $pattern => $datas) {
-            //TODO faire des tests sur les types
-            /*TODO Distinguer deux type d'exceptions :
-                - Les exception de sécurité : correspond à une faille de sécurité levé dans la requête
-             *  - Les exception applicative : correspondent à une mauvaise utilisation de SLiib_Security
-             */
-            foreach ($datas['locations'] as $location) {
+        foreach ($this->_patterns as $pattern) {
+            foreach ($pattern->locations as $location) {
                 $attempt = true;
                 switch ($location) {
                     case self::LOCATION_CONTROLLER:
-                        $attempt = $this->_checkController($pattern);
+                        $attempt = $this->_checkController($pattern->str);
                         break;
                     case self::LOCATION_ACTION:
-                        $attempt = $this->_checkAction($pattern);
+                        $attempt = $this->_checkAction($pattern->str);
                         break;
                     case self::LOCATION_PARAMS:
-                        $attempt = $this->_checkParams($pattern);
+                        $attempt = $this->_checkParams($pattern->str);
                         break;
                     default:
-                        throw new SLiib_Security_Exception_CheckerError;
+                        throw new SLiib_Security_Exception_CheckerError(
+                            'Location for `' . $this->_name . '` checker is not valid'
+                        );
                         break;
                 }
 
                 if (!$attempt) {
                     throw new SLiib_Security_Exception_HackingAttempt(
-                        $this->_name, $datas['type'], $location
+                        $this->_name, $pattern->type, $location
                     );
                 }
-
-
             }
         }
+
     }
 
 
+    /**
+     * Set checker name
+     *
+     * @param string $name Checker name
+     *
+     * @return void
+     */
+    protected final function _setName($name)
+    {
+        $this->_name = $name;
 
+    }
+
+
+    /**
+     * Add a pattern
+     *
+     * @param string $pattern   Pattern to add
+     * @param string $type      Pattern type
+     * @param mixed  $locations Pattern locations
+     *
+     * @return SLiib_Security_Checker_Abstract
+     */
+    protected final function _addPattern($pattern, $type, $locations)
+    {
+        if (!is_array($locations)) {
+            $locations = array($locations);
+        }
+
+        $patternObj = new stdClass;
+
+        $patternObj->str       = $pattern;
+        $patternObj->type      = $type;
+        $patternObj->locations = $locations;
+
+        $this->_patterns[] = $patternObj;
+        return $this;
+
+    }
+
+
+    /**
+     * Check in controller
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
     private final function _checkController($pattern)
     {
         $controller = SLiib_HTTP_Request::getController();
 
-        if (preg_match('/' . $pattern . '/', $controller)) {
+        if (preg_match('/' . preg_quote($pattern, '/') . '/', $controller)) {
             return false;
         }
 
@@ -91,32 +156,51 @@ abstract class SLiib_Security_Checker_Abstract
 
     }
 
+
+    /**
+     * Check in action
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
     private final function _checkAction($pattern)
     {
         $action = SLiib_HTTP_Request::getAction();
 
-        if (preg_match('/' . $pattern . '/', $action)) {
+        if (preg_match('/' . preg_quote($pattern, '/') . '/', $action)) {
             return false;
         }
 
         return true;
+
     }
 
+
+    /**
+     * Check in parameters
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
     private final function _checkParams($pattern)
     {
         $params = SLiib_HTTP_Request::getParameters();
 
         foreach ($params as $key => $value) {
-            if (preg_match('/' . $pattern . '/', $value)) {
-               return false;
+            if (preg_match('/' . preg_quote($pattern, '/') . '/', $params)) {
+                return false;
             }
 
-            if (preg_match('/' . $pattern . '/', $value)) {
-               return false;
+            if (preg_match('/' . preg_quote($pattern, '/') . '/', $params)) {
+                return false;
             }
         }
 
         return true;
+
     }
+
 
 }

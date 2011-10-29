@@ -34,14 +34,40 @@ class SLiib_Security_Exception_HackingAttempt
 extends SLiib_Security_Exception
 {
 
+    /**
+     * Checker name
+     * @var string $_name
+     */
     private $_name;
+
+    /**
+     * Pattern type
+     * @var string $_type
+     */
     private $_type;
+
+    /**
+     * Pattern location
+     * @var string $_location
+     */
     private $_location;
 
 
-    public function __construct($name, $type, $location, $code=0, $parent=null) {
-        $this->_name = $name;
-        $this->_type = $type;
+    /**
+     * Exception constructor
+     *
+     * @param string    $name     Checker name
+     * @param string    $type     Pattern type
+     * @param string    $location Location check failed
+     * @param int       $code     Exception code
+     * @param Exception $parent   Parent exception
+     *
+     * @return void
+     */
+    public function __construct($name, $type, $location, $code=0, $parent=null)
+    {
+        $this->_name     = $name;
+        $this->_type     = $type;
         $this->_location = $location;
 
         $message = sprintf(
@@ -52,6 +78,7 @@ extends SLiib_Security_Exception
         );
 
         parent::__construct($message, $code, $parent);
+
     }
 
 
