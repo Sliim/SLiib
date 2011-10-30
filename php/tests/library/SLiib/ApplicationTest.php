@@ -39,6 +39,8 @@ define('APP_NS', 'Test');
 class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 {
 
+    const ENABLE_OUTPUT_CLEANER = true;
+
 
     /**
      * Test run application
@@ -59,8 +61,32 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testRunTestNoview()
     {
-        $this->_setRequestURI('/test/noview');
+        $this->_setServerInfo('REQUEST_URI', '/test/noview');
         $this->_runApp();
+
+    }
+
+
+    /**
+     * Test with params (GET)
+     *
+     * @return void
+     */
+    public function testRunTestParams()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/request/foo/bar/1337/w00t');
+        $this->_setServerInfo('REQUEST_METHOD', 'GET');
+        $this->_runApp();
+
+        $params = SLiib_HTTP_Request::getParameters();
+        $this->assertType('array', $params);
+        $this->assertArrayHasKey('foo', $params);
+        $this->assertEquals('bar', $params['foo']);
+        $this->assertArrayHasKey('1337', $params);
+        $this->assertEquals('w00t', $params['1337']);
+
+        $method = SLiib_HTTP_Request::getRequestMethod();
+        $this->assertEquals('GET', $method);
 
     }
 
@@ -72,28 +98,35 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     private function _runApp()
     {
-        ob_start();
+        if (self::ENABLE_OUTPUT_CLEANER) {
+            ob_start();
+        }
+
         SLiib_Application::init(
             APP_NS,
             APP_PATH
         )->run();
-        ob_clean();
-        ob_flush();
+
+        if (self::ENABLE_OUTPUT_CLEANER) {
+            ob_clean();
+            ob_flush();
+        }
 
     }
 
 
     /**
-     * Set Request URI to simulate an HTTP access
+     * Set index of $_SERVER for tests
      *
+     * @param string $index Index of $_SERVER
      * @param string $value Value to assign
      *
      * @return void
      */
-    private function _setRequestURI($value)
+    private function _setServerInfo($index, $value)
     {
         global $_SERVER;
-        $_SERVER['REQUEST_URI'] = $value;
+        $_SERVER[$index] = $value;
 
     }
 

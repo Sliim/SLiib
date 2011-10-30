@@ -96,7 +96,6 @@ class SLiib_HTTP_Request
     public static function init()
     {
         static::_initProperties();
-        $params     = array();
 
         if (static::$_requestUri == '/') {
             static::$_controller = 'index';
@@ -113,21 +112,15 @@ class SLiib_HTTP_Request
                 static::$_action     = 'index';
             }
 
-            $key = null;
-            foreach ($segment as $seg) {
-                if (!is_null($key)) {
-                    $params[$key] = $seg;
-                    $key          = null;
-                } else {
-                    $key = $seg;
-                }
-            }
         }
 
-        static::$_params = array_merge(
-            $_POST,
-            $params
-        );
+        if (static::$_method === 'GET') {
+            static::$_params = static::_parseGetParams($segment);
+        } else if (static::$_method === 'POST') {
+            static::$_params = $_POST;
+        } else {
+            static::$_params = array();
+        }
 
     }
 
@@ -256,6 +249,32 @@ class SLiib_HTTP_Request
         }
 
         static::$_cookies = $_COOKIE;
+
+    }
+
+
+    /**
+     * Get parameters parser
+     *
+     * @param array $explode Request URI exploded (without controller & action)
+     *
+     * @return array
+     */
+    private static function _parseGetParams(array $explode)
+    {
+        $params = array();
+        $key    = null;
+
+        foreach ($explode as $seg) {
+            if (!is_null($key)) {
+                $params[$key] = $seg;
+                $key          = null;
+            } else {
+                $key = (string) $seg;
+            }
+        }
+
+        return $params;
 
     }
 
