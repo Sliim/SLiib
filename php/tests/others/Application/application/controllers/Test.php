@@ -128,6 +128,8 @@ class Test_Controller_Test extends SLiib_Application_Controller
         $this->_view->method    = SLiib_HTTP_Request::getRequestMethod();
         $this->_view->userAgent = SLiib_HTTP_Request::getUserAgent();
         $this->_view->params    = SLiib_HTTP_Request::getParameters();
+        $this->_view->cookies   = SLiib_HTTP_Request::getCookies();
+        $this->_view->referer   = SLiib_HTTP_Request::getReferer();
 
     }
 

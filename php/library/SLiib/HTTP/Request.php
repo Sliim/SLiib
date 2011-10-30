@@ -59,13 +59,27 @@ class SLiib_HTTP_Request
 
     /**
      * Client user agent
+     * @var string
      */
     private static $_userAgent = null;
 
     /**
      * HTTP method
+     * @var string
      */
     private static $_method = null;
+
+    /**
+     * Cookies
+     * @var array
+     */
+    private static $_cookies = null;
+
+    /**
+     * Referer
+     * @var string
+     */
+    private static $_referer = null;
 
 
     /**
@@ -78,6 +92,8 @@ class SLiib_HTTP_Request
         static::$_clientIp  = $_SERVER['REMOTE_ADDR'];
         static::$_userAgent = $_SERVER['HTTP_USER_AGENT'];
         static::$_method    = $_SERVER['REQUEST_METHOD'];
+        static::$_referer   = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
+        static::$_cookies   = $_COOKIE;
 
         $requestUri = $_SERVER['REQUEST_URI'];
         $params     = array();
@@ -184,6 +200,30 @@ class SLiib_HTTP_Request
     public static function getRequestMethod()
     {
         return static::$_method;
+
+    }
+
+
+    /**
+     * Cookies getter
+     *
+     * @return array
+     */
+    public static function getCookies()
+    {
+        return static::$_cookies;
+
+    }
+
+
+    /**
+     * Referer getter
+     *
+     * @return string
+     */
+    public static function getReferer()
+    {
+        return static::$_referer;
 
     }
 
