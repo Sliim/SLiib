@@ -59,7 +59,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testRunTestNoview()
     {
-        $_SERVER['REQUEST_URI'] = 'test/noview';
+        $this->_setRequestURI('/test/noview');
         $this->_runApp();
 
     }
@@ -83,5 +83,19 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Set Request URI to simulate an HTTP access
+     *
+     * @param string $value Value to assign
+     *
+     * @return void
+     */
+    private function _setRequestURI($value)
+    {
+        global $_SERVER;
+        $_SERVER['REQUEST_URI'] = $value;
+
+    }
+
+
 }
-?>
