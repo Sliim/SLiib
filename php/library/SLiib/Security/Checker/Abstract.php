@@ -41,6 +41,8 @@ abstract class SLiib_Security_Checker_Abstract
     const LOCATION_PARAMETERS  = 'Parameters';
     const LOCATION_USERAGENT   = 'UserAgent';
     const LOCATION_HTTP_METHOD = 'Method';
+    const LOCATION_COOKIES     = 'Cookies';
+    const LOCATION_REFERER     = 'Referer';
 
     /**
      * Checker name
@@ -77,6 +79,12 @@ abstract class SLiib_Security_Checker_Abstract
                         break;
                     case self::LOCATION_HTTP_METHOD:
                         $attempt = $this->_checkMethod($pattern->str);
+                        break;
+                    case self::LOCATION_COOKIES:
+                        //TODO
+                        break;
+                    case self::LOCATION_USERAGENT:
+                        //TODO
                         break;
                     default:
                         throw new SLiib_Security_Exception_CheckerError(
@@ -138,6 +146,25 @@ abstract class SLiib_Security_Checker_Abstract
 
 
     /**
+     * Check a pattern in a string
+     *
+     * @param string $pattern Pattern to check
+     * @param string $string  String to use
+     *
+     * @return boolean
+     */
+    private function _check($pattern, $string)
+    {
+        if (preg_match('/' . $pattern . '/', $string)) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+
+    /**
      * Check in parameters
      *
      * @param string $pattern Pattern to check
@@ -149,11 +176,11 @@ abstract class SLiib_Security_Checker_Abstract
         $params = SLiib_HTTP_Request::getParameters();
 
         foreach ($params as $key => $value) {
-            if (preg_match('/' . preg_quote($pattern, '/') . '/', $key)) {
+            if (!$this->_check($pattern, $key)) {
                 return false;
             }
 
-            if (preg_match('/' . preg_quote($pattern, '/') . '/', $value)) {
+            if (!$this->_check($pattern, $value)) {
                 return false;
             }
         }
@@ -172,13 +199,8 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkUserAgent($pattern)
     {
-        $controller = SLiib_HTTP_Request::getUserAgent();
-
-        if (preg_match('/' . preg_quote($pattern, '/') . '/', $controller)) {
-            return false;
-        }
-
-        return true;
+        $userAgent = SLiib_HTTP_Request::getUserAgent();
+        return $this->_check($pattern, $userAgent);
 
     }
 
@@ -190,15 +212,40 @@ abstract class SLiib_Security_Checker_Abstract
      *
      * @return boolean
      */
-    private final function _checkAction($pattern)
+    private final function _checkMethod($pattern)
     {
-        $action = SLiib_HTTP_Request::getRequestMethod();
+        $method = SLiib_HTTP_Request::getRequestMethod();
+        return $this->_check($pattern, $method);
 
-        if (preg_match('/' . preg_quote($pattern, '/') . '/', $action)) {
-            return false;
-        }
+    }
 
-        return true;
+
+    /**
+     * Check in cookies
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
+    private final function _checkCookies($pattern)
+    {
+        $cookies = SLiib_HTTP_Request::getCookies();
+        return $this->_check($pattern, $cookies);
+
+    }
+
+
+    /**
+     * Check in referer
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
+    private final function _checkReferer($pattern)
+    {
+        $referer = SLiib_HTTP_Request::getReferer();
+        return $this->_check($pattern, $cookies);
 
     }
 

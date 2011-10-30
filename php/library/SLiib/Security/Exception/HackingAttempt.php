@@ -71,7 +71,7 @@ extends SLiib_Security_Exception
         $this->_location = $location;
 
         $message = sprintf(
-            'Hacking Attempt : %s : %s found in %s',
+            'Hacking Attempt : %s : Pattern [%s] found in %s',
             $name,
             $type,
             $location

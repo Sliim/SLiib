@@ -45,36 +45,29 @@ class SLiib_Security_Checker_PHPCodeInject extends SLiib_Security_Checker_Abstra
     {
         $this->_setName('PHP Code Injection');
         $this->_addPattern(
-            'include(', //FIXME ByPassed with include_once...
+            'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
             'Inject `include`',
             array(
              self::LOCATION_PARAMETERS,
              self::LOCATION_USERAGENT,
             )
-        )->addPattern(
-            'file_get_contents(',
+        )->_addPattern(
+            'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
+            'Inject `require`',
+            array(
+             self::LOCATION_PARAMETERS,
+             self::LOCATION_USERAGENT,
+            )
+        )->_addPattern(
+            'file_get_contents\((.*)\)',
             'Inject `file_get_contents`',
             array(
              self::LOCATION_PARAMETERS,
              self::LOCATION_USERAGENT,
             )
-        )->addPattern(
-            'eval(',
+        )->_addPattern(
+            'eval\((.*)\)',
             'Inject `eval`',
-            array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
-            )
-        )->addPattern(
-            'require',
-            '&&',
-            array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
-            )
-        )->addPattern(
-            '&& ',
-            '&&',
             array(
              self::LOCATION_PARAMETERS,
              self::LOCATION_USERAGENT,
