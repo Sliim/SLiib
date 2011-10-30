@@ -52,6 +52,12 @@ class SLiib_HTTP_Request
     private static $_params = null;
 
     /**
+     * Request URI
+     * @var string
+     */
+    private static $_requestUri = '/';
+
+    /**
      * Client IP
      * @var string
      */
@@ -89,20 +95,14 @@ class SLiib_HTTP_Request
      */
     public static function init()
     {
-        static::$_clientIp  = $_SERVER['REMOTE_ADDR'];
-        static::$_userAgent = $_SERVER['HTTP_USER_AGENT'];
-        static::$_method    = $_SERVER['REQUEST_METHOD'];
-        static::$_referer   = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null);
-        static::$_cookies   = $_COOKIE;
-
-        $requestUri = $_SERVER['REQUEST_URI'];
+        static::_initProperties();
         $params     = array();
 
-        if ($requestUri == '/') {
+        if (static::$_requestUri == '/') {
             static::$_controller = 'index';
             static::$_action     = 'index';
         } else {
-            $segment = explode('/', $requestUri);
+            $segment = explode('/', static::$_requestUri);
             array_shift($segment);
 
             if (count($segment) >= 2) {
@@ -224,6 +224,38 @@ class SLiib_HTTP_Request
     public static function getReferer()
     {
         return static::$_referer;
+
+    }
+
+
+    /**
+     * Init HTTP Properties
+     *
+     * @return void
+     */
+    private static function _initProperties()
+    {
+        if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
+            static::$_clientIp = $_SERVER['REMOTE_ADDR'];
+        }
+
+        if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
+            static::$_userAgent = $_SERVER['HTTP_USER_AGENT'];
+        }
+
+        if (array_key_exists('REQUEST_METHOD', $_SERVER)) {
+            static::$_method = $_SERVER['REQUEST_METHOD'];
+        }
+
+        if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            static::$_referer = $_SERVER['HTTP_REFERER'];
+        }
+
+        if (array_key_exists('', $_SERVER)) {
+            static::$_requestUri = $_SERVER['REQUEST_URI'];
+        }
+
+        static::$_cookies = $_COOKIE;
 
     }
 
