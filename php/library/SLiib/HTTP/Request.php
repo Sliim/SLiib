@@ -251,7 +251,7 @@ class SLiib_HTTP_Request
             static::$_referer = $_SERVER['HTTP_REFERER'];
         }
 
-        if (array_key_exists('', $_SERVER)) {
+        if (array_key_exists('REQUEST_URI', $_SERVER)) {
             static::$_requestUri = $_SERVER['REQUEST_URI'];
         }
 
