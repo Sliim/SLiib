@@ -117,27 +117,17 @@ class Test_Controller_Test extends SLiib_Application_Controller
 
 
     /**
-     * Test parameters get
+     * Test http request
      *
      * @return void
      */
-    public function pgetAction()
+    public function requestAction()
     {
-        $this->_view->bigtitle = 'Test params GET';
-        $this->_view->params = SLiib_HTTP_Request::getParameters();
-
-    }
-
-
-    /**
-     * Test parameters get
-     *
-     * @return void
-     */
-    public function ppostAction()
-    {
-        $this->_view->bigtitle = 'Test params POST';
-        $this->_view->params = SLiib_HTTP_Request::getParameters();
+        $this->_view->bigtitle  = 'Test HTTP Request';
+        $this->_view->ip        = SLiib_HTTP_Request::getClientIp();
+        $this->_view->method    = SLiib_HTTP_Request::getRequestMethod();
+        $this->_view->userAgent = SLiib_HTTP_Request::getUserAgent();
+        $this->_view->params    = SLiib_HTTP_Request::getParameters();
 
     }
 

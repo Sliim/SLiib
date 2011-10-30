@@ -35,13 +35,13 @@ class SLiib_HTTP_Request
 
     /**
      * Current controller
-     * @var string $_controller
+     * @var string
      */
     private static $_controller = null;
 
     /**
      * Current action
-     * @var string $_action
+     * @var string
      */
     private static $_action = null;
 
@@ -51,6 +51,22 @@ class SLiib_HTTP_Request
      */
     private static $_params = null;
 
+    /**
+     * Client IP
+     * @var string
+     */
+    private static $_clientIp = null;
+
+    /**
+     * Client user agent
+     */
+    private static $_userAgent = null;
+
+    /**
+     * HTTP method
+     */
+    private static $_method = null;
+
 
     /**
      * Init HTTP Request
@@ -59,6 +75,10 @@ class SLiib_HTTP_Request
      */
     public static function init()
     {
+        static::$_clientIp  = $_SERVER['REMOTE_ADDR'];
+        static::$_userAgent = $_SERVER['HTTP_USER_AGENT'];
+        static::$_method    = $_SERVER['REQUEST_METHOD'];
+
         $requestUri = $_SERVER['REQUEST_URI'];
         $params     = array();
 
@@ -128,6 +148,42 @@ class SLiib_HTTP_Request
     public static function getParameters()
     {
         return static::$_params;
+
+    }
+
+
+    /**
+     * Client ip getter
+     *
+     * @return string
+     */
+    public static function getClientIp()
+    {
+        return static::$_clientIp;
+
+    }
+
+
+    /**
+     * User agent getter
+     *
+     * @return string
+     */
+    public static function getUserAgent()
+    {
+        return static::$_userAgent;
+
+    }
+
+
+    /**
+     * Request method getter
+     *
+     * @return string
+     */
+    public static function getRequestMethod()
+    {
+        return static::$_method;
 
     }
 
