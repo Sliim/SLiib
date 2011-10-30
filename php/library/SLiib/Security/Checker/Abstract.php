@@ -38,19 +38,19 @@ abstract class SLiib_Security_Checker_Abstract
     /**
      * Location contantes
      */
-    const LOCATION_CONTROLLER = 'Controller';
-    const LOCATION_ACTION     = 'Action';
-    const LOCATION_PARAMS     = 'Params';
+    const LOCATION_PARAMETERS  = 'Parameters';
+    const LOCATION_USERAGENT   = 'UserAgent';
+    const LOCATION_HTTP_METHOD = 'Method';
 
     /**
      * Checker name
-     * @var string $_name
+     * @var string
      */
     private $_name;
 
     /**
      * List of patterns
-     * @var array $_patterns
+     * @var array
      */
     private $_patterns = array();
 
@@ -69,14 +69,14 @@ abstract class SLiib_Security_Checker_Abstract
             foreach ($pattern->locations as $location) {
                 $attempt = true;
                 switch ($location) {
-                    case self::LOCATION_CONTROLLER:
-                        $attempt = $this->_checkController($pattern->str);
+                    case self::LOCATION_PARAMETERS:
+                        $attempt = $this->_checkParameters($pattern->str);
                         break;
-                    case self::LOCATION_ACTION:
-                        $attempt = $this->_checkAction($pattern->str);
+                    case self::LOCATION_USERAGENT:
+                        $attempt = $this->_checkUserAgent($pattern->str);
                         break;
-                    case self::LOCATION_PARAMS:
-                        $attempt = $this->_checkParams($pattern->str);
+                    case self::LOCATION_HTTP_METHOD:
+                        $attempt = $this->_checkMethod($pattern->str);
                         break;
                     default:
                         throw new SLiib_Security_Exception_CheckerError(
@@ -138,15 +138,41 @@ abstract class SLiib_Security_Checker_Abstract
 
 
     /**
-     * Check in controller
+     * Check in parameters
      *
      * @param string $pattern Pattern to check
      *
      * @return boolean
      */
-    private final function _checkController($pattern)
+    private final function _checkParameters($pattern)
     {
-        $controller = SLiib_HTTP_Request::getController();
+        $params = SLiib_HTTP_Request::getParameters();
+
+        foreach ($params as $key => $value) {
+            if (preg_match('/' . preg_quote($pattern, '/') . '/', $key)) {
+                return false;
+            }
+
+            if (preg_match('/' . preg_quote($pattern, '/') . '/', $value)) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
+
+
+    /**
+     * Check in user agent
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
+    private final function _checkUserAgent($pattern)
+    {
+        $controller = SLiib_HTTP_Request::getUserAgent();
 
         if (preg_match('/' . preg_quote($pattern, '/') . '/', $controller)) {
             return false;
@@ -158,7 +184,7 @@ abstract class SLiib_Security_Checker_Abstract
 
 
     /**
-     * Check in action
+     * Check in http method
      *
      * @param string $pattern Pattern to check
      *
@@ -166,7 +192,7 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkAction($pattern)
     {
-        $action = SLiib_HTTP_Request::getAction();
+        $action = SLiib_HTTP_Request::getRequestMethod();
 
         if (preg_match('/' . preg_quote($pattern, '/') . '/', $action)) {
             return false;
@@ -177,30 +203,7 @@ abstract class SLiib_Security_Checker_Abstract
     }
 
 
-    /**
-     * Check in parameters
-     *
-     * @param string $pattern Pattern to check
-     *
-     * @return boolean
-     */
-    private final function _checkParams($pattern)
-    {
-        $params = SLiib_HTTP_Request::getParameters();
 
-        foreach ($params as $key => $value) {
-            if (preg_match('/' . preg_quote($pattern, '/') . '/', $params)) {
-                return false;
-            }
-
-            if (preg_match('/' . preg_quote($pattern, '/') . '/', $params)) {
-                return false;
-            }
-        }
-
-        return true;
-
-    }
 
 
 }

@@ -45,11 +45,11 @@ class SLiib_Security_Checker_LFI extends SLiib_Security_Checker_Abstract
     {
         $this->_setName('LFI');
         $this->_addPattern(
-            '--',
+            '../../',
             'Traversal directory',
             array(
-             self::LOCATION_CONTROLLER,
-             self::LOCATION_ACTION,
+             self::LOCATION_PARAMETERS,
+             self::LOCATION_USERAGENT,
             )
         );
 
