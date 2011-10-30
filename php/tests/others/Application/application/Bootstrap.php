@@ -94,7 +94,29 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
             $errline
         );
 
-        throw new RuntimeException($message, $errno);
+        $this->_exceptionHandler(new RuntimeException($message, $errno));
+
+    }
+
+
+    /**
+     * Exception Handler
+     *
+     * @param Exception $e The exception object
+     *
+     * @return void
+     */
+    protected function _exceptionHandler(Exception $e)
+    {
+        printf(
+            "%s : %s in `%s` on line %d.\n\nTrace :\n%s",
+            get_class($e),
+            $e->getMessage(),
+            $e->getFile(),
+            $e->getLine(),
+            $e->getTraceAsString()
+        );
+        die();
 
     }
 

@@ -42,19 +42,19 @@ class SLiib_Application
 
     /**
      * Application namespace
-     * @var string $_appNameSpace
+     * @var string
      */
     private $_appNamespace;
 
     /**
      * Application path
-     * @var string $_appPath
+     * @var string
      */
     private $_appPath;
 
     /**
      * Application bootstrap
-     * @var SLiib_Bootstrap $_bootstrap
+     * @var SLiib_Bootstrap
      */
     private $_bootstrap;
 

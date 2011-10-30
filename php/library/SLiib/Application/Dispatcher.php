@@ -37,7 +37,7 @@ class SLiib_Application_Dispatcher
 
     /**
      * Application namespace
-     * @var string $_namespace
+     * @var string
      */
     private static $_namespace = null;
 
@@ -59,7 +59,7 @@ class SLiib_Application_Dispatcher
     /**
      * Dispatching..
      *
-     * @throws SLiib_Application_Dispatcher_Exception
+     * @throws SLiib_Application_Controller_Exception
      *
      * @return void
      */
@@ -73,6 +73,12 @@ class SLiib_Application_Dispatcher
             static::$_namespace,
             ucfirst($controller)
         );
+
+        if (!class_exists($controllerName)) {
+            throw new SLiib_Application_Controller_Exception(
+                'Controller `' . $controllerName . '` doesn\'t exist.'
+            );
+        }
 
         $c = new $controllerName($controller, $action);
         $c->$action();

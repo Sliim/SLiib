@@ -35,25 +35,25 @@ class SLiib_Autoloader
 
     /**
      * Classes chargées par l'autoloader
-     * @var array $_isLoaded
+     * @var array
      */
     private static $_isLoaded = array();
 
     /**
      * Namespaces autorisées.
-     * @var array $_namespaces
+     * @var array
      */
     private static $_namespaces = array();
 
     /**
      * Clés des namespaces.
-     * @var array $_namespacesKeys
+     * @var array
      */
     private static $_namespacesKeys = array();
 
     /**
      * Sections spéciales pour la génération des chemins de fichiers
-     * @var $_sections
+     * @var array
      */
     private static $_sections = array();
 
@@ -126,11 +126,11 @@ class SLiib_Autoloader
           static::$_namespaces[$namespace] . DIRECTORY_SEPARATOR .
           implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
-        try {
-            include $file;
-        } catch (Exception $e) {
+        if (file_exists(static::$_namespaces[$namespace]) && !file_exists($file)) {
             return false;
         }
+
+        include $file;
 
         array_push(static::$_isLoaded, $class);
         return true;

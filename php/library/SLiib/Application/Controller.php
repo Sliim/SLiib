@@ -43,7 +43,7 @@ abstract class SLiib_Application_Controller
 
     /**
      * View Class
-     * @var string $_viewClass
+     * @var string
      */
     protected $_viewClass = 'SLiib_Application_View';
 

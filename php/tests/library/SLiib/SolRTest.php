@@ -49,19 +49,19 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Host
-     * @var string $_host
+     * @var string
      */
     protected $_host = 'localhost';
 
     /**
      * Port
-     * @var int $_port
+     * @var int
      */
     protected $_port = 8983;
 
     /**
      * XML string to update for test
-     * @var string $_xmlStr
+     * @var string
      */
     protected $_xmlStr;
 

@@ -37,25 +37,25 @@ class SLiib_Application_View
 
     /**
      * Subdirectory of view
-     * @var string $_subView
+     * @var string
      */
     protected $_subView = 'scripts';
 
     /**
      * View file extension
-     * @var string $_ext
+     * @var string
      */
     protected $_ext = '.phtml';
 
     /**
      * Path of the .phtml view
-     * @var mixed $_view null if undefined, false if disabled, string if isset
+     * @var mixed Null if undefined, false if disabled, string if isset
      */
     private $_view = null;
 
     /**
      * Views path
-     * @var string $_path
+     * @var string
      */
     private $_path;
 

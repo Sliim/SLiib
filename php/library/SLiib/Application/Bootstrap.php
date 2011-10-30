@@ -37,25 +37,25 @@ abstract class SLiib_Application_Bootstrap
 
     /**
      * Namespace de l'application
-     * @var string $_appNamespace
+     * @var string
      */
     private $_appNamespace;
 
     /**
      * Namespaces to include
-     * @var array $_namespaces
+     * @var array
      */
     private $_namespaces = array();
 
     /**
      * Sections to include
-     * @var array $_sections
+     * @var array
      */
     private $_sections = array();
 
     /**
      * Application view path
-     * @var string $_viewPath
+     * @var string
      */
     private $_viewPath = null;
 
@@ -96,10 +96,14 @@ abstract class SLiib_Application_Bootstrap
      */
     public final function run()
     {
-        $this->_setEnvironment();
+        try {
+            $this->_setEnvironment();
 
-        SLiib_Application_Dispatcher::init($this->_appNamespace);
-        SLiib_Application_Dispatcher::dispatch();
+            SLiib_Application_Dispatcher::init($this->_appNamespace);
+            SLiib_Application_Dispatcher::dispatch();
+        } catch (SLiib_Exception $e) {
+            $this->_exceptionHandler($e);
+        }
 
     }
 
@@ -212,6 +216,22 @@ abstract class SLiib_Application_Bootstrap
     protected function _setSecurityCheckers(array $checkers)
     {
         $this->_securityCheckers = $checkers;
+
+    }
+
+
+    /**
+     * Exception Handler
+     *
+     * @param Exception $e The exception object
+     *
+     * @throws Exception
+     *
+     * @return void
+     */
+    protected function _exceptionHandler(Exception $e)
+    {
+        throw $e;
 
     }
 

@@ -47,13 +47,13 @@ class SLiib_SolR
 
     /**
      * Host de l'instance SolR
-     * @var string $_host
+     * @var string
      */
     protected $_host;
 
     /**
      * Port écouté par l'instance SolR
-     * @var int $_port
+     * @var int
      */
     protected $_port;
 

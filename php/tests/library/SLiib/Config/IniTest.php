@@ -40,43 +40,43 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
     /**
      * Objet de test
-     * @var SLiib_Config_Ini $_object
+     * @var SLiib_Config_Ini
      */
     protected $_object;
 
     /**
      * Fichier .ini de test
-     * @var string $_iniFile
+     * @var string
      */
     protected $_iniFile;
 
     /**
      * Not exists file
-     * @var string $_iniFail
+     * @var string
      */
     protected $_iniFail;
 
     /**
      * Bad section definition
-     * @var string $_iniBadSection
+     * @var string
      */
     protected $_iniBadSection;
 
     /**
      * No parent section
-     * @var string $_iniNoParent
+     * @var string
      */
     protected $_iniNoParent;
 
     /**
      * Directive definition syntax error
-     * @var string $_iniSyntaxError
+     * @var string
      */
     protected $_iniSyntaxError;
 
     /**
      * Directive definition syntax error bis
-     * @var string $_iniSEbis
+     * @var string
      */
     protected $_iniSEbis;
 

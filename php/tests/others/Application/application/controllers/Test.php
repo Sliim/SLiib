@@ -92,7 +92,7 @@ class Test_Controller_Test extends SLiib_Application_Controller
 
 
     /**
-     * Test library
+     * Test custom view
      *
      * @return void
      */
@@ -105,13 +105,29 @@ class Test_Controller_Test extends SLiib_Application_Controller
 
 
     /**
-     * Test No view
+     * Test javascript script
      *
      * @return void
      */
     public function javascriptAction()
     {
         //Test appel script js
+
+    }
+
+
+    /**
+     * Test http request
+     *
+     * @return void
+     */
+    public function requestAction()
+    {
+        $this->_view->bigtitle  = 'Test HTTP Request';
+        $this->_view->ip        = SLiib_HTTP_Request::getClientIp();
+        $this->_view->method    = SLiib_HTTP_Request::getRequestMethod();
+        $this->_view->userAgent = SLiib_HTTP_Request::getUserAgent();
+        $this->_view->params    = SLiib_HTTP_Request::getParameters();
 
     }
 
