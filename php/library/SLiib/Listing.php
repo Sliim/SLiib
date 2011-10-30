@@ -35,25 +35,25 @@ class SLiib_Listing
 
     /**
      * Chemin du dossier à lister
-     * @var string $_path
+     * @var string
      */
     private $_path = '';
 
     /**
      * Tableau comportant les éléments du dossier listé
-     * @var array $_list
+     * @var array
      */
     private $_list = array();
 
     /**
      * Nombre d'élément dans le dossier listé
-     * @var string $_contentNb
+     * @var string
      */
     private $_contentNb;
 
     /**
      * Nom du dossier
-     * @var string $_name
+     * @var string
      */
     private $_name;
 

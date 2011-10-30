@@ -35,19 +35,19 @@ abstract class SLiib_Config
 
     /**
      * Objet de la configuration
-     * @var stdClass $_config
+     * @var stdClass
      */
     protected $_config = null;
 
     /**
      * Fichier de configuration à utiliser
-     * @var string $_configFile
+     * @var string
      */
     protected $_configFile;
 
     /**
      * Ligne actuelle du fichier lors d'un parsing
-     * @var int $_pointer
+     * @var int
      */
     protected $_pointer = 0;
 

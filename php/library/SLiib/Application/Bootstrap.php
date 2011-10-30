@@ -37,25 +37,25 @@ abstract class SLiib_Application_Bootstrap
 
     /**
      * Namespace de l'application
-     * @var string $_appNamespace
+     * @var string
      */
     private $_appNamespace;
 
     /**
      * Namespaces to include
-     * @var array $_namespaces
+     * @var array
      */
     private $_namespaces = array();
 
     /**
      * Sections to include
-     * @var array $_sections
+     * @var array
      */
     private $_sections = array();
 
     /**
      * Application view path
-     * @var string $_viewPath
+     * @var string
      */
     private $_viewPath = null;
 
