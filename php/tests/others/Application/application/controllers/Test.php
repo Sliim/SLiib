@@ -92,7 +92,7 @@ class Test_Controller_Test extends SLiib_Application_Controller
 
 
     /**
-     * Test library
+     * Test custom view
      *
      * @return void
      */
@@ -105,13 +105,39 @@ class Test_Controller_Test extends SLiib_Application_Controller
 
 
     /**
-     * Test No view
+     * Test javascript script
      *
      * @return void
      */
     public function javascriptAction()
     {
         //Test appel script js
+
+    }
+
+
+    /**
+     * Test parameters get
+     *
+     * @return void
+     */
+    public function pgetAction()
+    {
+        $this->_view->bigtitle = 'Test params GET';
+        $this->_view->params = SLiib_HTTP_Request::getParameters();
+
+    }
+
+
+    /**
+     * Test parameters get
+     *
+     * @return void
+     */
+    public function ppostAction()
+    {
+        $this->_view->bigtitle = 'Test params POST';
+        $this->_view->params = SLiib_HTTP_Request::getParameters();
 
     }
 

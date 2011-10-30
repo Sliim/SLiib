@@ -67,8 +67,8 @@ class Test_Controller_Index extends SLiib_Application_Controller
                                   '/test/noview'     => 'NoView',
                                   '/test/customView' => 'CustomView',
                                   '/test/javascript' => 'JavaScript',
-                                  '/test/pget/'      => 'Param Get',//TODO
-                                  '/test/ppost/'     => 'Param Post',//TODO
+                                  '/test/pget/'      => 'Param Get',
+                                  '/test/ppost/'     => 'Param Post',
                                   '/test/session/'   => 'Session',//TODO
                                  );
 
