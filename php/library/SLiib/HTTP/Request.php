@@ -97,6 +97,8 @@ class SLiib_HTTP_Request
     {
         static::_initProperties();
 
+        $params = array();
+
         if (static::$_requestUri == '/') {
             static::$_controller = 'index';
             static::$_action     = 'index';
@@ -112,14 +114,15 @@ class SLiib_HTTP_Request
                 static::$_action     = 'index';
             }
 
+            $params = static::_parseGetParams($segment);
         }
 
         if (static::$_method === 'GET') {
-            static::$_params = static::_parseGetParams($segment);
+            static::$_params = $params;
         } else if (static::$_method === 'POST') {
             static::$_params = $_POST;
         } else {
-            static::$_params = array();
+            static::$_params = null;
         }
 
     }
