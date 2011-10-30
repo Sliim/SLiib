@@ -64,6 +64,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
         $this->_setSecurityCheckers(
             array(
              new SLiib_Security_Checker_LFI(),
+             new SLiib_Security_Checker_PHPCodeInject(),
             )
         );
 

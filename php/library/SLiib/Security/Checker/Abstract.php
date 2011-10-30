@@ -202,8 +202,8 @@ abstract class SLiib_Security_Checker_Abstract
 
     }
 
-
-
+    //TODO Excluded pattern
+    //TODO Exclude location (all for default)
 
 
 }
