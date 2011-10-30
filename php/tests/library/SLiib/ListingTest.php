@@ -40,7 +40,7 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Objet de test
-     * @var SLiib_Listing $_object
+     * @var SLiib_Listing
      */
     protected $_object;
 

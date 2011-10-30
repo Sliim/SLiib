@@ -36,19 +36,19 @@ extends SLiib_Security_Exception
 
     /**
      * Checker name
-     * @var string $_name
+     * @var string
      */
     private $_name;
 
     /**
      * Pattern type
-     * @var string $_type
+     * @var string
      */
     private $_type;
 
     /**
      * Pattern location
-     * @var string $_location
+     * @var string
      */
     private $_location;
 

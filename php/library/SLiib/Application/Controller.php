@@ -37,7 +37,7 @@ abstract class SLiib_Application_Controller
 
     /**
      * View of this controller/action
-     * @var SLiib_Application_View $_view
+     * @var SLiib_Application_View
      */
     protected $_view = null;
 

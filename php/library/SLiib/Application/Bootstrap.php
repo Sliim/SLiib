@@ -61,7 +61,7 @@ abstract class SLiib_Application_Bootstrap
 
     /**
      * Security checkers
-     * @var array $_securityCheckers
+     * @var array
      */
     protected $_securityCheckers = array();
 

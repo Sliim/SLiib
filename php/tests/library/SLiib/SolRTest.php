@@ -43,7 +43,7 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Objet de test
-     * @var SLiib_SolR $_object
+     * @var SLiib_SolR
      */
     protected $_object;
 
