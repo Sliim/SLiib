@@ -139,8 +139,11 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function testWriteFailure()
     {
+        $file = 'files/unwritable.log';
+        chmod($file, 0444);
+
         try {
-            $log = new SLiib_Log('files/unwritable.log');
+            $log = new SLiib_Log($file);
             $log->debug('not permit to write');
         } catch (SLiib_Log_Exception $e) {
             $this->assertType('SLiib_Log_Exception', $e);
@@ -160,12 +163,11 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
     public function testColor()
     {
         $this->_object->setFormat('[%T] [%d %t] [%U] [%@] %m');
-        echo PHP_EOL;
-        $this->_object->debug('Log DEBUG, blue color ?', false);
-        $this->_object->warn('Log WARN, yellow color ?', false);
-        $this->_object->error('Log ERROR, red color ?', false);
-        $this->_object->crit('Log CRIT, red color ?', false);
-        $this->_object->info('Log INFO, no color ?', false);
+        $this->_object->debug('Log DEBUG, blue color ?', true);
+        $this->_object->warn('Log WARN, yellow color ?', true);
+        $this->_object->error('Log ERROR, red color ?', true);
+        $this->_object->crit('Log CRIT, red color ?', true);
+        $this->_object->info('Log INFO, no color ?', true);
 
     }
 
