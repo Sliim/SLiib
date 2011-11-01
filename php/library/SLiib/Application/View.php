@@ -63,15 +63,13 @@ class SLiib_Application_View
     /**
      * Construct, set view path
      *
+     * @param string $controller Controller Name
+     * @param string $action     Action Name
+     *
      * @return void
      */
-    public function __construct()
+    public function __construct($controller, $action)
     {
-        //FIXME C'est le controller qui donne ces infos
-        $request    = SLiib_HTTP_Request::getInstance();
-        $action     = $request->getAction();
-        $controller = $request->getController();
-
         //TODO Voir si ya pas un moyen plus propre..
         $this->_path = SLiib_Application::getInstance()->getViewPath();
 

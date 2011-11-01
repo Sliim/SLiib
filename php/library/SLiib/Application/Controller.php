@@ -54,14 +54,17 @@ abstract class SLiib_Application_Controller
 
 
     /**
-     * Init view
+     * Init controller view
      *
      * @return void
      */
-    public static function __construct()
+    public function __construct()
     {
         $this->_request = SLiib_HTTP_Request::getInstance();
-        $this->_view    = new $this->_viewClass();
+        $this->_view    = new $this->_viewClass(
+            $this->_request->getController(),
+            $this->_request->getAction()
+        );
 
     }
 
