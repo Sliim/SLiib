@@ -47,15 +47,21 @@ abstract class SLiib_Application_Controller
      */
     protected $_viewClass = 'SLiib_Application_View';
 
+    /**
+     * @var SLiib_HTTP_Request
+     */
+    private $_request = null;
+
 
     /**
      * Init view
      *
      * @return void
      */
-    public function __construct()
+    public static function __construct()
     {
-        $this->_view = new $this->_viewClass();
+        $this->_request = SLiib_HTTP_Request::getInstance();
+        $this->_view    = new $this->_viewClass();
 
     }
 
@@ -93,6 +99,18 @@ abstract class SLiib_Application_Controller
      * @return void
      */
     abstract protected function _init();
+
+
+    /**
+     * Request getter
+     *
+     * @return SLiib_HTTP_Request
+     */
+    public function getRequest()
+    {
+        return $this->_request;
+
+    }
 
 
 }

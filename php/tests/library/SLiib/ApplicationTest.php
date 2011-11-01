@@ -64,6 +64,11 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     private $_referer = 'http://dtc.com';
 
+    /**
+     * @var SLiib_HTTP_Request
+     */
+    private $_request;
+
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -130,10 +135,10 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     public function testRunApp()
     {
         $this->_runApp();
-        $ip      = SLiib_HTTP_Request::getClientIp();
-        $referer = SLiib_HTTP_Request::getReferer();
-        $method  = SLiib_HTTP_Request::getRequestMethod();
-        $ua      = SLiib_HTTP_Request::getUserAgent();
+        $ip      = $this->_request->getClientIp();
+        $referer = $this->_request->getReferer();
+        $method  = $this->_request->getRequestMethod();
+        $ua      = $this->_request->getUserAgent();
 
         $this->assertEquals($this->_ip, $ip);
         $this->assertEquals($this->_referer, $referer);
@@ -166,14 +171,14 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         $this->_setServerInfo('REQUEST_URI', '/test/request/foo/bar/1337/w00t');
         $this->_runApp();
 
-        $params = SLiib_HTTP_Request::getParameters();
+        $params = $this->_request->getParameters();
         $this->assertType('array', $params);
         $this->assertArrayHasKey('foo', $params);
         $this->assertEquals('bar', $params['foo']);
         $this->assertArrayHasKey('1337', $params);
         $this->assertEquals('w00t', $params['1337']);
 
-        $method = SLiib_HTTP_Request::getRequestMethod();
+        $method = $this->_request->getRequestMethod();
         $this->assertEquals('GET', $method);
 
     }
@@ -209,14 +214,14 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         $this->_runApp();
 
-        $params = SLiib_HTTP_Request::getParameters();
+        $params = $this->_request->getParameters();
         $this->assertType('array', $params);
         $this->assertArrayHasKey('foo', $params);
         $this->assertEquals('bar', $params['foo']);
         $this->assertArrayHasKey('1337', $params);
         $this->assertEquals('w00t', $params['1337']);
 
-        $method = SLiib_HTTP_Request::getRequestMethod();
+        $method = $this->_request->getRequestMethod();
         $this->assertEquals('POST', $method);
 
     }
@@ -232,7 +237,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         $this->_setServerInfo('REQUEST_METHOD', '1337');
         $this->_runApp();
 
-        $params = SLiib_HTTP_Request::getParameters();
+        $params = $this->_request->getParameters();
+
         $this->assertNull($params);
 
     }
@@ -258,6 +264,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
             ob_clean();
             ob_flush();
         }
+
+        $this->_request = SLiib_HTTP_Request::getInstance();
 
     }
 

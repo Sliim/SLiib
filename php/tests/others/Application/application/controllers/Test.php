@@ -124,12 +124,12 @@ class Test_Controller_Test extends SLiib_Application_Controller
     public function requestAction()
     {
         $this->_view->bigtitle  = 'Test HTTP Request';
-        $this->_view->ip        = SLiib_HTTP_Request::getClientIp();
-        $this->_view->method    = SLiib_HTTP_Request::getRequestMethod();
-        $this->_view->userAgent = SLiib_HTTP_Request::getUserAgent();
-        $this->_view->params    = SLiib_HTTP_Request::getParameters();
-        $this->_view->cookies   = SLiib_HTTP_Request::getCookies();
-        $this->_view->referer   = SLiib_HTTP_Request::getReferer();
+        $this->_view->ip        = $this->getRequest()->getClientIp();
+        $this->_view->method    = $this->getRequest()->getRequestMethod();
+        $this->_view->userAgent = $this->getRequest()->getUserAgent();
+        $this->_view->params    = $this->getRequest()->getParameters();
+        $this->_view->cookies   = $this->getRequest()->getCookies();
+        $this->_view->referer   = $this->getRequest()->getReferer();
 
     }
 
