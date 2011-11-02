@@ -104,17 +104,13 @@ class SLiib_Application_View
      *
      * @throws SLiib_Application_View_Exception_InvalidParam
      *
-     * @return mixed
+     * @return void
      */
     public function __get($attr)
     {
-        if (!isset($this->$attr)) {
-            throw new SLiib_Application_View_Exception_InvalidParam(
-                'Attribut `' . $attr . '` undefined in view.'
-            );
-        }
-
-        return $this->$attr;
+        throw new SLiib_Application_View_Exception_InvalidParam(
+            'Attribut `' . $attr . '` undefined in view.'
+        );
 
     }
 
