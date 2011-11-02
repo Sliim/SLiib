@@ -62,13 +62,17 @@ class Test_Controller_Index extends SLiib_Application_Controller
         $this->_view->message .= 'SLiib_Application_Controller, SLiib_Application_View, ';
         $this->_view->message .= 'SLiib_HTTP_Request.';
         $this->_view->tests    = array(
-                                  '/test/model/'     => 'Model',
-                                  '/test/library/'   => 'Library',
-                                  '/test/noview'     => 'NoView',
-                                  '/test/customView' => 'CustomView',
-                                  '/test/javascript' => 'JavaScript',
-                                  '/test/request/'   => 'Request',
-                                  '/test/session/'   => 'Session',//TODO
+                                  '/test/model/'         => 'Model',
+                                  '/test/library/'       => 'Library',
+                                  '/test/noview'         => 'NoView',
+                                  '/test/customView'     => 'CustomView',
+                                  '/test/javascript'     => 'JavaScript',
+                                  '/test/request/'       => 'Request',
+                                  '/test/badsetview'     => 'Bad View',
+                                  '/test/badpartial'     => 'Bad Partial',
+                                  '/test/getterview'     => 'Getter View for units tests',
+                                  '/test/badsetviewctrl' => 'Bad Set View in controller',
+                                  '/test/session/'       => 'Session',//TODO
                                  );
 
     }

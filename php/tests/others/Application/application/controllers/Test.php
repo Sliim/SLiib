@@ -134,4 +134,41 @@ class Test_Controller_Test extends SLiib_Application_Controller
     }
 
 
+    /**
+     * Test setting bad view
+     *
+     * @return void
+     */
+    public function badsetviewAction()
+    {
+        $this->_view->setView('notexists');
+
+    }
+
+
+    /**
+     * Test setting bad partial
+     *
+     * @return void
+     */
+    public function badPartialAction()
+    {
+        //Nothing to do
+
+    }
+
+
+    /**
+     * Test get unknown view property
+     *
+     * @return void
+     */
+    public function getterviewAction()
+    {
+        $this->_view->setNoView();
+        $woot = $this->_view->woot;
+
+    }
+
+
 }

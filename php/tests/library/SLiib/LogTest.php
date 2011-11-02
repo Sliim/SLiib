@@ -56,6 +56,12 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     protected $_testFormat;
 
+    /**
+     * Format de test long
+     * @var string
+     */
+    protected $_testLongFormat;
+
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -65,8 +71,9 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_filename   = 'files/LogTest.log';
-        $this->_testFormat = '[%T][%d]%m';
+        $this->_filename       = 'files/LogTest.log';
+        $this->_testFormat     = '[%T][%d]%m';
+        $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
         $this->_object = new SLiib_Log($this->_filename, true);
 
@@ -148,9 +155,11 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Log_Exception $e) {
             $this->assertType('SLiib_Log_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail();
+        $this->fail('No exception has been raised');
 
     }
 
@@ -162,12 +171,29 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function testColor()
     {
-        $this->_object->setFormat('[%T] [%d %t] [%U] [%@] %m');
+        $this->_object->setFormat($this->_testLongFormat);
         $this->_object->debug('Log DEBUG, blue color ?', true);
         $this->_object->warn('Log WARN, yellow color ?', true);
         $this->_object->error('Log ERROR, red color ?', true);
         $this->_object->crit('Log CRIT, red color ?', true);
         $this->_object->info('Log INFO, no color ?', true);
+
+    }
+
+
+    /**
+     * Test with server Infos
+     *
+     * @return void
+     */
+    public function testWithServerInfo()
+    {
+        $GLOBALS['_SERVER'];
+        $_SERVER['REMOTE_ADDR']     = '127.0.0.1';
+        $_SERVER['HTTP_USER_AGENT'] = 'w00tw00t';
+
+        $this->_object->setFormat($this->_testLongFormat);
+        $this->_object->log('fooo');
 
     }
 

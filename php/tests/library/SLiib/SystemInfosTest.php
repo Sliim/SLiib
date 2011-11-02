@@ -142,9 +142,11 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
             $this->assertType('SLiib_SystemInfos_Exception_BadMethodCall', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail('Bad exception thrown');
+        $this->fail('No exception has been raised');
 
     }
 

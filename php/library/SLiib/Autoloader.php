@@ -68,11 +68,7 @@ class SLiib_Autoloader
      */
     public static function init(array $namespaces, array $sections=array())
     {
-        if (!empty(static::$_namespaces)) {
-            static::$_namespaces = array_merge(static::$_namespaces, $namespaces);
-        } else {
-            static::$_namespaces = $namespaces;
-        }
+        static::$_namespaces = array_merge(static::$_namespaces, $namespaces);
 
         if (!empty(static::$_sections)) {
             static::$_sections = array_merge(static::$_sections, $sections);

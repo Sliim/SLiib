@@ -95,9 +95,11 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Registry_Exception $e) {
             $this->assertType('SLiib_Registry_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail('Bad exception thrown');
+        $this->fail('No exception has been raised');
 
     }
 
@@ -114,9 +116,11 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Registry_Exception $e) {
             $this->assertType('SLiib_Registry_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail('Bad exception thrown');
+        $this->fail('No exception has been raised');
 
     }
 

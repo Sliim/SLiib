@@ -98,9 +98,32 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Application_Exception $e) {
             $this->assertType('SLiib_Application_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail();
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test getInstance SLiib_HTTP_Request not initialized
+     *
+     * @return void
+     */
+    public function testGetInstanceRequest()
+    {
+        try {
+            SLiib_HTTP_Request::getInstance();
+        } catch (SLiib_HTTP_Request_Exception $e) {
+            $this->assertType('SLiib_HTTP_Request_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
 
     }
 
@@ -120,9 +143,11 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Application_Exception $e) {
             $this->assertType('SLiib_Application_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail();
+        $this->fail('No exception has been raised');
 
     }
 
@@ -198,6 +223,52 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test bad action
+     *
+     * @return void
+     */
+    public function testBadAction()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/index/notexists');
+
+        try {
+            $this->_runApp();
+        } catch (SLiib_Application_Controller_Exception_BadMethodCall $e) {
+            $this->assertType('SLiib_Application_Controller_Exception_BadMethodCall', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test bad controller
+     *
+     * @return void
+     */
+    public function testBadController()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/notexists');
+
+        try {
+            $this->_runApp();
+        } catch (SLiib_Application_Controller_Exception $e) {
+            $this->assertType('SLiib_Application_Controller_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
      * Test with post method
      *
      * @return void
@@ -240,6 +311,90 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         $params = $this->_request->getParameters();
 
         $this->assertNull($params);
+
+    }
+
+
+    /**
+     * Test specific case of autoloader
+     *
+     * @return void
+     */
+    public function testAutoloader()
+    {
+        $this->assertTrue(SLiib_Autoloader::autoload('SLiib_Config'));
+        $this->assertFalse(SLiib_Autoloader::autoload('SLiib'));
+        $this->assertFalse(SLiib_Autoloader::autoload('Foo_Bar'));
+        $this->assertFalse(SLiib_Autoloader::autoload('Test_Controller_Unknown'));
+
+    }
+
+
+    /**
+     * Test bad set view in SLiib_Application_View
+     *
+     * @return void
+     */
+    public function testBadSetView()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/badsetview');
+
+        try {
+            $this->_runApp();
+        } catch (SLiib_Application_View_Exception_InvalidParam $e) {
+            $this->assertType('SLiib_Application_View_Exception_InvalidParam', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test bad partial in SLiib_Application_View
+     *
+     * @return void
+     */
+    public function testBadPartial()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/badpartial');
+
+        try {
+            $this->_runApp();
+        } catch (SLiib_Application_View_Exception_InvalidParam $e) {
+            $this->assertType('SLiib_Application_View_Exception_InvalidParam', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test SLiib_Application_View getter
+     *
+     * @return void
+     */
+    public function testViewGetter()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/getterview');
+
+        try {
+            $this->_runApp();
+        } catch (SLiib_Application_View_Exception_InvalidParam $e) {
+            $this->assertType('SLiib_Application_View_Exception_InvalidParam', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
 
     }
 

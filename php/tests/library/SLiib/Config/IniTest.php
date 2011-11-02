@@ -182,9 +182,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail("Bad exception thrown");
+        $this->fail('No exception has been raised');
 
     }
 
@@ -201,9 +203,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail("Bad exception thrown");
+        $this->fail('No exception has been raised');
 
     }
 
@@ -220,9 +224,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail("Bad exception thrown");
+        $this->fail('No exception has been raised');
 
     }
 
@@ -239,9 +245,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertType('SLiib_Config_Exception_SyntaxError', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail("Bad exception thrown");
+        $this->fail('No exception has been raised');
 
     }
 

@@ -59,7 +59,11 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
             )
         );
 
-        $this->_setViewPath(APP_PATH . '/views');
+        try {
+            $this->_setViewPath(APP_PATH . '/views_not_exists');
+        } catch (SLiib_Application_Exception $e) {
+            $this->_setViewPath(APP_PATH . '/views');
+        }
 
         error_reporting(E_ALL | E_STRICT);
         set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);
@@ -102,15 +106,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
      */
     protected function _exceptionHandler(Exception $e)
     {
-        printf(
-            "%s : %s in `%s` on line %d.\n\nTrace :\n%s",
-            get_class($e),
-            $e->getMessage(),
-            $e->getFile(),
-            $e->getLine(),
-            $e->getTraceAsString()
-        );
-        die();
+        parent::_exceptionhandler($e);
 
     }
 

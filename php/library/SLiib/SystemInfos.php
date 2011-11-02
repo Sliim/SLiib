@@ -117,6 +117,8 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
             return $resultValue;
         }
 
+        return array();
+
     }
 
 
