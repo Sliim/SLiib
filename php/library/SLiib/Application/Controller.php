@@ -39,7 +39,7 @@ abstract class SLiib_Application_Controller
      * View of this controller/action
      * @var SLiib_Application_View $_view
      */
-    protected $_view = null;
+    protected $_view = NULL;
 
     /**
      * View Class
@@ -50,7 +50,7 @@ abstract class SLiib_Application_Controller
     /**
      * @var SLiib_HTTP_Request
      */
-    private $_request = null;
+    private $_request = NULL;
 
 
     /**

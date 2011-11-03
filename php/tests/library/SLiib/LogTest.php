@@ -75,7 +75,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
         $this->_testFormat     = '[%T][%d]%m';
         $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
-        $this->_object = new SLiib_Log($this->_filename, true);
+        $this->_object = new SLiib_Log($this->_filename, TRUE);
 
     }
 
@@ -122,7 +122,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
         $this->assertFileExists($this->_filename);
         $text = 'w000t from SLiib_LogTest';
 
-        $this->_object->log($text, SLiib_Log::INFO, false);
+        $this->_object->log($text, SLiib_Log::INFO, FALSE);
 
         $this->assertEquals(
             $text,
@@ -172,11 +172,11 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
     public function testColor()
     {
         $this->_object->setFormat($this->_testLongFormat);
-        $this->_object->debug('Log DEBUG, blue color ?', true);
-        $this->_object->warn('Log WARN, yellow color ?', true);
-        $this->_object->error('Log ERROR, red color ?', true);
-        $this->_object->crit('Log CRIT, red color ?', true);
-        $this->_object->info('Log INFO, no color ?', true);
+        $this->_object->debug('Log DEBUG, blue color ?', TRUE);
+        $this->_object->warn('Log WARN, yellow color ?', TRUE);
+        $this->_object->error('Log ERROR, red color ?', TRUE);
+        $this->_object->crit('Log CRIT, red color ?', TRUE);
+        $this->_object->info('Log INFO, no color ?', TRUE);
 
     }
 

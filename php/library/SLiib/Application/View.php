@@ -51,7 +51,7 @@ class SLiib_Application_View
      * Path of the .phtml view
      * @var mixed Null if undefined, false if disabled, string if isset
      */
-    private $_view = null;
+    private $_view = NULL;
 
     /**
      * Views path
@@ -75,7 +75,7 @@ class SLiib_Application_View
 
         $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
 
-        if ($this->_viewExist($defaultView) && $this->_view !== false) {
+        if ($this->_viewExist($defaultView) && $this->_view !== FALSE) {
             $this->setView($defaultView);
         }
 
@@ -158,7 +158,7 @@ class SLiib_Application_View
      */
     public function setNoView()
     {
-        $this->_view = false;
+        $this->_view = FALSE;
 
     }
 
@@ -179,7 +179,7 @@ class SLiib_Application_View
             return $absolutePath . $viewFile;
         }
 
-        return false;
+        return FALSE;
 
     }
 

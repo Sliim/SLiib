@@ -38,7 +38,7 @@ class SLiib_Application
      * Instance
      * @var SLiib_Application $_instance
      */
-    private static $_instance = null;
+    private static $_instance = NULL;
 
     /**
      * Application namespace
@@ -135,7 +135,7 @@ class SLiib_Application
      */
     public static function getInstance()
     {
-        if (static::$_instance === null) {
+        if (static::$_instance === NULL) {
             throw new SLiib_Application_Exception('Application not initialized.');
         }
 

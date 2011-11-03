@@ -57,7 +57,7 @@ abstract class SLiib_Application_Bootstrap
      * Application view path
      * @var string
      */
-    private $_viewPath = null;
+    private $_viewPath = NULL;
 
 
     /**

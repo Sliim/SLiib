@@ -39,7 +39,7 @@ class SLiib_Application_Dispatcher
      * Application namespace
      * @var string
      */
-    private static $_namespace = null;
+    private static $_namespace = NULL;
 
 
     /**

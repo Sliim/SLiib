@@ -93,18 +93,18 @@ class SLiib_Autoloader
     public static function autoload($class)
     {
         if (in_array($class, static::$_isLoaded)) {
-            return true;
+            return TRUE;
         }
 
         $segment = explode('_', $class);
         if (count($segment) < 2) {
-            return false;
+            return FALSE;
         }
 
         $namespace = array_shift($segment);
 
         if (!in_array($namespace, static::$_namespacesKeys)) {
-            return false;
+            return FALSE;
         }
 
         foreach (static::$_sections as $ns => $sections) {
@@ -123,13 +123,13 @@ class SLiib_Autoloader
           implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
         if (file_exists(static::$_namespaces[$namespace]) && !file_exists($file)) {
-            return false;
+            return FALSE;
         }
 
         include $file;
 
         array_push(static::$_isLoaded, $class);
-        return true;
+        return FALSE;
 
     }
 

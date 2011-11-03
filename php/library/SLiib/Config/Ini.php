@@ -50,7 +50,7 @@ class SLiib_Config_Ini extends SLiib_Config
         $fp = fopen($this->_configFile, 'r');
 
         $this->_pointer = 0;
-        $section        = false;
+        $section        = FALSE;
         while ($line = fgets($fp, 256)) {
             $this->_pointer++;
             $line = SLiib_String::clean($line);
@@ -127,7 +127,7 @@ class SLiib_Config_Ini extends SLiib_Config
      *
      * @return void
      */
-    private function _initParam($param, $section=false)
+    private function _initParam($param, $section=FALSE)
     {
         $datas = explode('=', $param);
 
@@ -153,7 +153,7 @@ class SLiib_Config_Ini extends SLiib_Config
             $key     = array_shift($segment);
             $cSeg    = count($segment);
             $object  = new stdClass;
-            $parent  = null;
+            $parent  = NULL;
 
             foreach ($segment as $k => $p) {
                 if (is_null($parent)) {

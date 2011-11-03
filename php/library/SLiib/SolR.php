@@ -85,7 +85,7 @@ class SLiib_SolR
      *
      * @return void
      */
-    public function __construct($host, $port, $ping=true)
+    public function __construct($host, $port, $ping=TRUE)
     {
         $this->_host = $host;
         $this->_port = $port;
@@ -114,7 +114,7 @@ class SLiib_SolR
     {
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
         if (!$fp) {
-            return false;
+            return FALSE;
         }
 
         $out  = 'POST ' . self::UPDATE_DIRECTORY . " HTTP/1.1\r\n";
@@ -133,12 +133,12 @@ class SLiib_SolR
 
             if (preg_match('/<lst(.*)?>(.*)?<\/lst>/', $response, $matches)) {
                 fclose($fp);
-                return true;
+                return TRUE;
             }
         }
 
         fclose($fp);
-        return false;
+        return FALSE;
 
     }
 
@@ -187,7 +187,7 @@ class SLiib_SolR
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
 
         if (!$fp) {
-            return false;
+            return FALSE;
         }
 
         $out  = 'GET ' . self::SELECT_DIRECTORY . '/' . $query . " HTTP/1.1\r\n";
@@ -210,7 +210,7 @@ class SLiib_SolR
             }
         }
 
-        return false;
+        return FALSE;
 
     }
 
@@ -224,7 +224,7 @@ class SLiib_SolR
     {
         $xml = $this->get('*%3A*');
         if (!$xml) {
-            return false;
+            return FALSE;
         }
 
         $obj = simplexml_load_string($xml);
@@ -242,10 +242,10 @@ class SLiib_SolR
     {
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
         if (!$fp) {
-            return false;
+            return FALSE;
         }
 
-        return true;
+        return FALSE;
 
     }
 

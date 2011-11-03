@@ -42,7 +42,7 @@ define('APP_NS', 'Test');
 class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 {
 
-    const ENABLE_OUTPUT_CLEANER = true;
+    const ENABLE_OUTPUT_CLEANER = TRUE;
 
     /**
      * @var string

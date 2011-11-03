@@ -193,12 +193,12 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     public function testBadPort()
     {
         try {
-            $object = new SLiib_SolR($this->_host, 1337, true);
+            $object = new SLiib_SolR($this->_host, 1337, TRUE);
         } catch (SLiib_SolR_Exception $e) {
             $this->assertType('SLiib_SolR_Exception', $e);
         }
 
-        $object = new SLiib_SolR($this->_host, 1337, false);
+        $object = new SLiib_SolR($this->_host, 1337, FALSE);
 
         $res = $object->update($this->_xmlStr);
         $this->assertFalse($res);

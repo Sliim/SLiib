@@ -47,7 +47,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      *
      * @return string Retour de la commande
      */
-    private function _exec($cmd, $serialize=false)
+    private function _exec($cmd, $serialize=FALSE)
     {
         try {
             if ($serialize) {
@@ -76,7 +76,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdApache2()
     {
-        $res = $this->_exec('CMD_APACHE2_VERSION', true);
+        $res = $this->_exec('CMD_APACHE2_VERSION', TRUE);
         $this->assertType('string', $res);
 
         $res = $this->_exec('CMD_APACHE2_COMPILED_MODULES');

@@ -37,7 +37,7 @@ abstract class SLiib_Config
      * Objet de la configuration
      * @var stdClass
      */
-    protected $_config = null;
+    protected $_config = NULL;
 
     /**
      * Fichier de configuration à utiliser

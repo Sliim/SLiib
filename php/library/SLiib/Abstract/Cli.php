@@ -77,7 +77,7 @@ abstract class SLiib_Cli
      * Options possible du script
      * @var array
      */
-    protected $_options = null;
+    protected $_options = NULL;
 
     /**
      * Chaine utilisée pour etre passée à getopt.
@@ -93,7 +93,7 @@ abstract class SLiib_Cli
      *
      * @return void
      */
-    public function __construct ($options=null)
+    public function __construct ($options=NULL)
     {
         if (!is_null($options)) {
             $this->_options = array_merge($this->_defaultOpt, $options);
