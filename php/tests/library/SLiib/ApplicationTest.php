@@ -311,7 +311,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         $params = $this->_request->getParameters();
 
-        $this->assertNull($params);
+        $this->assertTrue(empty($params));
 
     }
 
