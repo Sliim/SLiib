@@ -70,9 +70,7 @@ class SLiib_Application_View
      */
     public function __construct($controller, $action)
     {
-        //TODO Voir si ya pas un moyen plus propre..
         $this->_path = SLiib_Application::getInstance()->getViewPath();
-
         $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
 
         if ($this->_viewExist($defaultView) && $this->_view !== FALSE) {
@@ -164,27 +162,6 @@ class SLiib_Application_View
 
 
     /**
-     * Check view exists
-     *
-     * @param string $view View (without extension)
-     *
-     * @return boolean|string False if not exist, else absolute path of view
-     */
-    private final function _viewExist($view)
-    {
-        $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
-        $viewFile     = $view . $this->_ext;
-
-        if (file_exists($absolutePath . $viewFile)) {
-            return $absolutePath . $viewFile;
-        }
-
-        return FALSE;
-
-    }
-
-
-    /**
      * include a template
      * Must be in view path
      *
@@ -211,6 +188,27 @@ class SLiib_Application_View
 
         include $file;
         return $this;
+
+    }
+
+
+    /**
+     * Check view exists
+     *
+     * @param string $view View (without extension)
+     *
+     * @return boolean|string False if not exist, else absolute path of view
+     */
+    private final function _viewExist($view)
+    {
+        $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
+        $viewFile     = $view . $this->_ext;
+
+        if (file_exists($absolutePath . $viewFile)) {
+            return $absolutePath . $viewFile;
+        }
+
+        return FALSE;
 
     }
 

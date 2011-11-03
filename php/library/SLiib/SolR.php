@@ -245,7 +245,7 @@ class SLiib_SolR
             return FALSE;
         }
 
-        return FALSE;
+        return TRUE;
 
     }
 

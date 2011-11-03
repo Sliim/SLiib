@@ -198,11 +198,20 @@ class SLiib_HTTP_Request
      */
     private function _initProperties()
     {
-        $this->_request->clientIp   = (array_key_exists('REMOTE_ADDR', $_SERVER)) ? $_SERVER['REMOTE_ADDR'] : NULL;
-        $this->_request->userAgent  = (array_key_exists('HTTP_USER_AGENT', $_SERVER)) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
-        $this->_request->method     = (array_key_exists('REQUEST_METHOD', $_SERVER)) ? $_SERVER['REQUEST_METHOD'] : NULL;
-        $this->_request->referer    = (array_key_exists('HTTP_REFERER', $_SERVER)) ? $_SERVER['HTTP_REFERER'] : NULL;
-        $this->_request->requestUri = (array_key_exists('REQUEST_URI', $_SERVER)) ? $_SERVER['REQUEST_URI'] : '/';
+        $this->_request->clientIp =
+            array_key_exists('REMOTE_ADDR', $_SERVER) ? $_SERVER['REMOTE_ADDR'] : NULL;
+
+        $this->_request->userAgent =
+            array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
+
+        $this->_request->method =
+            array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : NULL;
+
+        $this->_request->referer =
+            array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : NULL;
+
+        $this->_request->requestUri =
+            array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : '/';
 
         $get = $this->_parseUrl();
 
