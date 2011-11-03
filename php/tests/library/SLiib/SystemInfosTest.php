@@ -55,10 +55,12 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
             } else {
                 $res = SLiib_SystemInfos::$cmd();
             }
-        } catch (SLiib_SystemInfos_BadCommandException $e) {
+        } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
             $this->markTestSkipped('Command unknown !');
-        } catch (SLiib_SystemInfos_CommandFailedException $e) {
+        } catch (SLiib_SystemInfos_Exception_CommandFailed $e) {
             $this->markTestSkipped('Command failed !');
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
         return $res;
@@ -68,6 +70,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
 
     /**
      * Appel commande Apache2
+     * apache2 on debian testing fail with normal user (not /usr/sbin in his $PATH)
      *
      * @return void
      */

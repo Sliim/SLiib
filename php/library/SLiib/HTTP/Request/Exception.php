@@ -27,7 +27,7 @@
  */
 
 /**
- * SLiib_Config_Ini_SyntaxErrorException
+ * SLiib_HTTP_Request_Exception
  *
  * @package    SLiib_HTTP
  * @subpackage SLiib_HTTP_Request
