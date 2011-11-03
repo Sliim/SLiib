@@ -81,6 +81,7 @@ abstract class SLiib_Application_Controller
      */
     public final function __call($action, $params)
     {
+        unset($params);
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {

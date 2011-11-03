@@ -141,7 +141,7 @@ class Test_Controller_Test extends SLiib_Application_Controller
      */
     public function badsetviewAction()
     {
-        $this->_view->setView('notexists');
+        return $this->_view->setView('notexists');
 
     }
 
@@ -166,7 +166,20 @@ class Test_Controller_Test extends SLiib_Application_Controller
     public function getterviewAction()
     {
         $this->_view->setNoView();
-        $woot = $this->_view->woot;
+        return $woot = $this->_view->woot;
+
+    }
+
+
+    /**
+     * Test error handler
+     *
+     * @return bool
+     */
+    public function errorhandlerAction()
+    {
+        $this->_view->setNoView();
+        return trigger_error('Test error handler');
 
     }
 

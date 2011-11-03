@@ -193,6 +193,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testGetParams()
     {
+        $this->_setCookie(array('foo' => 'bar'));
         $this->_setServerInfo('REQUEST_URI', '/test/request/foo/bar/1337/w00t');
         $this->_runApp();
 
@@ -400,6 +401,88 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test Error Handler
+     *
+     * @return void
+     */
+    public function testErrorHandler()
+    {
+        //Fix PHPUnit convertErrorToException
+        $bs = new Test_Bootstrap(APP_NS);
+        set_error_handler(array($bs, 'errorHandler'));
+
+        $this->_setServerInfo('REQUEST_URI', '/test/errorhandler');
+
+        try {
+            $this->_runApp();
+        } catch (RuntimeException $e) {
+            $this->assertType('RuntimeException', $e);
+
+            set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
+            return;
+        }  catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+        set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
+
+    }
+
+
+    /**
+     * Test model action (Controller test)
+     *
+     * @return void
+     */
+    public function testModelAction()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/model');
+        $this->_runApp();
+
+    }
+
+
+    /**
+     * Test library action (Controller test)
+     *
+     * @return void
+     */
+    public function testLibraryAction()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/library');
+        $this->_runApp();
+
+    }
+
+
+    /**
+     * Test custom view action (Controller test)
+     *
+     * @return void
+     */
+    public function testCustomViewAction()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/customview');
+        $this->_runApp();
+
+    }
+
+
+    /**
+     * Test javascript action (Controller test)
+     *
+     * @return void
+     */
+    public function testJavascriptAction()
+    {
+        $this->_setServerInfo('REQUEST_URI', '/test/javascript');
+        $this->_runApp();
+
+    }
+
+
+    /**
      * Run application
      *
      * @return void
@@ -452,6 +535,21 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $GLOBALS['_POST'];
         $_POST = $post;
+
+    }
+
+
+    /**
+     * Simulate a $_COOKIE
+     *
+     * @param array $cookies $_COOKIE you want
+     *
+     * @return void
+     */
+    private function _setCookie(array $cookies)
+    {
+        $GLOBALS['_COOKIE'];
+        $_COOKIE = $cookies;
 
     }
 

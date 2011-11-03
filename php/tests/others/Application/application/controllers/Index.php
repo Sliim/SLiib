@@ -72,6 +72,7 @@ class Test_Controller_Index extends SLiib_Application_Controller
                                   '/test/badpartial'     => 'Bad Partial',
                                   '/test/getterview'     => 'Getter View for units tests',
                                   '/test/badsetviewctrl' => 'Bad Set View in controller',
+                                  '/test/errorhandler'   => 'Error Handler test',
                                   '/test/session/'       => 'Session',//TODO
                                  );
 

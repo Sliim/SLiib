@@ -92,7 +92,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
             $errline
         );
 
-        $this->_exceptionHandler(new RuntimeException($message, $errno));
+        return $this->_exceptionHandler(new RuntimeException($message, $errno));
 
     }
 
@@ -106,7 +106,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
      */
     protected function _exceptionHandler(Exception $e)
     {
-        parent::_exceptionhandler($e);
+        return parent::_exceptionhandler($e);
 
     }
 
