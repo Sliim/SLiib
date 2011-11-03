@@ -113,9 +113,9 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
                     'Command `' . $cmd . '` failed!'
                 );
             }
-
-            return $resultValue;
         }
+
+        return $resultValue;
 
     }
 

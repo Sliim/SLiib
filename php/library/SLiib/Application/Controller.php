@@ -39,7 +39,7 @@ abstract class SLiib_Application_Controller
      * View of this controller/action
      * @var SLiib_Application_View
      */
-    protected $_view = null;
+    protected $_view = NULL;
 
     /**
      * View Class
@@ -47,15 +47,24 @@ abstract class SLiib_Application_Controller
      */
     protected $_viewClass = 'SLiib_Application_View';
 
+    /**
+     * @var SLiib_HTTP_Request
+     */
+    private $_request = NULL;
+
 
     /**
-     * Init view
+     * Init controller view
      *
      * @return void
      */
     public function __construct()
     {
-        $this->_view = new $this->_viewClass();
+        $this->_request = SLiib_HTTP_Request::getInstance();
+        $this->_view    = new $this->_viewClass(
+            $this->_request->getController(),
+            $this->_request->getAction()
+        );
 
     }
 
@@ -72,6 +81,7 @@ abstract class SLiib_Application_Controller
      */
     public final function __call($action, $params)
     {
+        unset($params);
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {
@@ -93,6 +103,18 @@ abstract class SLiib_Application_Controller
      * @return void
      */
     abstract protected function _init();
+
+
+    /**
+     * Request getter
+     *
+     * @return SLiib_HTTP_Request
+     */
+    public function getRequest()
+    {
+        return $this->_request;
+
+    }
 
 
 }

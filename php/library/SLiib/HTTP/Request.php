@@ -33,85 +33,57 @@
 class SLiib_HTTP_Request
 {
 
-    /**
-     * Current controller
-     * @var string
-     */
-    private static $_controller = null;
+    private static $_instance = NULL;
 
     /**
-     * Current action
-     * @var string
+     * @var stdClass
      */
-    private static $_action = null;
-
-    /**
-     * Current parameters
-     * @var array
-     */
-    private static $_params = null;
-
-    /**
-     * Client IP
-     * @var string
-     */
-    private static $_clientIp = null;
-
-    /**
-     * Client user agent
-     */
-    private static $_userAgent = null;
-
-    /**
-     * HTTP method
-     */
-    private static $_method = null;
+    private $_request = NULL;
 
 
     /**
      * Init HTTP Request
      *
+     * @throws SLiib_HTTP_Request_Exception
+     *
      * @return void
      */
     public static function init()
     {
-        static::$_clientIp  = $_SERVER['REMOTE_ADDR'];
-        static::$_userAgent = $_SERVER['HTTP_USER_AGENT'];
-        static::$_method    = $_SERVER['REQUEST_METHOD'];
+        static::$_instance = new self();
 
-        $requestUri = $_SERVER['REQUEST_URI'];
-        $params     = array();
+    }
 
-        if ($requestUri == '/') {
-            static::$_controller = 'index';
-            static::$_action     = 'index';
-        } else {
-            $segment = explode('/', $requestUri);
-            array_shift($segment);
 
-            if (count($segment) >= 2) {
-                static::$_controller = array_shift($segment);
-                static::$_action     = array_shift($segment);
-            } else {
-                static::$_controller = $segment[0];
-                static::$_action     = 'index';
-            }
-
-            $key = null;
-            foreach ($segment as $seg) {
-                if (!is_null($key)) {
-                    $params[$key] = $seg;
-                    $key          = null;
-                } else {
-                    $key = $seg;
-                }
-            }
+    /**
+     * Instance getter
+     *
+     * @throws SLiib_HTTP_Request_Exception
+     *
+     * @return SLiib_HTTP_Request
+     */
+    public static function getInstance()
+    {
+        if (is_null(static::$_instance)) {
+            throw new SLiib_HTTP_Request_Exception(
+                'Request not initialized.'
+            );
         }
 
-        static::$_params = array_merge(
-            $_POST,
-            $params
-        );
+        return static::$_instance;
+
+    }
+
+
+    /**
+     * Construct request
+     *
+     * @return void
+     */
+    private function __construct()
+    {
+        $this->_request = new stdClass;
+        $this->_initProperties();
 
     }
 
@@ -121,9 +93,9 @@ class SLiib_HTTP_Request
      *
      * @return string
      */
-    public static function getController()
+    public function getController()
     {
-        return static::$_controller;
+        return $this->_request->controller;
 
     }
 
@@ -133,9 +105,9 @@ class SLiib_HTTP_Request
      *
      * @return string
      */
-    public static function getAction()
+    public function getAction()
     {
-        return static::$_action;
+        return $this->_request->action;
 
     }
 
@@ -145,9 +117,16 @@ class SLiib_HTTP_Request
      *
      * @return array
      */
-    public static function getParameters()
+    public function getParameters()
     {
-        return static::$_params;
+        switch ($this->_request->method) {
+            case 'GET':
+                return $this->_request->paramsGet;
+            case 'POST':
+                return $this->_request->paramsPost;
+            default:
+                return NULL;
+        }
 
     }
 
@@ -157,9 +136,9 @@ class SLiib_HTTP_Request
      *
      * @return string
      */
-    public static function getClientIp()
+    public function getClientIp()
     {
-        return static::$_clientIp;
+        return $this->_request->clientIp;
 
     }
 
@@ -169,9 +148,9 @@ class SLiib_HTTP_Request
      *
      * @return string
      */
-    public static function getUserAgent()
+    public function getUserAgent()
     {
-        return static::$_userAgent;
+        return $this->_request->userAgent;
 
     }
 
@@ -181,9 +160,113 @@ class SLiib_HTTP_Request
      *
      * @return string
      */
-    public static function getRequestMethod()
+    public function getRequestMethod()
     {
-        return static::$_method;
+        return $this->_request->method;
+
+    }
+
+
+    /**
+     * Cookies getter
+     *
+     * @return array
+     */
+    public function getCookies()
+    {
+        return $this->_request->cookies;
+
+    }
+
+
+    /**
+     * Referer getter
+     *
+     * @return string
+     */
+    public function getReferer()
+    {
+        return $this->_request->referer;
+
+    }
+
+
+    /**
+     * Init HTTP Properties
+     *
+     * @return void
+     */
+    private function _initProperties()
+    {
+        $this->_request->clientIp =
+            array_key_exists('REMOTE_ADDR', $_SERVER) ? $_SERVER['REMOTE_ADDR'] : NULL;
+
+        $this->_request->userAgent =
+            array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
+
+        $this->_request->method =
+            array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : NULL;
+
+        $this->_request->referer =
+            array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : NULL;
+
+        $this->_request->requestUri =
+            array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : '/';
+
+        $get = $this->_parseUrl();
+
+        $this->_request->controller = $get['controller'];
+        $this->_request->action     = $get['action'];
+        $this->_request->paramsGet  = $get['params'];
+        $this->_request->paramsPost = $_POST;
+        $this->_request->cookies    = $_COOKIE;
+
+    }
+
+
+    /**
+     * Url parser
+     *
+     * @return array
+     */
+    private function _parseUrl()
+    {
+        $controller = '';
+        $action     = '';
+        $params     = array();
+
+        if ($this->_request->requestUri == '/') {
+            $controller = 'index';
+            $action     = 'index';
+        } else {
+            $segment = explode('/', $this->_request->requestUri);
+            array_shift($segment);
+
+            if (count($segment) >= 2) {
+                $controller = array_shift($segment);
+                $action     = array_shift($segment);
+            } else {
+                $controller = $segment[0];
+                $action     = 'index';
+            }
+
+            $key = NULL;
+
+            foreach ($segment as $seg) {
+                if (!is_null($key)) {
+                    $params[$key] = $seg;
+                    $key          = NULL;
+                } else {
+                    $key = (string) $seg;
+                }
+            }
+        }
+
+        return array(
+                'controller' => $controller,
+                'action'     => $action,
+                'params'     => $params,
+               );
 
     }
 

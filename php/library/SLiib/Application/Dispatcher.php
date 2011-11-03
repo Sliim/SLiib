@@ -39,7 +39,7 @@ class SLiib_Application_Dispatcher
      * Application namespace
      * @var string
      */
-    private static $_namespace = null;
+    private static $_namespace = NULL;
 
 
     /**
@@ -65,8 +65,9 @@ class SLiib_Application_Dispatcher
      */
     public static function dispatch()
     {
-        $action     = SLiib_HTTP_Request::getAction();
-        $controller = SLiib_HTTP_Request::getController();
+        $request    = SLiib_HTTP_Request::getInstance();
+        $action     = $request->getAction();
+        $controller = $request->getController();
 
         $controllerName = sprintf(
             "%s_Controller_%s",

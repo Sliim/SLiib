@@ -51,7 +51,7 @@ class SLiib_Application_View
      * Path of the .phtml view
      * @var mixed Null if undefined, false if disabled, string if isset
      */
-    private $_view = null;
+    private $_view = NULL;
 
     /**
      * Views path
@@ -63,19 +63,17 @@ class SLiib_Application_View
     /**
      * Construct, set view path
      *
+     * @param string $controller Controller Name
+     * @param string $action     Action Name
+     *
      * @return void
      */
-    public function __construct()
+    public function __construct($controller, $action)
     {
-        $controller = SLiib_HTTP_Request::getController();
-        $action     = SLiib_HTTP_Request::getAction();
-
-        //TODO Voir si ya pas un moyen plus propre..
         $this->_path = SLiib_Application::getInstance()->getViewPath();
-
         $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
 
-        if ($this->_viewExist($defaultView) && $this->_view !== false) {
+        if ($this->_viewExist($defaultView) && $this->_view !== FALSE) {
             $this->setView($defaultView);
         }
 
@@ -104,17 +102,13 @@ class SLiib_Application_View
      *
      * @throws SLiib_Application_View_Exception_InvalidParam
      *
-     * @return mixed
+     * @return void
      */
     public function __get($attr)
     {
-        if (!isset($this->$attr)) {
-            throw new SLiib_Application_View_Exception_InvalidParam(
-                'Attribut `' . $attr . '` undefined in view.'
-            );
-        }
-
-        return $this->$attr;
+        throw new SLiib_Application_View_Exception_InvalidParam(
+            'Attribut `' . $attr . '` undefined in view.'
+        );
 
     }
 
@@ -162,28 +156,7 @@ class SLiib_Application_View
      */
     public function setNoView()
     {
-        $this->_view = false;
-
-    }
-
-
-    /**
-     * Check view exists
-     *
-     * @param string $view View (without extension)
-     *
-     * @return boolean|string False if not exist, else absolute path of view
-     */
-    private final function _viewExist($view)
-    {
-        $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
-        $viewFile     = $view . $this->_ext;
-
-        if (file_exists($absolutePath . $viewFile)) {
-            return $absolutePath . $viewFile;
-        }
-
-        return false;
+        $this->_view = FALSE;
 
     }
 
@@ -215,6 +188,27 @@ class SLiib_Application_View
 
         include $file;
         return $this;
+
+    }
+
+
+    /**
+     * Check view exists
+     *
+     * @param string $view View (without extension)
+     *
+     * @return boolean|string False if not exist, else absolute path of view
+     */
+    private final function _viewExist($view)
+    {
+        $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
+        $viewFile     = $view . $this->_ext;
+
+        if (file_exists($absolutePath . $viewFile)) {
+            return $absolutePath . $viewFile;
+        }
+
+        return FALSE;
 
     }
 

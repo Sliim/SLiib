@@ -27,7 +27,7 @@
  */
 
 /**
- * SLiib_Config_Ini_SyntaxErrorException
+ * SLiib_Config_Exception_SyntaxError
  *
  * @package    SLiib_Config
  * @subpackage SLiib_Config_Ini

@@ -51,7 +51,7 @@ class SLiib_Registry
      */
     public static function get($key)
     {
-        if (!key_exists($key, self::$_registry)) {
+        if (!array_key_exists($key, self::$_registry)) {
             throw new SLiib_Registry_Exception(
                 'Key ' . $key . ' not found in registry.'
             );
@@ -74,7 +74,7 @@ class SLiib_Registry
      */
     public static function set($key, $value)
     {
-        if (key_exists($key, self::$_registry)) {
+        if (array_key_exists($key, self::$_registry)) {
             throw new SLiib_Registry_Exception('Key ' . $key . ' already exist.');
         }
 

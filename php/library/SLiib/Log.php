@@ -51,7 +51,7 @@ class SLiib_Log
      * Nom/Chemin du fichier de log.
      * @var string
      */
-    private $_fileOutput = null;
+    private $_fileOutput = NULL;
 
     /**
      * Format des logs
@@ -70,7 +70,7 @@ class SLiib_Log
      *
      * @return void
      */
-    public function __construct($fileOutput, $add=false)
+    public function __construct($fileOutput, $add=FALSE)
     {
         $opt = 'w+b';
         if ($add) {
@@ -109,7 +109,7 @@ class SLiib_Log
      *
      * @return SLiib_Log
      */
-    public function log($string, $type=self::INFO, $echo=false)
+    public function log($string, $type=self::INFO, $echo=FALSE)
     {
         $log = $this->_genLog($string, $type);
         fwrite($this->_fileOutput, $log . PHP_EOL);
@@ -131,7 +131,7 @@ class SLiib_Log
      *
      * @return SLiib_Log
      */
-    public function debug($string, $echo=false)
+    public function debug($string, $echo=FALSE)
     {
         return $this->log($string, self::DEBUG, $echo);
 
@@ -146,7 +146,7 @@ class SLiib_Log
      *
      * @return SLiib_Log
      */
-    public function info($string, $echo=false)
+    public function info($string, $echo=FALSE)
     {
         return $this->log($string, self::INFO, $echo);
 
@@ -161,7 +161,7 @@ class SLiib_Log
      *
      * @return SLiib_Log
      */
-    public function warn($string, $echo=false)
+    public function warn($string, $echo=FALSE)
     {
         return $this->log($string, self::WARN, $echo);
 
@@ -176,7 +176,7 @@ class SLiib_Log
      *
      * @return SLiib_Log
      */
-    public function error($string, $echo=false)
+    public function error($string, $echo=FALSE)
     {
         return $this->log($string, self::ERROR, $echo);
 
@@ -191,7 +191,7 @@ class SLiib_Log
      *
      * @return SLiib_Log
      */
-    public function crit($string, $echo=false)
+    public function crit($string, $echo=FALSE)
     {
         return $this->log($string, self::CRIT, $echo);
 
@@ -289,7 +289,7 @@ class SLiib_Log
             return $_SERVER['REMOTE_ADDR'];
         }
 
-        return false;
+        return FALSE;
 
     }
 
@@ -305,7 +305,7 @@ class SLiib_Log
             return $_SERVER['HTTP_USER_AGENT'];
         }
 
-        return false;
+        return FALSE;
 
     }
 

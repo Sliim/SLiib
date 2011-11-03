@@ -124,10 +124,62 @@ class Test_Controller_Test extends SLiib_Application_Controller
     public function requestAction()
     {
         $this->_view->bigtitle  = 'Test HTTP Request';
-        $this->_view->ip        = SLiib_HTTP_Request::getClientIp();
-        $this->_view->method    = SLiib_HTTP_Request::getRequestMethod();
-        $this->_view->userAgent = SLiib_HTTP_Request::getUserAgent();
-        $this->_view->params    = SLiib_HTTP_Request::getParameters();
+        $this->_view->ip        = $this->getRequest()->getClientIp();
+        $this->_view->method    = $this->getRequest()->getRequestMethod();
+        $this->_view->userAgent = $this->getRequest()->getUserAgent();
+        $this->_view->params    = $this->getRequest()->getParameters();
+        $this->_view->cookies   = $this->getRequest()->getCookies();
+        $this->_view->referer   = $this->getRequest()->getReferer();
+
+    }
+
+
+    /**
+     * Test setting bad view
+     *
+     * @return void
+     */
+    public function badsetviewAction()
+    {
+        return $this->_view->setView('notexists');
+
+    }
+
+
+    /**
+     * Test setting bad partial
+     *
+     * @return void
+     */
+    public function badPartialAction()
+    {
+        //Nothing to do
+
+    }
+
+
+    /**
+     * Test get unknown view property
+     *
+     * @return void
+     */
+    public function getterviewAction()
+    {
+        $this->_view->setNoView();
+        return $woot = $this->_view->woot;
+
+    }
+
+
+    /**
+     * Test error handler
+     *
+     * @return bool
+     */
+    public function errorhandlerAction()
+    {
+        $this->_view->setNoView();
+        return trigger_error('Test error handler');
 
     }
 

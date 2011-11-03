@@ -47,7 +47,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      *
      * @return string Retour de la commande
      */
-    private function _exec($cmd, $serialize=false)
+    private function _exec($cmd, $serialize=FALSE)
     {
         try {
             if ($serialize) {
@@ -55,10 +55,12 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
             } else {
                 $res = SLiib_SystemInfos::$cmd();
             }
-        } catch (SLiib_SystemInfos_BadCommandException $e) {
+        } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
             $this->markTestSkipped('Command unknown !');
-        } catch (SLiib_SystemInfos_CommandFailedException $e) {
+        } catch (SLiib_SystemInfos_Exception_CommandFailed $e) {
             $this->markTestSkipped('Command failed !');
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
         return $res;
@@ -68,12 +70,13 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
 
     /**
      * Appel commande Apache2
+     * apache2 on debian testing fail with normal user (not /usr/sbin in his $PATH)
      *
      * @return void
      */
     public function testCmdApache2()
     {
-        $res = $this->_exec('CMD_APACHE2_VERSION', true);
+        $res = $this->_exec('CMD_APACHE2_VERSION', TRUE);
         $this->assertType('string', $res);
 
         $res = $this->_exec('CMD_APACHE2_COMPILED_MODULES');
@@ -142,9 +145,11 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
             $this->assertType('SLiib_SystemInfos_Exception_BadMethodCall', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail('Bad exception thrown');
+        $this->fail('No exception has been raised');
 
     }
 

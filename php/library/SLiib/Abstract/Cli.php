@@ -77,7 +77,7 @@ abstract class SLiib_Cli
      * Options possible du script
      * @var array
      */
-    protected $_options = null;
+    protected $_options = NULL;
 
     /**
      * Chaine utilisée pour etre passée à getopt.
@@ -93,7 +93,7 @@ abstract class SLiib_Cli
      *
      * @return void
      */
-    public function __construct ($options=null)
+    public function __construct ($options=NULL)
     {
         if (!is_null($options)) {
             $this->_options = array_merge($this->_defaultOpt, $options);
@@ -101,7 +101,7 @@ abstract class SLiib_Cli
             //Initialisation des paramètres passés au script
             $params = '';
             foreach ($this->_options as $option => $desc) {
-                if (!key_exists('desc', $desc)) {
+                if (!array_key_exists('desc', $desc)) {
                     $this->_options[$option]['desc'] = self::NO_DESCRIPTION;
                 }
 
@@ -119,7 +119,7 @@ abstract class SLiib_Cli
 
             //Exécution de la fonction demandée s'il y a.
             foreach ($this->_params as $param => $value) {
-                if (key_exists('func', $this->_options[$param])) {
+                if (array_key_exists('func', $this->_options[$param])) {
                     $func = $this->_options[$param]['func'];
                     if (function_exists($this->$func($value))) {
                         $this->$func($value);

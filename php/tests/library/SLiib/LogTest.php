@@ -56,6 +56,12 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     protected $_testFormat;
 
+    /**
+     * Format de test long
+     * @var string
+     */
+    protected $_testLongFormat;
+
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -65,10 +71,11 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_filename   = 'files/LogTest.log';
-        $this->_testFormat = '[%T][%d]%m';
+        $this->_filename       = 'files/LogTest.log';
+        $this->_testFormat     = '[%T][%d]%m';
+        $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
-        $this->_object = new SLiib_Log($this->_filename, true);
+        $this->_object = new SLiib_Log($this->_filename, TRUE);
 
     }
 
@@ -115,7 +122,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
         $this->assertFileExists($this->_filename);
         $text = 'w000t from SLiib_LogTest';
 
-        $this->_object->log($text, SLiib_Log::INFO, false);
+        $this->_object->log($text, SLiib_Log::INFO, FALSE);
 
         $this->assertEquals(
             $text,
@@ -139,15 +146,20 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function testWriteFailure()
     {
+        $file = 'files/unwritable.log';
+        chmod($file, 0444);
+
         try {
-            $log = new SLiib_Log('files/unwritable.log');
+            $log = new SLiib_Log($file);
             $log->debug('not permit to write');
         } catch (SLiib_Log_Exception $e) {
             $this->assertType('SLiib_Log_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail();
+        $this->fail('No exception has been raised');
 
     }
 
@@ -159,13 +171,29 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      */
     public function testColor()
     {
-        $this->_object->setFormat('[%T] [%d %t] [%U] [%@] %m');
-        echo PHP_EOL;
-        $this->_object->debug('Log DEBUG, blue color ?', true);
-        $this->_object->warn('Log WARN, yellow color ?', true);
-        $this->_object->error('Log ERROR, red color ?', true);
-        $this->_object->crit('Log CRIT, red color ?', true);
-        $this->_object->info('Log INFO, no color ?', true);
+        $this->_object->setFormat($this->_testLongFormat);
+        $this->_object->debug('Log DEBUG, blue color ?', TRUE);
+        $this->_object->warn('Log WARN, yellow color ?', TRUE);
+        $this->_object->error('Log ERROR, red color ?', TRUE);
+        $this->_object->crit('Log CRIT, red color ?', TRUE);
+        $this->_object->info('Log INFO, no color ?', TRUE);
+
+    }
+
+
+    /**
+     * Test with server Infos
+     *
+     * @return void
+     */
+    public function testWithServerInfo()
+    {
+        $GLOBALS['_SERVER'];
+        $_SERVER['REMOTE_ADDR']     = '127.0.0.1';
+        $_SERVER['HTTP_USER_AGENT'] = 'w00tw00t';
+
+        $this->_object->setFormat($this->_testLongFormat);
+        $this->_object->log('fooo');
 
     }
 
