@@ -64,7 +64,7 @@ extends SLiib_Security_Exception
      *
      * @return void
      */
-    public function __construct($name, $type, $location, $code=0, $parent=null)
+    public function __construct($name, $type, $location, $code=0, $parent=NULL)
     {
         $this->_name     = $name;
         $this->_type     = $type;

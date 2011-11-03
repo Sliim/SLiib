@@ -125,7 +125,7 @@ class SLiib_HTTP_Request
             case 'POST':
                 return $this->_request->paramsPost;
             default:
-                return NULL;
+                return array();
         }
 
     }

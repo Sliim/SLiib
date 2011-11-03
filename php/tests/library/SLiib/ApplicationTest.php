@@ -308,10 +308,9 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $this->_setServerInfo('REQUEST_METHOD', '1337');
         $this->_runApp();
-
         $params = $this->_request->getParameters();
 
-        $this->assertNull($params);
+        $this->assertTrue(empty($params));
 
     }
 

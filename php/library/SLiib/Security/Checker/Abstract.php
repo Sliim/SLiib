@@ -56,6 +56,12 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private $_patterns = array();
 
+    /**
+     * Request object
+     * @var SLiib_HTTP_Request
+     */
+    private $_request;
+
 
     /**
      * Running checker
@@ -67,9 +73,11 @@ abstract class SLiib_Security_Checker_Abstract
      */
     public final function run()
     {
+        $this->_request = SLiib_HTTP_Request::getInstance();
+
         foreach ($this->_patterns as $pattern) {
             foreach ($pattern->locations as $location) {
-                $attempt = true;
+                $attempt = TRUE;
                 switch ($location) {
                     case self::LOCATION_PARAMETERS:
                         $attempt = $this->_checkParameters($pattern->str);
@@ -156,10 +164,10 @@ abstract class SLiib_Security_Checker_Abstract
     private function _check($pattern, $string)
     {
         if (preg_match('/' . $pattern . '/', $string)) {
-            return false;
+            return FALSE;
         }
 
-        return true;
+        return TRUE;
 
     }
 
@@ -173,19 +181,19 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkParameters($pattern)
     {
-        $params = SLiib_HTTP_Request::getParameters();
+        $params = $this->_request->getParameters();
 
         foreach ($params as $key => $value) {
             if (!$this->_check($pattern, $key)) {
-                return false;
+                return FALSE;
             }
 
             if (!$this->_check($pattern, $value)) {
-                return false;
+                return FALSE;
             }
         }
 
-        return true;
+        return TRUE;
 
     }
 
@@ -199,7 +207,7 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkUserAgent($pattern)
     {
-        $userAgent = SLiib_HTTP_Request::getUserAgent();
+        $userAgent = $this->_request->getUserAgent();
         return $this->_check($pattern, $userAgent);
 
     }
@@ -214,7 +222,7 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkMethod($pattern)
     {
-        $method = SLiib_HTTP_Request::getRequestMethod();
+        $method = $this->_request->getRequestMethod();
         return $this->_check($pattern, $method);
 
     }
@@ -229,7 +237,7 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkCookies($pattern)
     {
-        $cookies = SLiib_HTTP_Request::getCookies();
+        $cookies = $this->_request->getCookies();
         return $this->_check($pattern, $cookies);
 
     }
@@ -244,13 +252,15 @@ abstract class SLiib_Security_Checker_Abstract
      */
     private final function _checkReferer($pattern)
     {
-        $referer = SLiib_HTTP_Request::getReferer();
+        $referer = $this->_request->getReferer();
         return $this->_check($pattern, $cookies);
 
     }
 
+
     //TODO Excluded pattern
     //TODO Exclude location (all for default)
+    //TODO Checker extension file allowed
 
 
 }
