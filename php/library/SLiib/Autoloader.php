@@ -129,7 +129,7 @@ class SLiib_Autoloader
         include $file;
 
         array_push(static::$_isLoaded, $class);
-        return FALSE;
+        return TRUE;
 
     }
 
