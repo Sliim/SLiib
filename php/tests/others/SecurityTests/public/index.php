@@ -28,8 +28,8 @@
 
 require 'SLiib/Application.php';
 
-define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
-define('APP_PATH', realpath(ROOT_PATH . '/application/'));
-define('APP_NS', 'SecurityTests');
+define('SEC_ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
+define('SEC_APP_PATH', realpath(ROOT_PATH . '/application/'));
+define('SEC_APP_NS', 'SecurityTests');
 
-SLiib_Application::init(APP_NS, APP_PATH)->run();
+SLiib_Application::init(SEC_APP_NS, SEC_APP_PATH)->run();

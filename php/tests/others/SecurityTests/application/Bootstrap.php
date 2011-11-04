@@ -51,18 +51,17 @@ class SecurityTests_Bootstrap extends SLiib_Application_Bootstrap
             array('SecurityTests' => array('Controller' => 'controllers'))
         );
 
-        $this->_setViewPath(APP_PATH . '/views');
+        $this->_setViewPath(SEC_APP_PATH . '/views');
 
-        //Test for units tests
-        if ($GLOBALS['testBoostrapError'] === TRUE) {
-            $this->_setSecurityCheckers(
-                array('foo')
-            );
-        } else {
-            $this->_setSecurityCheckers(
-                array(new SLiib_Security_Checker_PHPCodeInject())
-            );
-        }
+        $this->_setSecurityCheckers(
+            array(
+             new SLiib_Security_Checker_PHPCodeInject(),
+             new SLiib_Security_Checker_LFI(),
+             new SLiib_Security_Checker_RFI(),
+             new SLiib_Security_Checker_SQLi(),
+             new SLiib_Security_Checker_XSS(),
+            )
+        );
 
         error_reporting(E_ALL | E_STRICT);
         set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);

@@ -28,9 +28,9 @@
 require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/Application.php';
 
-define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../others/SecurityTests/'));
-define('APP_PATH', realpath(ROOT_PATH . '/application/'));
-define('APP_NS', 'SecurityTests');
+define('SEC_ROOT_PATH', realpath(dirname(__FILE__) . '/../../others/SecurityTests/'));
+define('SEC_APP_PATH', realpath(SEC_ROOT_PATH . '/application/'));
+define('SEC_APP_NS', 'SecurityTests');
 
 /**
  * Test class for SLiib_Security*.
@@ -43,7 +43,7 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
 {
 
 
-    const ENABLE_OUTPUT_CLEANER = FALSE;
+    const ENABLE_OUTPUT_CLEANER = TRUE;
 
     /**
      * @var string
@@ -88,26 +88,34 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test invalid checkers
+     *
+     * @return void
+     */
+    public function testInvalidChecker()
+    {
+        try {
+            SLiib_Security::check(array('w00t'));
+        } catch (SLiib_Security_Exception_CheckerError $e) {
+            $this->assertType('SLiib_Security_Exception_CheckerError', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
      * Test run app with error on boostrap
      *
      * @return void
      */
-    public function testRunAppBootstrapError()
+    public function testRunApp()
     {
-        $GLOBALS['testBoostrapError'] = TRUE;
-        try {
-            $this->_runApp();
-        } catch (SLiib_Security_Exception_CheckerError $e) {
-            $GLOBALS['testBoostrapError'] = FALSE;
-            $this->assertType('SLiib_Security_Exception_CheckerError', $e);
-            return;
-        } catch (Exception $e) {
-            $GLOBALS['testBoostrapError'] = FALSE;
-            $this->fail('Bad Exception has been raised');
-        }
-
-        $GLOBALS['testBoostrapError'] = FALSE;
-        $this->fail('No exception has been raised');
+        $this->_runApp();
 
     }
 
@@ -124,8 +132,8 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
         }
 
         SLiib_Application::init(
-            APP_NS,
-            APP_PATH
+            SEC_APP_NS,
+            SEC_APP_PATH
         )->run();
 
         if (self::ENABLE_OUTPUT_CLEANER) {
