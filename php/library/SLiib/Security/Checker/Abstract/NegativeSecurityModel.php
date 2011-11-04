@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    SLiib_Security
- * @subpackage SLiib_Security_Checker
+ * @subpackage SLiib_Security_Checker_Abstract
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,13 +27,33 @@
  */
 
 /**
- * SLiib_Security_Checker_RFI
+ * SLiib_Security_Checker_Abstract_NegativeSecurityModel
  *
  * @package    SLiib_Security
- * @subpackage SLiib_Security_Checker
+ * @subpackage SLiib_Security_Checker_Abstract
  */
-class SLiib_Security_Checker_RFI
-extends SLiib_Security_Checker_Abstract_NegativeSecurityModel
+abstract class SLiib_Security_Checker_Abstract_NegativeSecurityModel
+extends SLiib_Security_Checker_Abstract
 {
+
+
+    /**
+     * Check a pattern in a string
+     *
+     * @param string $pattern Pattern to check
+     * @param string $string  String to use
+     *
+     * @return boolean
+     */
+    protected function _check($pattern, $string)
+    {
+        if (preg_match('/' . $pattern . '/', $string)) {
+            return FALSE;
+        }
+
+        return TRUE;
+
+    }
+
 
 }

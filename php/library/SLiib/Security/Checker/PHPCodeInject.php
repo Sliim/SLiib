@@ -32,7 +32,8 @@
  * @package    SLiib_Security
  * @subpackage SLiib_Security_Checker
  */
-class SLiib_Security_Checker_PHPCodeInject extends SLiib_Security_Checker_Abstract
+class SLiib_Security_Checker_PHPCodeInject
+extends SLiib_Security_Checker_Abstract_NegativeSecurityModel
 {
 
 
@@ -44,28 +45,28 @@ class SLiib_Security_Checker_PHPCodeInject extends SLiib_Security_Checker_Abstra
     public function __construct()
     {
         $this->_setName('PHP Code Injection');
-        $this->_addPattern(
+        $this->addPattern(
             'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
             'Inject `include`',
             array(
              self::LOCATION_PARAMETERS,
              self::LOCATION_USERAGENT,
             )
-        )->_addPattern(
+        )->addPattern(
             'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
             'Inject `require`',
             array(
              self::LOCATION_PARAMETERS,
              self::LOCATION_USERAGENT,
             )
-        )->_addPattern(
+        )->addPattern(
             'file_get_contents\((.*)\)',
             'Inject `file_get_contents`',
             array(
              self::LOCATION_PARAMETERS,
              self::LOCATION_USERAGENT,
             )
-        )->_addPattern(
+        )->addPattern(
             'eval\((.*)\)',
             'Inject `eval`',
             array(

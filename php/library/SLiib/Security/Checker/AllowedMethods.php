@@ -27,13 +27,40 @@
  */
 
 /**
- * SLiib_Security_Checker_RFI
+ * SLiib_Security_Checker_AllowedMethods
  *
  * @package    SLiib_Security
  * @subpackage SLiib_Security_Checker
  */
-class SLiib_Security_Checker_RFI
-extends SLiib_Security_Checker_Abstract_NegativeSecurityModel
+class SLiib_Security_Checker_AllowedMethods
+extends SLiib_Security_Checker_Abstract_PositiveSecurityModel
 {
+
+
+    /**
+     * Checker construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->_setName('Allowed methods');
+
+        $this->addPattern(
+            'GET',
+            'GET Method',
+            array(
+             self::LOCATION_HTTP_METHOD,
+            )
+        )->addPattern(
+            'POST',
+            'POST Method',
+            array(
+             self::LOCATION_HTTP_METHOD,
+            )
+        );
+
+    }
+
 
 }

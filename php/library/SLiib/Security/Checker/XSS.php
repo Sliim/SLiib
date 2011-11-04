@@ -32,7 +32,8 @@
  * @package    SLiib_Security
  * @subpackage SLiib_Security_Checker
  */
-class SLiib_Security_Checker_XSS extends SLiib_Security_Checker_Abstract
+class SLiib_Security_Checker_XSS
+extends SLiib_Security_Checker_Abstract_NegativeSecurityModel
 {
 
 }

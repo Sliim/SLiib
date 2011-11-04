@@ -113,20 +113,6 @@ abstract class SLiib_Security_Checker_Abstract
 
 
     /**
-     * Set checker name
-     *
-     * @param string $name Checker name
-     *
-     * @return void
-     */
-    protected final function _setName($name)
-    {
-        $this->_name = $name;
-
-    }
-
-
-    /**
      * Add a pattern
      *
      * @param string $pattern   Pattern to add
@@ -135,7 +121,7 @@ abstract class SLiib_Security_Checker_Abstract
      *
      * @return SLiib_Security_Checker_Abstract
      */
-    protected final function _addPattern($pattern, $type, $locations)
+    public final function addPattern($pattern, $type, $locations)
     {
         if (!is_array($locations)) {
             $locations = array($locations);
@@ -154,6 +140,20 @@ abstract class SLiib_Security_Checker_Abstract
 
 
     /**
+     * Set checker name
+     *
+     * @param string $name Checker name
+     *
+     * @return void
+     */
+    protected final function _setName($name)
+    {
+        $this->_name = $name;
+
+    }
+
+
+    /**
      * Check a pattern in a string
      *
      * @param string $pattern Pattern to check
@@ -161,15 +161,7 @@ abstract class SLiib_Security_Checker_Abstract
      *
      * @return boolean
      */
-    private function _check($pattern, $string)
-    {
-        if (preg_match('/' . $pattern . '/', $string)) {
-            return FALSE;
-        }
-
-        return TRUE;
-
-    }
+    abstract protected function _check($pattern, $string);
 
 
     /**
@@ -258,11 +250,9 @@ abstract class SLiib_Security_Checker_Abstract
     }
 
 
-    //TODO Excluded pattern
+    //TODO Excluded pattern (Add a pattern id)
     //TODO Exclude location (all for default)
     //TODO Checker extension file allowed
-    //TODO Checker Method allowed (SLiib_Security_Abstract_Allowed ?)
-    //TODO Checker IP blacklist (SLiib_Security_Abstract_Forbidden ?)
 
 
 }

@@ -32,7 +32,8 @@
  * @package    SLiib_Security
  * @subpackage SLiib_Security_Checker
  */
-class SLiib_Security_Checker_LFI extends SLiib_Security_Checker_Abstract
+class SLiib_Security_Checker_LFI
+extends SLiib_Security_Checker_Abstract_NegativeSecurityModel
 {
 
 
@@ -44,7 +45,8 @@ class SLiib_Security_Checker_LFI extends SLiib_Security_Checker_Abstract
     public function __construct()
     {
         $this->_setName('LFI');
-        $this->_addPattern(
+
+        $this->addPattern(
             '\/etc\/(.*)',
             'Traversal directory',
             array(
