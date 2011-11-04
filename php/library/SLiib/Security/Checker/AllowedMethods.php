@@ -33,7 +33,7 @@
  * @subpackage SLiib_Security_Checker
  */
 class SLiib_Security_Checker_AllowedMethods
-extends SLiib_Security_Checker_Abstract_PositiveSecurityModel
+extends SLiib_Security_Abstract_PositiveSecurityModel
 {
 
 

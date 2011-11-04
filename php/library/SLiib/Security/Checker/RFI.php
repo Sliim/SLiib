@@ -33,7 +33,7 @@
  * @subpackage SLiib_Security_Checker
  */
 class SLiib_Security_Checker_RFI
-extends SLiib_Security_Checker_Abstract_NegativeSecurityModel
+extends SLiib_Security_Abstract_NegativeSecurityModel
 {
 
 }
