@@ -407,25 +407,22 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testErrorHandler()
     {
-        //Fix PHPUnit convertErrorToException
-        $bs = new Test_Bootstrap(APP_NS);
-        set_error_handler(array($bs, 'errorHandler'));
-
+        $this->_disablePhpUnitErrorHandler();
         $this->_setServerInfo('REQUEST_URI', '/test/errorhandler');
 
         try {
             $this->_runApp();
         } catch (RuntimeException $e) {
             $this->assertType('RuntimeException', $e);
-
-            set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
+            $this->_enablePhpunitErrorHandler();
             return;
-        }  catch (Exception $e) {
+        } catch (PHPUnit_Framework_Error $e) {
+            $this->_enablePhpunitErrorHandler();
             $this->fail('Bad exception has been raised');
         }
 
+        $this->_enablePhpunitErrorHandler();
         $this->fail('No exception has been raised');
-        set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
 
     }
 
@@ -478,6 +475,31 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $this->_setServerInfo('REQUEST_URI', '/test/javascript');
         $this->_runApp();
+
+    }
+
+
+    /**
+     * Enable PHPUnit error handler
+     *
+     * @return void
+     */
+    private function _enablePhpunitErrorHandler()
+    {
+        set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
+
+    }
+
+
+    /**
+     * Disable PHPUnit error handler
+     *
+     * @return void
+     */
+    private function _disablePhpUnitErrorHandler()
+    {
+        $bs = new Test_Bootstrap(APP_NS);
+        set_error_handler(array($bs, 'errorHandler'));
 
     }
 
