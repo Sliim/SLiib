@@ -1,0 +1,11 @@
+<h1><?php echo $this->bigtitle; ?></h1>
+<h2><?php echo $this->title; ?></h2>
+<pre><?php echo $this->message; ?></pre>
+<br /><br />
+<ul>
+<?php
+    foreach ($this->tests as $link => $test) {
+        echo '<li>Test <a href="' . $link . '">' . $test . '</a></li>' . PHP_EOL;
+    }
+?>
+</ul>

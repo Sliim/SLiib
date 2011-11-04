@@ -261,6 +261,8 @@ abstract class SLiib_Security_Checker_Abstract
     //TODO Excluded pattern
     //TODO Exclude location (all for default)
     //TODO Checker extension file allowed
+    //TODO Checker Method allowed (SLiib_Security_Abstract_Allowed ?)
+    //TODO Checker IP blacklist (SLiib_Security_Abstract_Forbidden ?)
 
 
 }
