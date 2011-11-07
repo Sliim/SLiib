@@ -88,7 +88,7 @@ class SLiib_Autoloader
      *
      * @param string $class Classe à charger.
      *
-     * @return bool
+     * @return boolean
      */
     public static function autoload($class)
     {

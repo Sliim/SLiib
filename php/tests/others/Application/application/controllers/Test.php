@@ -174,7 +174,7 @@ class Test_Controller_Test extends SLiib_Application_Controller
     /**
      * Test error handler
      *
-     * @return bool
+     * @return boolean
      */
     public function errorhandlerAction()
     {
