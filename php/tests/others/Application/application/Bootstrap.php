@@ -65,10 +65,17 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
             $this->_setViewPath(APP_PATH . '/views');
         }
 
+        $allowedMethod = new SLiib_Security_Checker_AllowedMethods();
+        $allowedMethod->addAllowedElement(1200, '1337'); //Allow 1337 method (just for tests)
+
         $this->_setSecurityCheckers(
             array(
-             new SLiib_Security_Checker_LFI(),
              new SLiib_Security_Checker_PHPCodeInject(),
+             new SLiib_Security_Checker_LFI(),
+             new SLiib_Security_Checker_RFI(),
+             new SLiib_Security_Checker_SQLi(),
+             new SLiib_Security_Checker_XSS(),
+             $allowedMethod,
             )
         );
 

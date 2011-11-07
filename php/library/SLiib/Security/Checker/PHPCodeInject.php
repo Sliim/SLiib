@@ -45,33 +45,46 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
     public function __construct()
     {
         $this->_setName('PHP Code Injection');
-        $this->addPattern(
-            'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
-            'Inject `include`',
-            array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+
+        $this->addRule(
+            new SLiib_Security_Rule(
+                1100,
+                'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
+                'Inject `include`',
+                array(
+                 self::LOCATION_PARAMETERS,
+                 self::LOCATION_USERAGENT,
+                )
             )
-        )->addPattern(
-            'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
-            'Inject `require`',
-            array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+        )->addRule(
+            new SLiib_Security_Rule(
+                1101,
+                'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
+                'Inject `require`',
+                array(
+                 self::LOCATION_PARAMETERS,
+                 self::LOCATION_USERAGENT,
+                )
             )
-        )->addPattern(
-            'file_get_contents\((.*)\)',
-            'Inject `file_get_contents`',
-            array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+        )->addRule(
+            new SLiib_Security_Rule(
+                1102,
+                'file_get_contents\((.*)\)',
+                'Inject `file_get_contents`',
+                array(
+                 self::LOCATION_PARAMETERS,
+                 self::LOCATION_USERAGENT,
+                )
             )
-        )->addPattern(
-            'eval\((.*)\)',
-            'Inject `eval`',
-            array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+        )->addRule(
+            new SLiib_Security_Rule(
+                1103,
+                'eval\((.*)\)',
+                'Inject `eval`',
+                array(
+                 self::LOCATION_PARAMETERS,
+                 self::LOCATION_USERAGENT,
+                )
             )
         );
 

@@ -36,6 +36,12 @@ abstract class SLiib_Security_Abstract_NegativeSecurityModel
 extends SLiib_Security_Abstract
 {
 
+    /**
+     * Security model
+     * @var string
+     */
+    protected $_model = self::MODEL_NEGATIVE;
+
 
     /**
      * Check a pattern in a string

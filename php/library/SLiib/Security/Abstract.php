@@ -45,22 +45,58 @@ abstract class SLiib_Security_Abstract
     const LOCATION_REFERER     = 'Referer';
 
     /**
+     * Security model
+     */
+    const MODEL_NEGATIVE = 'Negative';
+    const MODEL_POSITIVE = 'Positive';
+
+    /**
+     * Security model
+     * @var string
+     */
+    protected $_model = NULL;
+
+    /**
      * Checker name
      * @var string
      */
     private $_name;
 
     /**
-     * List of patterns
+     * List of rules
      * @var array
      */
-    private $_patterns = array();
+    private $_rules = array();
 
     /**
      * Request object
      * @var SLiib_HTTP_Request
      */
     private $_request;
+
+
+    /**
+     * Construct
+     *
+     * @throws SLiib_Security_Exception
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        if (is_null($this->_model)) {
+            throw new SLiib_Security_Exception(
+                'Security model undefined'
+            );
+        }
+
+        if (!in_array($this->_model, array('Positive', 'Negative'))) {
+            throw new SLiib_Security_Exception(
+                'Security model `' . $this->_model . '` invalid'
+            );
+        }
+
+    }
 
 
     /**
@@ -75,24 +111,23 @@ abstract class SLiib_Security_Abstract
     {
         $this->_request = SLiib_HTTP_Request::getInstance();
 
-        foreach ($this->_patterns as $pattern) {
-            foreach ($pattern->locations as $location) {
-                $attempt = TRUE;
+        foreach ($this->_rules as $rule) {
+            foreach ($rule->getLocation() as $location) {
                 switch ($location) {
                     case self::LOCATION_PARAMETERS:
-                        $attempt = $this->_checkParameters($pattern->str);
+                        $result = $this->_checkParameters($rule->getPattern());
                         break;
                     case self::LOCATION_USERAGENT:
-                        $attempt = $this->_checkUserAgent($pattern->str);
+                        $result = $this->_checkUserAgent($rule->getPattern());
                         break;
                     case self::LOCATION_HTTP_METHOD:
-                        $attempt = $this->_checkMethod($pattern->str);
+                        $result = $this->_checkMethod($rule->getPattern());
                         break;
                     case self::LOCATION_COOKIES:
-                        //TODO
+                        $result = $this->_checkCookies($rule->getPattern());
                         break;
-                    case self::LOCATION_USERAGENT:
-                        //TODO
+                    case self::LOCATION_REFERER:
+                        $result = $this->_checkReferer($rule->getPattern());
                         break;
                     default:
                         throw new SLiib_Security_Exception_CheckerError(
@@ -101,9 +136,9 @@ abstract class SLiib_Security_Abstract
                         break;
                 }
 
-                if (!$attempt) {
+                if (!$result) {
                     throw new SLiib_Security_Exception_HackingAttempt(
-                        $this->_name, $pattern->type, $location
+                        $this->_name, $rule->getName(), $location
                     );
                 }
             }
@@ -115,25 +150,21 @@ abstract class SLiib_Security_Abstract
     /**
      * Add a pattern
      *
-     * @param string $pattern   Pattern to add
-     * @param string $type      Pattern type
-     * @param mixed  $locations Pattern locations
+     * @param SLiib_Security_Rule $rule Rule to add
+     *
+     * @throws SLiib_Security_Exception_CheckerError
      *
      * @return SLiib_Security_Abstract
      */
-    public final function addPattern($pattern, $type, $locations)
+    public final function addRule(SLiib_Security_Rule $rule)
     {
-        if (!is_array($locations)) {
-            $locations = array($locations);
+        if ($this->_ruleExists($rule->id)) {
+            throw new SLiib_Security_Exception_CheckerError(
+                'Id ' . $this->rule . ' already used by another rule.'
+            );
         }
 
-        $patternObj = new stdClass;
-
-        $patternObj->str       = $pattern;
-        $patternObj->type      = $type;
-        $patternObj->locations = $locations;
-
-        $this->_patterns[] = $patternObj;
+        $this->_rules[$rule->id] = $rule;
         return $this;
 
     }
@@ -162,6 +193,43 @@ abstract class SLiib_Security_Abstract
      * @return boolean
      */
     abstract protected function _check($pattern, $string);
+
+
+    /**
+     * Check if a pattern exists
+     *
+     * @param int $ruleId Rule Id
+     *
+     * @return boolean
+     */
+    protected final function _ruleExists($ruleId)
+    {
+        return array_key_exists($ruleId, $this->_rules);
+
+    }
+
+
+    /**
+     * Reload rule pattern
+     *
+     * @param int $ruleId Rule id to set pattern
+     *
+     * @throws SLiib_Security_Exception_CheckerError
+     *
+     * @return void
+     */
+    protected function _reloadPattern($ruleId)
+    {
+        if (!$this->_ruleExists($ruleId)) {
+            throw new SLiib_Security_Exception_CheckerError(
+                'Rule id ' . $ruleId . ' unknown.'
+            );
+        }
+
+        $pattern = '(' . implode('|', $this->_allowed) . ')';
+        $this->_rules[$ruleId]->setPattern($pattern);
+
+    }
 
 
     /**
@@ -250,8 +318,7 @@ abstract class SLiib_Security_Abstract
     }
 
 
-    //TODO Excluded pattern (Add a pattern id)
-    //TODO Exclude location (all for default)
+    //TODO Excluded pattern
     //TODO Checker extension file allowed
 
 
