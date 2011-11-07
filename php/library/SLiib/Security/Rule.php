@@ -72,8 +72,8 @@ class SLiib_Security_Rule
      */
     public function __construct($id, $name, $pattern, $location)
     {
-        $this->id   = $id;
-        $this->name = $name;
+        $this->_id   = $id;
+        $this->_name = $name;
 
         $this->setPattern($pattern);
         $this->setLocation($location);

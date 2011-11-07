@@ -38,16 +38,22 @@ extends SLiib_Security_Exception
      * Checker name
      * @var string
      */
-    private $_name;
+    private $_checkerName;
 
     /**
-     * Pattern type
+     * Rule id
+     * @var int
+     */
+    private $_ruleId;
+
+    /**
+     * Rule name
      * @var string
      */
-    private $_type;
+    private $_ruleName;
 
     /**
-     * Pattern location
+     * Rule location
      * @var string
      */
     private $_location;
@@ -56,24 +62,27 @@ extends SLiib_Security_Exception
     /**
      * Exception constructor
      *
-     * @param string    $name     Checker name
-     * @param string    $type     Pattern type
-     * @param string    $location Location check failed
-     * @param int       $code     Exception code
-     * @param Exception $parent   Parent exception
+     * @param string    $checkerName Checker name
+     * @param int       $ruleId      Rule id
+     * @param string    $ruleName    Rule name
+     * @param string    $location    Location check failed
+     * @param int       $code        Exception code
+     * @param Exception $parent      Parent exception
      *
      * @return void
      */
-    public function __construct($name, $type, $location, $code=0, $parent=NULL)
+    public function __construct($checkerName, $ruleId, $ruleName, $location, $code=0, $parent=NULL)
     {
-        $this->_name     = $name;
-        $this->_type     = $type;
-        $this->_location = $location;
+        $this->_checkerName = $checkerName;
+        $this->_ruleId      = $ruleId;
+        $this->_ruleName    = $ruleName;
+        $this->_location    = $location;
 
         $message = sprintf(
-            'Hacking Attempt : %s : Pattern [%s] found in %s',
-            $name,
-            $type,
+            'Hacking Attempt :: %s : Rule: [%s] [%d] raised in %s',
+            $checkerName,
+            $ruleName,
+            $ruleId,
             $location
         );
 

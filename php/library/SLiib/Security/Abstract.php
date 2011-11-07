@@ -138,7 +138,7 @@ abstract class SLiib_Security_Abstract
 
                 if (!$result) {
                     throw new SLiib_Security_Exception_HackingAttempt(
-                        $this->_name, $rule->getName(), $location
+                        $this->_name, $rule->getId(), $rule->getName(), $location
                     );
                 }
             }
@@ -158,13 +158,13 @@ abstract class SLiib_Security_Abstract
      */
     public final function addRule(SLiib_Security_Rule $rule)
     {
-        if ($this->_ruleExists($rule->id)) {
+        if ($this->_ruleExists($rule->getId())) {
             throw new SLiib_Security_Exception_CheckerError(
                 'Id ' . $this->rule . ' already used by another rule.'
             );
         }
 
-        $this->_rules[$rule->id] = $rule;
+        $this->_rules[$rule->getId()] = $rule;
         return $this;
 
     }
