@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/Registry.php';
 
 /**
@@ -93,7 +92,7 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         try {
             SLiib_Registry::set('myKey', $this->_string);
         } catch (SLiib_Registry_Exception $e) {
-            $this->assertType('SLiib_Registry_Exception', $e);
+            $this->assertInstanceOf('SLiib_Registry_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -114,7 +113,7 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
         try {
             $res = SLiib_Registry::get('notexist');
         } catch (SLiib_Registry_Exception $e) {
-            $this->assertType('SLiib_Registry_Exception', $e);
+            $this->assertInstanceOf('SLiib_Registry_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');

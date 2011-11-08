@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/SystemInfos.php';
 
 /**
@@ -77,10 +76,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     public function testCmdApache2()
     {
         $res = $this->_exec('CMD_APACHE2_VERSION', TRUE);
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
         $res = $this->_exec('CMD_APACHE2_COMPILED_MODULES');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
     }
 
@@ -93,10 +92,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     public function testCmdPHP()
     {
         $res = $this->_exec('CMD_PHP_VERSION');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
         $res = $this->_exec('CMD_PHP_MODULES', 'serialize');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
     }
 
@@ -109,10 +108,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     public function testCmdUname()
     {
         $res = $this->_exec('CMD_UNAME_KERNEL_RELEASE');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
         $res = $this->_exec('CMD_UNAME_OS_INFOS');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
     }
 
@@ -125,10 +124,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     public function testCmdLsbRelease()
     {
         $res = $this->_exec('CMD_LSB_RELEASE_CODENAME');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
         $res = $this->_exec('CMD_LSB_RELEASE_RELEASE');
-        $this->assertType('string', $res);
+        $this->assertInternalType('string', $res);
 
     }
 
@@ -143,7 +142,7 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
         try {
             $res = SLiib_SystemInfos::CMD_UNKNOWN();
         } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
-            $this->assertType('SLiib_SystemInfos_Exception_BadMethodCall', $e);
+            $this->assertInstanceOf('SLiib_SystemInfos_Exception_BadMethodCall', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
