@@ -40,7 +40,7 @@ abstract class SLiib_Security_Abstract
      */
     const LOCATION_PARAMETERS  = 'Parameters';
     const LOCATION_USERAGENT   = 'UserAgent';
-    const LOCATION_HTTP_METHOD = 'Method';
+    const LOCATION_HTTP_METHOD = 'HTTP Method Request';
     const LOCATION_COOKIES     = 'Cookies';
     const LOCATION_REFERER     = 'Referer';
 
@@ -171,6 +171,26 @@ abstract class SLiib_Security_Abstract
 
 
     /**
+     * Get a rule defined by an id
+     *
+     * @param int $ruleId Rule Id to get
+     *
+     * @throws SLiib_Security_Exception_CheckerError
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function getRule($ruleId)
+    {
+        if (!$this->_ruleExists($ruleId)) {
+            throw new SLiib_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
+        }
+
+        return $this->_rules[$ruleId];
+
+    }
+
+
+    /**
      * Set checker name
      *
      * @param string $name Checker name
@@ -205,29 +225,6 @@ abstract class SLiib_Security_Abstract
     protected final function _ruleExists($ruleId)
     {
         return array_key_exists($ruleId, $this->_rules);
-
-    }
-
-
-    /**
-     * Reload rule pattern
-     *
-     * @param int $ruleId Rule id to set pattern
-     *
-     * @throws SLiib_Security_Exception_CheckerError
-     *
-     * @return void
-     */
-    protected function _reloadPattern($ruleId)
-    {
-        if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_Security_Exception_CheckerError(
-                'Rule id ' . $ruleId . ' unknown.'
-            );
-        }
-
-        $pattern = '(' . implode('|', $this->_allowed) . ')';
-        $this->_rules[$ruleId]->setPattern($pattern);
 
     }
 

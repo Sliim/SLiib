@@ -66,7 +66,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
         }
 
         $allowedMethod = new SLiib_Security_Checker_AllowedMethods();
-        $allowedMethod->addAllowedElement(1200, '1337'); //Allow 1337 method (just for tests)
+        $allowedMethod->getRule(1200)->addPatternElement('1337');
 
         $this->_setSecurityCheckers(
             array(

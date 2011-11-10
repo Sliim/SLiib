@@ -45,17 +45,18 @@ extends SLiib_Security_Abstract_PositiveSecurityModel
     public function __construct()
     {
         $this->_setName('Allowed methods');
-        $this->_allowed = array(
-                           'GET',
-                           'POST',
-                          );
+        $allowed = array(
+                    'GET',
+                    'POST',
+                   );
 
         $rule = new SLiib_Security_Rule(
             1200,
-            'Valid Method',
-            '(GET|POST)',
-            self::LOCATION_HTTP_METHOD
+            'Valid Method'
         );
+
+        $rule->setLocation(self::LOCATION_HTTP_METHOD)
+            ->addPatternElement($allowed);
 
         $this->addRule($rule);
 

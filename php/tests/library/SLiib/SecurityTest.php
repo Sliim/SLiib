@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/Application.php';
 
 /**
@@ -50,7 +49,7 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
         try {
             SLiib_Security::check(array('w00t'));
         } catch (SLiib_Security_Exception_CheckerError $e) {
-            $this->assertType('SLiib_Security_Exception_CheckerError', $e);
+            $this->assertInstanceOf('SLiib_Security_Exception_CheckerError', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');

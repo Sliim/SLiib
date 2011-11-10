@@ -57,7 +57,13 @@ class SLiib_Security_Rule
      * Rule location
      * @var array
      */
-    private $_location;
+    private $_location = array();
+
+    /**
+     * Element Pattern
+     * @var array
+     */
+    private $_patternElements = array();
 
 
     /**
@@ -70,13 +76,18 @@ class SLiib_Security_Rule
      *
      * @return void
      */
-    public function __construct($id, $name, $pattern, $location)
+    public function __construct($id, $name, $pattern=NULL, $location=NULL)
     {
         $this->_id   = $id;
         $this->_name = $name;
 
-        $this->setPattern($pattern);
-        $this->setLocation($location);
+        if (!is_null($pattern)) {
+            $this->setPattern($pattern);
+        }
+
+        if (!is_null($location)) {
+            $this->setLocation($location);
+        }
 
     }
 
@@ -131,14 +142,16 @@ class SLiib_Security_Rule
 
     /**
      * Pattern setter
+     * This disable element pattern !
      *
      * @param string $pattern Pattern to set
      *
-     * @return void
+     * @return SLiib_Security_Rule
      */
     public function setPattern($pattern)
     {
         $this->_pattern = $pattern;
+        return $this;
 
     }
 
@@ -148,7 +161,7 @@ class SLiib_Security_Rule
      *
      * @param mixed $location Location tu set
      *
-     * @return void
+     * @return SLiib_Security_Rule
      */
     public function setLocation($location)
     {
@@ -157,6 +170,41 @@ class SLiib_Security_Rule
         }
 
         $this->_location = $location;
+        return $this;
+
+    }
+
+
+    /**
+     * Add an element Pattern
+     *
+     * @param mixed $element Element to add
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function addPatternElement($element)
+    {
+        if (is_array($element)) {
+            $this->_patternElements = array_merge($this->_patternElements, $element);
+        } else {
+            array_push($this->_patternElements, $element);
+        }
+
+        $this->_reloadPattern();
+        return $this;
+
+    }
+
+
+    /**
+     * Reload rule pattern
+     *
+     * @return void
+     */
+    private function _reloadPattern()
+    {
+        $pattern = '(' . implode('|', $this->_patternElements) . ')';
+        $this->setPattern($pattern);
 
     }
 
