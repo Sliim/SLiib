@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/SolR.php';
 
 /**
@@ -195,7 +194,7 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
         try {
             $object = new SLiib_SolR($this->_host, 1337, TRUE);
         } catch (SLiib_SolR_Exception $e) {
-            $this->assertType('SLiib_SolR_Exception', $e);
+            $this->assertInstanceOf('SLiib_SolR_Exception', $e);
         }
 
         $object = new SLiib_SolR($this->_host, 1337, FALSE);

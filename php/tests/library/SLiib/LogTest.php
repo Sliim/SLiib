@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/Log.php';
 
 /**
@@ -153,7 +152,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
             $log = new SLiib_Log($file);
             $log->debug('not permit to write');
         } catch (SLiib_Log_Exception $e) {
-            $this->assertType('SLiib_Log_Exception', $e);
+            $this->assertInstanceOf('SLiib_Log_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');

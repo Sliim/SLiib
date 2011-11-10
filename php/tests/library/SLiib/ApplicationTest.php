@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/Application.php';
 
 define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../others/Application/'));
@@ -96,7 +95,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             SLiib_Application::getInstance();
         } catch (SLiib_Application_Exception $e) {
-            $this->assertType('SLiib_Application_Exception', $e);
+            $this->assertInstanceOf('SLiib_Application_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -117,7 +116,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             SLiib_HTTP_Request::getInstance();
         } catch (SLiib_HTTP_Request_Exception $e) {
-            $this->assertType('SLiib_HTTP_Request_Exception', $e);
+            $this->assertInstanceOf('SLiib_HTTP_Request_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -141,7 +140,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
                 ROOT_PATH
             );
         } catch (SLiib_Application_Exception $e) {
-            $this->assertType('SLiib_Application_Exception', $e);
+            $this->assertInstanceOf('SLiib_Application_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -198,7 +197,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         $this->_runApp();
 
         $params = $this->_request->getParameters();
-        $this->assertType('array', $params);
+        $this->assertInternalType('array', $params);
         $this->assertArrayHasKey('foo', $params);
         $this->assertEquals('bar', $params['foo']);
         $this->assertArrayHasKey('1337', $params);
@@ -235,7 +234,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             $this->_runApp();
         } catch (SLiib_Application_Controller_Exception_BadMethodCall $e) {
-            $this->assertType('SLiib_Application_Controller_Exception_BadMethodCall', $e);
+            $this->assertInstanceOf('SLiib_Application_Controller_Exception_BadMethodCall', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -258,7 +257,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             $this->_runApp();
         } catch (SLiib_Application_Controller_Exception $e) {
-            $this->assertType('SLiib_Application_Controller_Exception', $e);
+            $this->assertInstanceOf('SLiib_Application_Controller_Exception', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -287,7 +286,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         $this->_runApp();
 
         $params = $this->_request->getParameters();
-        $this->assertType('array', $params);
+        $this->assertInternalType('array', $params);
         $this->assertArrayHasKey('foo', $params);
         $this->assertEquals('bar', $params['foo']);
         $this->assertArrayHasKey('1337', $params);
@@ -342,7 +341,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             $this->_runApp();
         } catch (SLiib_Application_View_Exception_InvalidParam $e) {
-            $this->assertType('SLiib_Application_View_Exception_InvalidParam', $e);
+            $this->assertInstanceOf('SLiib_Application_View_Exception_InvalidParam', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -365,7 +364,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             $this->_runApp();
         } catch (SLiib_Application_View_Exception_InvalidParam $e) {
-            $this->assertType('SLiib_Application_View_Exception_InvalidParam', $e);
+            $this->assertInstanceOf('SLiib_Application_View_Exception_InvalidParam', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -388,7 +387,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         try {
             $this->_runApp();
         } catch (SLiib_Application_View_Exception_InvalidParam $e) {
-            $this->assertType('SLiib_Application_View_Exception_InvalidParam', $e);
+            $this->assertInstanceOf('SLiib_Application_View_Exception_InvalidParam', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -406,25 +405,22 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testErrorHandler()
     {
-        //Fix PHPUnit convertErrorToException
-        $bs = new Test_Bootstrap(APP_NS);
-        set_error_handler(array($bs, 'errorHandler'));
-
+        $this->_disablePhpUnitErrorHandler();
         $this->_setServerInfo('REQUEST_URI', '/test/errorhandler');
 
         try {
             $this->_runApp();
         } catch (RuntimeException $e) {
-            $this->assertType('RuntimeException', $e);
-
-            set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
+            $this->assertInstanceOf('RuntimeException', $e);
+            $this->_enablePhpunitErrorHandler();
             return;
-        }  catch (Exception $e) {
+        } catch (PHPUnit_Framework_Error $e) {
+            $this->_enablePhpunitErrorHandler();
             $this->fail('Bad exception has been raised');
         }
 
+        $this->_enablePhpunitErrorHandler();
         $this->fail('No exception has been raised');
-        set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
 
     }
 
@@ -477,6 +473,31 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $this->_setServerInfo('REQUEST_URI', '/test/javascript');
         $this->_runApp();
+
+    }
+
+
+    /**
+     * Enable PHPUnit error handler
+     *
+     * @return void
+     */
+    private function _enablePhpunitErrorHandler()
+    {
+        set_error_handler(array('PHPUnit_Util_ErrorHandler', 'handleError'));
+
+    }
+
+
+    /**
+     * Disable PHPUnit error handler
+     *
+     * @return void
+     */
+    private function _disablePhpUnitErrorHandler()
+    {
+        $bs = new Test_Bootstrap(APP_NS);
+        set_error_handler(array($bs, 'errorHandler'));
 
     }
 

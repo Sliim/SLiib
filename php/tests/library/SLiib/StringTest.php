@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/String.php';
 
 /**

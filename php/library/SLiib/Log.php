@@ -63,8 +63,8 @@ class SLiib_Log
     /**
      * Constructor, initialise le file descriptor.
      *
-     * @param string         $fileOutput Nom/Chemin vers le fichier à utiliser.
-     * @param bool[optional] $add        True pour ajouter à la suite du fichier.
+     * @param string            $fileOutput Nom/Chemin vers le fichier à utiliser.
+     * @param boolean[optional] $add        True pour ajouter à la suite du fichier.
      *
      * @throws SLiib_Log_Exception
      *
@@ -101,9 +101,9 @@ class SLiib_Log
     /**
      * Écrit dans le fichier de log
      *
-     * @param string         $string Chaine à écrire dans le fichier
-     * @param string         $type   Type de log
-     * @param bool[optional] $echo   Affiche ou non sur la sortie standard.
+     * @param string            $string Chaine à écrire dans le fichier
+     * @param string            $type   Type de log
+     * @param boolean[optional] $echo   Affiche ou non sur la sortie standard.
      *
      * @throws SLiib_Log_Exception
      *

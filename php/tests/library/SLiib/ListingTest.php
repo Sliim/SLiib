@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'PHPUnit/Framework.php';
 require_once 'SLiib/Listing.php';
 
 /**
@@ -80,7 +79,7 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
     {
         $list = $this->_object->getList();
 
-        $this->assertType('array', $list);
+        $this->assertInternalType('array', $list);
 
     }
 
