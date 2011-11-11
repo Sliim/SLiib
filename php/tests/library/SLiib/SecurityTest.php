@@ -60,4 +60,36 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
     }
 
 
+    public function testNoSecurityModel()
+    {
+        try {
+            $this->getMockForAbstractClass('SLiib_Security_Abstract', array(), 'SLiib_Security_Test');
+        } catch (SLiib_Security_Exception $e) {
+            $this->assertInstanceOf('SLiib_Security_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    public function testBadSecurityModel()
+    {
+        try {
+            $stubs = new Stubs_Security_BadSecModel();
+        } catch (SLiib_Security_Exception $e) {
+            $this->assertInstanceOf('SLiib_Security_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+    }
+
+
 }
+

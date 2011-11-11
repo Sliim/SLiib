@@ -19,19 +19,37 @@
  *
  * @category   SLiib
  * @package    SLiib
- * @subpackage UnitTests
+ * @subpackage UnitTests - Stubs
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.1
+ * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Autoloader.php';
 
-define('STUBS_PATH', realpath(dirname(__FILE__) . '/others/Stubs'));
+/**
+ * Stubs_Security_BadSecModel
+ *
+ * @package    SLiib
+ * @subpackage UnitTests - Stubs
+ */
+class Stubs_Security_BadSecModel extends SLiib_Security_Abstract
+{
 
-SLiib_Autoloader::init(
-    array(
-     'SLiib' => 'SLiib',
-     'Stubs' => STUBS_PATH,
-    )
-);
+    /**
+     * @var string
+     */
+    protected $_model = 'Bad_Security_Model';
+
+
+    /**
+     * Check a pattern in a string
+     *
+     * @param string $pattern Pattern to check
+     * @param string $string  String to use
+     *
+     * @return boolean
+     */
+    protected function _check($pattern, $string){}
+
+
+}
