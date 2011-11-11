@@ -49,8 +49,8 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
         $this->addRule(
             new SLiib_Security_Rule(
                 1100,
-                'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
                 'Inject `include`',
+                'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
                 array(
                  self::LOCATION_PARAMETERS,
                  self::LOCATION_USERAGENT,
@@ -59,8 +59,8 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
         )->addRule(
             new SLiib_Security_Rule(
                 1101,
-                'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
                 'Inject `require`',
+                'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
                 array(
                  self::LOCATION_PARAMETERS,
                  self::LOCATION_USERAGENT,
@@ -69,8 +69,8 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
         )->addRule(
             new SLiib_Security_Rule(
                 1102,
-                'file_get_contents\((.*)\)',
                 'Inject `file_get_contents`',
+                'file_get_contents\((.*)\)',
                 array(
                  self::LOCATION_PARAMETERS,
                  self::LOCATION_USERAGENT,
@@ -79,8 +79,8 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
         )->addRule(
             new SLiib_Security_Rule(
                 1103,
-                'eval\((.*)\)',
                 'Inject `eval`',
+                'eval\((.*)\)',
                 array(
                  self::LOCATION_PARAMETERS,
                  self::LOCATION_USERAGENT,

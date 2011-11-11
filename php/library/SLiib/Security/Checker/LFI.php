@@ -49,8 +49,8 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
         $this->addRule(
             new SLiib_Security_Rule(
                 1300,
-                '\/etc\/(.*)',
                 'Traversal directory',
+                '\/etc\/(.*)',
                 array(
                  self::LOCATION_PARAMETERS,
                  self::LOCATION_USERAGENT,
