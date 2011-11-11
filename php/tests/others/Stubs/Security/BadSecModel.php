@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    SLiib
- * @subpackage UnitTests - Stubs
+ * @subpackage UnitTests_-_Stubs
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -30,7 +30,7 @@
  * Stubs_Security_BadSecModel
  *
  * @package    SLiib
- * @subpackage UnitTests - Stubs
+ * @subpackage UnitTests_-_Stubs
  */
 class Stubs_Security_BadSecModel extends SLiib_Security_Abstract
 {
@@ -49,7 +49,10 @@ class Stubs_Security_BadSecModel extends SLiib_Security_Abstract
      *
      * @return boolean
      */
-    protected function _check($pattern, $string){}
+    protected function _check($pattern, $string)
+    {
+
+    }
 
 
 }

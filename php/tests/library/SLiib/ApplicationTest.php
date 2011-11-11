@@ -510,11 +510,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $this->_setServerInfo('REQUEST_METHOD', 'POST');
         try {
-            $this->_setPost(
-                array(
-                 '1337' => '../../../../../../../etc/passwd%00',
-                )
-            );
+            $this->_setPost(array('1337' => '../../../../../../../etc/passwd%00'));
 
             $this->_runApp();
         } catch (SLiib_Security_Exception_HackingAttempt $e) {
@@ -525,6 +521,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         }
 
         $this->fail('No exception has been raised');
+
     }
 
 

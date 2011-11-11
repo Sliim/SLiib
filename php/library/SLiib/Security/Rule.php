@@ -54,10 +54,10 @@ class SLiib_Security_Rule
     private $_pattern;
 
     /**
-     * Rule location
+     * Rule locations
      * @var array
      */
-    private $_location = array();
+    private $_locations = array();
 
     /**
      * Element Pattern
@@ -86,7 +86,13 @@ class SLiib_Security_Rule
         }
 
         if (!is_null($location)) {
-            $this->setLocation($location);
+            if (!is_array($location)) {
+                $location = array($location);
+            }
+
+            foreach ($location as $l) {
+                $this->addLocation($l);
+            }
         }
 
     }
@@ -135,7 +141,7 @@ class SLiib_Security_Rule
      */
     public function getLocation()
     {
-        return $this->_location;
+        return $this->_locations;
 
     }
 
@@ -157,19 +163,39 @@ class SLiib_Security_Rule
 
 
     /**
-     * Location setter
+     * Add a rule's location
      *
-     * @param mixed $location Location tu set
+     * @param string $location Location to add
      *
      * @return SLiib_Security_Rule
      */
-    public function setLocation($location)
+    public function addLocation($location)
     {
-        if (!is_array($location)) {
-            $location = array($location);
+        if (is_array($location)) {
+            $this->_locations = array_unique(array_merge($this->_locations, $location));
+        } else if (!in_array($location, $this->_locations)) {
+            array_push($this->_locations, $location);
         }
 
-        $this->_location = $location;
+        return $this;
+
+    }
+
+
+    /**
+     * Delete a rule's location
+     *
+     * @param string $location Location to add
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function deleteLocation($location)
+    {
+        if (in_array($location, $this->_locations)) {
+            $key = array_search($location, $this->_locations);
+            unset($this->_locations[$key]);
+        }
+
         return $this;
 
     }
@@ -185,7 +211,7 @@ class SLiib_Security_Rule
     public function addPatternElement($element)
     {
         if (is_array($element)) {
-            $this->_patternElements = array_merge($this->_patternElements, $element);
+            $this->_patternElements = array_unique(array_merge($this->_patternElements, $element));
         } else {
             array_push($this->_patternElements, $element);
         }

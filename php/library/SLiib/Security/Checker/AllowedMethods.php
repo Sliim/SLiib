@@ -55,7 +55,7 @@ extends SLiib_Security_Abstract_PositiveSecurityModel
             'Valid Method'
         );
 
-        $rule->setLocation(self::LOCATION_HTTP_METHOD)
+        $rule->addLocation(self::LOCATION_HTTP_METHOD)
             ->addPatternElement($allowed);
 
         $this->addRule($rule);
