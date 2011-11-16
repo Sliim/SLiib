@@ -148,7 +148,7 @@ abstract class SLiib_Security_Abstract
 
 
     /**
-     * Add a pattern
+     * Add a rule
      *
      * @param SLiib_Security_Rule $rule Rule to add
      *
@@ -160,7 +160,7 @@ abstract class SLiib_Security_Abstract
     {
         if ($this->_ruleExists($rule->getId())) {
             throw new SLiib_Security_Exception_CheckerError(
-                'Id ' . $this->rule . ' already used by another rule.'
+                'Id ' . $rule->getId() . ' already used by another rule.'
             );
         }
 
@@ -295,7 +295,18 @@ abstract class SLiib_Security_Abstract
     private final function _checkCookies($pattern)
     {
         $cookies = $this->_request->getCookies();
-        return $this->_check($pattern, $cookies);
+
+        foreach ($cookies as $key => $value) {
+            if (!$this->_check($pattern, $key)) {
+                return FALSE;
+            }
+
+            if (!$this->_check($pattern, $value)) {
+                return FALSE;
+            }
+        }
+
+        return TRUE;
 
     }
 
@@ -310,7 +321,7 @@ abstract class SLiib_Security_Abstract
     private final function _checkReferer($pattern)
     {
         $referer = $this->_request->getReferer();
-        return $this->_check($pattern, $cookies);
+        return $this->_check($pattern, $referer);
 
     }
 

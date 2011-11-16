@@ -32,25 +32,21 @@
  * @package    SLiib
  * @subpackage UnitTests_-_Stubs
  */
-class Stubs_Security_BadSecModel extends SLiib_Security_Abstract
+abstract class Stubs_Security_Abstract extends SLiib_Security_Abstract
 {
 
-    /**
-     * @var string
-     */
-    protected $_model = 'Bad_Security_Model';
-
 
     /**
-     * Check a pattern in a string
+     * Construct - Set model security
      *
-     * @param string $pattern Pattern to check
-     * @param string $string  String to use
+     * @param string[optional] $model Model to set
      *
-     * @return boolean
+     * @return void
      */
-    protected function _check($pattern, $string)
+    public function __construct($model='')
     {
+        $this->_model = $model;
+        parent::__construct();
 
     }
 
