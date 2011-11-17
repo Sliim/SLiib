@@ -197,8 +197,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testRunWithHackingAttemptParamKey()
     {
-        $this->_setServerInfo('REQUEST_METHOD', 'POST');
-        $this->_setPost(array('w00t' => ''));
+        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setPost(array('w00t' => ''));
+        SLiib_HTTP_Request::init();
 
         $this->setUp();
 
@@ -225,8 +226,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testRunWithHackingAttemptParamVal()
     {
-        $this->_setServerInfo('REQUEST_METHOD', 'POST');
-        $this->_setPost(array('param' => 'w00t'));
+        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setPost(array('param' => 'w00t'));
+        SLiib_HTTP_Request::init();
 
         $this->setUp();
 
@@ -253,7 +255,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testRunWithHackingAttemptCookieKey()
     {
-        $this->_setCookie(array('w00t' => ''));
+        Static_Request::setCookie(array('w00t' => ''));
+        SLiib_HTTP_Request::init();
 
         $this->setUp();
 
@@ -280,7 +283,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testRunWithHackingAttemptCookieVal()
     {
-        $this->_setCookie(array('cookie' => 'w00t'));
+        Static_Request::setCookie(array('cookie' => 'w00t'));
+        SLiib_HTTP_Request::init();
 
         $this->setUp();
 
@@ -364,56 +368,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
         }
 
         $this->fail('No exception has been raised');
-
-    }
-
-
-    /**
-     * Set index of $_SERVER for tests
-     *
-     * @param string $index Index of $_SERVER
-     * @param string $value Value to assign
-     *
-     * @return void
-     */
-    private function _setServerInfo($index, $value)
-    {
-        $GLOBALS['_SERVER'];
-        $_SERVER[$index] = $value;
-
-    }
-
-
-    /**
-     * Simulate a $_POST
-     *
-     * @param array $post $_POST you want
-     *
-     * @return void
-     */
-    private function _setPost(array $post)
-    {
-        $GLOBALS['_POST'];
-        $_POST = $post;
-
-        SLiib_HTTP_Request::init();
-
-    }
-
-
-    /**
-     * Simulate a $_COOKIE
-     *
-     * @param array $cookies $_COOKIE you want
-     *
-     * @return void
-     */
-    private function _setCookie(array $cookies)
-    {
-        $GLOBALS['_COOKIE'];
-        $_COOKIE = $cookies;
-
-        SLiib_HTTP_Request::init();
 
     }
 
