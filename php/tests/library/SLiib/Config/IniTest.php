@@ -91,9 +91,9 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         $this->_iniFile        = 'files/configs/config.ini';
         $this->_iniFail        = 'files/configs/notexist.ini';
         $this->_iniBadSection  = 'files/configs/badsection.ini';
+        $this->_iniBadKey      = 'files/configs/badkey.ini';
         $this->_iniNoParent    = 'files/configs/noparent.ini';
         $this->_iniSyntaxError = 'files/configs/syntaxerror.ini';
-        $this->_iniSEbis       = 'files/configs/syntaxerror2.ini';
         $this->_object         = new SLiib_Config_Ini($this->_iniFile);
 
     }
@@ -162,9 +162,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_Config_Exception $e) {
             $this->assertInstanceOf('SLiib_Config_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->fail("Bad exception thrown");
+        $this->fail('No exception has been raised');
 
     }
 
@@ -178,6 +180,27 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     {
         try {
             $config = new SLiib_Config_Ini($this->_iniBadSection);
+        } catch (SLiib_Config_Exception_SyntaxError $e) {
+            $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test Bad key
+     *
+     * @return void
+     */
+    public function testBadKey()
+    {
+        try {
+            $config = new SLiib_Config_Ini($this->_iniBadKey);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
             return;
@@ -220,27 +243,6 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     {
         try {
             $config = new SLiib_Config_Ini($this->_iniSyntaxError);
-        } catch (SLiib_Config_Exception_SyntaxError $e) {
-            $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
-            return;
-        } catch (Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
-
-    }
-
-
-    /**
-     * Test Syntax error directives bis
-     *
-     * @return void
-     */
-    public function testSyntaxError2()
-    {
-        try {
-            $config = new SLiib_Config_Ini($this->_iniSEbis);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
             return;

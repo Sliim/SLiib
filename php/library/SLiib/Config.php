@@ -45,12 +45,6 @@ abstract class SLiib_Config
      */
     protected $_configFile;
 
-    /**
-     * Ligne actuelle du fichier lors d'un parsing
-     * @var int
-     */
-    protected $_pointer = 0;
-
 
     /**
      * Constructeur. Charge le fichier de configuration passé en paramètre
@@ -69,7 +63,7 @@ abstract class SLiib_Config
 
         $this->_config     = new stdClass;
         $this->_configFile = $file;
-        $this->_readFile();
+        $this->_parseFile();
 
     }
 
@@ -87,11 +81,11 @@ abstract class SLiib_Config
 
 
     /**
-     * Lit le fichier de configuration
+     * Parse le fichier de configuration
      *
      * @return void
      */
-    abstract protected function _readFile();
+    abstract protected function _parseFile();
 
 
 }

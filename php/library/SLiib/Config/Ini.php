@@ -37,146 +37,140 @@ class SLiib_Config_Ini extends SLiib_Config
 
 
     /**
-     * Lit le fichier de configuration
+     * Parse le fichier de configuration
      *
      * @see SLiib_Config
-     *
-     * @throws SLiib_Config_Exception
-     *
-     * @return int Nombre de ligne lue
-     */
-    protected function _readFile()
-    {
-        $fp = fopen($this->_configFile, 'r');
-
-        $this->_pointer = 0;
-        $section        = FALSE;
-        while ($line = fgets($fp, 256)) {
-            $this->_pointer++;
-            $line = SLiib_String::clean($line);
-            if (!empty($line)) {
-                switch ($line[0]) {
-                    case ';':
-                        break;
-                    case '[':
-                        $section = $this->_initSection($line);
-                        break;
-                    default:
-                        $this->_initParam($line, $section);
-                        break;
-                }
-            }
-        }
-
-        fclose($fp);
-        return $this->_pointer;
-
-    }
-
-
-    /**
-     * Init d'une section du fichier
-     *
-     * @param string $section Section definition
-     *
-     * @throws SLiib_Config_Exception_SyntaxError
-     *
-     * @return string Section name
-     */
-    private function _initSection($section)
-    {
-        if (preg_match('/ : /', $section)) {
-            $segment = explode(' : ', $section);
-
-            if (count($segment) != 2) {
-                throw new SLiib_Config_Exception_SyntaxError(
-                    'Section definition incorrect in ' . $this->_configFile .
-                    ' on line ' . $this->_pointer
-                );
-            }
-
-            $section = SLiib_String::clean(str_replace('[', '', $segment[0]));
-            $parent  = SLiib_String::clean(str_replace(']', '', $segment[1]));
-
-            if (!isset($this->_config->$parent)) {
-                throw new SLiib_Config_Exception_SyntaxError(
-                    '`' . $parent . '` undefined in ' . $this->_configFile .
-                    ' on line ' . $this->_pointer
-                );
-            }
-
-            $this->_config->$section = clone $this->_config->$parent;
-        } else {
-            $section = str_replace(array('[', ']'), '', $section);
-
-            $this->_config->$section = new stdClass;
-        }
-
-        return $section;
-
-    }
-
-
-    /**
-     * Init un paramètre du fichier
-     *
-     * @param string $param   Paramètre à initialiser
-     * @param string $section Section concernée
      *
      * @throws SLiib_Config_Exception_SyntaxError
      *
      * @return void
      */
-    private function _initParam($param, $section=FALSE)
+    protected function _parseFile()
     {
-        $datas = explode('=', $param);
+        set_error_handler(array($this, '_errorHandler'));
 
-        if (count($datas) != 2) {
+        $config = parse_ini_file($this->_configFile, TRUE, INI_SCANNER_RAW);
+
+        restore_error_handler();
+
+        if (!$config) {
             throw new SLiib_Config_Exception_SyntaxError(
-                'Directive declaration incorrect in ' . $this->_configFile .
-                ' on line ' . $this->_pointer
+                'Can\'t parse `' . $this->_configFile . '`'
             );
         }
 
-        $key   = SLiib_String::clean($datas[0]);
-        $value = SLiib_String::clean($datas[1]);
+        $this->_config = $this->_parseSection($config);
 
-        if (strpos($key, ' ')) {
-            throw new SLiib_Config_Exception_SyntaxError(
-                'Directive name should not be spaces in ' . $this->_configFile .
-                ' on line ' . $this->_pointer
-            );
-        }
+    }
 
-        if (strpos($key, '.')) {
-            $segment = explode('.', $key);
-            $key     = array_shift($segment);
-            $cSeg    = count($segment);
-            $object  = new stdClass;
-            $parent  = NULL;
 
-            foreach ($segment as $k => $p) {
-                if (is_null($parent)) {
-                    $object->$p = new stdClass;
-                    $parent     = $object->$p;
-                } else {
-                    if ($k != $cSeg - 1) {
-                        $parent->$p = new stdClass;
-                        $parent     = $parent->$p;
-                    } else {
-                        $parent->$p = $value;
-                    }
-                }
+    /**
+     * Section parsing
+     *
+     * @param array $section Section to parse
+     *
+     * @throws SLiib_Config_Exception_SyntaxError
+     *
+     * @return stdClass
+     */
+    private function _parseSection($section)
+    {
+        $object = new stdClass();
+
+        foreach ($section as $key => $value) {
+            if (strpos($key, '.')) {
+                $value = $this->_parseMultipleSection($key, $value);
             }
 
-            $value = $object;
+            if (is_array($value)) {
+                if (preg_match('/:/', $key)) {
+                    $segment = explode(':', $key);
+
+                    if (count($segment) != 2) {
+                        throw new SLiib_Config_Exception_SyntaxError(
+                            'Section definition incorrect (' . $key . ')'
+                        );
+                    }
+
+                    $key    = SLiib_String::clean($segment[0]);
+                    $parent = SLiib_String::clean($segment[1]);
+
+                    if (!isset($object->$parent)) {
+                        throw new SLiib_Config_Exception_SyntaxError(
+                            'Try to herite `' . $key . '` to `' . $parent .
+                            '` but `' . $parent . '` does not exists.'
+                        );
+                    }
+                }
+
+                $object->$key = $this->_parseSection($value);
+                if (isset($parent)) {
+                    $object->$key = (object) array_merge(
+                        (array) $object->$parent,
+                        (array) $object->$key
+                    );
+                }
+            } else {
+                $object->$key = $value;
+            }
         }
 
-        if (!$section) {
-            $this->_config->$key = $value;
-        } else {
-            $this->_config->$section->$key = $value;
+        return $object;
+
+    }
+
+
+    /**
+     * Parse multiple section defined in a key
+     * for example : foo.bar.baz = w00t
+     * result : $object->foo->bar->baz = w00t
+     *
+     * @param string &$key  Multiple Key
+     * @param mixed  $value Origin value
+     *
+     * @return stdClass
+     */
+    private function _parseMultipleSection(&$key, $value)
+    {
+        $segment = explode('.', $key);
+        $key     = array_shift($segment);
+        $cSeg    = count($segment);
+        $object  = new stdClass;
+        $parent  = NULL;
+
+        foreach ($segment as $k => $p) {
+            if (is_null($parent)) {
+                $object->$p = new stdClass;
+                $parent     = $object->$p;
+            } else {
+                if ($k != $cSeg - 1) {
+                    $parent->$p = new stdClass;
+                    $parent     = $parent->$p;
+                } else {
+                    $parent->$p = $value;
+                }
+            }
         }
+
+        return $object;
+
+    }
+
+
+    /**
+     * Error handler for syntax error
+     *
+     * @param int    $errno  Error level
+     * @param string $errstr Error message
+     *
+     * @throws SLiib_Config_Exception_SyntaxError
+     *
+     * @return void
+     */
+    private function _errorHandler($errno, $errstr)
+    {
+        restore_error_handler();
+        throw new SLiib_Config_Exception_SyntaxError('[' . $errno . ']' . $errstr);
 
     }
 
