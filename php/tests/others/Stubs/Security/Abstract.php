@@ -45,8 +45,28 @@ abstract class Stubs_Security_Abstract extends SLiib_Security_Abstract
      */
     public function __construct($model='')
     {
-        $this->_model = $model;
+        $this->_model   = $model;
+        $this->_setName = 'Stubs Checker';
         parent::__construct();
+
+    }
+
+
+    /**
+     * Check a pattern in a string
+     *
+     * @param string $pattern Pattern to check
+     * @param string $string  String to use
+     *
+     * @return boolean
+     */
+    protected function _check($pattern, $string)
+    {
+        if (preg_match('/' . $pattern . '/', $string)) {
+            return FALSE;
+        }
+
+        return TRUE;
 
     }
 

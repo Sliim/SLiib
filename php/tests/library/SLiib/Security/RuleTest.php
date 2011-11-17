@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Security/Rule.php';
 
 /**
  * Test class for SLiib_Security_Rule.
