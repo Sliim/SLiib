@@ -65,17 +65,8 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
             $this->_setViewPath(APP_PATH . '/views');
         }
 
-        //TODO Nettoyer après avoir fini les test unitaire pour SLiib_Security_*
         $allowedMethod = new SLiib_Security_Checker_AllowedMethods();
         $allowedMethod->getRule(1200)->addPatternElement('1337');
-
-        $lfi = new SLiib_Security_Checker_LFI();
-        $lfi->getRule(1300)
-            ->addLocation(SLiib_Security_Abstract::LOCATION_COOKIES)
-            ->addLocation(SLiib_Security_Abstract::LOCATION_HTTP_METHOD)
-            ->addLocation(SLiib_Security_Abstract::LOCATION_PARAMETERS)
-            ->addLocation(SLiib_Security_Abstract::LOCATION_REFERER)
-            ->addLocation(SLiib_Security_Abstract::LOCATION_USERAGENT);
 
         $this->_setSecurityCheckers(
             array(
@@ -83,7 +74,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
              new SLiib_Security_Checker_RFI(),
              new SLiib_Security_Checker_SQLi(),
              new SLiib_Security_Checker_XSS(),
-             $lfi,
+             new SLiib_Security_Checker_LFI(),
              $allowedMethod,
             )
         );

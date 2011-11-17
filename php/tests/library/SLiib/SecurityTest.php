@@ -46,12 +46,9 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
      */
     public function testCheck()
     {
+        $mock = $this->getMockForAbstractClass('Stubs_Security_Abstract', array('Positive'));
         SLiib_HTTP_Request::init();
-        SLiib_Security::check(
-            array(
-             $this->getMockForAbstractClass('Stubs_Security_Abstract', array('Positive'))
-            )
-        );
+        SLiib_Security::check(array($mock));
 
     }
 

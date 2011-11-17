@@ -32,8 +32,8 @@ define('STATIC_PATH', realpath(dirname(__FILE__) . '/others/Static'));
 
 SLiib_Autoloader::init(
     array(
-     'SLiib' => 'SLiib',
-     'Stubs' => STUBS_PATH,
+     'SLiib'  => 'SLiib',
+     'Stubs'  => STUBS_PATH,
      'Static' => STATIC_PATH,
     )
 );
