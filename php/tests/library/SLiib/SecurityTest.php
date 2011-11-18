@@ -40,7 +40,7 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
     /**
      * Test check
      *
-     * @cover SLiib_Security::check
+     * @covers SLiib_Security::check
      *
      * @return void
      */
@@ -56,7 +56,8 @@ class SLiib_SecurityTest extends PHPUnit_Framework_TestCase
     /**
      * Test check invalid checkers
      *
-     * @cover SLiib_Security::check
+     * @covers SLiib_Security::check
+     * @covers SLiib_Security_Exception_CheckerError::__construct
      *
      * @return void
      */

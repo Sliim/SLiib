@@ -89,7 +89,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test no security model
      *
-     * @cover SLiib_Security_Abstract::__construct
+     * @covers SLiib_Security_Abstract::__construct
+     * @covers SLiib_Security_Exception
      *
      * @return void
      */
@@ -112,7 +113,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test bad security model
      *
-     * @cover SLiib_Security_Abstract::__construct
+     * @covers SLiib_Security_Abstract::__construct
+     * @covers SLiib_Security_Exception
      *
      * @return void
      */
@@ -168,6 +170,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      * Test run with bad location
      *
      * @covers SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Exception_CheckerError
      *
      * @return void
      */
@@ -192,7 +195,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in parameter key
      *
-     * @cover SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::_checkParameters
+     * @covers SLiib_Security_Exception_HackingAttempt
      *
      * @return void
      */
@@ -221,7 +226,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in parameter Value
      *
-     * @cover SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::_checkParameters
+     * @covers SLiib_Security_Exception_HackingAttempt
      *
      * @return void
      */
@@ -250,7 +257,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in cookie key
      *
-     * @cover SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::_checkCookies
+     * @covers SLiib_Security_Exception_HackingAttempt
      *
      * @return void
      */
@@ -278,7 +287,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in cookie value
      *
-     * @cover SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::run
+     * @covers SLiib_Security_Abstract::_checkCookies
+     * @covers SLiib_Security_Exception_HackingAttempt
      *
      * @return void
      */
@@ -306,7 +317,9 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test add rule
      *
-     * @cover SLiib_Security_Abstract::addRule
+     * @covers SLiib_Security_Abstract::addRule
+     * @covers SLiib_Security_Abstract::getRule
+     * @covers SLiib_Security_Exception_CheckerError
      *
      * @return void
      */
@@ -349,7 +362,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test get rule
      *
-     * @cover SLiib_Security_Abstract::getRule
+     * @covers SLiib_Security_Abstract::getRule
+     * @covers SLiib_Security_Exception_CheckerError
      *
      * @return void
      */
@@ -376,7 +390,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test get all rules
      *
-     * @cover SLiib_Security_Abstract::getRules
+     * @covers SLiib_Security_Abstract::getRules
      *
      * @return void
      */
@@ -393,7 +407,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test delete rule
      *
-     * @cover SLiib_Security_Abstract::deleteRule
+     * @covers SLiib_Security_Abstract::deleteRule
+     * @covers SLiib_Security_Abstract::getRules
      *
      * @return void
      */
@@ -412,7 +427,8 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test delete rule not exists
      *
-     * @cover SLiib_Security_Abstract::deleteRule
+     * @covers SLiib_Security_Abstract::deleteRule
+     * @covers SLiib_Security_Exception_CheckerError
      *
      * @return void
      */
