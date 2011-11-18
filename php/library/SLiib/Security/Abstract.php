@@ -171,6 +171,27 @@ abstract class SLiib_Security_Abstract
 
 
     /**
+     * Delete a rule
+     *
+     * @param int $ruleId Rule id to delete
+     *
+     * @throws SLiib_Security_Exception_CheckerError
+     *
+     * @return SLiib_Security_Abstract
+     */
+    public function deleteRule($ruleId)
+    {
+        if (!$this->_ruleExists($ruleId)) {
+            throw new SLiib_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
+        }
+
+        unset($this->_rules[$ruleId]);
+        return $this;
+
+    }
+
+
+    /**
      * Get a rule defined by an id
      *
      * @param int $ruleId Rule Id to get
@@ -186,6 +207,18 @@ abstract class SLiib_Security_Abstract
         }
 
         return $this->_rules[$ruleId];
+
+    }
+
+
+    /**
+     * Get all added rules
+     *
+     * @return array
+     */
+    public function getRules()
+    {
+        return $this->_rules;
 
     }
 
@@ -325,8 +358,6 @@ abstract class SLiib_Security_Abstract
 
     }
 
-
-    //TODO Excluded pattern
     //TODO Checker extension file allowed
 
 

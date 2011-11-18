@@ -373,5 +373,64 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test get all rules
+     *
+     * @cover SLiib_Security_Abstract::getRules
+     *
+     * @return void
+     */
+    public function testGetRules()
+    {
+        $rules = $this->_object->getRules();
+        $this->assertInternalType('array', $rules);
+        $this->assertArrayHasKey(1, $rules);
+        $this->assertEquals(1, count($rules));
+
+    }
+
+
+    /**
+     * Test delete rule
+     *
+     * @cover SLiib_Security_Abstract::deleteRule
+     *
+     * @return void
+     */
+    public function testDeleteRule()
+    {
+        $result = $this->_object->deleteRule(1);
+        $this->assertInstanceOf('SLiib_Security_Abstract', $result);
+
+        $rules = $this->_object->getRules();
+        $this->assertInternalType('array', $rules);
+        $this->assertEquals(0, count($rules));
+
+    }
+
+
+    /**
+     * Test delete rule not exists
+     *
+     * @cover SLiib_Security_Abstract::deleteRule
+     *
+     * @return void
+     */
+    public function testDeleteRuleNotExists()
+    {
+        try {
+            $rule = $this->_object->deleteRule(1337);
+        } catch (SLiib_Security_Exception_CheckerError $e) {
+            $this->assertInstanceOf('SLiib_Security_Exception_CheckerError', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
 }
 ?>
