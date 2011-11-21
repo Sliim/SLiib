@@ -38,7 +38,8 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var string String de test
+     * String de test
+     * @var string
      */
     private $_string = 'This is a string';
 

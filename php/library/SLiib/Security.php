@@ -18,61 +18,44 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Daemon
+ * @package  SLiib_Security
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
  * @link     http://www.sliim-projects.eu
  */
-require_once 'SLiib/Daemon.php';
-require_once 'SLiib/Exception.php';
-require_once 'SLiib/Daemon/Exception.php';
-require_once 'SLiib/Daemon/Exception/BadMethod.php';
+
 /**
- * Test Class for SLiib_Daemon
+ * SLiib_Security
  *
- * @package SLiib_Daemon
+ * @package SLiib_Security
  */
-class Daemon extends SLiib_Daemon
+abstract class SLiib_Security
 {
 
 
     /**
-     * Daemon runner
+     * Checkers running
+     *
+     * @param array $checkers Checkers to run
+     *
+     * @throws SLiib_Security_Exception_CheckerError
      *
      * @return void
      */
-    public function run()
+    public static function check(array $checkers)
     {
-        $pid = $this->launch('daemonCode');
-        sleep(50);
-        echo 'Killing..' . PHP_EOL;
-        $this->kill($pid);
-        echo 'done.' . PHP_EOL;
+        foreach ($checkers as $checker) {
+            if (!$checker instanceof SLiib_Security_Abstract) {
+                throw new SLiib_Security_Exception_CheckerError(
+                    $checker . ' not appear to be a valid security checker'
+                );
+            }
 
-    }
-
-
-    /**
-     * Code du Daemon
-     *
-     * @return void
-     */
-    public function daemonCode()
-    {
-        $i = 4;
-        while ($i != 0) {
-            $i--;
-            sleep(5);
-            echo $i . PHP_EOL;
+            $checker->run();
         }
-
-        echo 'End of Daemon Code!' . PHP_EOL;
 
     }
 
 
 }
-
-$daemon = new Daemon();
-$daemon->run();

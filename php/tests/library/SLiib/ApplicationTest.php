@@ -77,10 +77,10 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_setServerInfo('REMOTE_ADDR', $this->_ip);
-        $this->_setServerInfo('REQUEST_METHOD', $this->_method);
-        $this->_setServerInfo('HTTP_USER_AGENT', $this->_userAgent);
-        $this->_setServerInfo('HTTP_REFERER', $this->_referer);
+        Static_Request::setServerInfo('REMOTE_ADDR', $this->_ip);
+        Static_Request::setServerInfo('REQUEST_METHOD', $this->_method);
+        Static_Request::setServerInfo('HTTP_USER_AGENT', $this->_userAgent);
+        Static_Request::setServerInfo('HTTP_REFERER', $this->_referer);
 
     }
 
@@ -179,7 +179,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testRunTestNoview()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/noview');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/noview');
         $this->_runApp();
 
     }
@@ -192,8 +192,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testGetParams()
     {
-        $this->_setCookie(array('foo' => 'bar'));
-        $this->_setServerInfo('REQUEST_URI', '/test/request/foo/bar/1337/w00t');
+        Static_Request::setCookie(array('foo' => 'bar'));
+        Static_Request::setServerInfo('REQUEST_URI', '/test/request/foo/bar/1337/w00t');
         $this->_runApp();
 
         $params = $this->_request->getParameters();
@@ -216,7 +216,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testWithoutAction()
     {
-        $this->_setServerInfo('REQUEST_URI', '/index');
+        Static_Request::setServerInfo('REQUEST_URI', '/index');
         $this->_runApp();
 
     }
@@ -229,7 +229,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadAction()
     {
-        $this->_setServerInfo('REQUEST_URI', '/index/notexists');
+        Static_Request::setServerInfo('REQUEST_URI', '/index/notexists');
 
         try {
             $this->_runApp();
@@ -252,7 +252,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadController()
     {
-        $this->_setServerInfo('REQUEST_URI', '/notexists');
+        Static_Request::setServerInfo('REQUEST_URI', '/notexists');
 
         try {
             $this->_runApp();
@@ -275,8 +275,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testPostMethod()
     {
-        $this->_setServerInfo('REQUEST_METHOD', 'POST');
-        $this->_setPost(
+        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setPost(
             array(
              'foo'  => 'bar',
              '1337' => 'w00t',
@@ -305,9 +305,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testOtherMethod()
     {
-        $this->_setServerInfo('REQUEST_METHOD', '1337');
+        Static_Request::setServerInfo('REQUEST_METHOD', '1337');
         $this->_runApp();
-
         $params = $this->_request->getParameters();
 
         $this->assertTrue(empty($params));
@@ -337,7 +336,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadSetView()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/badsetview');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/badsetview');
 
         try {
             $this->_runApp();
@@ -360,7 +359,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadPartial()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/badpartial');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/badpartial');
 
         try {
             $this->_runApp();
@@ -383,7 +382,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testViewGetter()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/getterview');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/getterview');
 
         try {
             $this->_runApp();
@@ -407,7 +406,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     public function testErrorHandler()
     {
         $this->_disablePhpUnitErrorHandler();
-        $this->_setServerInfo('REQUEST_URI', '/test/errorhandler');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/errorhandler');
 
         try {
             $this->_runApp();
@@ -433,7 +432,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testModelAction()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/model');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/model');
         $this->_runApp();
 
     }
@@ -446,7 +445,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testLibraryAction()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/library');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/library');
         $this->_runApp();
 
     }
@@ -459,7 +458,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testCustomViewAction()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/customview');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/customview');
         $this->_runApp();
 
     }
@@ -472,7 +471,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testJavascriptAction()
     {
-        $this->_setServerInfo('REQUEST_URI', '/test/javascript');
+        Static_Request::setServerInfo('REQUEST_URI', '/test/javascript');
         $this->_runApp();
 
     }
@@ -525,52 +524,6 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
         }
 
         $this->_request = SLiib_HTTP_Request::getInstance();
-
-    }
-
-
-    /**
-     * Set index of $_SERVER for tests
-     *
-     * @param string $index Index of $_SERVER
-     * @param string $value Value to assign
-     *
-     * @return void
-     */
-    private function _setServerInfo($index, $value)
-    {
-        $GLOBALS['_SERVER'];
-        $_SERVER[$index] = $value;
-
-    }
-
-
-    /**
-     * Simulate a $_POST
-     *
-     * @param array $post $_POST you want
-     *
-     * @return void
-     */
-    private function _setPost(array $post)
-    {
-        $GLOBALS['_POST'];
-        $_POST = $post;
-
-    }
-
-
-    /**
-     * Simulate a $_COOKIE
-     *
-     * @param array $cookies $_COOKIE you want
-     *
-     * @return void
-     */
-    private function _setCookie(array $cookies)
-    {
-        $GLOBALS['_COOKIE'];
-        $_COOKIE = $cookies;
 
     }
 

@@ -18,22 +18,23 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
- * @subpackage UnitTests
+ * @package    SLiib_Security
+ * @subpackage SLiib_Security_Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.1
+ * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Autoloader.php';
 
-define('STUBS_PATH', realpath(dirname(__FILE__) . '/others/Stubs'));
-define('STATIC_PATH', realpath(dirname(__FILE__) . '/others/Static'));
+/**
+ * SLiib_Security_Exception_CheckerError
+ *
+ * @package    SLiib_Security
+ * @subpackage SLiib_Security_Exception
+ */
+class SLiib_Security_Exception_CheckerError
+extends SLiib_Security_Exception
+implements SLiib_IException_Failure
+{
 
-SLiib_Autoloader::init(
-    array(
-     'SLiib'  => 'SLiib',
-     'Stubs'  => STUBS_PATH,
-     'Static' => STATIC_PATH,
-    )
-);
+}

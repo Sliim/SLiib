@@ -39,7 +39,7 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
 
     /**
      * Objet de test
-     * @var SLiib_Log $_object
+     * @var SLiib_Log
      */
     protected $_object;
 

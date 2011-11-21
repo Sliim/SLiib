@@ -18,22 +18,49 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
- * @subpackage UnitTests
+ * @package    SLiib_Security
+ * @subpackage SLiib_Security_Abstract
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.1
+ * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Autoloader.php';
 
-define('STUBS_PATH', realpath(dirname(__FILE__) . '/others/Stubs'));
-define('STATIC_PATH', realpath(dirname(__FILE__) . '/others/Static'));
+/**
+ * SLiib_Security_Abstract_PositiveSecurityModel
+ *
+ * @package    SLiib_Security
+ * @subpackage SLiib_Security_Abstract
+ */
+abstract class SLiib_Security_Abstract_PositiveSecurityModel
+extends SLiib_Security_Abstract
+{
 
-SLiib_Autoloader::init(
-    array(
-     'SLiib'  => 'SLiib',
-     'Stubs'  => STUBS_PATH,
-     'Static' => STATIC_PATH,
-    )
-);
+    /**
+     * Security model
+     * @var string
+     */
+    protected $_model = self::MODEL_POSITIVE;
+
+
+    /**
+     * Check a pattern in a string
+     *
+     * @param string $pattern Pattern to check
+     * @param string $string  String to use
+     *
+     * @return boolean
+     */
+    protected function _check($pattern, $string)
+    {
+        if (preg_match('/' . $pattern . '/', $string)) {
+            return TRUE;
+        }
+
+        $this->_patternError = $string;
+        return FALSE;
+
+    }
+
+
+}
