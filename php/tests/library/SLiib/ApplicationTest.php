@@ -478,54 +478,6 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Security Test
-     * Checker : SLiib_Security_Checker_AllowedMethod
-     *
-     * @return void
-     */
-    public function testForbiddenHTTPMethod()
-    {
-        try {
-            Static_Request::setServerInfo('REQUEST_METHOD', 'WOOT');
-            $this->_runApp();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
-            return;
-        } catch (PHPUnit_Framework_Error $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
-
-    }
-
-
-    /**
-     * Security Test
-     * Checker : SLiib_Security_Checker_LFI
-     *
-     * @return void
-     */
-    public function testLFI()
-    {
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
-        try {
-            Static_Request::setPost(array('1337' => '../../../../../../../etc/passwd%00'));
-
-            $this->_runApp();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
-            return;
-        } catch (PHPUnit_Framework_Error $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
-
-    }
-
-
-    /**
      * Enable PHPUnit error handler
      *
      * @return void

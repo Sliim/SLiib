@@ -144,6 +144,7 @@ extends SLiib_Security_Exception
     public function getReason()
     {
         return $this->_reason;
+
     }
 
 

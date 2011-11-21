@@ -97,6 +97,10 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
             )
         );
 
+        $this->addRule($includeRule)
+            ->addRule($othersFunctionRule)
+            ->addRule($remoteExecRule);
+
     }
 
 

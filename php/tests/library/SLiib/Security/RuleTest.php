@@ -92,17 +92,17 @@ class SLiib_Security_RuleTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test get name
+     * Test get message
      *
-     * @covers SLiib_Security_Rule::getName
+     * @covers SLiib_Security_Rule::getMessage
      *
      * @return void
      */
-    public function testGetName()
+    public function testGetMessage()
     {
-        $name = $this->_object->getName();
-        $this->assertInternalType('string', $name);
-        $this->assertEquals('RuleTest', $name);
+        $msg = $this->_object->getMessage();
+        $this->assertInternalType('string', $msg);
+        $this->assertEquals('RuleTest', $msg);
 
     }
 
@@ -228,6 +228,28 @@ class SLiib_Security_RuleTest extends PHPUnit_Framework_TestCase
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('(hacked|foo|bar)', $pattern);
+
+    }
+
+
+    /**
+     * Test delete pattern element
+     *
+     * @covers SLiib_Security_Rule::deletePatternElement
+     * @covers SLiib_Security_Rule::_reloadPattern
+     *
+     * @return void
+     */
+    public function testDeletePatternElement()
+    {
+        $this->_object
+            ->addPatternElement(array('foo', 'bar'))
+            ->deletePatternElement('foo');
+
+        $pattern = $this->_object->getPattern();
+
+        $this->assertInternalType('string', $pattern);
+        $this->assertEquals('(bar)', $pattern);
 
     }
 

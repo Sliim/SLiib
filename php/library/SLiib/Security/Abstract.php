@@ -112,7 +112,7 @@ abstract class SLiib_Security_Abstract
      * @throws SLiib_Security_Exception_CheckerError
      * @throws SLiib_Security_Exception_HackingAttempt
      *
-     * @return void
+     * @return boolean
      */
     public final function run()
     {
@@ -153,6 +153,8 @@ abstract class SLiib_Security_Abstract
                 }
             }
         }
+
+        return TRUE;
 
     }
 
@@ -297,7 +299,6 @@ abstract class SLiib_Security_Abstract
     private final function _checkParameters($pattern)
     {
         $params = $this->_request->getParameters();
-
         foreach ($params as $key => $value) {
             if (!$this->_check($pattern, $key)) {
                 return FALSE;
