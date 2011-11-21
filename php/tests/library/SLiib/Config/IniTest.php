@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Config/Ini.php';
 
 /**
  * Test class for SLiib_Config_Ini.
@@ -84,6 +83,10 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
+     * @covers SLiib_Config_Ini::__construct
+     * @covers SLiib_Config_Ini::_parseFile
+     * @covers SLiib_Config_Ini::<private>
+     *
      * @return void
      */
     public function setUp()
@@ -114,6 +117,8 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test get all directives
+     *
+     * @covers SLiib_Config_Ini::getConfig
      *
      * @return void
      */
@@ -153,6 +158,11 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     /**
      * Test open inexistant file
      *
+     * @covers SLiib_Config_Ini::__construct
+     * @covers SLiib_Config_Ini::_parseFile
+     * @covers SLiib_Config_Ini::<private>
+     * @covers SLiib_Config_Exception
+     *
      * @return void
      */
     public function testOpenInexistantFile()
@@ -173,6 +183,13 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Bad section
+     *
+     * @covers SLiib_Config_Ini::__construct
+     * @covers SLiib_Config_Ini::_parseFile
+     * @covers SLiib_Config_Ini::<private>
+     * @covers SLiib_Config_Exception_SyntaxError
+     * @covers SLiib_Config_Exception
+     * @covers SLiib_IException_Failure
      *
      * @return void
      */
@@ -195,6 +212,13 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     /**
      * Test Bad key
      *
+     * @covers SLiib_Config_Ini::__construct
+     * @covers SLiib_Config_Ini::_parseFile
+     * @covers SLiib_Config_Ini::<private>
+     * @covers SLiib_Config_Exception_SyntaxError
+     * @covers SLiib_Config_Exception
+     * @covers SLiib_IException_Failure
+     *
      * @return void
      */
     public function testBadKey()
@@ -216,6 +240,13 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     /**
      * Test no parent
      *
+     * @covers SLiib_Config_Ini::__construct
+     * @covers SLiib_Config_Ini::_parseFile
+     * @covers SLiib_Config_Ini::<private>
+     * @covers SLiib_Config_Exception_SyntaxError
+     * @covers SLiib_Config_Exception
+     * @covers SLiib_IException_Failure
+     *
      * @return void
      */
     public function testNoParent()
@@ -236,6 +267,13 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Syntax error directives
+     *
+     * @covers SLiib_Config_Ini::__construct
+     * @covers SLiib_Config_Ini::_parseFile
+     * @covers SLiib_Config_Ini::<private>
+     * @covers SLiib_Config_Exception_SyntaxError
+     * @covers SLiib_Config_Exception
+     * @covers SLiib_IException_Failure
      *
      * @return void
      */

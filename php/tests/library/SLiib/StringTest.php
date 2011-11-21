@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/String.php';
 
 /**
  * Test class for SLiib_String.
@@ -40,6 +39,8 @@ class SLiib_StringTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test clean string
+     *
+     * @covers SLiib_String::clean
      *
      * @return void
      */

@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/SystemInfos.php';
 
 /**
  * Test class for SLiib_SystemInfos.
@@ -43,6 +42,12 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      *
      * @param string  $cmd       Commande à exécuter
      * @param boolean $serialize Sérialize response
+     *
+     * @covers SLiib_SystemInfos
+     * @covers SLiib_SystemInfos_Exception
+     * @covers SLiib_SystemInfos_Exception_BadMethodCall
+     * @covers SLiib_SystemInfos_Exception_CommandFailed
+     *
      *
      * @return string Retour de la commande
      */
@@ -71,6 +76,8 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      * Appel commande Apache2
      * apache2 on debian testing fail with normal user (not /usr/sbin in his $PATH)
      *
+     * @covers SLiib_SystemInfos
+     *
      * @return void
      */
     public function testCmdApache2()
@@ -86,6 +93,8 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
 
     /**
      * Appel commande PHP
+     *
+     * @covers SLiib_SystemInfos
      *
      * @return void
      */
@@ -103,6 +112,8 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     /**
      * Appel commande Uname
      *
+     * @covers SLiib_SystemInfos
+     *
      * @return void
      */
     public function testCmdUname()
@@ -119,6 +130,8 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
     /**
      * Appel commande LSBRelease
      *
+     * @covers SLiib_SystemInfos
+     *
      * @return void
      */
     public function testCmdLsbRelease()
@@ -134,6 +147,9 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test command unknown
+     *
+     * @covers SLiib_SystemInfos
+     * @covers SLiib_SystemInfos_Exception_BadMethodCall
      *
      * @return void
      */

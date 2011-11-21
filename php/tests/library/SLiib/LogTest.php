@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Log.php';
 
 /**
  * Test class for SLiib_Log.
@@ -66,6 +65,8 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
+     * @covers SLiib_Log::__construct
+     *
      * @return void
      */
     public function setUp()
@@ -83,6 +84,8 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
+     * @covers SLiib_Log::__destruct
+     *
      * @return void
      */
     public function tearDown()
@@ -95,6 +98,9 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Get/Set Format method
+     *
+     * @covers SLiib_Log::setFormat
+     * @covers SLiib_Log::getFormat
      *
      * @return void
      */
@@ -112,6 +118,9 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test write log
+     *
+     * @covers SLiib_Log::log
+     * @covers SLiib_Log::<private>
      *
      * @return void
      */
@@ -141,6 +150,9 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
     /**
      * Test écriture dans fichier sans les permissions
      *
+     * @covers SLiib_Log::debug
+     * @covers SLiib_Log_Exception
+     *
      * @return void
      */
     public function testWriteFailure()
@@ -166,6 +178,14 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
     /**
      * Test d'affichage pour les couleur
      *
+     * @covers SLiib_Log::log
+     * @covers SLiib_Log::debug
+     * @covers SLiib_Log::warn
+     * @covers SLiib_Log::error
+     * @covers SLiib_Log::crit
+     * @covers SLiib_Log::info
+     * @covers SLiib_Log::<private>
+     *
      * @return void
      */
     public function testColor()
@@ -182,6 +202,9 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test with server Infos
+     *
+     * @covers SLiib_Log::log
+     * @covers SLiib_Log::<private>
      *
      * @return void
      */

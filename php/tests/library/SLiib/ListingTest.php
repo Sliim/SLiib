@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Listing.php';
 
 /**
  * Test class for SLiib_Listing.
@@ -47,6 +46,9 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
+     *
+     * @covers SLiib_Listing::__construct
+     * @covers SLiib_Listing::_list
      *
      * @return void
      */
@@ -73,6 +75,8 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
     /**
      * Test get list
      *
+     * @covers SLiib_Listing::getList
+     *
      * @return void
      */
     public function testGetList()
@@ -86,6 +90,8 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test rangement par ordre croissant
+     *
+     * @covers SLiib_Listing::sort
      *
      * @return void
      */
@@ -103,6 +109,8 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test rangement par ordre croissant inversé
+     *
+     * @covers SLiib_Listing::usort
      *
      * @return void
      */

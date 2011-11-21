@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/SolR.php';
 
 /**
  * Test class for SLiib_SolR.
@@ -69,6 +68,9 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
+     * @covers SLiib_SolR::__construct
+     * @covers SLiib_SolR_Exception
+     *
      * @return void
      */
     public function setUp()
@@ -106,6 +108,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     /**
      * Test Ping
      *
+     * @covers SLiib_SolR::ping
+     *
      * @return void
      */
     public function testPing()
@@ -119,6 +123,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     /**
      * Test delete all
      *
+     * @covers SLiib_SolR::deleteAll
+     *
      * @return void
      */
     public function testDeleteAll()
@@ -130,6 +136,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test update
+     *
+     * @covers SLiib_SolR::update
      *
      * @return void
      */
@@ -145,6 +153,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     /**
      * Test commit
      *
+     * @covers SLiib_SolR::commit
+     *
      * @return void
      */
     public function testCommit()
@@ -156,6 +166,9 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test get
+     *
+     * @covers SLiib_SolR::get
+     * @covers SLiib_SolR::escapeSpecialChar
      *
      * @return void
      */
@@ -174,6 +187,8 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     /**
      * Test get total indexed
      *
+     * @covers SLiib_SolR::getTotalIndexed
+     *
      * @return void
      */
     public function testGetTotalIndexed()
@@ -187,6 +202,13 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
     /**
      * Test with bad port
      *
+     * @covers SLiib_SolR::__construct
+     * @covers SLiib_SolR::ping
+     * @covers SLiib_SolR::update
+     * @covers SLiib_SolR::get
+     * @covers SLiib_SolR::getTotalIndexed
+     * @covers SLiib_SolR_Exception
+     *
      * @return void
      */
     public function testBadPort()
@@ -198,6 +220,9 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
         }
 
         $object = new SLiib_SolR($this->_host, 1337, FALSE);
+
+        $res = $object->ping();
+        $this->assertFalse($res);
 
         $res = $object->update($this->_xmlStr);
         $this->assertFalse($res);
@@ -213,6 +238,9 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test bad xml string
+     *
+     * @covers SLiib_SolR::update
+     * @covers SLiib_SolR::get
      *
      * @return void
      */

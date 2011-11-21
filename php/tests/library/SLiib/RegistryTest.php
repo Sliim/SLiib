@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Registry.php';
 
 /**
  * Test class for SLiib_Registry.
@@ -47,6 +46,10 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
     /**
      * Test Registry
      *
+     * @covers SLiib_Registry::set
+     * @covers SLiib_Registry::get
+     *
+     *
      * @return void
      */
     public function testGetSet()
@@ -59,6 +62,9 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test Registry bis
+     *
+     * @covers SLiib_Registry::set
+     * @covers SLiib_Registry::get
      *
      * @return void
      */
@@ -86,6 +92,9 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
     /**
      * Test set already exists key
      *
+     * @covers SLiib_Registry::set
+     * @covers SLiib_Registry_Exception
+     *
      * @return void
      */
     public function testSetAlreadyExistKey()
@@ -106,6 +115,9 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test get not exist key
+     *
+     * @covers SLiib_Registry::get
+     * @covers SLiib_Registry_Exception
      *
      * @return void
      */

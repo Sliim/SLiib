@@ -25,7 +25,6 @@
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Application.php';
 
 define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../others/Application/'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
