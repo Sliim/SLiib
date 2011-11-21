@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_Security_Checker_LFI
+ * SLiib_Security_Checker_FilenamePolicy
  *
  * @package    SLiib_Security
  * @subpackage SLiib_Security_Checker
  */
-class SLiib_Security_Checker_LFI
+class SLiib_Security_Checker_FilenamePolicy
 extends SLiib_Security_Abstract_NegativeSecurityModel
 {
 
@@ -44,19 +44,35 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
      */
     public function __construct()
     {
-        $this->_setName('LFI');
+        $this->_setName('Filename Policy');
 
-        $this->addRule(
-            new SLiib_Security_Rule(
-                1300,
-                'Traversal directory',
-                '\/etc\/(.*)',
-                array(
-                 self::LOCATION_PARAMETERS,
-                 self::LOCATION_USERAGENT,
-                )
-            )
+        $fileExtensionRule = new SLiib_Security_Rule(
+            1300,
+            'Forbidden file\'s extension policy'
         );
+
+        $fileExtensionRule->addPatternElement(
+            array(
+             '\.backup', '\.bak', '\.bat', '\.cfg', '\.cmd', '\.config', '\.conf', '\.dat', '\.db',
+             '\.inc', '\.ini', '\.lnk', '\.log', '\.old', '\.pass', '\.pwd', '\.sql', '\.xml',
+             '\.xsd', '\.xsx',
+            )
+        )->addLocation(self::LOCATION_REQUEST_URI);
+
+        $fileNameRule = new SLiib_Security_Rule(
+            1301,
+            'Forbidden file\'s name policy'
+        );
+        $fileNameRule->addPatternElement(
+            array(
+             '\/etc\/passwd',
+             '\/etc\/group',
+             '\/etc\/shadow',
+            )
+        )->addLocation(self::LOCATION_REQUEST_URI);
+
+        $this->addRule($fileExtensionRule)
+            ->addRule($fileNameRule);
 
     }
 

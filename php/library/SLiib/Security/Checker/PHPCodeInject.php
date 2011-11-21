@@ -46,45 +46,54 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
     {
         $this->_setName('PHP Code Injection');
 
-        $this->addRule(
-            new SLiib_Security_Rule(
-                1100,
-                'Inject `include`',
-                'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
-                array(
-                 self::LOCATION_PARAMETERS,
-                 self::LOCATION_USERAGENT,
-                )
+        $includeRule = new SLiib_Security_Rule(
+            1100,
+            'Include injection'
+        );
+        $includeRule->addPatternElement(
+            array(
+             'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
+             'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
             )
-        )->addRule(
-            new SLiib_Security_Rule(
-                1101,
-                'Inject `require`',
-                'require(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
-                array(
-                 self::LOCATION_PARAMETERS,
-                 self::LOCATION_USERAGENT,
-                )
+        )->addLocation(
+            array(
+             self::LOCATION_PARAMETERS,
+             self::LOCATION_USERAGENT,
             )
-        )->addRule(
-            new SLiib_Security_Rule(
-                1102,
-                'Inject `file_get_contents`',
-                'file_get_contents\((.*)\)',
-                array(
-                 self::LOCATION_PARAMETERS,
-                 self::LOCATION_USERAGENT,
-                )
+        );
+
+        $othersFunctionRule = new SLiib_Security_Rule(
+            1101,
+            'Others functions injection'
+        );
+        $othersFunctionRule->addPatternElement(
+            array(
+             'file_get_contents\((.*)\)',
+             'eval\((.*)\)',
             )
-        )->addRule(
-            new SLiib_Security_Rule(
-                1103,
-                'Inject `eval`',
-                'eval\((.*)\)',
-                array(
-                 self::LOCATION_PARAMETERS,
-                 self::LOCATION_USERAGENT,
-                )
+        )->addLocation(
+            array(
+             self::LOCATION_PARAMETERS,
+             self::LOCATION_USERAGENT,
+            )
+        );
+
+        $remoteExecRule = new SLiib_Security_Rule(
+            1102,
+            'Remote commande execution'
+        );
+        $remoteExecRule->addPatternElement(
+            array(
+             'exec\((.*)\)',
+             'passthru\((.*)\)',
+             'proc_open\((.*)\)',
+             'shell_exec\((.*)\)',
+             'system\((.*)\)',
+            )
+        )->addLocation(
+            array(
+             self::LOCATION_PARAMETERS,
+             self::LOCATION_USERAGENT,
             )
         );
 
