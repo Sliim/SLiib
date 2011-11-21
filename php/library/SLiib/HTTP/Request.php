@@ -113,6 +113,18 @@ class SLiib_HTTP_Request
 
 
     /**
+     * Get request URI
+     *
+     * @return string
+     */
+    public function getRequestUri()
+    {
+        return $this->_request->requestUri;
+
+    }
+
+
+    /**
      * Get current parameters
      *
      * @return array

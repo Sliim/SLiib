@@ -38,6 +38,7 @@ abstract class SLiib_Security_Abstract
     /**
      * Location contantes
      */
+    const LOCATION_REQUEST_URI = 'Request URI';
     const LOCATION_PARAMETERS  = 'Parameters';
     const LOCATION_USERAGENT   = 'UserAgent';
     const LOCATION_HTTP_METHOD = 'HTTP Method Request';
@@ -114,6 +115,9 @@ abstract class SLiib_Security_Abstract
         foreach ($this->_rules as $rule) {
             foreach ($rule->getLocation() as $location) {
                 switch ($location) {
+                    case self::LOCATION_REQUEST_URI:
+                        $result = $this->_checkRequestUri($rule->getPattern());
+                        break;
                     case self::LOCATION_PARAMETERS:
                         $result = $this->_checkParameters($rule->getPattern());
                         break;
@@ -263,6 +267,21 @@ abstract class SLiib_Security_Abstract
 
 
     /**
+     * Check in request uri
+     *
+     * @param string $pattern Pattern to check
+     *
+     * @return boolean
+     */
+    private final function _checkRequestUri($pattern)
+    {
+        $requestUri = $this->_request->getRequestUri();
+        return $this->_check($pattern, $requestUri);
+
+    }
+
+
+    /**
      * Check in parameters
      *
      * @param string $pattern Pattern to check
@@ -357,8 +376,6 @@ abstract class SLiib_Security_Abstract
         return $this->_check($pattern, $referer);
 
     }
-
-    //TODO Checker extension file allowed
 
 
 }
