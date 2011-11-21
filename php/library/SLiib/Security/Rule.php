@@ -42,10 +42,10 @@ class SLiib_Security_Rule
     private $_id;
 
     /**
-     * Rule name
+     * Rule message
      * @var string
      */
-    private $_name;
+    private $_message;
 
     /**
      * Rule pattern
@@ -70,16 +70,16 @@ class SLiib_Security_Rule
      * Rule init
      *
      * @param int    $id       Rule Id
-     * @param string $name     Rule name
+     * @param string $message  Rule message
      * @param string $pattern  Rule pattern
      * @param mixed  $location Rule location
      *
      * @return void
      */
-    public function __construct($id, $name, $pattern=NULL, $location=NULL)
+    public function __construct($id, $message, $pattern=NULL, $location=NULL)
     {
-        $this->_id   = $id;
-        $this->_name = $name;
+        $this->_id      = $id;
+        $this->_message = $message;
 
         if (!is_null($pattern)) {
             $this->setPattern($pattern);
@@ -111,13 +111,13 @@ class SLiib_Security_Rule
 
 
     /**
-     * Name getter
+     * Message getter
      *
      * @return string
      */
-    public function getName()
+    public function getMessage()
     {
-        return $this->_name;
+        return $this->_message;
 
     }
 
@@ -217,6 +217,27 @@ class SLiib_Security_Rule
         }
 
         $this->_reloadPattern();
+        return $this;
+
+    }
+
+
+    /**
+     * Delete an element pattern if exists
+     *
+     * @param string $element Element to delete
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function deletePatternElement($element)
+    {
+        if (in_array($element, $this->_patternElements)) {
+            $key = array_search($element, $this->_patternElements);
+            unset($this->_patternElements[$key]);
+
+            $this->_reloadPattern();
+        }
+
         return $this;
 
     }

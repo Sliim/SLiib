@@ -54,6 +54,7 @@ extends SLiib_Security_Abstract
     protected function _check($pattern, $string)
     {
         if (preg_match('/' . $pattern . '/', $string)) {
+            $this->_patternError = $string;
             return FALSE;
         }
 

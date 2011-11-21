@@ -48,7 +48,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
 
         $includeRule = new SLiib_Security_Rule(
             1100,
-            'Include injection'
+            'Include injection detected'
         );
         $includeRule->addPatternElement(
             array(
@@ -64,7 +64,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
 
         $othersFunctionRule = new SLiib_Security_Rule(
             1101,
-            'Others functions injection'
+            'Others functions injection detected'
         );
         $othersFunctionRule->addPatternElement(
             array(
@@ -80,7 +80,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
 
         $remoteExecRule = new SLiib_Security_Rule(
             1102,
-            'Remote commande execution'
+            'Remote commande execution detected'
         );
         $remoteExecRule->addPatternElement(
             array(

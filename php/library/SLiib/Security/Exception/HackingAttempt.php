@@ -43,16 +43,10 @@ extends SLiib_Security_Exception
     private $_checkerName;
 
     /**
-     * Rule id
-     * @var int
+     * Rule
+     * @var SLiib_Security_Rule
      */
-    private $_ruleId;
-
-    /**
-     * Rule name
-     * @var string
-     */
-    private $_ruleName;
+    private $_rule;
 
     /**
      * Rule location
@@ -60,36 +54,96 @@ extends SLiib_Security_Exception
      */
     private $_location;
 
+    /**
+     * Exception reason
+     * @var string
+     */
+    private $_reason;
+
 
     /**
      * Exception constructor
      *
-     * @param string    $checkerName Checker name
-     * @param int       $ruleId      Rule id
-     * @param string    $ruleName    Rule name
-     * @param string    $location    Location check failed
-     * @param int       $code        Exception code
-     * @param Exception $parent      Parent exception
+     * @param string              $checkerName Checker name
+     * @param SLiib_Security_Rule $rule        Rule
+     * @param string              $location    Location check failed
+     * @param string              $reason      Exception reason
+     * @param int                 $code        Exception code
+     * @param Exception           $parent      Parent exception
      *
      * @return void
      */
-    public function __construct($checkerName, $ruleId, $ruleName, $location, $code=0, $parent=NULL)
-    {
+    public function __construct(
+        $checkerName,
+        SLiib_Security_Rule $rule,
+        $location,
+        $reason,
+        $code=0,
+        $parent=NULL
+    ) {
         $this->_checkerName = $checkerName;
-        $this->_ruleId      = $ruleId;
-        $this->_ruleName    = $ruleName;
+        $this->_rule        = $rule;
         $this->_location    = $location;
+        $this->_reason      = $reason;
 
         $message = sprintf(
-            'Hacking Attempt :: %s : Rule: [%s] [%d] raised in %s',
+            'Hacking Attempt :: [%s] : [%d]%s in %s (%s)',
             $checkerName,
-            $ruleName,
-            $ruleId,
-            $location
+            $rule->getId(),
+            $rule->getMessage(),
+            $location,
+            $reason
         );
 
         parent::__construct($message, $code, $parent);
 
+    }
+
+
+    /**
+     * Checker name getter
+     *
+     * @return string
+     */
+    public function getCheckerName()
+    {
+        return $this->_checkerName;
+
+    }
+
+
+    /**
+     * Rule getter
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function getRule()
+    {
+        return $this->_rule;
+
+    }
+
+
+    /**
+     * Location getter
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->_location;
+
+    }
+
+
+    /**
+     * Reason exception getter
+     *
+     * @return string
+     */
+    public function getReason()
+    {
+        return $this->_reason;
     }
 
 

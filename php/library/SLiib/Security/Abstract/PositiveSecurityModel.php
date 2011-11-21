@@ -57,6 +57,7 @@ extends SLiib_Security_Abstract
             return TRUE;
         }
 
+        $this->_patternError = $string;
         return FALSE;
 
     }

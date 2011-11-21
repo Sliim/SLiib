@@ -52,7 +52,7 @@ extends SLiib_Security_Abstract_PositiveSecurityModel
 
         $rule = new SLiib_Security_Rule(
             1200,
-            'Valid Method'
+            'Invalid request method'
         );
 
         $rule->addLocation(self::LOCATION_HTTP_METHOD)

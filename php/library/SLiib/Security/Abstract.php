@@ -75,6 +75,12 @@ abstract class SLiib_Security_Abstract
      */
     private $_request;
 
+    /**
+     * Last pattern error
+     * @var string
+     */
+    protected $_patternError;
+
 
     /**
      * Construct
@@ -142,7 +148,7 @@ abstract class SLiib_Security_Abstract
 
                 if (!$result) {
                     throw new SLiib_Security_Exception_HackingAttempt(
-                        $this->_name, $rule->getId(), $rule->getName(), $location
+                        $this->_name, $rule, $location, $this->_patternError
                     );
                 }
             }
