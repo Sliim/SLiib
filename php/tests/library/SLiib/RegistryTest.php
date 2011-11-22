@@ -49,7 +49,6 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
      * @covers SLiib_Registry::set
      * @covers SLiib_Registry::get
      *
-     *
      * @return void
      */
     public function testGetSet()
@@ -92,9 +91,6 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
     /**
      * Test set already exists key
      *
-     * @covers SLiib_Registry::set
-     * @covers SLiib_Registry_Exception
-     *
      * @return void
      */
     public function testSetAlreadyExistKey()
@@ -115,9 +111,6 @@ class SLiib_RegistryTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test get not exist key
-     *
-     * @covers SLiib_Registry::get
-     * @covers SLiib_Registry_Exception
      *
      * @return void
      */

@@ -45,8 +45,6 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @covers SLiib_Security_Checker_FilenamePolicy::__construct
-     *
      * @return void
      */
     public function setUp()
@@ -91,9 +89,6 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
     /**
      * Test run with forbidden extension filename in request URI
      *
-     * @covers SLiib_Security_Checker_FilenamePolicy::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
-     *
      * @return void
      */
     public function testRunWithForbiddenExtensionFilename()
@@ -117,9 +112,6 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test run with forbidden filename in request URI
-     *
-     * @covers SLiib_Security_Checker_FilenamePolicy::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
      *
      * @return void
      */

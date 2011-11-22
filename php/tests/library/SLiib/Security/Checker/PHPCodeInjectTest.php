@@ -90,9 +90,6 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
     /**
      * Test run with include injection
      *
-     * @covers SLiib_Security_Checker_PHPCodeInject::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
-     *
      * @return void
      */
     public function testRunWithIncludeInjection()
@@ -120,9 +117,6 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
     /**
      * Test run with eval injection
      *
-     * @covers SLiib_Security_Checker_PHPCodeInject::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
-     *
      * @return void
      */
     public function testRunWithFilegetcontentsInjection()
@@ -149,9 +143,6 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
 
     /**
      * Test run with remote commande execution
-     *
-     * @covers SLiib_Security_Checker_PHPCodeInject::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
      *
      * @return void
      */

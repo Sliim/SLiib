@@ -90,10 +90,6 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
     /**
      * Test run with forbidden http method
      *
-     * @covers SLiib_Security_Checker_AllowedMethods::run
-     * @covers SLiib_Security_Abstract_PositiveSecurityModel
-     * @covers SLiib_Security_Exception_HackingAttempt
-     *
      * @return void
      */
     public function testRunWithForbiddenHTTPMethod()
@@ -105,12 +101,6 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
             $this->_object->run();
         } catch (SLiib_Security_Exception_HackingAttempt $e) {
             $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
-
-            $this->assertEquals('Allowed methods', $e->getCheckerName());
-            $this->assertInstanceOf('SLiib_Security_Rule', $e->getRule());
-            $this->assertEquals(SLiib_Security_Abstract::LOCATION_HTTP_METHOD, $e->getLocation());
-            $this->assertEquals('WOOT', $e->getReason());
-
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');

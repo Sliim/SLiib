@@ -68,9 +68,6 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @covers SLiib_SolR::__construct
-     * @covers SLiib_SolR_Exception
-     *
      * @return void
      */
     public function setUp()
@@ -201,13 +198,6 @@ class SLiib_SolRTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test with bad port
-     *
-     * @covers SLiib_SolR::__construct
-     * @covers SLiib_SolR::ping
-     * @covers SLiib_SolR::update
-     * @covers SLiib_SolR::get
-     * @covers SLiib_SolR::getTotalIndexed
-     * @covers SLiib_SolR_Exception
      *
      * @return void
      */

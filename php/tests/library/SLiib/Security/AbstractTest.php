@@ -89,9 +89,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test no security model
      *
-     * @covers SLiib_Security_Abstract::__construct
-     * @covers SLiib_Security_Exception
-     *
      * @return void
      */
     public function testNoSecurityModel()
@@ -112,9 +109,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test bad security model
-     *
-     * @covers SLiib_Security_Abstract::__construct
-     * @covers SLiib_Security_Exception
      *
      * @return void
      */
@@ -169,9 +163,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with bad location
      *
-     * @covers SLiib_Security_Abstract::run
-     * @covers SLiib_Security_Exception_CheckerError
-     *
      * @return void
      */
     public function testRunBadLocation()
@@ -194,10 +185,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test run with hacking attempt in parameter key
-     *
-     * @covers SLiib_Security_Abstract::run
-     * @covers SLiib_Security_Abstract::_checkParameters
-     * @covers SLiib_Security_Exception_HackingAttempt
      *
      * @return void
      */
@@ -226,10 +213,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in parameter Value
      *
-     * @covers SLiib_Security_Abstract::run
-     * @covers SLiib_Security_Abstract::_checkParameters
-     * @covers SLiib_Security_Exception_HackingAttempt
-     *
      * @return void
      */
     public function testRunWithHackingAttemptParamVal()
@@ -257,10 +240,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in cookie key
      *
-     * @covers SLiib_Security_Abstract::run
-     * @covers SLiib_Security_Abstract::_checkCookies
-     * @covers SLiib_Security_Exception_HackingAttempt
-     *
      * @return void
      */
     public function testRunWithHackingAttemptCookieKey()
@@ -286,10 +265,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test run with hacking attempt in cookie value
-     *
-     * @covers SLiib_Security_Abstract::run
-     * @covers SLiib_Security_Abstract::_checkCookies
-     * @covers SLiib_Security_Exception_HackingAttempt
      *
      * @return void
      */
@@ -426,9 +401,6 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test delete rule not exists
-     *
-     * @covers SLiib_Security_Abstract::deleteRule
-     * @covers SLiib_Security_Exception_CheckerError
      *
      * @return void
      */

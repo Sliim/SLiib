@@ -65,8 +65,6 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @covers SLiib_Log::__construct
-     *
      * @return void
      */
     public function setUp()
@@ -83,8 +81,6 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
-     *
-     * @covers SLiib_Log::__destruct
      *
      * @return void
      */
@@ -149,9 +145,6 @@ class SLiib_LogTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test écriture dans fichier sans les permissions
-     *
-     * @covers SLiib_Log::debug
-     * @covers SLiib_Log_Exception
      *
      * @return void
      */
