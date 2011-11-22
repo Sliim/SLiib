@@ -27,8 +27,11 @@
  */
 require_once 'SLiib/Autoloader.php';
 
-define('STUBS_PATH', realpath(dirname(__FILE__) . '/others/Stubs'));
-define('STATIC_PATH', realpath(dirname(__FILE__) . '/others/Static'));
+define('ROOT_PATH', realpath(dirname(__FILE__) . '/others/'));
+define('STUBS_PATH', realpath(ROOT_PATH . '/Stubs'));
+define('STATIC_PATH', realpath(ROOT_PATH . '/Static'));
+define('APP_PATH', realpath(ROOT_PATH . '/Application/application/'));
+define('APP_NS', 'Test');
 
 SLiib_Autoloader::init(
     array(

@@ -34,35 +34,35 @@ class SLiib_Autoloader
 {
 
     /**
-     * Classes chargées par l'autoloader
+     * Class loaded
      * @var array
      */
     private static $_isLoaded = array();
 
     /**
-     * Namespaces autorisées.
+     * Allowed namespaces
      * @var array
      */
     private static $_namespaces = array();
 
     /**
-     * Clés des namespaces.
+     * Namespaces keys
      * @var array
      */
     private static $_namespacesKeys = array();
 
     /**
-     * Sections spéciales pour la génération des chemins de fichiers
+     * Sections collection
      * @var array
      */
     private static $_sections = array();
 
 
     /**
-     * Initialisation de l'autoloader
+     * Autoloader init
      *
-     * @param array           $namespaces Namespaces autorisés pour l'autoload
-     * @param array[optional] $sections   Sections autorisées pour l'autoload
+     * @param array           $namespaces Allowed namespaces
+     * @param array[optional] $sections   Allowed sections
      *
      * @return void
      */
@@ -71,7 +71,13 @@ class SLiib_Autoloader
         static::$_namespaces = array_merge(static::$_namespaces, $namespaces);
 
         if (!empty(static::$_sections)) {
-            static::$_sections = array_merge(static::$_sections, $sections);
+            foreach ($sections as $key => $section) {
+                if (array_key_exists($key, static::$_sections)) {
+                    static::$_sections[$key] = array_merge(static::$_sections[$key], $section);
+                } else {
+                    static::$_sections[$key] = $section;
+                }
+            }
         } else {
             static::$_sections = $sections;
         }
@@ -84,9 +90,9 @@ class SLiib_Autoloader
 
 
     /**
-     * Auto-chargement d'une classe
+     * Class autoloader
      *
-     * @param string $class Classe à charger.
+     * @param string $class Class to load
      *
      * @return boolean
      */
@@ -122,7 +128,7 @@ class SLiib_Autoloader
           static::$_namespaces[$namespace] . DIRECTORY_SEPARATOR .
           implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
-        if (file_exists(static::$_namespaces[$namespace]) && !file_exists($file)) {
+        if (!static::_searchForInclude($file)) {
             return FALSE;
         }
 
@@ -130,6 +136,32 @@ class SLiib_Autoloader
 
         array_push(static::$_isLoaded, $class);
         return TRUE;
+
+    }
+
+
+    /**
+     * Search a file to include
+     *
+     * @param string $needle File to search
+     *
+     * @return boolean
+     */
+    private static function _searchForInclude($needle)
+    {
+        if (file_exists($needle)) {
+            return TRUE;
+        }
+
+        $includePath = explode(PATH_SEPARATOR, get_include_path());
+        foreach ($includePath as $path) {
+            $file = realpath($path . '/' . $needle);
+            if ($file && file_exists($file)) {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
 
     }
 
