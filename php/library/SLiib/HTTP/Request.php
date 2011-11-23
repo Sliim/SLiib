@@ -76,19 +76,6 @@ class SLiib_HTTP_Request
 
 
     /**
-     * Construct request
-     *
-     * @return void
-     */
-    private function __construct()
-    {
-        $this->_request = new stdClass;
-        $this->_initProperties();
-
-    }
-
-
-    /**
      * Get current controller
      *
      * @return string
@@ -199,6 +186,19 @@ class SLiib_HTTP_Request
     public function getReferer()
     {
         return $this->_request->referer;
+
+    }
+
+
+    /**
+     * Construct request
+     *
+     * @return void
+     */
+    private function __construct()
+    {
+        $this->_request = new stdClass;
+        $this->_initProperties();
 
     }
 

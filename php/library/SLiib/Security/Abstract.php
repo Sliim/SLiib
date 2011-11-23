@@ -58,6 +58,12 @@ abstract class SLiib_Security_Abstract
     protected $_model = NULL;
 
     /**
+     * Last pattern error
+     * @var string
+     */
+    protected $_patternError;
+
+    /**
      * Checker name
      * @var string
      */
@@ -74,12 +80,6 @@ abstract class SLiib_Security_Abstract
      * @var SLiib_HTTP_Request
      */
     private $_request;
-
-    /**
-     * Last pattern error
-     * @var string
-     */
-    protected $_patternError;
 
 
     /**

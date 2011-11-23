@@ -60,33 +60,6 @@ class SLiib_Application
 
 
     /**
-     * Constructor, use static method `init` to get an instance
-     *
-     * @param string $appNamespace Application namespace
-     * @param string $appPath      Application path
-     *
-     * @throws SLiib_Application_Exception
-     *
-     * @return void
-     */
-    private function __construct($appNamespace, $appPath)
-    {
-        $this->_appNamespace = $appNamespace;
-        $this->_appPath      = $appPath;
-
-        $bootstrapPath = $this->_appPath . '/Bootstrap.php';
-        if (!file_exists($bootstrapPath)) {
-            throw new SLiib_Application_Exception('Error boostraping!');
-        }
-
-        include $bootstrapPath;
-        class_alias($this->_appNamespace . '_Bootstrap', 'Bootstrap');
-        $this->_bootstrap = new Bootstrap($this->_appNamespace);
-
-    }
-
-
-    /**
      * Application Init
      *
      * @param string $appNamespace Application namespace
@@ -152,6 +125,33 @@ class SLiib_Application
     public function getViewPath()
     {
         return $this->_bootstrap->getViewPath();
+
+    }
+
+
+    /**
+     * Constructor, use static method `init` to get an instance
+     *
+     * @param string $appNamespace Application namespace
+     * @param string $appPath      Application path
+     *
+     * @throws SLiib_Application_Exception
+     *
+     * @return void
+     */
+    private function __construct($appNamespace, $appPath)
+    {
+        $this->_appNamespace = $appNamespace;
+        $this->_appPath      = $appPath;
+
+        $bootstrapPath = $this->_appPath . '/Bootstrap.php';
+        if (!file_exists($bootstrapPath)) {
+            throw new SLiib_Application_Exception('Error boostraping!');
+        }
+
+        include $bootstrapPath;
+        class_alias($this->_appNamespace . '_Bootstrap', 'Bootstrap');
+        $this->_bootstrap = new Bootstrap($this->_appNamespace);
 
     }
 

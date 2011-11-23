@@ -98,14 +98,6 @@ abstract class SLiib_Application_Controller
 
 
     /**
-     * Init controller, called before action
-     *
-     * @return void
-     */
-    abstract protected function _init();
-
-
-    /**
      * Request getter
      *
      * @return SLiib_HTTP_Request
@@ -115,6 +107,14 @@ abstract class SLiib_Application_Controller
         return $this->_request;
 
     }
+
+
+    /**
+     * Init controller, called before action
+     *
+     * @return void
+     */
+    abstract protected function _init();
 
 
 }
