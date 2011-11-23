@@ -36,8 +36,6 @@
 class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 {
 
-    const ENABLE_OUTPUT_CLEANER = TRUE;
-
     /**
      * @var string
      */
@@ -102,14 +100,14 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test getInstance SLiib_HTTP_Request not initialized
+     * Test get an instance of SLiib_HTTP_Request not initialized
      *
      * @return void
      */
-    public function testGetInstanceRequest()
+    public function testGetInstanceNotInit()
     {
         try {
-            SLiib_HTTP_Request::getInstance();
+            $object = SLiib_HTTP_Request::getInstance();
         } catch (SLiib_HTTP_Request_Exception $e) {
             $this->assertInstanceOf('SLiib_HTTP_Request_Exception', $e);
             return;
@@ -504,19 +502,10 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     private function _runApp()
     {
-        if (self::ENABLE_OUTPUT_CLEANER) {
-            ob_start();
-        }
-
         SLiib_Application::init(
             APP_NS,
             APP_PATH
         )->run();
-
-        if (self::ENABLE_OUTPUT_CLEANER) {
-            ob_clean();
-            ob_flush();
-        }
 
         $this->_request = SLiib_HTTP_Request::getInstance();
 

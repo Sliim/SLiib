@@ -46,14 +46,18 @@ class SLiib_AutoloaderTest extends PHPUnit_Framework_TestCase
      */
     public function testInit()
     {
-        $namespace = array('SLiib' => 'SLiib', APP_NS => APP_PATH);
+        $namespace = array(
+                      'SLiib' => 'SLiib',
+                      APP_NS  => APP_PATH,
+                     );
+
         $section = array(APP_NS => array('Model' => 'models'));
         SLiib_Autoloader::init($namespace, $section);
 
         $newSection = array(
-                       APP_NS => array('Controller' => 'controllers'),
+                       APP_NS  => array('Controller' => 'controllers'),
                        'Test2' => 'foo',
-        );
+                      );
         SLiib_Autoloader::init($namespace, $newSection);
 
     }

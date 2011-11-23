@@ -20,6 +20,12 @@ dir=`echo $1 | cut -f -$(($deep-1)) -d _ | sed 's/_/\//g'`
 file=`echo $1 | cut -f $deep -d _`"Test"$ext
 destination_directory=$pwd/library/$dir
 
+if test -f $destination_directory/$file
+then
+    echo "Test $file already exists, exiting.."
+    exit 3
+fi
+
 cd ../library/
 phpunit --bootstrap $pwd/Bootstrap.php --skeleton-test $1
 
@@ -28,8 +34,10 @@ then
     echo 'PHPUnit returned an error when generating the skeleton'
     cd $pwd
     echo 'Exiting..'
-    exit 3
+    exit 4
 fi
+
+sed -i s/\{className\}/$1/i $dir/$generate_file
 
 if test ! -d $destination_directory
 then

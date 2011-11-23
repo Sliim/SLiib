@@ -339,9 +339,7 @@ class SLiib_Log
                 break;
         }
 
-        $stdout = new self('php://stdout');
-        $stdout->setFormat('%m');
-        $stdout->log($color . $string . $defaultColor);
+        echo $color . $string . $defaultColor;
 
     }
 

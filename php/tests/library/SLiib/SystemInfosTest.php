@@ -38,37 +38,6 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Exécute une commande
-     *
-     * @param string  $cmd       Commande à exécuter
-     * @param boolean $serialize Sérialize response
-     *
-     * @covers SLiib_SystemInfos::__callStatic
-     *
-     * @return string Retour de la commande
-     */
-    private function _exec($cmd, $serialize=FALSE)
-    {
-        try {
-            if ($serialize) {
-                $res = SLiib_SystemInfos::$cmd('serialize');
-            } else {
-                $res = SLiib_SystemInfos::$cmd();
-            }
-        } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
-            $this->markTestSkipped('Command unknown !');
-        } catch (SLiib_SystemInfos_Exception_CommandFailed $e) {
-            $this->markTestSkipped('Command failed !');
-        } catch (Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        return $res;
-
-    }
-
-
-    /**
      * Appel commande Apache2
      * apache2 on debian testing fail with normal user (not /usr/sbin in his $PATH)
      *
@@ -76,11 +45,16 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdApache2()
     {
-        $res = $this->_exec('CMD_APACHE2_VERSION', TRUE);
-        $this->assertInternalType('string', $res);
-
-        $res = $this->_exec('CMD_APACHE2_COMPILED_MODULES');
-        $this->assertInternalType('string', $res);
+        try {
+            $res = SLiib_SystemInfos::CMD_APACHE2_VERSION('serialize');
+            $this->assertInternalType('string', $res);
+            $res = SLiib_SystemInfos::CMD_APACHE2_COMPILED_MODULES();
+            $this->assertInternalType('string', $res);
+        } catch (SLiib_SystemInfos_Exception_CommandFailed $e) {
+            $this->assertInstanceOf('SLiib_SystemInfos_Exception_CommandFailed', $e);
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
 
     }
 
@@ -92,10 +66,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdPHP()
     {
-        $res = $this->_exec('CMD_PHP_VERSION');
+        $res = SLiib_SystemInfos::CMD_PHP_VERSION();
         $this->assertInternalType('string', $res);
 
-        $res = $this->_exec('CMD_PHP_MODULES', 'serialize');
+        $res = SLiib_SystemInfos::CMD_PHP_MODULES();
         $this->assertInternalType('string', $res);
 
     }
@@ -108,10 +82,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdUname()
     {
-        $res = $this->_exec('CMD_UNAME_KERNEL_RELEASE');
+        $res = SLiib_SystemInfos::CMD_UNAME_KERNEL_RELEASE();
         $this->assertInternalType('string', $res);
 
-        $res = $this->_exec('CMD_UNAME_OS_INFOS');
+        $res = SLiib_SystemInfos::CMD_UNAME_OS_INFOS('serialize');
         $this->assertInternalType('string', $res);
 
     }
@@ -124,10 +98,10 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
      */
     public function testCmdLsbRelease()
     {
-        $res = $this->_exec('CMD_LSB_RELEASE_CODENAME');
+        $res = SLiib_SystemInfos::CMD_LSB_RELEASE_CODENAME();
         $this->assertInternalType('string', $res);
 
-        $res = $this->_exec('CMD_LSB_RELEASE_RELEASE');
+        $res = SLiib_SystemInfos::CMD_LSB_RELEASE_RELEASE();
         $this->assertInternalType('string', $res);
 
     }
@@ -144,6 +118,27 @@ class SLiib_SystemInfosTest extends PHPUnit_Framework_TestCase
             $res = SLiib_SystemInfos::CMD_UNKNOWN();
         } catch (SLiib_SystemInfos_Exception_BadMethodCall $e) {
             $this->assertInstanceOf('SLiib_SystemInfos_Exception_BadMethodCall', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test command failed
+     *
+     * @return void
+     */
+    public function testCmdFailed()
+    {
+        try {
+            $res = Stubs_SystemInfos::CMD_FAILED();
+        } catch (SLiib_SystemInfos_Exception_CommandFailed $e) {
+            $this->assertInstanceOf('SLiib_SystemInfos_Exception_CommandFailed', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');

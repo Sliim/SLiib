@@ -34,7 +34,7 @@ class SLiib_Autoloader
 {
 
     /**
-     * Class loaded
+     * Array of class loaded
      * @var array
      */
     private static $_isLoaded = array();

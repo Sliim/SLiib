@@ -45,8 +45,6 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @covers SLiib_Security_Checker_AllowedMethods::__construct
-     *
      * @return void
      */
     public function setUp()
@@ -71,8 +69,6 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test run
-     *
-     * @covers SLiib_Security_Checker_AllowedMethods::run
      *
      * @return void
      */

@@ -19,24 +19,23 @@
  *
  * @category   SLiib
  * @package    SLiib
- * @subpackage UnitTests
+ * @subpackage UnitTests_-_Stubs
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version    Release: 0.1
+ * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
-require_once 'SLiib/Autoloader.php';
 
-define('ROOT_PATH', realpath(dirname(__FILE__) . '/others/Application'));
-define('STUBS_PATH', realpath(ROOT_PATH . '/../Stubs'));
-define('STATIC_PATH', realpath(ROOT_PATH . '/../Static'));
-define('APP_PATH', realpath(ROOT_PATH . '/application/'));
-define('APP_NS', 'Test');
+define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');
 
-SLiib_Autoloader::init(
-    array(
-     'SLiib'  => 'SLiib',
-     'Stubs'  => STUBS_PATH,
-     'Static' => STATIC_PATH,
-    )
-);
+/**
+ * Stubs_SystemInfos
+ *
+ * @package    SLiib
+ * @subpackage UnitTests_-_Stubs
+ */
+class Stubs_SystemInfos extends SLiib_SystemInfos
+{
+    const CMD_FAILED = CMD_FAILED;
+
+}

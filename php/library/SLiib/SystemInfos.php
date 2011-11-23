@@ -55,11 +55,11 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
      */
     public static function __callStatic($name, $arguments)
     {
-        if (!defined('self::' . $name)) {
+        if (!defined('static::' . $name)) {
             throw new SLiib_SystemInfos_Exception_BadMethodCall('Command not found!');
         }
 
-        $result = self::_execute(constant('SELF::' . $name));
+        $result = self::_execute(constant('static::' . $name));
 
         if (in_array('serialize', $arguments)) {
             return serialize($result);
