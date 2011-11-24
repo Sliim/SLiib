@@ -77,9 +77,9 @@ class SLiib_SolR
     /**
      * Constructeur, initialise les attributs privés.
      *
-     * @param string  $host Host de l'instance SolR
-     * @param int     $port Port écouté par l'instance SolR
-     * @param boolean $ping Ping SolR
+     * @param string            $host Host de l'instance SolR
+     * @param int               $port Port écouté par l'instance SolR
+     * @param boolean[optional] $ping Ping SolR
      *
      * @throws SLiib_SolR_Exception
      *

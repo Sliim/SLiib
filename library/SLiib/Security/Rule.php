@@ -69,10 +69,10 @@ class SLiib_Security_Rule
     /**
      * Rule init
      *
-     * @param int    $id       Rule Id
-     * @param string $message  Rule message
-     * @param string $pattern  Rule pattern
-     * @param mixed  $location Rule location
+     * @param int              $id       Rule Id
+     * @param string           $message  Rule message
+     * @param string[optional] $pattern  Rule pattern
+     * @param mixed[optional]  $location Rule location
      *
      * @return void
      */
