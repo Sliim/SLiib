@@ -1,0 +1,31 @@
+===================================================================================================
+
+Description
+===========
+  SLiib is a small framework for php development
+
+
+License
+=======
+  SLiib is released under the terms of the General Public License v3.
+
+
+Disclaimer
+==========
+  SLiib is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with SLiib.  If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
+
+
+Requirements
+============
+    - PHP >= 5.3.0
+
+
+Installation
+============
+  Please have a look at INSTALL.
