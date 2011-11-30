@@ -184,4 +184,39 @@ class Test_Controller_Test extends SLiib_Application_Controller
     }
 
 
+    /**
+     * Test session
+     *
+     * @return void
+     */
+    public function sessionAction()
+    {
+        $this->_view->bigtitle  = 'Test Session';
+        $this->_view->logged    = FALSE;
+
+        $params  = $this->_request->getParameters();
+        $session = new SLiib_Session('TestSession');
+
+        if (array_key_exists('login', $params)) {
+            if (array_key_exists('username', $params) && array_key_exists('password', $params)) {
+                if ($params['password'] == 'isSecure') {
+                    $session->username = $params['username'];
+                    $session->logged   = TRUE;
+                }
+            }
+        } else if (array_key_exists('logout', $params)) {
+            $this->_view->logged = FALSE;
+            $session->clear();
+        }
+
+        if (isset($session->logged)) {
+            if ($session->logged) {
+                $this->_view->logged   = TRUE;
+                $this->_view->username = $session->username;
+            }
+        }
+
+    }
+
+
 }

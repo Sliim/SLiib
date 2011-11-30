@@ -70,6 +70,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
+        Static_Session::setSession();
         Static_Request::setServerInfo('REMOTE_ADDR', $this->_ip);
         Static_Request::setServerInfo('REQUEST_METHOD', $this->_method);
         Static_Request::setServerInfo('HTTP_USER_AGENT', $this->_userAgent);
@@ -466,6 +467,40 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     {
         Static_Request::setServerInfo('REQUEST_URI', '/test/javascript');
         $this->_runApp();
+
+    }
+
+
+    /**
+     * Test session action (Controller test)
+     *
+     * @return void
+     */
+    public function testSessionAction()
+    {
+        Static_Request::setServerInfo('REQUEST_URI', '/test/session');
+        $this->_runApp();
+
+        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setPost(
+            array(
+             'login'    => 'Login',
+             'username' => 'Sliim',
+             'password' => 'isSecure',
+            )
+        );
+        $this->_runApp();
+        $session = new SLiib_Session('TestSession');
+        $this->assertTrue(isset($session->logged));
+        $this->assertTrue(isset($session->username));
+        $this->assertEquals(TRUE, $session->logged);
+        $this->assertEquals('Sliim', $session->username);
+
+        Static_Request::setPost(array('logout' => 'Logout'));
+        $this->_runApp();
+        $session = new SLiib_Session('TestSession');
+        $this->assertFalse(isset($session->logged));
+        $this->assertFalse(isset($session->username));
 
     }
 
