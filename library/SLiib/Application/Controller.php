@@ -50,7 +50,7 @@ abstract class SLiib_Application_Controller
     /**
      * @var SLiib_HTTP_Request
      */
-    private $_request = NULL;
+    protected $_request = NULL;
 
 
     /**
