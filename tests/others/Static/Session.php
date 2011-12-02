@@ -18,8 +18,8 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
- * @subpackage UnitTests_-_Static
+ * @package    Tests
+ * @subpackage Static
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -29,8 +29,8 @@
 /**
  * Static_Session
  *
- * @package    SLiib
- * @subpackage UnitTests_-_Static
+ * @package    Tests
+ * @subpackage Static
  */
 class Static_Session
 {

@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    SLiib_SystemInfos
- * @subpackage SLiib_SystemInfos_Interfaces
+ * @subpackage Interfaces
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -30,7 +30,7 @@
  * SLiib_SystemInfos_Interfaces_IPhp
  *
  * @package    SLiib_SystemInfos
- * @subpackage SLiib_SystemInfos_Interfaces
+ * @subpackage Interfaces
  */
 Interface SLiib_SystemInfos_Interfaces_IPhp
 {

@@ -16,19 +16,21 @@
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
  * PHP version 5
- *  
- * @category SLiib
- * @package  SLiib_SystemInfos
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ *
+ * @category   SLiib
+ * @package    SLiib_SystemInfos
+ * @subpackage Exception
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
  * SLiib_SystemInfos_Exception
- * 
- * @package SLiib_SystemInfos
+ *
+ * @package    SLiib_SystemInfos
+ * @subpackage Exception
  */
 class SLiib_SystemInfos_Exception extends SLiib_Exception
 {

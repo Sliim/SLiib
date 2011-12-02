@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
+ * @package    Tests
  * @subpackage UnitTests
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -29,7 +29,7 @@
 /**
  * Test class for SLiib_Security_Checker_FilenamePolicy.
  *
- * @package    SLiib
+ * @package    Tests
  * @subpackage UnitTests
  */
 class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCase

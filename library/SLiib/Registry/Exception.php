@@ -17,18 +17,20 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Registry
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Registry
+ * @subpackage Exception
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
  * SLiib_Registry_Exception
  *
- * @package SLiib_Registry
+ * @package    SLiib_Registry
+ * @subpackage Exception
  */
 class SLiib_Registry_Exception extends SLiib_Exception
 {

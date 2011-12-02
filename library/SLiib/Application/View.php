@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    SLiib_Application
- * @subpackage SLiib_Application_View
+ * @subpackage View
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -30,7 +30,7 @@
  * SLiib_Application_View
  *
  * @package    SLiib_Application
- * @subpackage SLiib_Application_View
+ * @subpackage View
  */
 class SLiib_Application_View
 {

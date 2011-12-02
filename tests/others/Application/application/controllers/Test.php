@@ -18,8 +18,8 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
- * @subpackage Tests
+ * @package    Tests
+ * @subpackage ApplicationTest
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -29,8 +29,8 @@
 /**
  * Test controller
  *
- * @package    SLiib
- * @subpackage Tests
+ * @package    Tests
+ * @subpackage ApplicationTest
  */
 class Test_Controller_Test extends SLiib_Application_Controller
 {
@@ -191,8 +191,8 @@ class Test_Controller_Test extends SLiib_Application_Controller
      */
     public function sessionAction()
     {
-        $this->_view->bigtitle  = 'Test Session';
-        $this->_view->logged    = FALSE;
+        $this->_view->bigtitle = 'Test Session';
+        $this->_view->logged   = FALSE;
 
         $params  = $this->_request->getParameters();
         $session = new SLiib_Session('TestSession');

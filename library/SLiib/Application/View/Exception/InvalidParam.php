@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    SLiib_Application
- * @subpackage SLiib_Application_View
+ * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -30,7 +30,7 @@
  * SLiib_Application_View_Exception_InvalidParam
  *
  * @package    SLiib_Application
- * @subpackage SLiib_Application_View
+ * @subpackage Exception
  */
 class SLiib_Application_View_Exception_InvalidParam
 extends SLiib_Application_View_Exception

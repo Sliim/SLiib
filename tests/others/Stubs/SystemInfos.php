@@ -18,8 +18,8 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
- * @subpackage UnitTests_-_Stubs
+ * @package    Tests
+ * @subpackage Stubs
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -31,8 +31,8 @@ define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');
 /**
  * Stubs_SystemInfos
  *
- * @package    SLiib
- * @subpackage UnitTests_-_Stubs
+ * @package    Tests
+ * @subpackage Stubs
  */
 class Stubs_SystemInfos extends SLiib_SystemInfos
 {
