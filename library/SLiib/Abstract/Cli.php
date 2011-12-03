@@ -17,27 +17,58 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Cli
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Abstract
+ * @subpackage Cli
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Cli
+ * SLiib_Abstract_Cli
  *
- * @package SLiib_Cli
+ * @package    SLiib_Abstract
+ * @subpackage Cli
  */
-abstract class SLiib_Cli
+abstract class SLiib_Abstract_Cli
 {
 
+    /**
+     * Script description
+     * @var string
+     */
     const NO_DESCRIPTION_LABEL = 'No description';
+
+    /**
+     * Script author label when unknown
+     * @var string
+     */
     const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
+
+    /**
+     * Script author label
+     * @var string
+     */
     const AUTHOR_LABEL         = 'Auteur';
+
+    /**
+     * Script version label
+     * @var string
+     */
     const VERSION_LABEL        = 'Version';
+
+    /**
+     * Help menu text
+     * @var string
+     */
     const SHOW_HELP_LABEL      = 'Affiche l\'aide.';
+
+    /**
+     * Version menu text
+     * @var string
+     */
     const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
 
     /**

@@ -48,6 +48,7 @@ abstract class SLiib_Application_Controller
     protected $_viewClass = 'SLiib_Application_View';
 
     /**
+     * Request instance
      * @var SLiib_HTTP_Request
      */
     protected $_request = NULL;

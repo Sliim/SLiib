@@ -37,26 +37,31 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Fake ip
      * @var string
      */
     private $_ip = '127.0.0.1';
 
     /**
+     * Fake method request
      * @var string
      */
     private $_method = 'GET';
 
     /**
+     * Fake user agent
      * @var string
      */
     private $_userAgent = 'Units Test SLiib_Application';
 
     /**
+     * Fake referer
      * @var string
      */
     private $_referer = 'http://dtc.com';
 
     /**
+     * Request instance
      * @var SLiib_HTTP_Request
      */
     private $_request;

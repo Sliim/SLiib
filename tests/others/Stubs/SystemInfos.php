@@ -36,6 +36,11 @@ define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');
  */
 class Stubs_SystemInfos extends SLiib_SystemInfos
 {
+
+    /**
+     * Command fail constant
+     * @var string
+     */
     const CMD_FAILED = CMD_FAILED;
 
 }

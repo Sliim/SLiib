@@ -35,10 +35,34 @@
 Interface SLiib_SystemInfos_Interfaces_ILsbRelease
 {
 
-    const CMD_LSB_RELEASE_ID       = 'lsb_release -i';
-    const CMD_LSB_RELEASE_DESC     = 'lsb_release -d';
-    const CMD_LSB_RELEASE_RELEASE  = 'lsb_release -r';
+    /**
+     * Distribution id
+     * @var string
+     */
+    const CMD_LSB_RELEASE_ID = 'lsb_release -i';
+
+    /**
+     * Distribution description
+     * @var string
+     */
+    const CMD_LSB_RELEASE_DESC = 'lsb_release -d';
+
+    /**
+     * Distribution release
+     * @var string
+     */
+    const CMD_LSB_RELEASE_RELEASE = 'lsb_release -r';
+
+    /**
+     * Distribution codename
+     * @var string
+     */
     const CMD_LSB_RELEASE_CODENAME = 'lsb_release -c';
-    const CMD_LSB_RELEASE_ALL      = 'lsb_release -idrc';
+
+    /**
+     * All infos
+     * @var string
+     */
+    const CMD_LSB_RELEASE_ALL = 'lsb_release -idrc';
 
 }

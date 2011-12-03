@@ -37,6 +37,7 @@ class SLiib_Security_RuleTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Test object
      * @var SLiib_Security_Rule
      */
     protected $_object;

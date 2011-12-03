@@ -36,6 +36,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
 {
 
     /**
+     * Test object
      * @var SLiib_Security_Checker_PHPCodeInject
      */
     protected $_object;

@@ -35,12 +35,41 @@
 Interface SLiib_SystemInfos_Interfaces_IApache2
 {
 
-    const CMD_APACHE2_VERSION           = 'apache2 -v';
-    const CMD_APACHE2_SETTINGS          = 'apache2 -V';
-    const CMD_APACHE2_COMPILED_MODULES  = 'apache2 -l';
+    /**
+     * Apache version
+     * @var string
+     */
+    const CMD_APACHE2_VERSION = 'apache2 -v';
+
+    /**
+     * Apache settings
+     * @var string
+     */
+    const CMD_APACHE2_SETTINGS = 'apache2 -V';
+
+    /**
+     * Compiled
+     * @var string
+     */
+    const CMD_APACHE2_COMPILED_MODULES = 'apache2 -l';
+
+    /**
+     * Directive configuration
+     * @var string
+     */
     const CMD_APACHE2_DIRECTIVES_CONFIG = 'apache2 -L';
-    const CMD_APACHE2_PARSED_SETTINGS   = 'apache2 -S';
-    const CMD_APACHE2_LOADED_MODULES    = 'apache2 -M';
+
+    /**
+     * Parsed settings
+     * @var string
+     */
+    const CMD_APACHE2_PARSED_SETTINGS = 'apache2 -S';
+
+    /**
+     * Loaded modules
+     * @var string
+     */
+    const CMD_APACHE2_LOADED_MODULES = 'apache2 -M';
 
 }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<docblox>
+    <title><![CDATA[SLiib docs]]></title>
+    <parser>
+        <target>output</target>
+        <markers>
+            <item>TODO</item>
+            <item>FIXME</item>
+        </markers>
+        <extensions>
+            <extension>php</extension>
+        </extensions>
+    </parser>
+    <files>
+        <directory>../../library/</directory>
+        <directory>../../tests/</directory>
+    </files>
+    <logging>
+        <level>warn</level>
+        <paths>
+            <default>log/{DATE}.log</default>
+            <errors>log/{DATE}.errors.log</errors>
+        </paths>
+    </logging>
+</docblox>

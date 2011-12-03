@@ -33,9 +33,14 @@
 class SLiib_HTTP_Request
 {
 
+    /**
+     * Request instance
+     * @var SLiib_HTTP_Request
+     */
     private static $_instance = NULL;
 
     /**
+     * Request data
      * @var stdClass
      */
     private $_request = NULL;

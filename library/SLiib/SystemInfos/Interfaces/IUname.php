@@ -35,12 +35,46 @@
 Interface SLiib_SystemInfos_Interfaces_IUname
 {
 
-    const CMD_UNAME_KERNEL_NAME    = 'uname -s';
-    const CMD_UNAME_HOSTNAME       = 'uname -n';
+    /**
+     * Kernel name
+     * @var string
+     */
+    const CMD_UNAME_KERNEL_NAME = 'uname -s';
+
+    /**
+     * Hostname
+     * @var string
+     */
+    const CMD_UNAME_HOSTNAME = 'uname -n';
+
+    /**
+     * Kernel release
+     * @var string
+     */
     const CMD_UNAME_KERNEL_RELEASE = 'uname -r';
+
+    /**
+     * Kernel version
+     * @var string
+     */
     const CMD_UNAME_KERNEL_VERSION = 'uname -v';
-    const CMD_UNAME_ARCH           = 'uname -m';
-    const CMD_UNAME_PROC           = 'uname -p';
-    const CMD_UNAME_OS_INFOS       = 'uname -o';
+
+    /**
+     * Architecture
+     * @var string
+     */
+    const CMD_UNAME_ARCH = 'uname -m';
+
+    /**
+     * Proc
+     * @var string
+     */
+    const CMD_UNAME_PROC = 'uname -p';
+
+    /**
+     * OS Infos
+     * @var string
+     */
+    const CMD_UNAME_OS_INFOS = 'uname -o';
 
 }

@@ -1,4 +1,5 @@
 .project
 .settings
 tests/logs
-docs/docblox/
+docs/docblox/output
+docs/docblox/log

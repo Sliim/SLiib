@@ -37,31 +37,37 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Test object
      * @var SLiib_HTTP_Request
      */
     protected $_object;
 
     /**
+     * Fake request uri
      * @var string
      */
     private $_requestUri = '/foo/bar/getparam/value';
 
     /**
+     * Fake client ip
      * @var string
      */
     private $_clientIp = '127.0.0.3';
 
     /**
+     * Fake user agent
      * @var string
      */
     private $_ua = '31337bot';
 
     /**
+     * Fake http method
      * @var string
      */
     private $_method = 'GET';
 
     /**
+     * Fake referer
      * @var string
      */
     private $_referer = 'http://www.hellokitty.com';

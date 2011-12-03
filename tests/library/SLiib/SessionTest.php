@@ -37,6 +37,7 @@ class SLiib_SessionTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Test object
      * @var SLiib_Session
      */
     protected $_object;

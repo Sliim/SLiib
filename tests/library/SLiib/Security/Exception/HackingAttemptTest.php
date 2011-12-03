@@ -37,26 +37,31 @@ class SLiib_Security_Exception_HackingAttemptTest extends PHPUnit_Framework_Test
 {
 
     /**
+     * Test object
      * @var SLiib_Security_Exception_HackingAttempt
      */
     protected $_object;
 
     /**
+     * Fake checker name
      * @var string
      */
     private $_checkerName = 'CheckerNameTest';
 
     /**
+     * Rule for test
      * @var SLiib_Security_Rule
      */
     private $_rule = NULL;
 
     /**
+     * Fake location
      * @var string
      */
     private $_location = 'LocationTest';
 
     /**
+     * Fake reason
      * @var string
      */
     private $_reason = 'ReasonTest';

@@ -36,6 +36,7 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
 {
 
     /**
+     * Test object
      * @var SLiib_Security_Checker_AllowedMethods
      */
     protected $_object;

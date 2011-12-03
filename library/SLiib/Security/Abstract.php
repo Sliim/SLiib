@@ -37,6 +37,8 @@ abstract class SLiib_Security_Abstract
 
     /**
      * Location contantes
+     *
+     * @var string
      */
     const LOCATION_REQUEST_URI = 'Request URI';
     const LOCATION_PARAMETERS  = 'Parameters';

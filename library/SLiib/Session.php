@@ -40,11 +40,13 @@ class SLiib_Session
     private $_session = array();
 
     /**
+     * Session namespace
      * @var string
      */
     private $_namespace;
 
     /**
+     * Session started
      * @var bool
      */
     private static $_started = FALSE;
