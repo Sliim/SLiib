@@ -196,6 +196,22 @@ class SLiib_HTTP_Request
 
 
     /**
+     * Check is request use post method
+     *
+     * @return boolean
+     */
+    public function isPost()
+    {
+        if ($this->getRequestMethod() === 'POST') {
+            return TRUE;
+        }
+
+        return FALSE;
+
+    }
+
+
+    /**
      * Construct request
      *
      * @return void

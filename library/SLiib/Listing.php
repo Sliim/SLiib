@@ -93,7 +93,7 @@ class SLiib_Listing
     /**
      * Rangement du tableau par ordre alphabetic
      *
-     * @return void
+     * @return SLiib_Listing
      */
     public function sort()
     {
@@ -101,6 +101,7 @@ class SLiib_Listing
         natcasesort($list);
 
         $this->_list = array_merge($list);
+        return $this;
 
     }
 
@@ -108,7 +109,7 @@ class SLiib_Listing
     /**
      * Rangement du tableau par ordre alphabetic inversé
      *
-     * @return void
+     * @return SLiib_Listing
      */
     public function usort()
     {
@@ -116,6 +117,7 @@ class SLiib_Listing
         natcasesort($list);
 
         $this->_list = array_reverse(array_merge($list));
+        return $this;
 
     }
 
