@@ -41,10 +41,10 @@ class Static_Session
      *
      * @return void
      */
-    static public function setSession()
+    public static function setSession()
     {
-        $_SESSION = array();
         $GLOBALS['_SESSION'];
+        $_SESSION = array();
 
     }
 

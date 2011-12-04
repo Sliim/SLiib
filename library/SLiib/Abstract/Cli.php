@@ -51,25 +51,25 @@ abstract class SLiib_Abstract_Cli
      * Script author label
      * @var string
      */
-    const AUTHOR_LABEL         = 'Auteur';
+    const AUTHOR_LABEL = 'Auteur';
 
     /**
      * Script version label
      * @var string
      */
-    const VERSION_LABEL        = 'Version';
+    const VERSION_LABEL = 'Version';
 
     /**
      * Help menu text
      * @var string
      */
-    const SHOW_HELP_LABEL      = 'Affiche l\'aide.';
+    const SHOW_HELP_LABEL = 'Affiche l\'aide.';
 
     /**
      * Version menu text
      * @var string
      */
-    const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
+    const SHOW_VERSION_LABEL = 'Affiche la version du script.';
 
     /**
      * Version du script

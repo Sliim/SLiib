@@ -44,10 +44,80 @@ class Static_Request
      *
      * @return void
      */
-    static public function setServerInfo($index, $value)
+    public static function setServerInfo($index, $value)
     {
         $GLOBALS['_SERVER'];
         $_SERVER[$index] = $value;
+
+    }
+
+
+    /**
+     * Set remote ip
+     *
+     * @param string $value Value to assign
+     *
+     * @return void
+     */
+    public static function setRemoteIp($value)
+    {
+        static::setServerInfo('REMOTE_ADDR', $value);
+
+    }
+
+
+    /**
+     * Set user agent
+     *
+     * @param string $value Value to assign
+     *
+     * @return void
+     */
+    public static function setUserAgent($value)
+    {
+        static::setServerInfo('HTTP_USER_AGENT', $value);
+
+    }
+
+
+    /**
+     * Set request method
+     *
+     * @param string $value Value to assign
+     *
+     * @return void
+     */
+    public static function setRequestMethod($value)
+    {
+        static::setServerInfo('REQUEST_METHOD', $value);
+
+    }
+
+
+    /**
+     * Set http referer
+     *
+     * @param string $value Value to assign
+     *
+     * @return void
+     */
+    public static function setReferer($value)
+    {
+        static::setServerInfo('HTTP_REFERER', $value);
+
+    }
+
+
+    /**
+     * Set request uri
+     *
+     * @param string $value Value to assign
+     *
+     * @return void
+     */
+    public static function setRequestUri($value)
+    {
+        static::setServerInfo('REQUEST_URI', $value);
 
     }
 

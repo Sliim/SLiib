@@ -76,10 +76,10 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         Static_Session::setSession();
-        Static_Request::setServerInfo('REMOTE_ADDR', $this->_ip);
-        Static_Request::setServerInfo('REQUEST_METHOD', $this->_method);
-        Static_Request::setServerInfo('HTTP_USER_AGENT', $this->_userAgent);
-        Static_Request::setServerInfo('HTTP_REFERER', $this->_referer);
+        Static_Request::setRemoteIp($this->_ip);
+        Static_Request::setRequestMethod($this->_method);
+        Static_Request::setUserAgent($this->_userAgent);
+        Static_Request::setReferer($this->_referer);
 
     }
 
@@ -178,7 +178,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testRunTestNoview()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/noview');
+        Static_Request::setRequestUri('/test/noview');
         $this->_runApp();
 
     }
@@ -192,7 +192,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     public function testGetParams()
     {
         Static_Request::setCookie(array('foo' => 'bar'));
-        Static_Request::setServerInfo('REQUEST_URI', '/test/request/foo/bar/1337/w00t');
+        Static_Request::setRequestUri('/test/request/foo/bar/1337/w00t');
         $this->_runApp();
 
         $params = $this->_request->getParameters();
@@ -215,7 +215,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testWithoutAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/index');
+        Static_Request::setRequestUri('/index');
         $this->_runApp();
 
     }
@@ -228,7 +228,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/index/notexists');
+        Static_Request::setRequestUri('/index/notexists');
 
         try {
             $this->_runApp();
@@ -251,7 +251,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadController()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/notexists');
+        Static_Request::setRequestUri('/notexists');
 
         try {
             $this->_runApp();
@@ -274,7 +274,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testPostMethod()
     {
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(
             array(
              'foo'  => 'bar',
@@ -304,7 +304,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testOtherMethod()
     {
-        Static_Request::setServerInfo('REQUEST_METHOD', '1337');
+        Static_Request::setRequestMethod('1337');
         $this->_runApp();
         $params = $this->_request->getParameters();
 
@@ -335,7 +335,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadSetView()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/badsetview');
+        Static_Request::setrequestUri('/test/badsetview');
 
         try {
             $this->_runApp();
@@ -358,7 +358,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testBadPartial()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/badpartial');
+        Static_Request::setRequestUri('/test/badpartial');
 
         try {
             $this->_runApp();
@@ -381,7 +381,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testViewGetter()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/getterview');
+        Static_Request::setRequestUri('/test/getterview');
 
         try {
             $this->_runApp();
@@ -405,7 +405,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
     public function testErrorHandler()
     {
         $this->_disablePhpUnitErrorHandler();
-        Static_Request::setServerInfo('REQUEST_URI', '/test/errorhandler');
+        Static_Request::setRequestUri('/test/errorhandler');
 
         try {
             $this->_runApp();
@@ -431,7 +431,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testModelAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/model');
+        Static_Request::setRequestUri('/test/model');
         $this->_runApp();
 
     }
@@ -444,7 +444,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testLibraryAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/library');
+        Static_Request::setRequestUri('/test/library');
         $this->_runApp();
 
     }
@@ -457,7 +457,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testCustomViewAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/customview');
+        Static_Request::setRequestUri('/test/customview');
         $this->_runApp();
 
     }
@@ -470,7 +470,7 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testJavascriptAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/javascript');
+        Static_Request::setRequestUri('/test/javascript');
         $this->_runApp();
 
     }
@@ -483,10 +483,10 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testSessionAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/test/session');
+        Static_Request::setRequestUri('/test/session');
         $this->_runApp();
 
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(
             array(
              'login'    => 'Login',

@@ -96,11 +96,11 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
         $this->_post    = array('params' => 'baz');
         $this->_cookies = array('user_password' => 'passSecur3d');
 
-        Static_Request::setServerInfo('REQUEST_URI', $this->_requestUri);
-        Static_Request::setServerInfo('REMOTE_ADDR', $this->_clientIp);
-        Static_Request::setServerInfo('HTTP_USER_AGENT', $this->_ua);
-        Static_Request::setServerInfo('REQUEST_METHOD', $this->_method);
-        Static_Request::setServerInfo('HTTP_REFERER', $this->_referer);
+        Static_Request::setRequestUri($this->_requestUri);
+        Static_Request::setRemoteIp($this->_clientIp);
+        Static_Request::setUserAgent($this->_ua);
+        Static_Request::setRequestMethod($this->_method);
+        Static_Request::setReferer($this->_referer);
         Static_Request::setPost($this->_post);
         Static_Request::setCookie($this->_cookies);
 
@@ -181,7 +181,7 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexControllerIndexAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/');
+        Static_Request::setRequestUri('/');
         $this->_setObject();
         $this->assertEquals('index', $this->_object->getController());
         $this->assertEquals('index', $this->_object->getAction());
@@ -196,7 +196,7 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexAction()
     {
-        Static_Request::setServerInfo('REQUEST_URI', '/foo');
+        Static_Request::setRequestUri('/foo');
         $this->_setObject();
         $this->assertEquals('foo', $this->_object->getController());
         $this->assertEquals('index', $this->_object->getAction());
@@ -249,13 +249,13 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('getparam', $params);
         $this->assertEquals('value', $params['getparam']);
 
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setRequestMethod('POST');
         $this->_setObject();
 
         $params = $this->_object->getParameters();
         $this->assertEquals($this->_post, $params);
 
-        Static_Request::setServerInfo('REQUEST_METHOD', 'WOOT');
+        Static_Request::setRequestMethod('WOOT');
         $this->_setObject();
 
         $params = $this->_object->getParameters();

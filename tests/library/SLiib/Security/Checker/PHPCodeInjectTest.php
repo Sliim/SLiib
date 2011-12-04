@@ -95,7 +95,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
      */
     public function testRunWithIncludeInjection()
     {
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(
             array('foo' => '\'; include \'ohmygad\';')
         );
@@ -122,7 +122,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
      */
     public function testRunWithFilegetcontentsInjection()
     {
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(
             array('foo' => '\'; file_get_contents(\'/etc/hosts\');')
         );
@@ -149,7 +149,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
      */
     public function testRunWithRemoteCmdExec()
     {
-        Static_Request::setServerInfo('REQUEST_METHOD', 'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(
             array('foo' => '\'; exec(\'nc -l -p 1337 -e /bin/bash\');')
         );
