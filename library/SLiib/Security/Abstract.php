@@ -35,9 +35,6 @@
 abstract class SLiib_Security_Abstract
 {
 
-    //TODO Possibilité d'activer preg_quote
-    //TODO Possibilité de définir des priorités au niveau des checkers à tester
-
     /**
      * Location contantes
      *

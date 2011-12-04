@@ -255,5 +255,61 @@ class SLiib_Security_RuleTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test enable preg quote
+     *
+     * @covers SLiib_Security_Rule::enablePregQuote
+     * @covers SLiib_Security_Rule::setPattern
+     * @covers SLiib_Security_Rule::addPatternElement
+     *
+     * @return void
+     */
+    public function testEnablePregQuote()
+    {
+        $this->_object->enablePregQuote()
+            ->setPattern('foo/bar');
+        $this->assertEquals('foo\/bar', $this->_object->getPattern());
+
+        $this->_object->disablePregQuote()
+            ->enablePregQuote()
+            ->addPatternElement(
+                array(
+                 'foo/bar',
+                 'w00t..w00t',
+                )
+            );
+        $this->assertEquals('(foo\/bar|w00t\.\.w00t)', $this->_object->getPattern());
+
+    }
+
+
+    /**
+     * Test enable preg quote
+     *
+     * @covers SLiib_Security_Rule::disablePregQuote
+     * @covers SLiib_Security_Rule::setPattern
+     * @covers SLiib_Security_Rule::addPatternElement
+     *
+     * @return void
+     */
+    public function testDisablePregQuote()
+    {
+        $this->_object->disablePregQuote()
+            ->setPattern('foo/bar');
+        $this->assertEquals('foo/bar', $this->_object->getPattern());
+
+        $this->_object->enablePregQuote()
+            ->disablePregQuote()
+            ->addPatternElement(
+                array(
+                 'foo/bar',
+                 'w00t..w00t',
+                )
+            );
+        $this->assertEquals('(foo/bar|w00t..w00t)', $this->_object->getPattern());
+
+    }
+
+
 }
 ?>

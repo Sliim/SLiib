@@ -65,6 +65,12 @@ class SLiib_Security_Rule
      */
     private $_patternElements = array();
 
+    /**
+     * preg quote enabled
+     * @var boolean
+     */
+    private $_pregQuoteEnabled = FALSE;
+
 
     /**
      * Rule init
@@ -156,7 +162,12 @@ class SLiib_Security_Rule
      */
     public function setPattern($pattern)
     {
-        $this->_pattern = $pattern;
+        if ($this->_pregQuoteEnabled) {
+            $this->_pattern = preg_quote($pattern, '/');
+        } else {
+            $this->_pattern = $pattern;
+        }
+
         return $this;
 
     }
@@ -244,14 +255,54 @@ class SLiib_Security_Rule
 
 
     /**
+     * Enable preg_quote function
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function enablePregQuote()
+    {
+        $this->_pregQuoteEnabled = TRUE;
+        return $this;
+
+    }
+
+
+    /**
+     * Disable preg_quote function
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function disablePregQuote()
+    {
+        $this->_pregQuoteEnabled = FALSE;
+        return $this;
+
+    }
+
+
+    /**
      * Reload rule pattern
      *
      * @return void
      */
     private function _reloadPattern()
     {
-        $pattern = '(' . implode('|', $this->_patternElements) . ')';
-        $this->setPattern($pattern);
+        $patternArray = array();
+        foreach ($this->_patternElements as $key => $element) {
+            if ($this->_pregQuoteEnabled) {
+                $patternArray[$key] = preg_quote($element, '/');
+            } else {
+                $patternArray[$key] = $element;
+            }
+        }
+
+        $pattern = '(' . implode('|', $patternArray) . ')';
+
+        if ($this->_pregQuoteEnabled) {
+            $this->disablePregQuote()->setPattern($pattern)->enablePregQuote();
+        } else {
+            $this->setPattern($pattern);
+        }
 
     }
 

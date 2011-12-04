@@ -51,28 +51,29 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
             'Scanner detection'
         );
 
-        $scanner->addPatternElement(
-            array(
-             'metis',
-             'bilbo',
-             'n\-stealth',
-             'black widow',
-             'brutus',
-             'cgichk',
-             'webtrends security analyzer',
-             'mozilla\/4.0 \(compatible\)',
-             'jaascois',
-             'pmafind',
-             '\.nasl',
-             'nsauditor',
-             'paros',
-             'nessus',
-             'nikto',
-             'webinspect',
-             'blackwidow',
-             'DirBuster',
-            )
-        )->addLocation(self::LOCATION_USERAGENT);
+        $scanner->enablePregQuote()
+            ->addPatternElement(
+                array(
+                 'metis',
+                 'bilbo',
+                 'n-stealth',
+                 'black widow',
+                 'brutus',
+                 'cgichk',
+                 'webtrends security analyzer',
+                 'mozilla/4.0 (compatible)',
+                 'jaascois',
+                 'pmafind',
+                 '.nasl',
+                 'nsauditor',
+                 'paros',
+                 'nessus',
+                 'nikto',
+                 'webinspect',
+                 'blackwidow',
+                 'DirBuster',
+                )
+            )->addLocation(self::LOCATION_USERAGENT);
 
         $this->addRule($scanner);
 
