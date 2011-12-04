@@ -45,6 +45,7 @@ abstract class SLiib_Security
      */
     public static function check(array $checkers)
     {
+        ksort($checkers);
         foreach ($checkers as $checker) {
             if (!$checker instanceof SLiib_Security_Abstract) {
                 throw new SLiib_Security_Exception_CheckerError(

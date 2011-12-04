@@ -43,8 +43,8 @@ class Static_Session
      */
     public static function setSession()
     {
-        $GLOBALS['_SESSION'];
         $_SESSION = array();
+        $GLOBALS['_SESSION'];
 
     }
 

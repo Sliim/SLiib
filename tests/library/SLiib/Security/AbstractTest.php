@@ -190,7 +190,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testRunWithHackingAttemptParamKey()
     {
-        Static_Request::setRequestMethod'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(array('w00t' => ''));
         SLiib_HTTP_Request::init();
 
@@ -217,7 +217,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function testRunWithHackingAttemptParamVal()
     {
-        Static_Request::setRequestMethod'POST');
+        Static_Request::setRequestMethod('POST');
         Static_Request::setPost(array('param' => 'w00t'));
         SLiib_HTTP_Request::init();
 
