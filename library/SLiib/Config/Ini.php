@@ -111,7 +111,11 @@ class SLiib_Config_Ini extends SLiib_Config
                     );
                 }
             } else {
-                $object->$key = $value;
+                if (isset($object->$key)) {
+                    $this->_mergeObject($object->$key, $value);
+                } else {
+                    $object->$key = $value;
+                }
             }
         }
 
@@ -138,6 +142,11 @@ class SLiib_Config_Ini extends SLiib_Config
         $object  = new stdClass;
         $parent  = NULL;
 
+        if ($cSeg === 1) {
+            $object->{array_shift($segment)} = $value;
+            return $object;
+        }
+
         foreach ($segment as $k => $p) {
             if (is_null($parent)) {
                 $object->$p = new stdClass;
@@ -153,6 +162,30 @@ class SLiib_Config_Ini extends SLiib_Config
         }
 
         return $object;
+
+    }
+
+
+    /**
+     * Merge with an existing object config
+     *
+     * @param stdClass &$source Object source
+     * @param stdClass $object  Object to merge with source
+     *
+     * @return void
+     */
+    private function _mergeObject(stdClass &$source, stdClass $object)
+    {
+        foreach ($object as $key => $value) {
+            if (!isset($source->$key)) {
+                $source->$key = $value;
+                continue;
+            }
+
+            if (is_object($source->$key) && is_object($value)) {
+                $this->_mergeObject($source->$key, $value);
+            }
+        }
 
     }
 
