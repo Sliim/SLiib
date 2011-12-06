@@ -80,7 +80,7 @@ class SLiib_Log
         $this->_fileOutput = @fopen($fileOutput, $opt);
 
         if (!$this->_fileOutput) {
-            throw new SLiib_Log_Exception('Cannot open file ' . $this->_fileOutput);
+            throw new SLiib_Log_Exception('Cannot open file ' . $fileOutput);
         }
 
     }
@@ -339,7 +339,7 @@ class SLiib_Log
                 break;
         }
 
-        echo $color . $string . $defaultColor;
+        echo $color . $string . $defaultColor . PHP_EOL;
 
     }
 
