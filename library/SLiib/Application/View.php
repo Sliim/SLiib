@@ -106,7 +106,7 @@ class SLiib_Application_View
      */
     public function __get($attr)
     {
-        throw new SLiib_Application_View_Exception_InvalidParam(
+        throw new SLiib_Application_View_Exception_UndefinedProperty(
             'Attribut `' . $attr . '` undefined in view.'
         );
 

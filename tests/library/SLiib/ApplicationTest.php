@@ -385,8 +385,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->_runApp();
-        } catch (SLiib_Application_View_Exception_InvalidParam $e) {
-            $this->assertInstanceOf('SLiib_Application_View_Exception_InvalidParam', $e);
+        } catch (SLiib_Application_View_Exception_UndefinedProperty $e) {
+            $this->assertInstanceOf('SLiib_Application_View_Exception_UndefinedProperty', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
