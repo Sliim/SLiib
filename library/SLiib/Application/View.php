@@ -100,7 +100,7 @@ class SLiib_Application_View
      *
      * @param string $attr Attribut name
      *
-     * @throws SLiib_Application_View_Exception_InvalidParam
+     * @throws SLiib_Application_View_Exception_UndefinedProperty
      *
      * @return void
      */
