@@ -65,10 +65,16 @@ class SLiib_Listing
      * @param string $listName   Nom de la liste
      * @param array  $exceptions Liste des exceptions à ne pas lister
      *
+     * @throws SLiib_Listing_Exception
+     *
      * @return void
      */
     public function __construct($dirPath, $listName, $exceptions)
     {
+        if (!is_dir($dirPath)) {
+            throw new SLiib_Listing_Exception('Directory `' . $dirPath . '` not found!');
+        }
+
         $this->_path      = $dirPath;
         $this->_contentNb = 0;
         $this->_name      = $listName;
