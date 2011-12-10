@@ -240,11 +240,13 @@ class SLiib_SolR
      */
     public function ping()
     {
-        $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
+        $fp = @fsockopen($this->_host, $this->_port);
+
         if (!$fp) {
             return FALSE;
         }
 
+        fclose($fp);
         return TRUE;
 
     }
@@ -255,7 +257,7 @@ class SLiib_SolR
      *
      * @param string $string Chaine à traiter.
      *
-     * @return $string Chaine Traitée.
+     * @return string Chaine Traitée.
      */
     public function escapeSpecialChar($string)
     {
