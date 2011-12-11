@@ -17,39 +17,23 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Config
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_Config
+ * @subpackage Exception
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Config
+ * SLiib_Config_Exception_UndefinedProperty
  *
- * @package SLiib_Config
+ * @package    SLiib_Config
+ * @subpackage Exception
  */
-class SLiib_Config
+class SLiib_Config_Exception_UndefinedProperty
+extends SLiib_Config_Exception
 {
-
-
-    /**
-     * Undefined property getter
-     *
-     * @param string $key Key to get
-     *
-     * @throws SLiib_Config_Exception_UndefinedProperty
-     *
-     * @return void
-     */
-    public function __get($key)
-    {
-        throw new SLiib_Config_Exception_UndefinedProperty(
-            'Property `' . $key . '` undefined in config'
-        );
-
-    }
-
 
 }

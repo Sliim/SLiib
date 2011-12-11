@@ -32,7 +32,7 @@
  * @package    SLiib_Config
  * @subpackage Ini
  */
-class SLiib_Config_Ini extends SLiib_Config
+class SLiib_Config_Ini extends SLiib_Config_Abstract
 {
 
 
@@ -71,11 +71,11 @@ class SLiib_Config_Ini extends SLiib_Config
      *
      * @throws SLiib_Config_Exception_SyntaxError
      *
-     * @return stdClass
+     * @return SLiib_Config
      */
     private function _parseSection($section)
     {
-        $object = new stdClass();
+        $object = new SLiib_Config();
 
         foreach ($section as $key => $value) {
             if (strpos($key, '.')) {
@@ -104,11 +104,13 @@ class SLiib_Config_Ini extends SLiib_Config
                 }
 
                 $object->$key = $this->_parseSection($value);
+
                 if (isset($parent)) {
-                    $object->$key = (object) array_merge(
-                        (array) $object->$parent,
-                        (array) $object->$key
-                    );
+                    foreach ($object->$parent as $k => $v) {
+                        if (!isset($object->$key->$k)) {
+                            $object->$key->$k = $v;
+                        }
+                    }
                 }
             } else {
                 if (isset($object->$key)) {
@@ -132,14 +134,14 @@ class SLiib_Config_Ini extends SLiib_Config
      * @param string &$key  Multiple Key
      * @param mixed  $value Origin value
      *
-     * @return stdClass
+     * @return SLiib_Config
      */
     private function _parseMultipleSection(&$key, $value)
     {
         $segment = explode('.', $key);
         $key     = array_shift($segment);
         $cSeg    = count($segment);
-        $object  = new stdClass;
+        $object  = new SLiib_Config();
         $parent  = NULL;
 
         if ($cSeg === 1) {
@@ -149,11 +151,11 @@ class SLiib_Config_Ini extends SLiib_Config
 
         foreach ($segment as $k => $p) {
             if (is_null($parent)) {
-                $object->$p = new stdClass;
+                $object->$p = new SLiib_Config();
                 $parent     = $object->$p;
             } else {
                 if ($k != $cSeg - 1) {
-                    $parent->$p = new stdClass;
+                    $parent->$p = new SLiib_Config();
                     $parent     = $parent->$p;
                 } else {
                     $parent->$p = $value;
@@ -169,12 +171,12 @@ class SLiib_Config_Ini extends SLiib_Config
     /**
      * Merge with an existing object config
      *
-     * @param stdClass &$source Object source
-     * @param stdClass $object  Object to merge with source
+     * @param SLiib_Config &$source Object source
+     * @param SLiib_Config $object  Object to merge with source
      *
      * @return void
      */
-    private function _mergeObject(stdClass &$source, stdClass $object)
+    private function _mergeObject(SLiib_Config &$source, SLiib_Config $object)
     {
         foreach ($object as $key => $value) {
             if (!isset($source->$key)) {

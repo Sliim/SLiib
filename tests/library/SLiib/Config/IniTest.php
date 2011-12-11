@@ -126,9 +126,9 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('development', $config);
         $this->assertObjectHasAttribute('production', $config);
 
-        $this->assertInstanceOf('stdClass', $config->application);
-        $this->assertInstanceOf('stdClass', $config->development);
-        $this->assertInstanceOf('stdClass', $config->production);
+        $this->assertInstanceOf('SLiib_Config', $config->application);
+        $this->assertInstanceOf('SLiib_Config', $config->development);
+        $this->assertInstanceOf('SLiib_Config', $config->production);
 
         $this->assertObjectHasAttribute('docsMenu', $config->development);
         $this->assertObjectHasAttribute('sysInfos', $config->development);
@@ -146,12 +146,12 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('On', $config->development->sysInfos);
         $this->assertEquals('Off', $config->production->sysInfos);
 
-        $this->assertInstanceOf('stdClass', $config->application->foo);
+        $this->assertInstanceOf('SLiib_Config', $config->application->foo);
         $this->assertObjectHasAttribute('bar', $config->application->foo);
         $this->assertInternalType('string', $config->application->foo->bar);
         $this->assertEquals('foobar', $config->application->foo->bar);
 
-        $this->assertInstanceOf('stdClass', $config->application->test->foo->bar);
+        $this->assertInstanceOf('SLiib_Config', $config->application->test->foo->bar);
         $this->assertObjectHasAttribute('z1337', $config->application->test->foo->bar);
         $this->assertObjectHasAttribute('z7331', $config->application->test->foo->bar);
         $this->assertInternalType('string', $config->application->test->foo->bar->z1337);
