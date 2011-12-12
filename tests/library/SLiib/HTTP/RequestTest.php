@@ -340,6 +340,28 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test if request is a post method
+     *
+     * @covers SLiib_HTTP_Request::isPost
+     *
+     * @return void
+     */
+    public function testIsPost()
+    {
+        Static_Request::setRequestMethod('POST');
+        $this->_setObject();
+
+        $this->assertTrue($this->_object->isPost());
+
+        Static_Request::setRequestMethod('GET');
+        $this->_setObject();
+
+        $this->assertFalse($this->_object->isPost());
+
+    }
+
+
+    /**
      * Set test object
      *
      * @return void

@@ -127,4 +127,27 @@ class SLiib_ListingTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test create object with inexisting directory
+     *
+     * @covers SLiib_Listing_Exception
+     *
+     * @return void
+     */
+    public function testInexistDir()
+    {
+        try {
+            $list = new SLiib_Listing('/tmp/notexists', 'fake', array());
+        } catch (SLiib_Listing_Exception $e) {
+            $this->assertInstanceOf('SLiib_Listing_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
 }
