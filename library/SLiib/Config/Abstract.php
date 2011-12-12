@@ -47,17 +47,24 @@ abstract class SLiib_Config_Abstract
      */
     protected $_configFile;
 
+    /**
+     * Configuration environment
+     * @var string
+     */
+    protected $_environment = NULL;
+
 
     /**
      * Constructeur. Charge le fichier de configuration passé en paramètre
      *
-     * @param string $file Fichier à charger
+     * @param string           $file Fichier à charger
+     * @param string[optional] $env  Config environment
      *
      * @throws SLiib_Config_Exception
      *
      * @return void
      */
-    public function __construct($file)
+    public function __construct($file, $env=NULL)
     {
         if (!file_exists($file)) {
             throw new SLiib_Config_Exception('File ' . $file . ' not found');
@@ -66,6 +73,10 @@ abstract class SLiib_Config_Abstract
         $this->_config     = new SLiib_Config();
         $this->_configFile = $file;
         $this->_parseFile();
+
+        if (!is_null($env)) {
+            $this->setEnvironment($env);
+        }
 
     }
 
@@ -77,7 +88,45 @@ abstract class SLiib_Config_Abstract
      */
     public function getConfig()
     {
+        if (!is_null($this->_environment)) {
+            return $this->_config->{$this->_environment};
+        }
+
         return $this->_config;
+
+    }
+
+
+    /**
+     * Environment setter
+     *
+     * @param string $env Environment name to set
+     *
+     * @throws SLiib_Config_Exception_UndefinedProperty
+     *
+     * @return void
+     */
+    public function setEnvironment($env)
+    {
+        if (isset($this->_config->$env)) {
+            $this->_environment = $env;
+        } else {
+            throw new SLiib_Config_Exception_UndefinedProperty(
+                'Environment specified `' . $env . '` not found in configuration file.'
+            );
+        }
+
+    }
+
+
+    /**
+     * Environment getter
+     *
+     * @return string
+     */
+    public function getEnvironment()
+    {
+        return $this->_environment;
 
     }
 

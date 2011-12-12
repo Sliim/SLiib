@@ -163,6 +163,80 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test get environment directives
+     *
+     * @covers SLiib_Config_Ini::getConfig
+     *
+     * @return void
+     */
+    public function testGetConfigWithEnv()
+    {
+        $this->_object->setEnvironment('development');
+        $config = $this->_object->getConfig();
+
+        $this->assertObjectHasAttribute('projectsMenu', $config);
+        $this->assertObjectHasAttribute('toolsMenu', $config);
+        $this->assertObjectHasAttribute('docsMenu', $config);
+
+        $this->assertEquals('On', $config->projectsMenu);
+        $this->assertEquals('On', $config->toolsMenu);
+        $this->assertEquals('On', $config->docsMenu);
+
+    }
+
+
+    /**
+     * Test setting an environment
+     *
+     * @return void
+     */
+    public function testSetEnvironment()
+    {
+        $object = new SLiib_Config_Ini($this->_iniFile, 'development');
+        $config = $object->getConfig();
+
+        $this->assertObjectHasAttribute('sysInfos', $config);
+        $this->assertEquals('On', $config->sysInfos);
+
+        $object->setEnvironment('production');
+        $config = $object->getConfig();
+
+        $this->assertObjectHasAttribute('sysInfos', $config);
+        $this->assertEquals('Off', $config->sysInfos);
+
+        try {
+            $this->_object->setEnvironment('notexists');
+        } catch (SLiib_Config_Exception_UndefinedProperty $e) {
+            $this->assertInstanceOf('SLiib_Config_Exception_UndefinedProperty', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test environment getter
+     *
+     * @covers SLiib_Config_Ini::getEnvironment
+     *
+     * @return void
+     */
+    public function testGetEnvironment()
+    {
+        $env = 'application';
+        $this->_object->setEnvironment($env);
+
+        $this->assertInternalType('string', $this->_object->getEnvironment());
+        $this->assertEquals($env, $this->_object->getEnvironment());
+
+    }
+
+
+    /**
      * Test open inexistant file
      *
      * @return void

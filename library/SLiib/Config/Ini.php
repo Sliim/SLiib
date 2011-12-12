@@ -103,14 +103,10 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
                     }
                 }
 
-                if (isset($parent)) {
-                    $object->$key = clone $object->$parent;
-                } else {
-                    $object->$key = new SLiib_Config();
-                }
+                $object->$key = $this->_parseSection($value);
 
-                foreach ($this->_parseSection($value) as $k => $v) {
-                    $object->$key->$k = $v;
+                if (isset($parent)) {
+                    $this->_mergeObject($object->$key, $object->$parent);
                 }
             } else {
                 if (isset($object->$key)) {
