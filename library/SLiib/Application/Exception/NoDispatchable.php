@@ -27,14 +27,13 @@
  */
 
 /**
- * SLiib_Application_View_Exception_InvalidParam
+ * SLiib_Application_Exception_NoDispatchable
  *
  * @package    SLiib_Application
  * @subpackage Exception
  */
-class SLiib_Application_View_Exception_InvalidParam
-extends SLiib_Application_View_Exception
-implements SLiib_IException_InvalidParam
+class SLiib_Application_Exception_NoDispatchable
+extends SLiib_Application_Exception
 {
 
 }

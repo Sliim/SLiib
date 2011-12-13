@@ -27,13 +27,14 @@
  */
 
 /**
- * SLiib_Application_View_Exception_UndefinedProperty
+ * SLiib_Application_Exception_InvalidParameter
  *
  * @package    SLiib_Application
  * @subpackage Exception
  */
-class SLiib_Application_View_Exception_UndefinedProperty
-extends SLiib_Application_View_Exception
+class SLiib_Application_Exception_InvalidParameter
+extends SLiib_Application_Exception
+implements SLiib_IException_InvalidParameter
 {
 
 }

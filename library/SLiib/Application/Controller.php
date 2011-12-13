@@ -76,7 +76,7 @@ abstract class SLiib_Application_Controller
      * @param string $action Action to call
      * @param array  $params unused
      *
-     * @throws SLiib_Application_Controller_Exception_BadMethodCall
+     * @throws SLiib_Application_Exception_NoDispatchable
      *
      * @return void
      */
@@ -86,7 +86,7 @@ abstract class SLiib_Application_Controller
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {
-            throw new SLiib_Application_Controller_Exception_BadMethodCall(
+            throw new SLiib_Application_Exception_NoDispatchable(
                 'Action `' . $action . '` is invalid.'
             );
         }

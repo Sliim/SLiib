@@ -30,7 +30,7 @@
  *
  * @package SLiib_IException
  */
-Interface SLiib_IException_InvalidParam
+Interface SLiib_IException_InvalidParameter
 {
 
 }

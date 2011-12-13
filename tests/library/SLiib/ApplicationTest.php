@@ -232,8 +232,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->_runApp();
-        } catch (SLiib_Application_Controller_Exception_BadMethodCall $e) {
-            $this->assertInstanceOf('SLiib_Application_Controller_Exception_BadMethodCall', $e);
+        } catch (SLiib_Application_Exception_NoDispatchable $e) {
+            $this->assertInstanceOf('SLiib_Application_Exception_NoDispatchable', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -255,8 +255,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->_runApp();
-        } catch (SLiib_Application_Controller_Exception $e) {
-            $this->assertInstanceOf('SLiib_Application_Controller_Exception', $e);
+        } catch (SLiib_Application_Exception_NoDispatchable $e) {
+            $this->assertInstanceOf('SLiib_Application_Exception_NoDispatchable', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -339,8 +339,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->_runApp();
-        } catch (SLiib_Application_View_Exception_InvalidParam $e) {
-            $this->assertInstanceOf('SLiib_Application_View_Exception_InvalidParam', $e);
+        } catch (SLiib_Application_Exception_InvalidParameter $e) {
+            $this->assertInstanceOf('SLiib_Application_Exception_InvalidParameter', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -362,8 +362,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->_runApp();
-        } catch (SLiib_Application_View_Exception_InvalidParam $e) {
-            $this->assertInstanceOf('SLiib_Application_View_Exception_InvalidParam', $e);
+        } catch (SLiib_Application_Exception_InvalidParameter $e) {
+            $this->assertInstanceOf('SLiib_Application_Exception_InvalidParameter', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -385,8 +385,8 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
         try {
             $this->_runApp();
-        } catch (SLiib_Application_View_Exception_UndefinedProperty $e) {
-            $this->assertInstanceOf('SLiib_Application_View_Exception_UndefinedProperty', $e);
+        } catch (SLiib_Application_Exception_UndefinedProperty $e) {
+            $this->assertInstanceOf('SLiib_Application_Exception_UndefinedProperty', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');

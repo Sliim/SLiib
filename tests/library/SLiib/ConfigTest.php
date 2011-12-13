@@ -37,6 +37,7 @@ class SLiib_ConfigTest extends PHPUnit_Framework_TestCase
 {
 
     /**
+     * Test object
      * @var SLiib_Config
      */
     protected $_object;

@@ -59,7 +59,7 @@ class SLiib_Application_Dispatcher
     /**
      * Dispatching..
      *
-     * @throws SLiib_Application_Controller_Exception
+     * @throws SLiib_Application_Exception_NoDispatchable
      *
      * @return void
      */
@@ -76,7 +76,7 @@ class SLiib_Application_Dispatcher
         );
 
         if (!class_exists($controllerName)) {
-            throw new SLiib_Application_Controller_Exception(
+            throw new SLiib_Application_Exception_NoDispatchable(
                 'Controller `' . $controllerName . '` doesn\'t exist.'
             );
         }

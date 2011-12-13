@@ -100,13 +100,13 @@ class SLiib_Application_View
      *
      * @param string $attr Attribut name
      *
-     * @throws SLiib_Application_View_Exception_UndefinedProperty
+     * @throws SLiib_Application_Exception_UndefinedProperty
      *
      * @return void
      */
     public function __get($attr)
     {
-        throw new SLiib_Application_View_Exception_UndefinedProperty(
+        throw new SLiib_Application_Exception_UndefinedProperty(
             'Attribut `' . $attr . '` undefined in view.'
         );
 
@@ -132,7 +132,7 @@ class SLiib_Application_View
      *
      * @param string $view View
      *
-     * @throws SLiib_Application_View_Exception_InvalidParam
+     * @throws SLiib_Application_Exception_InvalidParameter
      *
      * @return void
      */
@@ -141,7 +141,7 @@ class SLiib_Application_View
         if ($viewPath = $this->_viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
-            throw new SLiib_Application_View_Exception_InvalidParam(
+            throw new SLiib_Application_Exception_InvalidParameter(
                 'View `' . $view . '` is invalid.'
             );
         }
@@ -167,7 +167,7 @@ class SLiib_Application_View
      *
      * @param string $template Template to include
      *
-     * @throws SLiib_Application_View_Exception_InvalidParam
+     * @throws SLiib_Application_Exception_InvalidParameter
      *
      * @return SLiib_Application_View
      */
@@ -181,7 +181,7 @@ class SLiib_Application_View
 
         $file = $this->_path . DIRECTORY_SEPARATOR . $template . $this->_ext;
         if (!file_exists($file)) {
-            throw new SLiib_Application_View_Exception_InvalidParam(
+            throw new SLiib_Application_Exception_InvalidParameter(
                 'Partial template ' . $template . ' not found'
             );
         }
