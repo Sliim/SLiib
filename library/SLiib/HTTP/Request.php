@@ -275,7 +275,7 @@ class SLiib_HTTP_Request
             $segment = explode('/', $this->_request->requestUri);
             array_shift($segment);
 
-            if (count($segment) >= 2) {
+            if (count($segment) >= 2 && !empty($segment[1])) {
                 $controller = array_shift($segment);
                 $action     = array_shift($segment);
             } else {
