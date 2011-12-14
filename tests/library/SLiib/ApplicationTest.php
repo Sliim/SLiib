@@ -511,6 +511,73 @@ class SLiib_ApplicationTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test with dash in controller name
+     *
+     * @return void
+     */
+    public function testControllerWithDash()
+    {
+        Static_Request::setRequestUri('/my-controller');
+        $this->_runApp();
+
+        $controller = $this->_request->getController();
+        $this->assertEquals('myController', $controller);
+
+        Static_Request::setRequestUri('/my-controller-with-multi-dash');
+        $this->_runApp();
+
+        $controller = $this->_request->getController();
+        $this->assertEquals('myControllerWithMultiDash', $controller);
+
+    }
+
+
+    /**
+     * Test with dash in action name
+     *
+     * @return void
+     */
+    public function testActionWithDash()
+    {
+        Static_Request::setRequestUri('/my-controller/my-action');
+        $this->_runApp();
+
+        $action = $this->_request->getAction();
+        $this->assertEquals('myAction', $action);
+
+        Static_Request::setRequestUri('/my-controller-with-multi-dash/my-action-with-multi-dash');
+        $this->_runApp();
+
+        $action = $this->_request->getAction();
+        $this->assertEquals('myActionWithMultiDash', $action);
+
+    }
+
+
+    /**
+     * Test with dash in get param name
+     *
+     * @return void
+     */
+    public function testParamWithDash()
+    {
+        Static_Request::setRequestUri(
+            '/my-controller/my-action/my-param/foo/with-multi-dash-param/bar'
+        );
+        Static_Request::setRequestMethod('GET');
+        $this->_runApp();
+
+        $param = $this->_request->getParameters();
+        $this->assertEquals(2, count($param));
+        $this->assertArrayHasKey('myParam', $param);
+        $this->assertArrayHasKey('withMultiDashParam', $param);
+        $this->assertEquals('foo', $param['myParam']);
+        $this->assertEquals('bar', $param['withMultiDashParam']);
+
+    }
+
+
+    /**
      * Enable PHPUnit error handler
      *
      * @return void

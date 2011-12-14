@@ -283,12 +283,16 @@ class SLiib_HTTP_Request
                 $action     = 'index';
             }
 
+            $controller = $this->_transformDash($controller);
+            $action     = $this->_transformDash($action);
+
             $key = NULL;
 
             foreach ($segment as $seg) {
                 if (!is_null($key)) {
-                    $params[$key] = $seg;
-                    $key          = NULL;
+                    $params[$this->_transformDash($key)] = $seg;
+
+                    $key = NULL;
                 } else {
                     $key = (string) $seg;
                 }
@@ -300,6 +304,32 @@ class SLiib_HTTP_Request
                 'action'     => $action,
                 'params'     => $params,
                );
+
+    }
+
+
+    /**
+     * Transform a string with a dash
+     * my-string become myString
+     *
+     * @param string $string String to transform
+     *
+     * @return string
+     */
+    private function _transformDash($string)
+    {
+        $pos = strpos($string, '-');
+
+        if (FALSE !== $pos) {
+            $len    = strlen($string) - 1;
+            $string = substr($string, 0, $pos) . ucfirst(substr($string, $pos + 1, $len - $pos));
+
+            if (strpos($string, '-') !== FALSE) {
+                $string = $this->_transformDash($string);
+            }
+        }
+
+        return $string;
 
     }
 
