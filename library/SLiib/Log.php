@@ -33,13 +33,13 @@
 class SLiib_Log
 {
     /**
-     * Constantes de format utilisé pour les logs
+     * Date and time format
      */
     const DATE_FORMAT = 'Y-m-d';
     const TIME_FORMAT = 'h:i:s';
 
     /**
-     * Constantes de type de log
+     * Debug type
      */
     const DEBUG = 'DEBUG';
     const INFO  = 'INFO';
@@ -48,23 +48,23 @@ class SLiib_Log
     const CRIT  = 'CRIT';
 
     /**
-     * Nom/Chemin du fichier de log.
+     * Log file path
      * @var string
      */
     private $_fileOutput = NULL;
 
     /**
-     * Format des logs
+     * Log format
      * @var string
      */
     private $_format = '[%d %t] [%T] - %m';
 
 
     /**
-     * Constructor, initialise le file descriptor.
+     * Constructor, init file descriptor.
      *
-     * @param string            $fileOutput Nom/Chemin vers le fichier à utiliser.
-     * @param boolean[optional] $add        True pour ajouter à la suite du fichier.
+     * @param string            $fileOutput File path
+     * @param boolean[optional] $add        True add in file.
      *
      * @throws SLiib_Log_Exception
      *
@@ -87,7 +87,7 @@ class SLiib_Log
 
 
     /**
-     * Destructeur : ferme le fichier de log.
+     * Destructeur : Close file descriptor.
      *
      * @return void
      */
@@ -99,11 +99,11 @@ class SLiib_Log
 
 
     /**
-     * Écrit dans le fichier de log
+     * Write in log file
      *
-     * @param string            $string Chaine à écrire dans le fichier
-     * @param string            $type   Type de log
-     * @param boolean[optional] $echo   Affiche ou non sur la sortie standard.
+     * @param string            $string String to write
+     * @param string            $type   Log type
+     * @param boolean[optional] $echo   Print on stdout
      *
      * @throws SLiib_Log_Exception
      *
@@ -124,25 +124,27 @@ class SLiib_Log
 
 
     /**
-     * Ecrit un log de type DEBUG
+     * Dump a variable and save it in log file
      *
-     * @param string            $string Message du log
-     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     * @param mixed             $var  Variable to debug
+     * @param boolean[optional] $echo Print on stdout
      *
      * @return SLiib_Log
      */
-    public function debug($string, $echo=FALSE)
+    public function debug($var, $echo=FALSE)
     {
-        return $this->log($string, self::DEBUG, $echo);
+        $dump = SLiib_Debug::dump($var, FALSE);
+
+        return $this->log($dump, self::DEBUG, $echo);
 
     }
 
 
     /**
-     * Ecrit un log de type INFO
+     * Write information log
      *
-     * @param string            $string Message du log
-     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     * @param string            $string String to write
+     * @param boolean[optional] $echo   Print on stdout
      *
      * @return SLiib_Log
      */
@@ -154,10 +156,10 @@ class SLiib_Log
 
 
     /**
-     * Ecrit un log de type WARN
+     * Write warning log
      *
-     * @param string            $string Message du log
-     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     * @param string            $string String to write
+     * @param boolean[optional] $echo   Print on stdout
      *
      * @return SLiib_Log
      */
@@ -169,10 +171,10 @@ class SLiib_Log
 
 
     /**
-     * Ecrit un log de type ERROR
+     * Write error log
      *
-     * @param string            $string Message du log
-     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     * @param string            $string String to write
+     * @param boolean[optional] $echo   Print on stdout
      *
      * @return SLiib_Log
      */
@@ -184,10 +186,10 @@ class SLiib_Log
 
 
     /**
-     * Ecrit un log de type CRIT
+     * Write critical log
      *
-     * @param string            $string Message du log
-     * @param boolean[optional] $echo   Afficher le log dans le stdout
+     * @param string            $string String to write
+     * @param boolean[optional] $echo   Print on stdout
      *
      * @return SLiib_Log
      */
@@ -199,8 +201,8 @@ class SLiib_Log
 
 
     /**
-     * Définit le format utilisé pour les logs
-     * Les différents éléments sont :
+     * Set log format
+     * Available elements :
      * -date : %d
      * -time : %t
      * -ip : %@
@@ -208,7 +210,7 @@ class SLiib_Log
      * -message : %m
      * -type : %T
      *
-     * @param string $format Format à définir.
+     * @param string $format Format to set.
      *
      * @return void
      */
@@ -220,9 +222,9 @@ class SLiib_Log
 
 
     /**
-     * Retourne le format actuel des logs
+     * Get log format
      *
-     * @return string format actuel des logs
+     * @return string
      */
     public function getFormat()
     {
@@ -232,12 +234,12 @@ class SLiib_Log
 
 
     /**
-     * Génère le log en foncton du format spécifié
+     * Generate log string
      *
-     * @param string $message Message à écrire
-     * @param string $type    Type de log (error, crit, warn, info..)
+     * @param string $message String input
+     * @param string $type    Log type (error, crit, warn, info..)
      *
-     * @return log formatté
+     * @return string
      */
     private function _genLog($message, $type)
     {
@@ -255,9 +257,9 @@ class SLiib_Log
 
 
     /**
-     * Callback pour le format date (%d)
+     * Get date callback (%d)
      *
-     * @return string Date actuelle
+     * @return string
      */
     private static function _getDate()
     {
@@ -267,9 +269,9 @@ class SLiib_Log
 
 
     /**
-     * Callback pour le format heure (%t)
+     * Get time callback (%t)
      *
-     * @return string Heure actuelle
+     * @return string
      */
     private static function _getTime()
     {
@@ -279,9 +281,9 @@ class SLiib_Log
 
 
     /**
-     * Callback pour le format IP (%@)
+     * Get IP callback (%@)
      *
-     * @return string Adresse IP du client ou false si inexistante
+     * @return string
      */
     private static function _getIp()
     {
@@ -289,15 +291,15 @@ class SLiib_Log
             return $_SERVER['REMOTE_ADDR'];
         }
 
-        return FALSE;
+        return NULL;
 
     }
 
 
     /**
-     * Callback pour le format User-Agent (%U)
+     * Get user agent callback (%U)
      *
-     * @return string User-Agent du client ou false si inexistant
+     * @return string
      */
     private static function _getUserAgent()
     {
@@ -305,16 +307,16 @@ class SLiib_Log
             return $_SERVER['HTTP_USER_AGENT'];
         }
 
-        return FALSE;
+        return NULL;
 
     }
 
 
     /**
-     * Ecrit le message sur le stdout
+     * Write string on stdout
      *
-     * @param string $string Chaine à afficher
-     * @param string $type   Type de log
+     * @param string $string String to print
+     * @param string $type   Log type
      *
      * @return void
      */
