@@ -87,7 +87,7 @@ extends SLiib_Security_Exception
         $this->_reason      = $reason;
 
         $message = sprintf(
-            'Hacking Attempt :: [%s] : [%d]%s in %s (%s)',
+            'Hacking Attempt :: [%s] : [%d] %s in %s (%s)',
             $checkerName,
             $rule->getId(),
             $rule->getMessage(),
