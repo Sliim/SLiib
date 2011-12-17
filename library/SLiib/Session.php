@@ -34,6 +34,12 @@ class SLiib_Session
 {
 
     /**
+     * Session started
+     * @var bool
+     */
+    private static $_started = FALSE;
+
+    /**
      * Session values
      * @var array
      */
@@ -44,12 +50,6 @@ class SLiib_Session
      * @var string
      */
     private $_namespace;
-
-    /**
-     * Session started
-     * @var bool
-     */
-    private static $_started = FALSE;
 
 
     /**
@@ -179,6 +179,36 @@ class SLiib_Session
             session_destroy();
             static::$_started = FALSE;
         }
+
+    }
+
+
+    /**
+     * Return session status
+     *
+     * @return boolean
+     */
+    public static function started()
+    {
+        return static::$_started;
+
+    }
+
+
+    /**
+     * Check if a namespace exists
+     *
+     * @param string $namespace Namespace to check
+     *
+     * @return boolean
+     */
+    public static function namespaceExist($namespace)
+    {
+        if (array_key_exists($namespace, $_SESSION)) {
+            return TRUE;
+        }
+
+        return FALSE;
 
     }
 

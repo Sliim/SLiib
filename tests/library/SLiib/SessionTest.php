@@ -204,5 +204,34 @@ class SLiib_SessionTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test namespace exist
+     *
+     * @covers SLiib_Session::namespaceExist
+     *
+     * @return void
+     */
+    public function testNamespaceExist()
+    {
+        $this->assertTrue(SLiib_Session::namespaceExist('UnitTest'));
+        $this->assertFalse(SLiib_Session::namespaceExist('MyNamespace'));
+
+    }
+
+
+    /**
+     * Test session is started
+     *
+     * @covers SLiib_Session::started
+     *
+     * @return void
+     */
+    public function testStarted()
+    {
+        $this->assertTrue(SLiib_Session::started());
+
+    }
+
+
 }
 ?>
