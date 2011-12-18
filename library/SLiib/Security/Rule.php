@@ -71,6 +71,12 @@ class SLiib_Security_Rule
      */
     private $_pregQuoteEnabled = FALSE;
 
+    /**
+     * Flags for regular expression
+     * @var array
+     */
+    private $_flags = array();
+
 
     /**
      * Rule init
@@ -148,6 +154,18 @@ class SLiib_Security_Rule
     public function getLocation()
     {
         return $this->_locations;
+
+    }
+
+
+    /**
+     * Get rule flags
+     *
+     * @return string
+     */
+    public function getFlags()
+    {
+        return implode('', $this->_flags);
 
     }
 
@@ -275,6 +293,39 @@ class SLiib_Security_Rule
     public function disablePregQuote()
     {
         $this->_pregQuoteEnabled = FALSE;
+        return $this;
+
+    }
+
+
+    /**
+     * Enable case sensitivity for preg_match pattern
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function enableCaseSensitivity()
+    {
+        if (in_array('i', $this->_flags)) {
+            $key = array_search('i', $this->_flags);
+            unset($this->_flags[$key]);
+        }
+
+        return $this;
+
+    }
+
+
+    /**
+     * Disable case sensitivity for preg_match pattern
+     *
+     * @return SLiib_Security_Rule
+     */
+    public function disableCaseSensitivity()
+    {
+        if (!in_array('i', $this->_flags)) {
+            array_push($this->_flags, 'i');
+        }
+
         return $this;
 
     }

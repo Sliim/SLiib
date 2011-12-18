@@ -51,8 +51,8 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
             'Scanner detection'
         );
 
-        //TODO Add possibility to activate or disactivate Case sensitivity
         $scanner->enablePregQuote()
+            ->disableCaseSensitivity()
             ->addPatternElement(
                 array(
                  'metis',
@@ -72,13 +72,13 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
                  'nikto',
                  'webinspect',
                  'blackwidow',
-                 'DirBuster',
+                 'dirbuster',
                  'w3af',
-                 'Python-httplib',
-                 'Grabber',
-                 'Grendel-Scan',
-                 'Python-urllib',
-                 'Mozilla/5.0 SF',
+                 'python-httplib',
+                 'grabber',
+                 'grendel-scan',
+                 'python-urllib',
+                 'mozilla/5.0 sf',
                 )
             )->addLocation(self::LOCATION_USERAGENT);
 

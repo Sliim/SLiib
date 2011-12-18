@@ -46,14 +46,14 @@ extends SLiib_Security_Abstract
     /**
      * Check a pattern in a string
      *
-     * @param string $pattern Pattern to check
-     * @param string $string  String to use
+     * @param SLiib_Security_Rule $rule   Rule to check
+     * @param string              $string String to use
      *
      * @return boolean
      */
-    protected function _check($pattern, $string)
+    protected function _check($rule, $string)
     {
-        if (preg_match('/' . $pattern . '/', $string)) {
+        if (preg_match('/' . $rule->getPattern() . '/' . $rule->getFlags(), $string)) {
             $this->_patternError = $string;
             return FALSE;
         }

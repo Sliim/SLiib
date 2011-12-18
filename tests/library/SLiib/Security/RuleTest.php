@@ -311,5 +311,24 @@ class SLiib_Security_RuleTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test enable and disable case sensitivity
+     *
+     * @covers SLiib_Security_Rule::enableCaseSensitivity
+     * @covers SLiib_Security_Rule::disableCaseSensitivity
+     *
+     * @return void
+     */
+    public function testEnableAndDisableCaseSensitivity()
+    {
+        $this->_object->disableCaseSensitivity();
+        $this->assertEquals('i', $this->_object->getFlags());
+
+        $this->_object->enableCaseSensitivity();
+        $this->assertEmpty($this->_object->getFlags());
+
+    }
+
+
 }
 ?>

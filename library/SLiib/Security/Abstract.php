@@ -124,22 +124,22 @@ abstract class SLiib_Security_Abstract
             foreach ($rule->getLocation() as $location) {
                 switch ($location) {
                     case self::LOCATION_REQUEST_URI:
-                        $result = $this->_checkRequestUri($rule->getPattern());
+                        $result = $this->_checkRequestUri($rule);
                         break;
                     case self::LOCATION_PARAMETERS:
-                        $result = $this->_checkParameters($rule->getPattern());
+                        $result = $this->_checkParameters($rule);
                         break;
                     case self::LOCATION_USERAGENT:
-                        $result = $this->_checkUserAgent($rule->getPattern());
+                        $result = $this->_checkUserAgent($rule);
                         break;
                     case self::LOCATION_HTTP_METHOD:
-                        $result = $this->_checkMethod($rule->getPattern());
+                        $result = $this->_checkMethod($rule);
                         break;
                     case self::LOCATION_COOKIES:
-                        $result = $this->_checkCookies($rule->getPattern());
+                        $result = $this->_checkCookies($rule);
                         break;
                     case self::LOCATION_REFERER:
-                        $result = $this->_checkReferer($rule->getPattern());
+                        $result = $this->_checkReferer($rule);
                         break;
                     default:
                         throw new SLiib_Security_Exception_CheckerError(
@@ -279,14 +279,14 @@ abstract class SLiib_Security_Abstract
     /**
      * Check in request uri
      *
-     * @param string $pattern Pattern to check
+     * @param Sliib_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkRequestUri($pattern)
+    private final function _checkRequestUri($rule)
     {
         $requestUri = $this->_request->getRequestUri();
-        return $this->_check($pattern, $requestUri);
+        return $this->_check($rule, $requestUri);
 
     }
 
@@ -294,19 +294,19 @@ abstract class SLiib_Security_Abstract
     /**
      * Check in parameters
      *
-     * @param string $pattern Pattern to check
+     * @param Sliib_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkParameters($pattern)
+    private final function _checkParameters($rule)
     {
         $params = $this->_request->getParameters();
         foreach ($params as $key => $value) {
-            if (!$this->_check($pattern, $key)) {
+            if (!$this->_check($rule, $key)) {
                 return FALSE;
             }
 
-            if (!$this->_check($pattern, $value)) {
+            if (!$this->_check($rule, $value)) {
                 return FALSE;
             }
         }
@@ -319,14 +319,14 @@ abstract class SLiib_Security_Abstract
     /**
      * Check in user agent
      *
-     * @param string $pattern Pattern to check
+     * @param Sliib_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkUserAgent($pattern)
+    private final function _checkUserAgent($rule)
     {
         $userAgent = $this->_request->getUserAgent();
-        return $this->_check($pattern, $userAgent);
+        return $this->_check($rule, $userAgent);
 
     }
 
@@ -334,14 +334,14 @@ abstract class SLiib_Security_Abstract
     /**
      * Check in http method
      *
-     * @param string $pattern Pattern to check
+     * @param Sliib_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkMethod($pattern)
+    private final function _checkMethod($rule)
     {
         $method = $this->_request->getRequestMethod();
-        return $this->_check($pattern, $method);
+        return $this->_check($rule, $method);
 
     }
 
@@ -349,20 +349,20 @@ abstract class SLiib_Security_Abstract
     /**
      * Check in cookies
      *
-     * @param string $pattern Pattern to check
+     * @param Sliib_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkCookies($pattern)
+    private final function _checkCookies($rule)
     {
         $cookies = $this->_request->getCookies();
 
         foreach ($cookies as $key => $value) {
-            if (!$this->_check($pattern, $key)) {
+            if (!$this->_check($rule, $key)) {
                 return FALSE;
             }
 
-            if (!$this->_check($pattern, $value)) {
+            if (!$this->_check($rule, $value)) {
                 return FALSE;
             }
         }
@@ -375,14 +375,14 @@ abstract class SLiib_Security_Abstract
     /**
      * Check in referer
      *
-     * @param string $pattern Pattern to check
+     * @param Sliib_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkReferer($pattern)
+    private final function _checkReferer($rule)
     {
         $referer = $this->_request->getReferer();
-        return $this->_check($pattern, $referer);
+        return $this->_check($rule, $referer);
 
     }
 
