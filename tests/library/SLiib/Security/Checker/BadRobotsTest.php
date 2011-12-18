@@ -111,5 +111,29 @@ class SLiib_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test run with Nikto scanner
+     *
+     * @return void
+     */
+    public function testRunWithNiktoScanner()
+    {
+        Static_Request::setUserAgent('Mozilla/4.75 (Nikto/2.1.4) (Test:map_codes)');
+        SLiib_HTTP_Request::init();
+
+        try {
+            $this->_object->run();
+        } catch (SLiib_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+            return;
+        } catch (PHPUnit_Framework_Error $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
 }
 ?>
