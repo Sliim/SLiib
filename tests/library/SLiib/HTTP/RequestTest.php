@@ -120,8 +120,8 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
     }
 
 
-    /**
-     * Test get an instance of SLiib_HTTP_Request not initialized
+        /**
+     * Test get an instance not initialized
      *
      * @return void
      */
@@ -132,9 +132,11 @@ class SLiib_HTTP_RequestTest extends PHPUnit_Framework_TestCase
         } catch (SLiib_HTTP_Request_Exception $e) {
             $this->assertInstanceOf('SLiib_HTTP_Request_Exception', $e);
             return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
         }
 
-        $this->markTestSkipped('Instance maybe initiate in other test');
+        $this->fail('No exception has been raised');
 
     }
 
