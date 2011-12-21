@@ -60,7 +60,7 @@ class Test_Controller_Index extends SLiib_WebApp_Controller
         $this->_view->message .= 'SLiib_WebApp, SLiib_Autoloader, ' . PHP_EOL;
         $this->_view->message .= 'SLiib_WebApp_Bootstrap, SLiib_WebApp_Dispatcher, ';
         $this->_view->message .= 'SLiib_WebApp_Controller, SLiib_WebApp_View, ';
-        $this->_view->message .= 'SLiib_HTTP_Request.';
+        $this->_view->message .= 'SLiib_WebApp_Request.';
         $this->_view->tests    = array(
                                   '/test/model/'         => 'Model',
                                   '/test/library/'       => 'Library',

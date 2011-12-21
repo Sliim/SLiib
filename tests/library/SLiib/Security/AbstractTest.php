@@ -52,7 +52,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
         $this->_object = $this->getMockForAbstractClass(
             'Stubs_Security_Abstract',
             array('Negative')
@@ -192,7 +192,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     {
         Static_Request::setRequestMethod('POST');
         Static_Request::setPost(array('w00t' => ''));
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $this->setUp();
 
@@ -219,7 +219,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     {
         Static_Request::setRequestMethod('POST');
         Static_Request::setPost(array('param' => 'w00t'));
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $this->setUp();
 
@@ -245,7 +245,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     public function testRunWithHackingAttemptCookieKey()
     {
         Static_Request::setCookie(array('w00t' => ''));
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $this->setUp();
 
@@ -271,7 +271,7 @@ class SLiib_Security_AbstractTest extends PHPUnit_Framework_TestCase
     public function testRunWithHackingAttemptCookieVal()
     {
         Static_Request::setCookie(array('cookie' => 'w00t'));
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $this->setUp();
 

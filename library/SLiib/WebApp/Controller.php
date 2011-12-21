@@ -49,7 +49,7 @@ abstract class SLiib_WebApp_Controller
 
     /**
      * Request instance
-     * @var SLiib_HTTP_Request
+     * @var SLiib_WebApp_Request
      */
     protected $_request = NULL;
 
@@ -61,7 +61,7 @@ abstract class SLiib_WebApp_Controller
      */
     public function __construct()
     {
-        $this->_request = SLiib_HTTP_Request::getInstance();
+        $this->_request = SLiib_WebApp_Request::getInstance();
         $this->_view    = new $this->_viewClass(
             $this->_request->getController(),
             $this->_request->getAction()
@@ -101,7 +101,7 @@ abstract class SLiib_WebApp_Controller
     /**
      * Request getter
      *
-     * @return SLiib_HTTP_Request
+     * @return SLiib_WebApp_Request
      */
     public function getRequest()
     {

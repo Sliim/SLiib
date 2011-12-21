@@ -79,7 +79,7 @@ abstract class SLiib_Security_Abstract
 
     /**
      * Request object
-     * @var SLiib_HTTP_Request
+     * @var SLiib_WebApp_Request
      */
     private $_request;
 
@@ -118,7 +118,7 @@ abstract class SLiib_Security_Abstract
      */
     public final function run()
     {
-        $this->_request = SLiib_HTTP_Request::getInstance();
+        $this->_request = SLiib_WebApp_Request::getInstance();
 
         foreach ($this->_rules as $rule) {
             foreach ($rule->getLocation() as $location) {

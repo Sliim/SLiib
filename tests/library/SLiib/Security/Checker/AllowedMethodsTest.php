@@ -76,7 +76,7 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
     public function testRun()
     {
         Static_Request::setRequestMethod('GET');
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
         $this->assertTrue($result);
@@ -92,7 +92,7 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
     public function testRunWithForbiddenHTTPMethod()
     {
         Static_Request::setRequestMethod('WOOT');
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();

@@ -79,7 +79,7 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
     public function testRun()
     {
         Static_Request::setRequestUri('/index/index');
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
         $this->assertTrue($result);
@@ -95,7 +95,7 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
     public function testRunWithForbiddenExtensionFilename()
     {
         Static_Request::setRequestUri('/dumps/db.sql');
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
@@ -119,7 +119,7 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
     public function testRunWithForbiddenFilename()
     {
         Static_Request::setRequestUri('../../../../etc/passwd');
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();

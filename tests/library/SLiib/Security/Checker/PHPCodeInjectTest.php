@@ -80,7 +80,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
     public function testRun()
     {
         Static_Request::setPost(array('foo' => 'bar'));
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
         $this->assertTrue($result);
@@ -99,7 +99,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
         Static_Request::setPost(
             array('foo' => '\'; include \'ohmygad\';')
         );
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
@@ -126,7 +126,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
         Static_Request::setPost(
             array('foo' => '\'; file_get_contents(\'/etc/hosts\');')
         );
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
@@ -153,7 +153,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
         Static_Request::setPost(
             array('foo' => '\'; exec(\'nc -l -p 1337 -e /bin/bash\');')
         );
-        SLiib_HTTP_Request::init();
+        SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();

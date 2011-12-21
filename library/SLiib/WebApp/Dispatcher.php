@@ -65,7 +65,7 @@ class SLiib_WebApp_Dispatcher
      */
     public static function dispatch()
     {
-        $request    = SLiib_HTTP_Request::getInstance();
+        $request    = SLiib_WebApp_Request::getInstance();
         $action     = $request->getAction();
         $controller = $request->getController();
 

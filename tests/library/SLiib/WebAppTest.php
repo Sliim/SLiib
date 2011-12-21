@@ -62,7 +62,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
 
     /**
      * Request instance
-     * @var SLiib_HTTP_Request
+     * @var SLiib_WebApp_Request
      */
     private $_request;
 
@@ -80,6 +80,27 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
         Static_Request::setRequestMethod($this->_method);
         Static_Request::setUserAgent($this->_userAgent);
         Static_Request::setReferer($this->_referer);
+
+    }
+
+
+    /**
+     * Test get an request instance not initialized
+     *
+     * @return void
+     */
+    public function testGetInstanceNotInit()
+    {
+        try {
+            $object = SLiib_WebApp_Request::getInstance();
+        } catch (SLiib_WebApp_Request_Exception $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Request_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
 
     }
 
@@ -593,7 +614,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
             APP_PATH
         )->run();
 
-        $this->_request = SLiib_HTTP_Request::getInstance();
+        $this->_request = SLiib_WebApp_Request::getInstance();
 
     }
 
