@@ -17,25 +17,27 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_HTTP_Request
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_WebApp
+ * @subpackage Request
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_HTTP_Request
+ * SLiib_WebApp_Request
  *
- * @package SLiib_HTTP_Request
+ * @package    SLiib_WebApp
+ * @subpackage Request
  */
-class SLiib_HTTP_Request
+class SLiib_WebApp_Request
 {
 
     /**
      * Request instance
-     * @var SLiib_HTTP_Request
+     * @var SLiib_WebApp_Request
      */
     private static $_instance = NULL;
 
@@ -49,7 +51,7 @@ class SLiib_HTTP_Request
     /**
      * Init HTTP Request
      *
-     * @throws SLiib_HTTP_Request_Exception
+     * @throws SLiib_WebApp_Request_Exception
      *
      * @return void
      */
@@ -63,14 +65,14 @@ class SLiib_HTTP_Request
     /**
      * Instance getter
      *
-     * @throws SLiib_HTTP_Request_Exception
+     * @throws SLiib_WebApp_Request_Exception
      *
-     * @return SLiib_HTTP_Request
+     * @return SLiib_WebApp_Request
      */
     public static function getInstance()
     {
         if (is_null(static::$_instance)) {
-            throw new SLiib_HTTP_Request_Exception(
+            throw new SLiib_WebApp_Request_Exception(
                 'Request not initialized.'
             );
         }

@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_HTTP_Request_Exception
+ * SLiib_WebApp_Request_Exception
  *
- * @package    SLiib_HTTP
+ * @package    SLiib_WebApp
  * @subpackage Exception
  */
-class SLiib_HTTP_Request_Exception
+class SLiib_WebApp_Request_Exception
 extends SLiib_Exception
 {
 
