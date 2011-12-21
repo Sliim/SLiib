@@ -85,27 +85,6 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test get an request instance not initialized
-     *
-     * @return void
-     */
-    public function testGetInstanceNotInit()
-    {
-        try {
-            $object = SLiib_WebApp_Request::getInstance();
-        } catch (SLiib_WebApp_Request_Exception $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Request_Exception', $e);
-            return;
-        } catch (Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
-
-    }
-
-
-    /**
      * Test get instance of SLiib_WebApp not initialised
      *
      * @return void
@@ -495,7 +474,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
             )
         );
         $this->_runApp();
-        $session = new SLiib_Session('TestSession');
+        $session = new SLiib_WebApp_Session('TestSession');
         $this->assertTrue(isset($session->logged));
         $this->assertTrue(isset($session->username));
         $this->assertEquals(TRUE, $session->logged);
@@ -503,7 +482,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
 
         Static_Request::setPost(array('logout' => 'Logout'));
         $this->_runApp();
-        $session = new SLiib_Session('TestSession');
+        $session = new SLiib_WebApp_Session('TestSession');
         $this->assertFalse(isset($session->logged));
         $this->assertFalse(isset($session->username));
 

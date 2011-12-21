@@ -18,8 +18,8 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Session
- * @subpackage Exception
+ * @package    SLiib_WebApp_Security
+ * @subpackage Abstract
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,13 +27,40 @@
  */
 
 /**
- * SLiib_Session_Exception
+ * SLiib_WebApp_Security_Abstract_NegativeSecurityModel
  *
- * @package    SLiib_Session
- * @subpackage Exception
+ * @package    SLiib_WebApp_Security
+ * @subpackage Abstract
  */
-class SLiib_Session_Exception
-extends SLiib_Exception
+abstract class SLiib_WebApp_Security_Abstract_NegativeSecurityModel
+extends SLiib_WebApp_Security_Abstract
 {
+
+    /**
+     * Security model
+     * @var string
+     */
+    protected $_model = self::MODEL_NEGATIVE;
+
+
+    /**
+     * Check a pattern in a string
+     *
+     * @param SLiib_WebApp_Security_Rule $rule   Rule to check
+     * @param string              $string String to use
+     *
+     * @return boolean
+     */
+    protected function _check($rule, $string)
+    {
+        if (preg_match('/' . $rule->getPattern() . '/' . $rule->getFlags(), $string)) {
+            $this->_patternError = $string;
+            return FALSE;
+        }
+
+        return TRUE;
+
+    }
+
 
 }

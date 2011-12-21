@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,13 +27,13 @@
  */
 
 /**
- * SLiib_Security_Exception_HackingAttempt
+ * SLiib_WebApp_Security_Exception_HackingAttempt
  *
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Exception
  */
-class SLiib_Security_Exception_HackingAttempt
-extends SLiib_Security_Exception
+class SLiib_WebApp_Security_Exception_HackingAttempt
+extends SLiib_WebApp_Security_Exception
 {
 
     /**
@@ -44,7 +44,7 @@ extends SLiib_Security_Exception
 
     /**
      * Rule
-     * @var SLiib_Security_Rule
+     * @var SLiib_WebApp_Security_Rule
      */
     private $_rule;
 
@@ -65,7 +65,7 @@ extends SLiib_Security_Exception
      * Exception constructor
      *
      * @param string              $checkerName Checker name
-     * @param SLiib_Security_Rule $rule        Rule
+     * @param SLiib_WebApp_Security_Rule $rule        Rule
      * @param string              $location    Location check failed
      * @param string              $reason      Exception reason
      * @param int                 $code        Exception code
@@ -75,7 +75,7 @@ extends SLiib_Security_Exception
      */
     public function __construct(
         $checkerName,
-        SLiib_Security_Rule $rule,
+        SLiib_WebApp_Security_Rule $rule,
         $location,
         $reason,
         $code=0,
@@ -115,7 +115,7 @@ extends SLiib_Security_Exception
     /**
      * Rule getter
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function getRule()
     {

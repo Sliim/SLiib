@@ -27,17 +27,17 @@
  */
 
 /**
- * Test class for SLiib_Security_Checker_BadRobots.
+ * Test class for SLiib_WebApp_Security_Checker_FilenamePolicy.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
+class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_Security_Checker_BadRobots
+     * @var SLiib_WebApp_Security_Checker_FilenamePolicy
      */
     protected $_object;
 
@@ -50,7 +50,7 @@ class SLiib_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new SLiib_Security_Checker_BadRobots();
+        $this->_object = new SLiib_WebApp_Security_Checker_FilenamePolicy();
 
     }
 
@@ -71,14 +71,14 @@ class SLiib_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
     /**
      * Test run
      *
-     * @covers SLiib_Security_Checker_BadRobots::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
+     * @covers SLiib_WebApp_Security_Checker_FilenamePolicy::run
+     * @covers SLiib_WebApp_Security_Abstract_NegativeSecurityModel
      *
      * @return void
      */
     public function testRun()
     {
-        Static_Request::setUserAgent('foo');
+        Static_Request::setRequestUri('/index/index');
         SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
@@ -88,19 +88,19 @@ class SLiib_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test run with bad robots
+     * Test run with forbidden extension filename in request URI
      *
      * @return void
      */
-    public function testRunWithBadRobots()
+    public function testRunWithForbiddenExtensionFilename()
     {
-        Static_Request::setUserAgent('DirBuster-0.12');
+        Static_Request::setRequestUri('/dumps/db.sql');
         SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
@@ -112,19 +112,19 @@ class SLiib_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test run with Nikto scanner
+     * Test run with forbidden filename in request URI
      *
      * @return void
      */
-    public function testRunWithNiktoScanner()
+    public function testRunWithForbiddenFilename()
     {
-        Static_Request::setUserAgent('Mozilla/4.75 (Nikto/2.1.4) (Test:map_codes)');
+        Static_Request::setRequestUri('../../../../etc/passwd');
         SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');

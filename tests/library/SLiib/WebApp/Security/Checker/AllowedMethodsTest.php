@@ -27,17 +27,17 @@
  */
 
 /**
- * Test class for SLiib_Security_Checker_FilenamePolicy.
+ * Test class for SLiib_WebApp_Security_Checker_AllowedMethods.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCase
+class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_Security_Checker_FilenamePolicy
+     * @var SLiib_WebApp_Security_Checker_AllowedMethods
      */
     protected $_object;
 
@@ -50,7 +50,7 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
      */
     public function setUp()
     {
-        $this->_object = new SLiib_Security_Checker_FilenamePolicy();
+        $this->_object = new SLiib_WebApp_Security_Checker_AllowedMethods();
 
     }
 
@@ -71,14 +71,11 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
     /**
      * Test run
      *
-     * @covers SLiib_Security_Checker_FilenamePolicy::run
-     * @covers SLiib_Security_Abstract_NegativeSecurityModel
-     *
      * @return void
      */
     public function testRun()
     {
-        Static_Request::setRequestUri('/index/index');
+        Static_Request::setRequestMethod('GET');
         SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
@@ -88,43 +85,19 @@ class SLiib_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCa
 
 
     /**
-     * Test run with forbidden extension filename in request URI
+     * Test run with forbidden http method
      *
      * @return void
      */
-    public function testRunWithForbiddenExtensionFilename()
+    public function testRunWithForbiddenHTTPMethod()
     {
-        Static_Request::setRequestUri('/dumps/db.sql');
+        Static_Request::setRequestMethod('WOOT');
         SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
-            return;
-        } catch (PHPUnit_Framework_Error $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
-
-    }
-
-
-    /**
-     * Test run with forbidden filename in request URI
-     *
-     * @return void
-     */
-    public function testRunWithForbiddenFilename()
-    {
-        Static_Request::setRequestUri('../../../../etc/passwd');
-        SLiib_WebApp_Request::init();
-
-        try {
-            $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');

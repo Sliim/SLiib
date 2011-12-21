@@ -180,8 +180,8 @@ abstract class SLiib_WebApp_Bootstrap
     protected function _setEnvironment()
     {
         SLiib_WebApp_Request::init();
-        SLiib_Session::init();
-        SLiib_Security::check($this->_securityCheckers);
+        SLiib_WebApp_Session::init();
+        SLiib_WebApp_Security::check($this->_securityCheckers);
 
     }
 

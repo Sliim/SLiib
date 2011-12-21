@@ -18,8 +18,8 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
- * @subpackage Checker
+ * @package    SLiib_WebApp_Security
+ * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,40 +27,13 @@
  */
 
 /**
- * SLiib_Security_Checker_AllowedMethods
+ * SLiib_WebApp_Security_Exception
  *
- * @package    SLiib_Security
- * @subpackage Checker
+ * @package    SLiib_WebApp_Security
+ * @subpackage Exception
  */
-class SLiib_Security_Checker_AllowedMethods
-extends SLiib_Security_Abstract_PositiveSecurityModel
+class SLiib_WebApp_Security_Exception
+extends SLiib_Exception
 {
-
-
-    /**
-     * Checker construct
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->_setName('Allowed methods');
-        $allowed = array(
-                    'GET',
-                    'POST',
-                   );
-
-        $rule = new SLiib_Security_Rule(
-            1200,
-            'Invalid request method'
-        );
-
-        $rule->addLocation(self::LOCATION_HTTP_METHOD)
-            ->addPatternElement($allowed);
-
-        $this->addRule($rule);
-
-    }
-
 
 }

@@ -27,17 +27,17 @@
  */
 
 /**
- * Test class for SLiib_Security_Checker_AllowedMethods.
+ * Test class for SLiib_WebApp_Security_Checker_BadRobots.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCase
+class SLiib_WebApp_Security_Checker_BadRobotsTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_Security_Checker_AllowedMethods
+     * @var SLiib_WebApp_Security_Checker_BadRobots
      */
     protected $_object;
 
@@ -50,7 +50,7 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
      */
     public function setUp()
     {
-        $this->_object = new SLiib_Security_Checker_AllowedMethods();
+        $this->_object = new SLiib_WebApp_Security_Checker_BadRobots();
 
     }
 
@@ -71,11 +71,14 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
     /**
      * Test run
      *
+     * @covers SLiib_WebApp_Security_Checker_BadRobots::run
+     * @covers SLiib_WebApp_Security_Abstract_NegativeSecurityModel
+     *
      * @return void
      */
     public function testRun()
     {
-        Static_Request::setRequestMethod('GET');
+        Static_Request::setUserAgent('foo');
         SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
@@ -85,19 +88,43 @@ class SLiib_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCa
 
 
     /**
-     * Test run with forbidden http method
+     * Test run with bad robots
      *
      * @return void
      */
-    public function testRunWithForbiddenHTTPMethod()
+    public function testRunWithBadRobots()
     {
-        Static_Request::setRequestMethod('WOOT');
+        Static_Request::setUserAgent('DirBuster-0.12');
         SLiib_WebApp_Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+            return;
+        } catch (PHPUnit_Framework_Error $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Test run with Nikto scanner
+     *
+     * @return void
+     */
+    public function testRunWithNiktoScanner()
+    {
+        Static_Request::setUserAgent('Mozilla/4.75 (Nikto/2.1.4) (Test:map_codes)');
+        SLiib_WebApp_Request::init();
+
+        try {
+            $this->_object->run();
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');

@@ -27,17 +27,17 @@
  */
 
 /**
- * Test class for SLiib_Security_Checker_PHPCodeInject.
+ * Test class for SLiib_WebApp_Security_Checker_PHPCodeInject.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCase
+class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_Security_Checker_PHPCodeInject
+     * @var SLiib_WebApp_Security_Checker_PHPCodeInject
      */
     protected $_object;
 
@@ -46,13 +46,13 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @covers SLiib_Security_Checker_PHPCodeInject::__construct
+     * @covers SLiib_WebApp_Security_Checker_PHPCodeInject::__construct
      *
      * @return void
      */
     public function setUp()
     {
-        $this->_object = new SLiib_Security_Checker_PHPCodeInject();
+        $this->_object = new SLiib_WebApp_Security_Checker_PHPCodeInject();
 
     }
 
@@ -73,7 +73,7 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
     /**
      * Test run
      *
-     * @covers SLiib_Security_Checker_PHPCodeInject::run
+     * @covers SLiib_WebApp_Security_Checker_PHPCodeInject::run
      *
      * @return void
      */
@@ -103,8 +103,8 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
@@ -130,8 +130,8 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
@@ -157,8 +157,8 @@ class SLiib_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCas
 
         try {
             $this->_object->run();
-        } catch (SLiib_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_Security_Exception_HackingAttempt', $e);
+        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
             return;
         } catch (PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');

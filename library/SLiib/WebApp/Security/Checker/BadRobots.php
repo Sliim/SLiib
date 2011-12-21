@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Checker
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,13 +27,13 @@
  */
 
 /**
- * SLiib_Security_Checker_BadRobots
+ * SLiib_WebApp_Security_Checker_BadRobots
  *
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Checker
  */
-class SLiib_Security_Checker_BadRobots
-extends SLiib_Security_Abstract_NegativeSecurityModel
+class SLiib_WebApp_Security_Checker_BadRobots
+extends SLiib_WebApp_Security_Abstract_NegativeSecurityModel
 {
 
 
@@ -46,7 +46,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
     {
         $this->_setName('Bad Robots');
 
-        $scanner = new SLiib_Security_Rule(
+        $scanner = new SLiib_WebApp_Security_Rule(
             1400,
             'Scanner detection'
         );

@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Checker
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,13 +27,13 @@
  */
 
 /**
- * SLiib_Security_Checker_FilenamePolicy
+ * SLiib_WebApp_Security_Checker_FilenamePolicy
  *
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Checker
  */
-class SLiib_Security_Checker_FilenamePolicy
-extends SLiib_Security_Abstract_NegativeSecurityModel
+class SLiib_WebApp_Security_Checker_FilenamePolicy
+extends SLiib_WebApp_Security_Abstract_NegativeSecurityModel
 {
 
 
@@ -46,7 +46,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
     {
         $this->_setName('Filename Policy');
 
-        $fileExtensionRule = new SLiib_Security_Rule(
+        $fileExtensionRule = new SLiib_WebApp_Security_Rule(
             1300,
             'Forbidden file\'s extension policy'
         );
@@ -59,7 +59,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
             )
         )->addLocation(self::LOCATION_REQUEST_URI);
 
-        $fileNameRule = new SLiib_Security_Rule(
+        $fileNameRule = new SLiib_WebApp_Security_Rule(
             1301,
             'Forbidden file\'s name policy'
         );

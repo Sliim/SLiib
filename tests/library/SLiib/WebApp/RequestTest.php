@@ -121,6 +121,27 @@ class SLiib_WebApp_RequestTest extends PHPUnit_Framework_TestCase
 
 
     /**
+     * Test get an instance not initialized
+     *
+     * @return void
+     */
+    public function testGetInstanceNotInit()
+    {
+        try {
+            $object = SLiib_WebApp_Request::getInstance();
+        } catch (SLiib_WebApp_Request_Exception $e) {
+            $this->assertInstanceOf('SLiib_WebApp_Request_Exception', $e);
+            return;
+        } catch (Exception $e) {
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
      * Test get instance
      *
      * @covers SLiib_WebApp_Request::init

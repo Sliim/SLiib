@@ -195,7 +195,7 @@ class Test_Controller_Test extends SLiib_WebApp_Controller
         $this->_view->logged   = FALSE;
 
         $params  = $this->_request->getParameters();
-        $session = new SLiib_Session('TestSession');
+        $session = new SLiib_WebApp_Session('TestSession');
 
         if (array_key_exists('login', $params)) {
             if (array_key_exists('username', $params) && array_key_exists('password', $params)) {

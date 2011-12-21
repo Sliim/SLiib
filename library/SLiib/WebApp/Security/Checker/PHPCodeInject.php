@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Checker
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,13 +27,13 @@
  */
 
 /**
- * SLiib_Security_Checker_PHPCodeInject
+ * SLiib_WebApp_Security_Checker_PHPCodeInject
  *
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Checker
  */
-class SLiib_Security_Checker_PHPCodeInject
-extends SLiib_Security_Abstract_NegativeSecurityModel
+class SLiib_WebApp_Security_Checker_PHPCodeInject
+extends SLiib_WebApp_Security_Abstract_NegativeSecurityModel
 {
 
 
@@ -46,7 +46,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
     {
         $this->_setName('PHP Code Injection');
 
-        $includeRule = new SLiib_Security_Rule(
+        $includeRule = new SLiib_WebApp_Security_Rule(
             1100,
             'Include injection detected'
         );
@@ -62,7 +62,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
             )
         );
 
-        $othersFunctionRule = new SLiib_Security_Rule(
+        $othersFunctionRule = new SLiib_WebApp_Security_Rule(
             1101,
             'Others functions injection detected'
         );
@@ -78,7 +78,7 @@ extends SLiib_Security_Abstract_NegativeSecurityModel
             )
         );
 
-        $remoteExecRule = new SLiib_Security_Rule(
+        $remoteExecRule = new SLiib_WebApp_Security_Rule(
             1102,
             'Remote commande execution detected'
         );

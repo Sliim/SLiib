@@ -32,7 +32,7 @@
  * @package    Tests
  * @subpackage Stubs
  */
-abstract class Stubs_Security_Abstract extends SLiib_Security_Abstract
+abstract class Stubs_Security_Abstract extends SLiib_WebApp_Security_Abstract
 {
 
 
@@ -55,7 +55,7 @@ abstract class Stubs_Security_Abstract extends SLiib_Security_Abstract
     /**
      * Check a pattern in a string
      *
-     * @param SLiib_Security_Rule $rule   Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule   Rule to check
      * @param string              $string String to use
      *
      * @return boolean

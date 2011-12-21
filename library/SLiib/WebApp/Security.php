@@ -17,20 +17,22 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_Security
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib_WebApp
+ * @subpackage Security
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
 /**
- * SLiib_Security
+ * SLiib_WebApp_Security
  *
- * @package SLiib_Security
+ * @package    SLiib_WebApp
+ * @subpackage Security
  */
-abstract class SLiib_Security
+abstract class SLiib_WebApp_Security
 {
 
 
@@ -39,7 +41,7 @@ abstract class SLiib_Security
      *
      * @param array $checkers Checkers to run
      *
-     * @throws SLiib_Security_Exception_CheckerError
+     * @throws SLiib_WebApp_Security_Exception_CheckerError
      *
      * @return void
      */
@@ -47,8 +49,8 @@ abstract class SLiib_Security
     {
         ksort($checkers);
         foreach ($checkers as $checker) {
-            if (!$checker instanceof SLiib_Security_Abstract) {
-                throw new SLiib_Security_Exception_CheckerError(
+            if (!$checker instanceof SLiib_WebApp_Security_Abstract) {
+                throw new SLiib_WebApp_Security_Exception_CheckerError(
                     $checker . ' not appear to be a valid security checker'
                 );
             }

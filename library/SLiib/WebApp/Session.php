@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Session
+ * @package  SLiib_WebApp_Session
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,11 @@
  */
 
 /**
- * SLiib_Session
+ * SLiib_WebApp_Session
  *
- * @package SLiib_Session
+ * @package SLiib_WebApp_Session
  */
-class SLiib_Session
+class SLiib_WebApp_Session
 {
 
     /**
@@ -57,14 +57,14 @@ class SLiib_Session
      *
      * @param string $namespace Session namespace
      *
-     * @throws SLiib_Session_Exception
+     * @throws SLiib_WebApp_Session_Exception
      *
      * @return void
      */
     public function __construct($namespace)
     {
         if (!static::$_started) {
-            throw new SLiib_Session_Exception('Session not initialized.');
+            throw new SLiib_WebApp_Session_Exception('Session not initialized.');
         }
 
         $this->_namespace = $namespace;
@@ -83,14 +83,14 @@ class SLiib_Session
      *
      * @param string $name Property name
      *
-     * @throws SLiib_Session_Exception
+     * @throws SLiib_WebApp_Session_Exception
      *
      * @return mixed
      */
     public function __get($name)
     {
         if (!array_key_exists($name, $this->_session)) {
-            throw new SLiib_Session_Exception('Session has not `' . $name . '` index');
+            throw new SLiib_WebApp_Session_Exception('Session has not `' . $name . '` index');
         }
 
         return $this->_session[$name];
@@ -119,14 +119,14 @@ class SLiib_Session
      *
      * @param string $name Property name
      *
-     * @throws SLiib_Session_Exception
+     * @throws SLiib_WebApp_Session_Exception
      *
      * @return void
      */
     public function __unset($name)
     {
         if (!array_key_exists($name, $this->_session)) {
-            throw new SLiib_Session_Exception('Session has not `' . $name . '` index');
+            throw new SLiib_WebApp_Session_Exception('Session has not `' . $name . '` index');
         }
 
         unset($this->_session[$name]);

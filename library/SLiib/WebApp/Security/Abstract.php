@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Abstract
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_Security_Abstract
+ * SLiib_WebApp_Security_Abstract
  *
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Abstract
  */
-abstract class SLiib_Security_Abstract
+abstract class SLiib_WebApp_Security_Abstract
 {
 
     /**
@@ -87,20 +87,20 @@ abstract class SLiib_Security_Abstract
     /**
      * Construct
      *
-     * @throws SLiib_Security_Exception
+     * @throws SLiib_WebApp_Security_Exception
      *
      * @return void
      */
     public function __construct()
     {
         if (is_null($this->_model)) {
-            throw new SLiib_Security_Exception(
+            throw new SLiib_WebApp_Security_Exception(
                 'Security model undefined'
             );
         }
 
         if (!in_array($this->_model, array('Positive', 'Negative'))) {
-            throw new SLiib_Security_Exception(
+            throw new SLiib_WebApp_Security_Exception(
                 'Security model `' . $this->_model . '` invalid'
             );
         }
@@ -111,8 +111,8 @@ abstract class SLiib_Security_Abstract
     /**
      * Running checker
      *
-     * @throws SLiib_Security_Exception_CheckerError
-     * @throws SLiib_Security_Exception_HackingAttempt
+     * @throws SLiib_WebApp_Security_Exception_CheckerError
+     * @throws SLiib_WebApp_Security_Exception_HackingAttempt
      *
      * @return boolean
      */
@@ -142,14 +142,14 @@ abstract class SLiib_Security_Abstract
                         $result = $this->_checkReferer($rule);
                         break;
                     default:
-                        throw new SLiib_Security_Exception_CheckerError(
+                        throw new SLiib_WebApp_Security_Exception_CheckerError(
                             'Location for `' . $this->_name . '` checker is not valid'
                         );
                         break;
                 }
 
                 if (!$result) {
-                    throw new SLiib_Security_Exception_HackingAttempt(
+                    throw new SLiib_WebApp_Security_Exception_HackingAttempt(
                         $this->_name, $rule, $location, $this->_patternError
                     );
                 }
@@ -164,16 +164,16 @@ abstract class SLiib_Security_Abstract
     /**
      * Add a rule
      *
-     * @param SLiib_Security_Rule $rule Rule to add
+     * @param SLiib_WebApp_Security_Rule $rule Rule to add
      *
-     * @throws SLiib_Security_Exception_CheckerError
+     * @throws SLiib_WebApp_Security_Exception_CheckerError
      *
-     * @return SLiib_Security_Abstract
+     * @return SLiib_WebApp_Security_Abstract
      */
-    public final function addRule(SLiib_Security_Rule $rule)
+    public final function addRule(SLiib_WebApp_Security_Rule $rule)
     {
         if ($this->_ruleExists($rule->getId())) {
-            throw new SLiib_Security_Exception_CheckerError(
+            throw new SLiib_WebApp_Security_Exception_CheckerError(
                 'Id ' . $rule->getId() . ' already used by another rule.'
             );
         }
@@ -189,14 +189,14 @@ abstract class SLiib_Security_Abstract
      *
      * @param int $ruleId Rule id to delete
      *
-     * @throws SLiib_Security_Exception_CheckerError
+     * @throws SLiib_WebApp_Security_Exception_CheckerError
      *
-     * @return SLiib_Security_Abstract
+     * @return SLiib_WebApp_Security_Abstract
      */
     public function deleteRule($ruleId)
     {
         if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
+            throw new SLiib_WebApp_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
         }
 
         unset($this->_rules[$ruleId]);
@@ -210,14 +210,14 @@ abstract class SLiib_Security_Abstract
      *
      * @param int $ruleId Rule Id to get
      *
-     * @throws SLiib_Security_Exception_CheckerError
+     * @throws SLiib_WebApp_Security_Exception_CheckerError
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function getRule($ruleId)
     {
         if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
+            throw new SLiib_WebApp_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
         }
 
         return $this->_rules[$ruleId];

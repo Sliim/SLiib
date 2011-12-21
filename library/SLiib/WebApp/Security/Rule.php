@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Rule
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_Security_Rule
+ * SLiib_WebApp_Security_Rule
  *
- * @package    SLiib_Security
+ * @package    SLiib_WebApp_Security
  * @subpackage Rule
  */
-class SLiib_Security_Rule
+class SLiib_WebApp_Security_Rule
 {
 
     /**
@@ -176,7 +176,7 @@ class SLiib_Security_Rule
      *
      * @param string $pattern Pattern to set
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function setPattern($pattern)
     {
@@ -196,7 +196,7 @@ class SLiib_Security_Rule
      *
      * @param string $location Location to add
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function addLocation($location)
     {
@@ -216,7 +216,7 @@ class SLiib_Security_Rule
      *
      * @param string $location Location to add
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function deleteLocation($location)
     {
@@ -235,7 +235,7 @@ class SLiib_Security_Rule
      *
      * @param mixed $element Element to add
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function addPatternElement($element)
     {
@@ -256,7 +256,7 @@ class SLiib_Security_Rule
      *
      * @param string $element Element to delete
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function deletePatternElement($element)
     {
@@ -275,7 +275,7 @@ class SLiib_Security_Rule
     /**
      * Enable preg_quote function
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function enablePregQuote()
     {
@@ -288,7 +288,7 @@ class SLiib_Security_Rule
     /**
      * Disable preg_quote function
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function disablePregQuote()
     {
@@ -301,7 +301,7 @@ class SLiib_Security_Rule
     /**
      * Enable case sensitivity for preg_match pattern
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function enableCaseSensitivity()
     {
@@ -318,7 +318,7 @@ class SLiib_Security_Rule
     /**
      * Disable case sensitivity for preg_match pattern
      *
-     * @return SLiib_Security_Rule
+     * @return SLiib_WebApp_Security_Rule
      */
     public function disableCaseSensitivity()
     {
