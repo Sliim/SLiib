@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Application
+ * @package    SLiib_WebApp
  * @subpackage View
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_Application_View
+ * SLiib_WebApp_View
  *
- * @package    SLiib_Application
+ * @package    SLiib_WebApp
  * @subpackage View
  */
-class SLiib_Application_View
+class SLiib_WebApp_View
 {
 
     /**
@@ -70,7 +70,7 @@ class SLiib_Application_View
      */
     public function __construct($controller, $action)
     {
-        $this->_path = SLiib_Application::getInstance()->getViewPath();
+        $this->_path = SLiib_WebApp::getInstance()->getViewPath();
         $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
 
         if ($this->_viewExist($defaultView) && $this->_view !== FALSE) {
@@ -100,13 +100,13 @@ class SLiib_Application_View
      *
      * @param string $attr Attribut name
      *
-     * @throws SLiib_Application_Exception_UndefinedProperty
+     * @throws SLiib_WebApp_Exception_UndefinedProperty
      *
      * @return void
      */
     public function __get($attr)
     {
-        throw new SLiib_Application_Exception_UndefinedProperty(
+        throw new SLiib_WebApp_Exception_UndefinedProperty(
             'Attribut `' . $attr . '` undefined in view.'
         );
 
@@ -132,7 +132,7 @@ class SLiib_Application_View
      *
      * @param string $view View
      *
-     * @throws SLiib_Application_Exception_InvalidParameter
+     * @throws SLiib_WebApp_Exception_InvalidParameter
      *
      * @return void
      */
@@ -141,7 +141,7 @@ class SLiib_Application_View
         if ($viewPath = $this->_viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
-            throw new SLiib_Application_Exception_InvalidParameter(
+            throw new SLiib_WebApp_Exception_InvalidParameter(
                 'View `' . $view . '` is invalid.'
             );
         }
@@ -167,9 +167,9 @@ class SLiib_Application_View
      *
      * @param string $template Template to include
      *
-     * @throws SLiib_Application_Exception_InvalidParameter
+     * @throws SLiib_WebApp_Exception_InvalidParameter
      *
-     * @return SLiib_Application_View
+     * @return SLiib_WebApp_View
      */
     public function partial($template)
     {
@@ -181,7 +181,7 @@ class SLiib_Application_View
 
         $file = $this->_path . DIRECTORY_SEPARATOR . $template . $this->_ext;
         if (!file_exists($file)) {
-            throw new SLiib_Application_Exception_InvalidParameter(
+            throw new SLiib_WebApp_Exception_InvalidParameter(
                 'Partial template ' . $template . ' not found'
             );
         }

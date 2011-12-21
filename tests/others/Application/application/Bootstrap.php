@@ -32,7 +32,7 @@
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Bootstrap extends SLiib_Application_Bootstrap
+class Test_Bootstrap extends SLiib_WebApp_Bootstrap
 {
 
 
@@ -61,7 +61,7 @@ class Test_Bootstrap extends SLiib_Application_Bootstrap
 
         try {
             $this->_setViewPath(APP_PATH . '/views_not_exists');
-        } catch (SLiib_Application_Exception $e) {
+        } catch (SLiib_WebApp_Exception $e) {
             $this->_setViewPath(APP_PATH . '/views');
         }
 

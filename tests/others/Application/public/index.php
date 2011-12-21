@@ -32,4 +32,4 @@ define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
-SLiib_Application::init(APP_NS, APP_PATH)->run();
+SLiib_WebApp::init(APP_NS, APP_PATH)->run();

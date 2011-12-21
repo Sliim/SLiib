@@ -32,7 +32,7 @@
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Controller_MyControllerWithMultiDash extends SLiib_Application_Controller
+class Test_Controller_MyControllerWithMultiDash extends SLiib_WebApp_Controller
 {
 
 

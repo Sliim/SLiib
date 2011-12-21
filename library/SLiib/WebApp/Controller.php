@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Application
+ * @package    SLiib_WebApp
  * @subpackage Controller
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,17 +27,17 @@
  */
 
 /**
- * SLiib_Application_Controller
+ * SLiib_WebApp_Controller
  *
- * @package    SLiib_Application
+ * @package    SLiib_WebApp
  * @subpackage Controller
  */
-abstract class SLiib_Application_Controller
+abstract class SLiib_WebApp_Controller
 {
 
     /**
      * View of this controller/action
-     * @var SLiib_Application_View
+     * @var SLiib_WebApp_View
      */
     protected $_view = NULL;
 
@@ -45,7 +45,7 @@ abstract class SLiib_Application_Controller
      * View Class
      * @var string
      */
-    protected $_viewClass = 'SLiib_Application_View';
+    protected $_viewClass = 'SLiib_WebApp_View';
 
     /**
      * Request instance
@@ -76,7 +76,7 @@ abstract class SLiib_Application_Controller
      * @param string $action Action to call
      * @param array  $params unused
      *
-     * @throws SLiib_Application_Exception_NoDispatchable
+     * @throws SLiib_WebApp_Exception_NoDispatchable
      *
      * @return void
      */
@@ -86,7 +86,7 @@ abstract class SLiib_Application_Controller
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {
-            throw new SLiib_Application_Exception_NoDispatchable(
+            throw new SLiib_WebApp_Exception_NoDispatchable(
                 'Action `' . $action . '` is invalid.'
             );
         }

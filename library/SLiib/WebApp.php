@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Application
+ * @package  SLiib_WebApp
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -27,16 +27,16 @@
 require_once 'SLiib/Autoloader.php';
 
 /**
- * SLiib_Application
+ * SLiib_WebApp
  *
- * @package SLiib_Application
+ * @package SLiib_WebApp
  */
-class SLiib_Application
+class SLiib_WebApp
 {
 
     /**
      * Instance
-     * @var SLiib_Application
+     * @var SLiib_WebApp
      */
     private static $_instance = NULL;
 
@@ -65,7 +65,7 @@ class SLiib_Application
      * @param string $appNamespace Application namespace
      * @param string $appPath      Application path
      *
-     * @return SLiib_Application
+     * @return SLiib_WebApp
      */
     public static function init($appNamespace, $appPath)
     {
@@ -102,14 +102,14 @@ class SLiib_Application
     /**
      * Get application instance
      *
-     * @throws SLiib_Application_Exception
+     * @throws SLiib_WebApp_Exception
      *
-     * @return SLiib_Application
+     * @return SLiib_WebApp
      */
     public static function getInstance()
     {
         if (static::$_instance === NULL) {
-            throw new SLiib_Application_Exception('Application not initialized.');
+            throw new SLiib_WebApp_Exception('Application not initialized.');
         }
 
         return static::$_instance;
@@ -135,7 +135,7 @@ class SLiib_Application
      * @param string $appNamespace Application namespace
      * @param string $appPath      Application path
      *
-     * @throws SLiib_Application_Exception
+     * @throws SLiib_WebApp_Exception
      *
      * @return void
      */
@@ -146,7 +146,7 @@ class SLiib_Application
 
         $bootstrapPath = $this->_appPath . '/Bootstrap.php';
         if (!file_exists($bootstrapPath)) {
-            throw new SLiib_Application_Exception('Error boostraping!');
+            throw new SLiib_WebApp_Exception('Error boostraping!');
         }
 
         include $bootstrapPath;

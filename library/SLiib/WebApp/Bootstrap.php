@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Application
+ * @package    SLiib_WebApp
  * @subpackage Bootstrap
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -29,10 +29,10 @@
 /**
  * SLiib_Bootstrap
  *
- * @package    SLiib_Application
+ * @package    SLiib_WebApp
  * @subpackage Bootstrap
  */
-abstract class SLiib_Application_Bootstrap
+abstract class SLiib_WebApp_Bootstrap
 {
 
     /**
@@ -99,8 +99,8 @@ abstract class SLiib_Application_Bootstrap
         try {
             $this->_setEnvironment();
 
-            SLiib_Application_Dispatcher::init($this->_appNamespace);
-            SLiib_Application_Dispatcher::dispatch();
+            SLiib_WebApp_Dispatcher::init($this->_appNamespace);
+            SLiib_WebApp_Dispatcher::dispatch();
         } catch (SLiib_Exception $e) {
             $this->_exceptionHandler($e);
         }
@@ -191,14 +191,14 @@ abstract class SLiib_Application_Bootstrap
      *
      * @param string $path View path
      *
-     * @throws SLiib_Application_Exception
+     * @throws SLiib_WebApp_Exception
      *
      * @return void
      */
     protected function _setViewPath($path)
     {
         if (!file_exists($path)) {
-            throw new SLiib_Application_Exception('Directory ' . $path . ' not found.');
+            throw new SLiib_WebApp_Exception('Directory ' . $path . ' not found.');
         }
 
         $this->_viewPath = $path;
