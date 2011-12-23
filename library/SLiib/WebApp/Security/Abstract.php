@@ -279,7 +279,7 @@ abstract class SLiib_WebApp_Security_Abstract
     /**
      * Check in request uri
      *
-     * @param Sliib_Security_Rule $rule Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
@@ -294,7 +294,7 @@ abstract class SLiib_WebApp_Security_Abstract
     /**
      * Check in parameters
      *
-     * @param Sliib_Security_Rule $rule Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
@@ -319,7 +319,7 @@ abstract class SLiib_WebApp_Security_Abstract
     /**
      * Check in user agent
      *
-     * @param Sliib_Security_Rule $rule Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
@@ -334,7 +334,7 @@ abstract class SLiib_WebApp_Security_Abstract
     /**
      * Check in http method
      *
-     * @param Sliib_Security_Rule $rule Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
@@ -349,7 +349,7 @@ abstract class SLiib_WebApp_Security_Abstract
     /**
      * Check in cookies
      *
-     * @param Sliib_Security_Rule $rule Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
@@ -375,7 +375,7 @@ abstract class SLiib_WebApp_Security_Abstract
     /**
      * Check in referer
      *
-     * @param Sliib_Security_Rule $rule Rule to check
+     * @param SLiib_WebApp_Security_Rule $rule Rule to check
      *
      * @return boolean
      */
