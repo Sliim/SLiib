@@ -104,7 +104,7 @@ class SLiib_Config_Ini extends SLiib_Config
             );
         }
 
-        $this->_mergeObject($this, $this->_parseSection($config));
+        SLiib_Utils::mergeObject($this, $this->_parseSection($config));
 
     }
 
@@ -151,11 +151,11 @@ class SLiib_Config_Ini extends SLiib_Config
                 $object->$key = $this->_parseSection($value);
 
                 if (isset($parent)) {
-                    $this->_mergeObject($object->$key, $object->$parent);
+                    SLiib_Utils::mergeObject($object->$key, $object->$parent);
                 }
             } else {
                 if (isset($object->$key)) {
-                    $this->_mergeObject($object->$key, $value);
+                    SLiib_Utils::mergeObject($object->$key, $value);
                 } else {
                     $object->$key = $value;
                 }
@@ -205,31 +205,6 @@ class SLiib_Config_Ini extends SLiib_Config
         }
 
         return $object;
-
-    }
-
-
-    /**
-     * Merge with an existing object config
-     *
-     * @param SLiib_Config &$source Object source
-     * @param SLiib_Config $object  Object to merge with source
-     *
-     * @return void
-     */
-    private function _mergeObject(SLiib_Config &$source, SLiib_Config $object)
-    {
-        //TODO Cette méthode peut etre utile ailleurs, à génériser dans SLiib_Utils par exemple.
-        foreach ($object as $key => $value) {
-            if (!isset($source->$key)) {
-                $source->$key = $value;
-                continue;
-            }
-
-            if (is_object($source->$key) && is_object($value)) {
-                $this->_mergeObject($source->$key, $value);
-            }
-        }
 
     }
 
