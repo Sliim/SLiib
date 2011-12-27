@@ -93,7 +93,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
         $this->_iniBadKey      = 'files/configs/badkey.ini';
         $this->_iniNoParent    = 'files/configs/noparent.ini';
         $this->_iniSyntaxError = 'files/configs/syntaxerror.ini';
-        $this->_object         = new SLiib_Config_Ini($this->_iniFile);
+        $this->_object         = SLiib_Config_Ini::read($this->_iniFile);
 
     }
 
@@ -114,98 +114,65 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     /**
      * Test get all directives
      *
-     * @covers SLiib_Config_Ini::getConfig
-     *
      * @return void
      */
-    public function testGetConfig()
+    public function testConfig()
     {
-        $config = $this->_object->getConfig();
+        $this->assertObjectHasAttribute('application', $this->_object);
+        $this->assertObjectHasAttribute('development', $this->_object);
+        $this->assertObjectHasAttribute('production', $this->_object);
 
-        $this->assertObjectHasAttribute('application', $config);
-        $this->assertObjectHasAttribute('development', $config);
-        $this->assertObjectHasAttribute('production', $config);
+        $this->assertInstanceOf('SLiib_Config', $this->_object->application);
+        $this->assertInstanceOf('SLiib_Config', $this->_object->development);
+        $this->assertInstanceOf('SLiib_Config', $this->_object->production);
 
-        $this->assertInstanceOf('SLiib_Config', $config->application);
-        $this->assertInstanceOf('SLiib_Config', $config->development);
-        $this->assertInstanceOf('SLiib_Config', $config->production);
-
-        $this->assertObjectHasAttribute('docsMenu', $config->development);
-        $this->assertObjectHasAttribute('sysInfos', $config->development);
-        $this->assertObjectHasAttribute('docsMenu', $config->production);
-        $this->assertObjectHasAttribute('sysInfos', $config->production);
+        $this->assertObjectHasAttribute('docsMenu', $this->_object->development);
+        $this->assertObjectHasAttribute('sysInfos', $this->_object->development);
+        $this->assertObjectHasAttribute('docsMenu', $this->_object->production);
+        $this->assertObjectHasAttribute('sysInfos', $this->_object->production);
 
         $this->assertInternalType(
             'string',
-            $this->_object->getConfig()->application->sysInfos
+            $this->_object->application->sysInfos
         );
 
-        $this->assertEquals('On', $config->development->docsMenu);
-        $this->assertEquals('Off', $config->production->docsMenu);
+        $this->assertEquals('On', $this->_object->development->docsMenu);
+        $this->assertEquals('Off', $this->_object->production->docsMenu);
 
-        $this->assertEquals('On', $config->development->sysInfos);
-        $this->assertEquals('Off', $config->production->sysInfos);
+        $this->assertEquals('On', $this->_object->development->sysInfos);
+        $this->assertEquals('Off', $this->_object->production->sysInfos);
 
-        $this->assertInstanceOf('SLiib_Config', $config->application->foo);
-        $this->assertObjectHasAttribute('bar', $config->application->foo);
-        $this->assertInternalType('string', $config->application->foo->bar);
-        $this->assertEquals('foobar', $config->application->foo->bar);
+        $this->assertInstanceOf('SLiib_Config', $this->_object->application->foo);
+        $this->assertObjectHasAttribute('bar', $this->_object->application->foo);
+        $this->assertInternalType('string', $this->_object->application->foo->bar);
+        $this->assertEquals('foobar', $this->_object->application->foo->bar);
 
-        $this->assertInstanceOf('SLiib_Config', $config->application->test->foo->bar);
-        $this->assertObjectHasAttribute('z1337', $config->application->test->foo->bar);
-        $this->assertObjectHasAttribute('z7331', $config->application->test->foo->bar);
-        $this->assertInternalType('string', $config->application->test->foo->bar->z1337);
-        $this->assertInternalType('string', $config->application->test->foo->bar->z7331);
-        $this->assertEquals('w00t', $config->application->test->foo->bar->z1337);
-        $this->assertEquals(':)', $config->application->test->foo->bar->z7331);
-
-    }
-
-
-    /**
-     * Test get environment directives
-     *
-     * @covers SLiib_Config_Ini::getConfig
-     *
-     * @return void
-     */
-    public function testGetConfigWithEnv()
-    {
-        $this->_object->setEnvironment('development');
-        $config = $this->_object->getConfig();
-
-        $this->assertObjectHasAttribute('projectsMenu', $config);
-        $this->assertObjectHasAttribute('toolsMenu', $config);
-        $this->assertObjectHasAttribute('docsMenu', $config);
-
-        $this->assertEquals('On', $config->projectsMenu);
-        $this->assertEquals('On', $config->toolsMenu);
-        $this->assertEquals('On', $config->docsMenu);
+        $this->assertInstanceOf('SLiib_Config', $this->_object->application->test->foo->bar);
+        $this->assertObjectHasAttribute('z1337', $this->_object->application->test->foo->bar);
+        $this->assertObjectHasAttribute('z7331', $this->_object->application->test->foo->bar);
+        $this->assertInternalType('string', $this->_object->application->test->foo->bar->z1337);
+        $this->assertInternalType('string', $this->_object->application->test->foo->bar->z7331);
+        $this->assertEquals('w00t', $this->_object->application->test->foo->bar->z1337);
+        $this->assertEquals(':)', $this->_object->application->test->foo->bar->z7331);
 
     }
 
 
     /**
-     * Test setting an environment
-     *
-     * @return void
+     * Test config with environment
      */
-    public function testSetEnvironment()
+    public function testConfigWithEnv()
     {
-        $object = new SLiib_Config_Ini($this->_iniFile, 'development');
-        $config = $object->getConfig();
-
+        $config = SLiib_Config_Ini::read($this->_iniFile, 'development');
         $this->assertObjectHasAttribute('sysInfos', $config);
         $this->assertEquals('On', $config->sysInfos);
 
-        $object->setEnvironment('production');
-        $config = $object->getConfig();
-
+        $config = SLiib_Config_Ini::read($this->_iniFile, 'production');
         $this->assertObjectHasAttribute('sysInfos', $config);
         $this->assertEquals('Off', $config->sysInfos);
 
         try {
-            $this->_object->setEnvironment('notexists');
+            $config = SLiib_Config_Ini::read($this->_iniFile, 'notexist');
         } catch (SLiib_Config_Exception_UndefinedProperty $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_UndefinedProperty', $e);
             return;
@@ -219,24 +186,6 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
 
     /**
-     * Test environment getter
-     *
-     * @covers SLiib_Config_Ini::getEnvironment
-     *
-     * @return void
-     */
-    public function testGetEnvironment()
-    {
-        $env = 'application';
-        $this->_object->setEnvironment($env);
-
-        $this->assertInternalType('string', $this->_object->getEnvironment());
-        $this->assertEquals($env, $this->_object->getEnvironment());
-
-    }
-
-
-    /**
      * Test open inexistant file
      *
      * @return void
@@ -244,7 +193,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     public function testOpenInexistantFile()
     {
         try {
-            $config = new SLiib_Config_Ini($this->_iniFail);
+            $config = SLiib_Config_Ini::read($this->_iniFail);
         } catch (SLiib_Config_Exception $e) {
             $this->assertInstanceOf('SLiib_Config_Exception', $e);
             return;
@@ -265,7 +214,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     public function testBadSection()
     {
         try {
-            $config = new SLiib_Config_Ini($this->_iniBadSection);
+            $config = SLiib_Config_Ini::read($this->_iniBadSection);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
             return;
@@ -286,7 +235,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     public function testBadKey()
     {
         try {
-            $config = new SLiib_Config_Ini($this->_iniBadKey);
+            $config = SLiib_Config_Ini::read($this->_iniBadKey);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
             return;
@@ -307,7 +256,7 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     public function testNoParent()
     {
         try {
-            $config = new SLiib_Config_Ini($this->_iniNoParent);
+            $config = SLiib_Config_Ini::read($this->_iniNoParent);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
             return;
@@ -328,9 +277,36 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
     public function testSyntaxError()
     {
         try {
-            $config = new SLiib_Config_Ini($this->_iniSyntaxError);
+            $config = SLiib_Config_Ini::read($this->_iniSyntaxError);
         } catch (SLiib_Config_Exception_SyntaxError $e) {
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
+            return;
+        } catch (Exception $e) {
+            error_log(get_class($e));
+            error_log($e->getMessage());
+            error_log($e->getFile());
+            error_log($e->getLine());
+            $this->fail('Bad exception has been raised');
+        }
+
+        $this->fail('No exception has been raised');
+
+    }
+
+
+    /**
+     * Get undefined property test
+     *
+     * @covers SLiib_Config::__get
+     *
+     * @return void
+     */
+    public function testGet()
+    {
+        try {
+            $foo = $this->_object->bar;
+        } catch (SLiib_Config_Exception_UndefinedProperty $e) {
+            $this->assertInstanceOf('SLiib_Config_Exception_UndefinedProperty', $e);
             return;
         } catch (Exception $e) {
             $this->fail('Bad exception has been raised');

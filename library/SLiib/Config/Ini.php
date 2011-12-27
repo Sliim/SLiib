@@ -32,8 +32,53 @@
  * @package    SLiib_Config
  * @subpackage Ini
  */
-class SLiib_Config_Ini extends SLiib_Config_Abstract
+class SLiib_Config_Ini extends SLiib_Config
 {
+
+
+    /**
+     * Read a configuration file
+     *
+     * @param string           $file File to read
+     * @param string[optional] $env  Config environment
+     *
+     * @return SLiib_Config
+     */
+    public static function read($file, $env=NULL)
+    {
+        parent::read($file, $env);
+
+        $config = new self(TRUE);
+
+        if (!is_null($env)) {
+            if (!isset($config->$env)) {
+                throw new SLiib_Config_Exception_UndefinedProperty('Environment `' . $env . '` does not exist.');
+            }
+
+            return $config->$env;
+        }
+
+        return $config;
+
+    }
+
+
+    /**
+     * Protected constructor
+     *
+     * @param boolean[optional] $init Specify if is a config object init
+     *
+     * @return void
+     */
+    protected function __construct($init=FALSE)
+    {
+        parent::__construct();
+
+        if ($init) {
+            $this->_parseFile();
+        }
+
+    }
 
 
     /**
@@ -49,17 +94,17 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
     {
         set_error_handler(array($this, '_errorHandler'));
 
-        $config = parse_ini_file($this->_configFile, TRUE, INI_SCANNER_RAW);
+        $config = parse_ini_file(static::$_file, TRUE, INI_SCANNER_RAW);
 
         restore_error_handler();
 
         if (!$config) {
             throw new SLiib_Config_Exception_SyntaxError(
-                'Can\'t parse `' . $this->_configFile . '`'
+                'Can\'t parse `' . static::$_file . '`'
             );
         }
 
-        $this->_config = $this->_parseSection($config);
+        $this->_mergeObject($this, $this->_parseSection($config));
 
     }
 
@@ -174,6 +219,7 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
      */
     private function _mergeObject(SLiib_Config &$source, SLiib_Config $object)
     {
+        //TODO Cette méthode peut etre utile ailleurs, à génériser dans SLiib_Utils par exemple.
         foreach ($object as $key => $value) {
             if (!isset($source->$key)) {
                 $source->$key = $value;
