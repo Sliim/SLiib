@@ -35,10 +35,10 @@ class SLiib_Utils
 
 
     /**
-     * Merge with an existing object config
+     * Merge with an existing object
      *
      * @param mixed &$source Object source
-     * @param mixed Object to merge with source
+     * @param mixed $object  Object to merge with source
      *
      * @return void
      */

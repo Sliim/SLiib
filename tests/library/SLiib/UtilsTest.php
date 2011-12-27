@@ -57,7 +57,14 @@ class SLiib_UtilsTest extends PHPUnit_Framework_TestCase
         $bar->object = new stdClass();
         $bar->object->bar = 'bar';
 
-        $merged = SLiib_Utils::mergeObject($foo, $bar);
+        SLiib_Utils::mergeObject($foo, $bar);
+
+        $this->assertObjectHasAttribute('foo', $foo);
+        $this->assertObjectHasAttribute('bar', $foo);
+        $this->assertObjectHasAttribute('object', $foo);
+        $this->assertInstanceOf('stdClass', $foo->object);
+        $this->assertObjectHasAttribute('foo', $foo->object);
+        $this->assertObjectHasAttribute('bar', $foo->object);
 
     }
 
