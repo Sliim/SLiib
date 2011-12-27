@@ -18,19 +18,24 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Autoloader
+ * @package  SLiib\Autoloader
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
  * @link     http://www.sliim-projects.eu
  */
 
+ /**
+  * Namespace
+  */
+namespace SLiib;
+
 /**
- * SLiib_Autoloader
+ * SLiib\Autoloader
  *
- * @package SLiib_Autoloader
+ * @package SLiib\Autoloader
  */
-class SLiib_Autoloader
+class Autoloader
 {
 
     /**
@@ -102,7 +107,8 @@ class SLiib_Autoloader
             return TRUE;
         }
 
-        $segment = explode('_', $class);
+        str_replace('_', '\\', $class);
+        $segment = explode('\\', $class);
         if (count($segment) < 2) {
             return FALSE;
         }

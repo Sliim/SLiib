@@ -33,7 +33,7 @@ define('STATIC_PATH', realpath(ROOT_PATH . '/../Static'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
-SLiib_Autoloader::init(
+SLiib\Autoloader::init(
     array(
      'SLiib'  => 'SLiib',
      'Stubs'  => STUBS_PATH,
