@@ -25,9 +25,9 @@
  * @link     http://www.sliim-projects.eu
  */
 
- /**
-  * Namespace
-  */
+/**
+ * Namespace
+ */
 namespace SLiib;
 
 /**

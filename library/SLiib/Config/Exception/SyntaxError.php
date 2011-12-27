@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,14 +27,19 @@
  */
 
 /**
- * SLiib_Config_Exception_SyntaxError
+ * Namespace
+ */
+namespace SLiib\Config\Exception;
+
+/**
+ * SLiib\Config\Exception\SyntaxError
  *
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Exception
  */
-class SLiib_Config_Exception_SyntaxError
-extends SLiib_Config_Exception
-implements SLiib_IException_Failure
+class SyntaxError
+extends \SLiib\Config\Exception
+implements \SLiib\IException\Failure
 {
 
 }

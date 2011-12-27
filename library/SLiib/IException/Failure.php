@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_IException
+ * @package  SLiib\IException
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,16 @@
  */
 
 /**
- * SLiib_IException_Failure
- *
- * @package SLiib_IException
+ * Namespace
  */
-Interface SLiib_IException_Failure
+namespace SLiib\IException;
+
+/**
+ * SLiib\IException\Failure
+ *
+ * @package SLiib\IException
+ */
+Interface Failure
 {
 
 }

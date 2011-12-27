@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,12 +27,17 @@
  */
 
 /**
- * SLiib_Config_Exception
+ * Namespace
+ */
+namespace SLiib\Config;
+
+/**
+ * SLiib\Config\Exception
  *
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Exception
  */
-class SLiib_Config_Exception extends SLiib_Exception
+class Exception extends \SLiib\Exception
 {
 
 }

@@ -18,8 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Abstract
- * @subpackage Cli
+ * @package    SLiib\Cli
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,12 +26,16 @@
  */
 
 /**
- * SLiib_Abstract_Cli
- *
- * @package    SLiib_Abstract
- * @subpackage Cli
+ * Namespace
  */
-abstract class SLiib_Abstract_Cli
+namespace SLiib;
+
+/**
+ * SLiib\Cli
+ *
+ * @package    SLiib\Cli
+ */
+abstract class Cli
 {
 
     /**

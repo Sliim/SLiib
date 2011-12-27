@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,13 +27,18 @@
  */
 
 /**
- * SLiib_Config_Exception_UndefinedProperty
+ * Namespace
+ */
+namespace SLiib\Config\Exception;
+
+/**
+ * SLiib\Config\Exception\UndefinedProperty
  *
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Exception
  */
-class SLiib_Config_Exception_UndefinedProperty
-extends SLiib_Config_Exception
+class UndefinedProperty
+extends \SLiib\Config\Exception
 {
 
 }
