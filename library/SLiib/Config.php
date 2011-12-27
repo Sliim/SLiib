@@ -61,14 +61,13 @@ class SLiib_Config
     /**
      * Read a configuration file
      *
-     * @param string           $file File to read
-     * @param string[optional] $env  Config environment
+     * @param string $file File to read
      *
      * @throws SLiib_Config_Exception
      *
      * @return SLiib_Config
      */
-    public static function read($file, $env=NULL)
+    public static function read($file)
     {
         if (!file_exists($file)) {
             throw new SLiib_Config_Exception('File ' . $file . ' not found');

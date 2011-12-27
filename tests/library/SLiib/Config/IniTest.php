@@ -160,6 +160,8 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
 
     /**
      * Test config with environment
+     *
+     * @return void
      */
     public function testConfigWithEnv()
     {
@@ -282,10 +284,6 @@ class SLiib_Config_IniTest extends PHPUnit_Framework_TestCase
             $this->assertInstanceOf('SLiib_Config_Exception_SyntaxError', $e);
             return;
         } catch (Exception $e) {
-            error_log(get_class($e));
-            error_log($e->getMessage());
-            error_log($e->getFile());
-            error_log($e->getLine());
             $this->fail('Bad exception has been raised');
         }
 

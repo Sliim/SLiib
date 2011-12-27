@@ -49,12 +49,12 @@ class SLiib_UtilsTest extends PHPUnit_Framework_TestCase
         $foo = new stdClass();
         $bar = new stdClass();
 
-        $foo->foo = 'foo';
-        $foo->object = new stdClass();
+        $foo->foo         = 'foo';
+        $foo->object      = new stdClass();
         $foo->object->foo = 'foo';
 
-        $bar->bar = 'bar';
-        $bar->object = new stdClass();
+        $bar->bar         = 'bar';
+        $bar->object      = new stdClass();
         $bar->object->bar = 'bar';
 
         SLiib_Utils::mergeObject($foo, $bar);

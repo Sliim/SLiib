@@ -42,6 +42,8 @@ class SLiib_Config_Ini extends SLiib_Config
      * @param string           $file File to read
      * @param string[optional] $env  Config environment
      *
+     * @throws SLiib_Config_Exception_UndefinedProperty
+     *
      * @return SLiib_Config
      */
     public static function read($file, $env=NULL)
@@ -52,7 +54,9 @@ class SLiib_Config_Ini extends SLiib_Config
 
         if (!is_null($env)) {
             if (!isset($config->$env)) {
-                throw new SLiib_Config_Exception_UndefinedProperty('Environment `' . $env . '` does not exist.');
+                throw new SLiib_Config_Exception_UndefinedProperty(
+                    'Environment `' . $env . '` does not exist.'
+                );
             }
 
             return $config->$env;

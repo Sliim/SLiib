@@ -196,7 +196,9 @@ abstract class SLiib_WebApp_Security_Abstract
     public function deleteRule($ruleId)
     {
         if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_WebApp_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
+            throw new SLiib_WebApp_Security_Exception_CheckerError(
+                'Rule ' . $ruleId . ' does not exist.'
+            );
         }
 
         unset($this->_rules[$ruleId]);
@@ -217,7 +219,9 @@ abstract class SLiib_WebApp_Security_Abstract
     public function getRule($ruleId)
     {
         if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_WebApp_Security_Exception_CheckerError('Rule ' . $ruleId . ' does not exist.');
+            throw new SLiib_WebApp_Security_Exception_CheckerError(
+                'Rule ' . $ruleId . ' does not exist.'
+            );
         }
 
         return $this->_rules[$ruleId];
