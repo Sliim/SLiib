@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    Tests
- * @subpackage Static
+ * @subpackage Tools
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,12 +27,17 @@
  */
 
 /**
- * Tools_Session
+ * Namespace
+ */
+namespace Tools;
+
+/**
+ * Tools\Session
  *
  * @package    Tests
- * @subpackage Static
+ * @subpackage Tools
  */
-class Tools_Session
+class Session
 {
 
 

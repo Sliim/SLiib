@@ -26,13 +26,15 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Stubs\Security;
+
 /**
- * Stubs_Security_Model
+ * Stubs\Security\Model
  *
  * @package    Tests
  * @subpackage Stubs
  */
-abstract class Stubs_Security_Model extends SLiib_WebApp_Security_Model
+abstract class Model extends \SLiib\WebApp\Security\Model
 {
 
 
@@ -55,7 +57,7 @@ abstract class Stubs_Security_Model extends SLiib_WebApp_Security_Model
     /**
      * Check a pattern in a string
      *
-     * @param SLiib_WebApp_Security_Rule $rule   Rule to check
+     * @param SLiib\WebApp\Security\Rule $rule   Rule to check
      * @param string                     $string String to use
      *
      * @return boolean

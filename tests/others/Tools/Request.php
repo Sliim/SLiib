@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    Tests
- * @subpackage Static
+ * @subpackage Tools
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,12 +27,17 @@
  */
 
 /**
- * Tools_Request
+ * Namespace
+ */
+namespace Tools;
+
+/**
+ * Tools\Request
  *
  * @package    Tests
- * @subpackage Static
+ * @subpackage Tools
  */
-class Tools_Request
+class Request
 {
 
 
@@ -129,7 +134,7 @@ class Tools_Request
      *
      * @return void
      */
-    static public function setPost(array $post)
+    public static function setPost(array $post)
     {
         $GLOBALS['_POST'];
         $_POST = $post;
@@ -144,7 +149,7 @@ class Tools_Request
      *
      * @return void
      */
-    static public function setCookie(array $cookies)
+    public static function setCookie(array $cookies)
     {
         $GLOBALS['_COOKIE'];
         $_COOKIE = $cookies;
