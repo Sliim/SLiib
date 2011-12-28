@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_SystemInfos
+ * @package  SLiib\SystemInfos
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,15 +26,26 @@
  */
 
 /**
- * SLiib_SystemInfos
- *
- * @package SLiib_SystemInfos
+ * Namespace
  */
-class SLiib_SystemInfos implements
-SLiib_SystemInfos_Interfaces_IUname,
-SLiib_SystemInfos_Interfaces_IPhp,
-SLiib_SystemInfos_Interfaces_IApache2,
-SLiib_SystemInfos_Interfaces_ILsbRelease
+namespace SLiib;
+
+/**
+ * Uses
+ */
+use SLiib\SystemInfos\Interfaces,
+    SLiib\SystemInfos\Exception;
+
+/**
+ * SLiib\SystemInfos
+ *
+ * @package SLiib\SystemInfos
+ */
+class SystemInfos implements
+    Interfaces\IUname,
+    Interfaces\IPhp,
+    Interfaces\IApache2,
+    Interfaces\ILsbRelease
 {
 
 
@@ -49,14 +60,14 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
      *                          possible : 'serialize' qui permet de récupérer
      *                          le résultat de la commande sérialisé.
      *
-     * @throws SLiib_SystemInfos_Exception_BadMethodCall
+     * @throws SLiib\SystemInfos\Exception\BadMethodCall
      *
      * @return string résultat de la commande
      */
     public static function __callStatic($name, $arguments)
     {
         if (!defined('static::' . $name)) {
-            throw new SLiib_SystemInfos_Exception_BadMethodCall('Command not found!');
+            throw new Exception\BadMethodCall('Command not found!');
         }
 
         $result = self::_execute(constant('static::' . $name));
@@ -75,7 +86,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
      *
      * @param string $cmd La commande a exécuter
      *
-     * @throws SLiib_SystemInfos_Exception_CommandFailed
+     * @throws SLiib\SystemInfos\Exception\CommandFailed
      *
      * @return array Tableau contenant le résultat de la commande.
      */
@@ -109,7 +120,7 @@ SLiib_SystemInfos_Interfaces_ILsbRelease
             $returnValue = proc_close($process);
 
             if ($returnValue != 0) {
-                throw new SLiib_SystemInfos_Exception_CommandFailed(
+                throw new Exception\CommandFailed(
                     'Command `' . $cmd . '` failed!'
                 );
             }

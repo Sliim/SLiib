@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_SystemInfos
+ * @package    SLiib\SystemInfos
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,14 +27,19 @@
  */
 
 /**
- * SLiib_SystemInfos_Exception_BadMethodCall
+ * Namespace
+ */
+namespace SLiib\SystemInfos\Exception;
+
+/**
+ * SLiib\SystemInfos\Exception\BadMethodCall
  *
- * @package    SLiib_SystemInfos
+ * @package    SLiib\SystemInfos
  * @subpackage Exception
  */
-class SLiib_SystemInfos_Exception_BadMethodCall
-extends SLiib_SystemInfos_Exception
-implements SLiib_IException_BadMethodCall
+class BadMethodCall
+extends \SLiib\SystemInfos\Exception
+implements \SLiib\IException\BadMethodCall
 {
 
 }

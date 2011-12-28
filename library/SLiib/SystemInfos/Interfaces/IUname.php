@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_SystemInfos
+ * @package    SLiib\SystemInfos
  * @subpackage Interfaces
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,12 +27,17 @@
  */
 
 /**
- * SLiib_SystemInfos_Interfaces_IUname
+ * Namespace
+ */
+namespace SLiib\SystemInfos\Interfaces;
+
+/**
+ * SLiib\SystemInfos\Interfaces\IUname
  *
- * @package    SLiib_SystemInfos
+ * @package    SLiib\SystemInfos
  * @subpackage Interfaces
  */
-Interface SLiib_SystemInfos_Interfaces_IUname
+Interface IUname
 {
 
     /**

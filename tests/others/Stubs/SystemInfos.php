@@ -26,15 +26,20 @@
  * @link       http://www.sliim-projects.eu
  */
 
+/**
+ * Namespace
+ */
+namespace Stubs;
+
 define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');
 
 /**
- * Stubs_SystemInfos
+ * Stubs\SystemInfos
  *
  * @package    Tests
  * @subpackage Stubs
  */
-class Stubs_SystemInfos extends SLiib_SystemInfos
+class SystemInfos extends \SLiib\SystemInfos
 {
 
     /**
