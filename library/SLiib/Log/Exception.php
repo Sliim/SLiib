@@ -26,9 +26,6 @@
  * @link       http://www.sliim-projects.eu
  */
 
-/**
- * Namespace
- */
 namespace SLiib\Log;
 
 /**

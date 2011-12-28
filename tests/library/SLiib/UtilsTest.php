@@ -26,14 +26,7 @@
  * @link       http://www.sliim-projects.eu
  */
 
-/**
- * Namespace
- */
 namespace SLiib;
-
-/**
- * Uses
- */
 use SLiib\Utils;
 
 /**

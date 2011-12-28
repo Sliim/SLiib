@@ -26,9 +26,6 @@
  * @link       http://www.sliim-projects.eu
  */
 
-/**
- * Namespace
- */
 namespace Stubs;
 
 define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');

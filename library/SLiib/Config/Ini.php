@@ -26,14 +26,7 @@
  * @link       http://www.sliim-projects.eu
  */
 
-/**
- * Namespace
- */
 namespace SLiib\Config;
-
-/**
- * Uses
- */
 use SLiib\Config,
     SLiib\Config\Exception,
     SLiib\Utils,
