@@ -35,6 +35,7 @@ namespace SLiib\Config;
  * Uses
  */
 use SLiib\Config,
+    SLiib\Config\Exception,
     SLiib\Utils,
     SLiib\String;
 
@@ -66,7 +67,7 @@ class Ini extends \SLiib\Config
 
         if (!is_null($env)) {
             if (!isset($config->$env)) {
-                throw new Config\Exception\UndefinedProperty(
+                throw new Exception\UndefinedProperty(
                     'Environment `' . $env . '` does not exist.'
                 );
             }
@@ -113,9 +114,7 @@ class Ini extends \SLiib\Config
         restore_error_handler();
 
         if (!$config) {
-            throw new Config\Exception\SyntaxError(
-                'Can\'t parse `' . static::$_file . '`'
-            );
+            throw new Exception\SyntaxError('Can\'t parse `' . static::$_file . '`');
         }
 
         Utils::mergeObject($this, $this->_parseSection($config));
@@ -146,7 +145,7 @@ class Ini extends \SLiib\Config
                     $segment = explode(':', $key);
 
                     if (count($segment) != 2) {
-                        throw new Config\Exception\SyntaxError(
+                        throw new Exception\SyntaxError(
                             'Section definition incorrect (' . $key . ')'
                         );
                     }
@@ -155,7 +154,7 @@ class Ini extends \SLiib\Config
                     $parent = String::clean($segment[1]);
 
                     if (!isset($object->$parent)) {
-                        throw new Config\Exception\SyntaxError(
+                        throw new Exception\SyntaxError(
                             'Try to herite `' . $key . '` to `' . $parent .
                             '` but `' . $parent . '` does not exists.'
                         );
@@ -236,7 +235,7 @@ class Ini extends \SLiib\Config
     private function _errorHandler($errno, $errstr)
     {
         restore_error_handler();
-        throw new Config\Exception\SyntaxError('[' . $errno . ']' . $errstr);
+        throw new Exception\SyntaxError('[' . $errno . ']' . $errstr);
 
     }
 

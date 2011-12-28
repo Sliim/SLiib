@@ -61,9 +61,7 @@ class Config
      */
     public function __get($key)
     {
-        throw new Exception\UndefinedProperty(
-            'Property `' . $key . '` undefined in config'
-        );
+        throw new Exception\UndefinedProperty('Property `' . $key . '` undefined in config');
 
     }
 
