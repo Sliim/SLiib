@@ -19,7 +19,7 @@
  *
  * @category   SLiib
  * @package    SLiib_WebApp_Security
- * @subpackage Abstract
+ * @subpackage Model
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
@@ -27,12 +27,12 @@
  */
 
 /**
- * SLiib_WebApp_Security_Abstract
+ * SLiib_WebApp_Security_Model
  *
  * @package    SLiib_WebApp_Security
- * @subpackage Abstract
+ * @subpackage Model
  */
-abstract class SLiib_WebApp_Security_Abstract
+abstract class SLiib_WebApp_Security_Model
 {
 
     /**
@@ -168,7 +168,7 @@ abstract class SLiib_WebApp_Security_Abstract
      *
      * @throws SLiib_WebApp_Security_Exception_CheckerError
      *
-     * @return SLiib_WebApp_Security_Abstract
+     * @return SLiib_WebApp_Security_Model
      */
     public final function addRule(SLiib_WebApp_Security_Rule $rule)
     {
@@ -191,7 +191,7 @@ abstract class SLiib_WebApp_Security_Abstract
      *
      * @throws SLiib_WebApp_Security_Exception_CheckerError
      *
-     * @return SLiib_WebApp_Security_Abstract
+     * @return SLiib_WebApp_Security_Model
      */
     public function deleteRule($ruleId)
     {

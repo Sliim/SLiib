@@ -57,7 +57,7 @@ class SLiib_WebApp_Security_RuleTest extends PHPUnit_Framework_TestCase
             1337,
             'RuleTest',
             '^foo(.*)bar$',
-            SLiib_WebApp_Security_Abstract::LOCATION_PARAMETERS
+            SLiib_WebApp_Security_Model::LOCATION_PARAMETERS
         );
 
     }
@@ -135,7 +135,7 @@ class SLiib_WebApp_Security_RuleTest extends PHPUnit_Framework_TestCase
     {
         $location = $this->_object->getLocation();
         $this->assertInternalType('array', $location);
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_PARAMETERS, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_PARAMETERS, $location));
 
     }
 
@@ -167,28 +167,28 @@ class SLiib_WebApp_Security_RuleTest extends PHPUnit_Framework_TestCase
      */
     public function testAddLocation()
     {
-        $this->_object->addLocation(SLiib_WebApp_Security_Abstract::LOCATION_COOKIES);
+        $this->_object->addLocation(SLiib_WebApp_Security_Model::LOCATION_COOKIES);
         $location = $this->_object->getLocation();
 
         $this->assertInternalType('array', $location);
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_PARAMETERS, $location));
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_COOKIES, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_PARAMETERS, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_COOKIES, $location));
 
         $this->_object->addLocation(
             array(
-             SLiib_WebApp_Security_Abstract::LOCATION_HTTP_METHOD,
-             SLiib_WebApp_Security_Abstract::LOCATION_REFERER,
-             SLiib_WebApp_Security_Abstract::LOCATION_USERAGENT,
+             SLiib_WebApp_Security_Model::LOCATION_HTTP_METHOD,
+             SLiib_WebApp_Security_Model::LOCATION_REFERER,
+             SLiib_WebApp_Security_Model::LOCATION_USERAGENT,
             )
         );
 
         $location = $this->_object->getLocation();
         $this->assertInternalType('array', $location);
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_PARAMETERS, $location));
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_COOKIES, $location));
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_HTTP_METHOD, $location));
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_REFERER, $location));
-        $this->assertTrue(in_array(SLiib_WebApp_Security_Abstract::LOCATION_USERAGENT, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_PARAMETERS, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_COOKIES, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_HTTP_METHOD, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_REFERER, $location));
+        $this->assertTrue(in_array(SLiib_WebApp_Security_Model::LOCATION_USERAGENT, $location));
 
     }
 
@@ -202,7 +202,7 @@ class SLiib_WebApp_Security_RuleTest extends PHPUnit_Framework_TestCase
      */
     public function testDeleteLocation()
     {
-        $this->_object->deleteLocation(SLiib_WebApp_Security_Abstract::LOCATION_PARAMETERS);
+        $this->_object->deleteLocation(SLiib_WebApp_Security_Model::LOCATION_PARAMETERS);
         $location = $this->_object->getLocation();
 
         $this->assertInternalType('array', $location);

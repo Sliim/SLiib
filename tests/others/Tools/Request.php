@@ -27,12 +27,12 @@
  */
 
 /**
- * Static_Request
+ * Tools_Request
  *
  * @package    Tests
  * @subpackage Static
  */
-class Static_Request
+class Tools_Request
 {
 
 

@@ -75,11 +75,11 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        Static_Session::setSession();
-        Static_Request::setRemoteIp($this->_ip);
-        Static_Request::setRequestMethod($this->_method);
-        Static_Request::setUserAgent($this->_userAgent);
-        Static_Request::setReferer($this->_referer);
+        Tools_Session::setSession();
+        Tools_Request::setRemoteIp($this->_ip);
+        Tools_Request::setRequestMethod($this->_method);
+        Tools_Request::setUserAgent($this->_userAgent);
+        Tools_Request::setReferer($this->_referer);
 
     }
 
@@ -157,7 +157,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testRunTestNoview()
     {
-        Static_Request::setRequestUri('/test/noview');
+        Tools_Request::setRequestUri('/test/noview');
         $this->_runApp();
 
     }
@@ -170,8 +170,8 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testGetParams()
     {
-        Static_Request::setCookie(array('foo' => 'bar'));
-        Static_Request::setRequestUri('/test/request/foo/bar/1337/w00t');
+        Tools_Request::setCookie(array('foo' => 'bar'));
+        Tools_Request::setRequestUri('/test/request/foo/bar/1337/w00t');
         $this->_runApp();
 
         $params = $this->_request->getParameters();
@@ -194,7 +194,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testWithoutAction()
     {
-        Static_Request::setRequestUri('/index');
+        Tools_Request::setRequestUri('/index');
         $this->_runApp();
 
     }
@@ -207,7 +207,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testBadAction()
     {
-        Static_Request::setRequestUri('/index/notexists');
+        Tools_Request::setRequestUri('/index/notexists');
 
         try {
             $this->_runApp();
@@ -230,7 +230,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testBadController()
     {
-        Static_Request::setRequestUri('/notexists');
+        Tools_Request::setRequestUri('/notexists');
 
         try {
             $this->_runApp();
@@ -253,8 +253,8 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testPostMethod()
     {
-        Static_Request::setRequestMethod('POST');
-        Static_Request::setPost(
+        Tools_Request::setRequestMethod('POST');
+        Tools_Request::setPost(
             array(
              'foo'  => 'bar',
              '1337' => 'w00t',
@@ -283,7 +283,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testOtherMethod()
     {
-        Static_Request::setRequestMethod('1337');
+        Tools_Request::setRequestMethod('1337');
         $this->_runApp();
         $params = $this->_request->getParameters();
 
@@ -314,7 +314,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testBadSetView()
     {
-        Static_Request::setrequestUri('/test/badsetview');
+        Tools_Request::setrequestUri('/test/badsetview');
 
         try {
             $this->_runApp();
@@ -337,7 +337,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testBadPartial()
     {
-        Static_Request::setRequestUri('/test/badpartial');
+        Tools_Request::setRequestUri('/test/badpartial');
 
         try {
             $this->_runApp();
@@ -360,7 +360,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testViewGetter()
     {
-        Static_Request::setRequestUri('/test/getterview');
+        Tools_Request::setRequestUri('/test/getterview');
 
         try {
             $this->_runApp();
@@ -384,7 +384,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
     public function testErrorHandler()
     {
         $this->_disablePhpUnitErrorHandler();
-        Static_Request::setRequestUri('/test/errorhandler');
+        Tools_Request::setRequestUri('/test/errorhandler');
 
         try {
             $this->_runApp();
@@ -410,7 +410,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testModelAction()
     {
-        Static_Request::setRequestUri('/test/model');
+        Tools_Request::setRequestUri('/test/model');
         $this->_runApp();
 
     }
@@ -423,7 +423,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testLibraryAction()
     {
-        Static_Request::setRequestUri('/test/library');
+        Tools_Request::setRequestUri('/test/library');
         $this->_runApp();
 
     }
@@ -436,7 +436,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testCustomViewAction()
     {
-        Static_Request::setRequestUri('/test/customview');
+        Tools_Request::setRequestUri('/test/customview');
         $this->_runApp();
 
     }
@@ -449,7 +449,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testJavascriptAction()
     {
-        Static_Request::setRequestUri('/test/javascript');
+        Tools_Request::setRequestUri('/test/javascript');
         $this->_runApp();
 
     }
@@ -462,11 +462,11 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testSessionAction()
     {
-        Static_Request::setRequestUri('/test/session');
+        Tools_Request::setRequestUri('/test/session');
         $this->_runApp();
 
-        Static_Request::setRequestMethod('POST');
-        Static_Request::setPost(
+        Tools_Request::setRequestMethod('POST');
+        Tools_Request::setPost(
             array(
              'login'    => 'Login',
              'username' => 'Sliim',
@@ -480,7 +480,7 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(TRUE, $session->logged);
         $this->assertEquals('Sliim', $session->username);
 
-        Static_Request::setPost(array('logout' => 'Logout'));
+        Tools_Request::setPost(array('logout' => 'Logout'));
         $this->_runApp();
         $session = new SLiib_WebApp_Session('TestSession');
         $this->assertFalse(isset($session->logged));
@@ -496,13 +496,13 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testControllerWithDash()
     {
-        Static_Request::setRequestUri('/my-controller');
+        Tools_Request::setRequestUri('/my-controller');
         $this->_runApp();
 
         $controller = $this->_request->getController();
         $this->assertEquals('myController', $controller);
 
-        Static_Request::setRequestUri('/my-controller-with-multi-dash');
+        Tools_Request::setRequestUri('/my-controller-with-multi-dash');
         $this->_runApp();
 
         $controller = $this->_request->getController();
@@ -518,13 +518,13 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testActionWithDash()
     {
-        Static_Request::setRequestUri('/my-controller/my-action');
+        Tools_Request::setRequestUri('/my-controller/my-action');
         $this->_runApp();
 
         $action = $this->_request->getAction();
         $this->assertEquals('myAction', $action);
 
-        Static_Request::setRequestUri('/my-controller-with-multi-dash/my-action-with-multi-dash');
+        Tools_Request::setRequestUri('/my-controller-with-multi-dash/my-action-with-multi-dash');
         $this->_runApp();
 
         $action = $this->_request->getAction();
@@ -540,10 +540,10 @@ class SLiib_WebAppTest extends PHPUnit_Framework_TestCase
      */
     public function testParamWithDash()
     {
-        Static_Request::setRequestUri(
+        Tools_Request::setRequestUri(
             '/my-controller/my-action/my-param/foo/with-multi-dash-param/bar'
         );
-        Static_Request::setRequestMethod('GET');
+        Tools_Request::setRequestMethod('GET');
         $this->_runApp();
 
         $param = $this->_request->getParameters();

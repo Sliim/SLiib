@@ -33,7 +33,7 @@
  * @subpackage Checker
  */
 class SLiib_WebApp_Security_Checker_BadRobots
-extends SLiib_WebApp_Security_Abstract_NegativeSecurityModel
+extends SLiib_WebApp_Security_Model_NegativeSecurity
 {
 
 

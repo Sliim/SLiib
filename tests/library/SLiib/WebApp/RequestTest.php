@@ -96,13 +96,13 @@ class SLiib_WebApp_RequestTest extends PHPUnit_Framework_TestCase
         $this->_post    = array('params' => 'baz');
         $this->_cookies = array('user_password' => 'passSecur3d');
 
-        Static_Request::setRequestUri($this->_requestUri);
-        Static_Request::setRemoteIp($this->_clientIp);
-        Static_Request::setUserAgent($this->_ua);
-        Static_Request::setRequestMethod($this->_method);
-        Static_Request::setReferer($this->_referer);
-        Static_Request::setPost($this->_post);
-        Static_Request::setCookie($this->_cookies);
+        Tools_Request::setRequestUri($this->_requestUri);
+        Tools_Request::setRemoteIp($this->_clientIp);
+        Tools_Request::setUserAgent($this->_ua);
+        Tools_Request::setRequestMethod($this->_method);
+        Tools_Request::setReferer($this->_referer);
+        Tools_Request::setPost($this->_post);
+        Tools_Request::setCookie($this->_cookies);
 
     }
 
@@ -183,7 +183,7 @@ class SLiib_WebApp_RequestTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexControllerIndexAction()
     {
-        Static_Request::setRequestUri('/');
+        Tools_Request::setRequestUri('/');
         $this->_setObject();
         $this->assertEquals('index', $this->_object->getController());
         $this->assertEquals('index', $this->_object->getAction());
@@ -198,7 +198,7 @@ class SLiib_WebApp_RequestTest extends PHPUnit_Framework_TestCase
      */
     public function testIndexAction()
     {
-        Static_Request::setRequestUri('/foo');
+        Tools_Request::setRequestUri('/foo');
         $this->_setObject();
         $this->assertEquals('foo', $this->_object->getController());
         $this->assertEquals('index', $this->_object->getAction());
@@ -251,13 +251,13 @@ class SLiib_WebApp_RequestTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('getparam', $params);
         $this->assertEquals('value', $params['getparam']);
 
-        Static_Request::setRequestMethod('POST');
+        Tools_Request::setRequestMethod('POST');
         $this->_setObject();
 
         $params = $this->_object->getParameters();
         $this->assertEquals($this->_post, $params);
 
-        Static_Request::setRequestMethod('WOOT');
+        Tools_Request::setRequestMethod('WOOT');
         $this->_setObject();
 
         $params = $this->_object->getParameters();
@@ -350,12 +350,12 @@ class SLiib_WebApp_RequestTest extends PHPUnit_Framework_TestCase
      */
     public function testIsPost()
     {
-        Static_Request::setRequestMethod('POST');
+        Tools_Request::setRequestMethod('POST');
         $this->_setObject();
 
         $this->assertTrue($this->_object->isPost());
 
-        Static_Request::setRequestMethod('GET');
+        Tools_Request::setRequestMethod('GET');
         $this->_setObject();
 
         $this->assertFalse($this->_object->isPost());

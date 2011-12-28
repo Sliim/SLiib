@@ -51,7 +51,7 @@ class SLiib_WebApp_SessionTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        Static_Session::setSession();
+        Tools_Session::setSession();
         SLiib_WebApp_Session::init();
         $this->_object = new SLiib_WebApp_Session('UnitTest');
 

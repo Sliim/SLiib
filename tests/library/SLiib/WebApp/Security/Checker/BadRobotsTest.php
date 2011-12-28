@@ -72,13 +72,13 @@ class SLiib_WebApp_Security_Checker_BadRobotsTest extends PHPUnit_Framework_Test
      * Test run
      *
      * @covers SLiib_WebApp_Security_Checker_BadRobots::run
-     * @covers SLiib_WebApp_Security_Abstract_NegativeSecurityModel
+     * @covers SLiib_WebApp_Security_Model_NegativeSecurity
      *
      * @return void
      */
     public function testRun()
     {
-        Static_Request::setUserAgent('foo');
+        Tools_Request::setUserAgent('foo');
         SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
@@ -94,7 +94,7 @@ class SLiib_WebApp_Security_Checker_BadRobotsTest extends PHPUnit_Framework_Test
      */
     public function testRunWithBadRobots()
     {
-        Static_Request::setUserAgent('DirBuster-0.12');
+        Tools_Request::setUserAgent('DirBuster-0.12');
         SLiib_WebApp_Request::init();
 
         try {
@@ -118,7 +118,7 @@ class SLiib_WebApp_Security_Checker_BadRobotsTest extends PHPUnit_Framework_Test
      */
     public function testRunWithNiktoScanner()
     {
-        Static_Request::setUserAgent('Mozilla/4.75 (Nikto/2.1.4) (Test:map_codes)');
+        Tools_Request::setUserAgent('Mozilla/4.75 (Nikto/2.1.4) (Test:map_codes)');
         SLiib_WebApp_Request::init();
 
         try {

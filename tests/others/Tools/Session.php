@@ -27,12 +27,12 @@
  */
 
 /**
- * Static_Session
+ * Tools_Session
  *
  * @package    Tests
  * @subpackage Static
  */
-class Static_Session
+class Tools_Session
 {
 
 

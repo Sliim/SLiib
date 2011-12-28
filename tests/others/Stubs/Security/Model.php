@@ -27,12 +27,12 @@
  */
 
 /**
- * Stubs_Security_BadSecModel
+ * Stubs_Security_Model
  *
  * @package    Tests
  * @subpackage Stubs
  */
-abstract class Stubs_Security_Abstract extends SLiib_WebApp_Security_Abstract
+abstract class Stubs_Security_Model extends SLiib_WebApp_Security_Model
 {
 
 
