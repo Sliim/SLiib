@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Ini
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,21 +27,80 @@
  */
 
 /**
- * SLiib_Config_Ini
+ * Namespace
+ */
+namespace SLiib\Config;
+
+/**
+ * Uses
+ */
+use SLiib\Config,
+    SLiib\Utils,
+    SLiib\String;
+
+/**
+ * SLiib\Config\Ini
  *
- * @package    SLiib_Config
+ * @package    SLiib\Config
  * @subpackage Ini
  */
-class SLiib_Config_Ini extends SLiib_Config_Abstract
+class Ini extends \SLiib\Config
 {
+
+
+    /**
+     * Read a configuration file
+     *
+     * @param string           $file File to read
+     * @param string[optional] $env  Config environment
+     *
+     * @throws SLiib\Config\Exception\UndefinedProperty
+     *
+     * @return SLiib\Config
+     */
+    public static function read($file, $env=NULL)
+    {
+        parent::read($file, $env);
+
+        $config = new self(TRUE);
+
+        if (!is_null($env)) {
+            if (!isset($config->$env)) {
+                throw new Config\Exception\UndefinedProperty(
+                    'Environment `' . $env . '` does not exist.'
+                );
+            }
+
+            return $config->$env;
+        }
+
+        return $config;
+
+    }
+
+
+    /**
+     * Protected constructor
+     *
+     * @param boolean[optional] $init Specify if is a config object init
+     *
+     * @return void
+     */
+    protected function __construct($init=FALSE)
+    {
+        parent::__construct();
+
+        if ($init) {
+            $this->_parseFile();
+        }
+
+    }
 
 
     /**
      * Parse le fichier de configuration
      *
-     * @see SLiib_Config
-     *
-     * @throws SLiib_Config_Exception_SyntaxError
+     * @throws SLiib\Config\Exception\SyntaxError
      *
      * @return void
      */
@@ -49,17 +108,17 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
     {
         set_error_handler(array($this, '_errorHandler'));
 
-        $config = parse_ini_file($this->_configFile, TRUE, INI_SCANNER_RAW);
+        $config = parse_ini_file(static::$_file, TRUE, INI_SCANNER_RAW);
 
         restore_error_handler();
 
         if (!$config) {
-            throw new SLiib_Config_Exception_SyntaxError(
-                'Can\'t parse `' . $this->_configFile . '`'
+            throw new Config\Exception\SyntaxError(
+                'Can\'t parse `' . static::$_file . '`'
             );
         }
 
-        $this->_config = $this->_parseSection($config);
+        Utils::mergeObject($this, $this->_parseSection($config));
 
     }
 
@@ -69,13 +128,13 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
      *
      * @param array $section Section to parse
      *
-     * @throws SLiib_Config_Exception_SyntaxError
+     * @throws SLiib\Config\Exception\SyntaxError
      *
-     * @return SLiib_Config
+     * @return SLiib\Config
      */
     private function _parseSection($section)
     {
-        $object = new SLiib_Config();
+        $object = new Config();
 
         foreach ($section as $key => $value) {
             if (strpos($key, '.')) {
@@ -87,16 +146,16 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
                     $segment = explode(':', $key);
 
                     if (count($segment) != 2) {
-                        throw new SLiib_Config_Exception_SyntaxError(
+                        throw new Config\Exception\SyntaxError(
                             'Section definition incorrect (' . $key . ')'
                         );
                     }
 
-                    $key    = SLiib_String::clean($segment[0]);
-                    $parent = SLiib_String::clean($segment[1]);
+                    $key    = String::clean($segment[0]);
+                    $parent = String::clean($segment[1]);
 
                     if (!isset($object->$parent)) {
-                        throw new SLiib_Config_Exception_SyntaxError(
+                        throw new Config\Exception\SyntaxError(
                             'Try to herite `' . $key . '` to `' . $parent .
                             '` but `' . $parent . '` does not exists.'
                         );
@@ -106,11 +165,11 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
                 $object->$key = $this->_parseSection($value);
 
                 if (isset($parent)) {
-                    $this->_mergeObject($object->$key, $object->$parent);
+                    Utils::mergeObject($object->$key, $object->$parent);
                 }
             } else {
                 if (isset($object->$key)) {
-                    $this->_mergeObject($object->$key, $value);
+                    Utils::mergeObject($object->$key, $value);
                 } else {
                     $object->$key = $value;
                 }
@@ -130,14 +189,14 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
      * @param string &$key  Multiple Key
      * @param mixed  $value Origin value
      *
-     * @return SLiib_Config
+     * @return SLiib\Config
      */
     private function _parseMultipleSection(&$key, $value)
     {
         $segment = explode('.', $key);
         $key     = array_shift($segment);
         $cSeg    = count($segment);
-        $object  = new SLiib_Config();
+        $object  = new Config();
         $parent  = NULL;
 
         if ($cSeg === 1) {
@@ -147,11 +206,11 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
 
         foreach ($segment as $k => $p) {
             if (is_null($parent)) {
-                $object->$p = new SLiib_Config();
+                $object->$p = new Config();
                 $parent     = $object->$p;
             } else {
                 if ($k != $cSeg - 1) {
-                    $parent->$p = new SLiib_Config();
+                    $parent->$p = new Config();
                     $parent     = $parent->$p;
                 } else {
                     $parent->$p = $value;
@@ -165,43 +224,19 @@ class SLiib_Config_Ini extends SLiib_Config_Abstract
 
 
     /**
-     * Merge with an existing object config
-     *
-     * @param SLiib_Config &$source Object source
-     * @param SLiib_Config $object  Object to merge with source
-     *
-     * @return void
-     */
-    private function _mergeObject(SLiib_Config &$source, SLiib_Config $object)
-    {
-        foreach ($object as $key => $value) {
-            if (!isset($source->$key)) {
-                $source->$key = $value;
-                continue;
-            }
-
-            if (is_object($source->$key) && is_object($value)) {
-                $this->_mergeObject($source->$key, $value);
-            }
-        }
-
-    }
-
-
-    /**
      * Error handler for syntax error
      *
      * @param int    $errno  Error level
      * @param string $errstr Error message
      *
-     * @throws SLiib_Config_Exception_SyntaxError
+     * @throws SLiib\Config\Exception\SyntaxError
      *
      * @return void
      */
     private function _errorHandler($errno, $errstr)
     {
         restore_error_handler();
-        throw new SLiib_Config_Exception_SyntaxError('[' . $errno . ']' . $errstr);
+        throw new Config\Exception\SyntaxError('[' . $errno . ']' . $errstr);
 
     }
 

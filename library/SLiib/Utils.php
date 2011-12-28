@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib\String
+ * @package  SLiib_Utils
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,47 +26,34 @@
  */
 
 /**
- * Namespace
- */
-namespace SLiib;
-
-/**
- * Traitement de chaine de caractères
+ * SLiib_Utils
  *
- * @package SLiib\String
+ * @package SLiib_Utils
  */
-class String
+class SLiib_Utils
 {
 
 
     /**
-     * Supprime les espaces indésirables
+     * Merge with an existing object
      *
-     * @param string $string Chaine de caractères à nettoyer.
+     * @param mixed &$source Object source
+     * @param mixed $object  Object to merge with source
      *
-     * @return string La chaine nettoyée
+     * @return void
      */
-    public static function clean($string)
+    public static function mergeObject(&$source, $object)
     {
-        $string = preg_replace(
-            array(
-             "/\t\t+/",
-             "/\x20\x20+/",
-             "/\xA0\xA0+/",
-            ), ' ',
-            $string
-        );
+        foreach ($object as $key => $value) {
+            if (!isset($source->$key)) {
+                $source->$key = $value;
+                continue;
+            }
 
-        $string = preg_replace(
-            array(
-             "/(\n\s*\n)/",
-             "/(\n\s+)/",
-            ), "\n",
-            $string
-        );
-
-        $string = trim($string);
-        return $string;
+            if (is_object($source->$key) && is_object($value)) {
+                static::mergeObject($source->$key, $value);
+            }
+        }
 
     }
 

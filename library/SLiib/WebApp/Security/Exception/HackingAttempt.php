@@ -64,12 +64,12 @@ extends SLiib_WebApp_Security_Exception
     /**
      * Exception constructor
      *
-     * @param string              $checkerName Checker name
+     * @param string                     $checkerName Checker name
      * @param SLiib_WebApp_Security_Rule $rule        Rule
-     * @param string              $location    Location check failed
-     * @param string              $reason      Exception reason
-     * @param int                 $code        Exception code
-     * @param Exception           $parent      Parent exception
+     * @param string                     $location    Location check failed
+     * @param string                     $reason      Exception reason
+     * @param int                        $code        Exception code
+     * @param Exception                  $parent      Parent exception
      *
      * @return void
      */

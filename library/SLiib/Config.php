@@ -33,7 +33,7 @@ namespace SLiib;
 /**
  * Uses
  */
-use SLiib\Config;
+use SLiib\Config\Exception;
 
 /**
  * SLiib\Config
@@ -42,6 +42,12 @@ use SLiib\Config;
  */
 class Config
 {
+
+    /**
+     * Configuration file
+     * @var string
+     */
+    protected static $_file = NULL;
 
 
     /**
@@ -55,9 +61,40 @@ class Config
      */
     public function __get($key)
     {
-        throw new Config\Exception\UndefinedProperty(
+        throw new Exception\UndefinedProperty(
             'Property `' . $key . '` undefined in config'
         );
+
+    }
+
+
+    /**
+     * Read a configuration file
+     *
+     * @param string $file File to read
+     *
+     * @throws SLiib\Config\Exception
+     *
+     * @return SLiib\Config
+     */
+    public static function read($file)
+    {
+        if (!file_exists($file)) {
+            throw new Exception('File ' . $file . ' not found');
+        }
+
+        static::$_file = $file;
+
+    }
+
+
+    /**
+     * Protected constructor
+     *
+     * @return void
+     */
+    protected function __construct()
+    {
 
     }
 
