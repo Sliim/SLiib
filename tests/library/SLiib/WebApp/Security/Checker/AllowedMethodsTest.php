@@ -75,7 +75,7 @@ class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework
      */
     public function testRun()
     {
-        Static_Request::setRequestMethod('GET');
+        Tools_Request::setRequestMethod('GET');
         SLiib_WebApp_Request::init();
 
         $result = $this->_object->run();
@@ -91,7 +91,7 @@ class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework
      */
     public function testRunWithForbiddenHTTPMethod()
     {
-        Static_Request::setRequestMethod('WOOT');
+        Tools_Request::setRequestMethod('WOOT');
         SLiib_WebApp_Request::init();
 
         try {
