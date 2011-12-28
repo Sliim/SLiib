@@ -33,7 +33,7 @@
  * @subpackage Checker
  */
 class SLiib_WebApp_Security_Checker_AllowedMethods
-extends SLiib_WebApp_Security_Abstract_PositiveSecurityModel
+extends SLiib_WebApp_Security_Model_PositiveSecurity
 {
 
 

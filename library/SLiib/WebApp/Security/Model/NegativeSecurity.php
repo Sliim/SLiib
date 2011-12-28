@@ -27,20 +27,20 @@
  */
 
 /**
- * SLiib_WebApp_Security_Abstract_PositiveSecurityModel
+ * SLiib_WebApp_Security_Model_NegativeSecurity
  *
  * @package    SLiib_WebApp_Security
  * @subpackage Abstract
  */
-abstract class SLiib_WebApp_Security_Abstract_PositiveSecurityModel
-extends SLiib_WebApp_Security_Abstract
+abstract class SLiib_WebApp_Security_Model_NegativeSecurity
+extends SLiib_WebApp_Security_Model
 {
 
     /**
      * Security model
      * @var string
      */
-    protected $_model = self::MODEL_POSITIVE;
+    protected $_model = self::MODEL_NEGATIVE;
 
 
     /**
@@ -54,11 +54,11 @@ extends SLiib_WebApp_Security_Abstract
     protected function _check($rule, $string)
     {
         if (preg_match('/' . $rule->getPattern() . '/' . $rule->getFlags(), $string)) {
-            return TRUE;
+            $this->_patternError = $string;
+            return FALSE;
         }
 
-        $this->_patternError = $string;
-        return FALSE;
+        return TRUE;
 
     }
 

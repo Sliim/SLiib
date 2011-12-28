@@ -72,7 +72,7 @@ class SLiib_WebApp_Security_Checker_BadRobotsTest extends PHPUnit_Framework_Test
      * Test run
      *
      * @covers SLiib_WebApp_Security_Checker_BadRobots::run
-     * @covers SLiib_WebApp_Security_Abstract_NegativeSecurityModel
+     * @covers SLiib_WebApp_Security_Model_NegativeSecurity
      *
      * @return void
      */

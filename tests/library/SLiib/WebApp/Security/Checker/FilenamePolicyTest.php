@@ -72,7 +72,7 @@ class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework
      * Test run
      *
      * @covers SLiib_WebApp_Security_Checker_FilenamePolicy::run
-     * @covers SLiib_WebApp_Security_Abstract_NegativeSecurityModel
+     * @covers SLiib_WebApp_Security_Model_NegativeSecurity
      *
      * @return void
      */

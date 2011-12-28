@@ -49,7 +49,7 @@ abstract class SLiib_WebApp_Security
     {
         ksort($checkers);
         foreach ($checkers as $checker) {
-            if (!$checker instanceof SLiib_WebApp_Security_Abstract) {
+            if (!$checker instanceof SLiib_WebApp_Security_Model) {
                 throw new SLiib_WebApp_Security_Exception_CheckerError(
                     $checker . ' not appear to be a valid security checker'
                 );
