@@ -27,12 +27,17 @@
  */
 
 /**
- * SLiib_Log_Exception
+ * Namespace
+ */
+namespace SLiib\Log;
+
+/**
+ * SLiib\Log\Exception
  *
- * @package    SLiib_Log
+ * @package    SLiib\Log
  * @subpackage Exception
  */
-class SLiib_Log_Exception extends SLiib_Exception
+class Exception extends \SLiib\Exception
 {
 
 }

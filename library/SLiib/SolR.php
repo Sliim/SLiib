@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_SolR
+ * @package  SLiib\SolR
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,21 @@
  */
 
 /**
- * SLiib_SolR
- *
- * @package SLiib_SolR
+ * Namespace
  */
-class SLiib_SolR
+namespace SLiib;
+
+/**
+ * Uses
+ */
+use SLiib\SolR\Exception;
+
+/**
+ * SLiib\SolR
+ *
+ * @package SLiib\SolR
+ */
+class SolR
 {
 
     /**
@@ -81,7 +91,7 @@ class SLiib_SolR
      * @param int               $port Port écouté par l'instance SolR
      * @param boolean[optional] $ping Ping SolR
      *
-     * @throws SLiib_SolR_Exception
+     * @throws SLiib\SolR\Exception
      *
      * @return void
      */
@@ -95,9 +105,7 @@ class SLiib_SolR
         }
 
         if (!$this->ping()) {
-            throw new SLiib_SolR_Exception(
-                'SolR is down, please verify it\'s running..'
-            );
+            throw new Exception('SolR is down, please verify it\'s running..');
         }
 
     }

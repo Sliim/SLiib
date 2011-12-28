@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Listing
+ * @package  SLiib\Listing
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,21 @@
  */
 
 /**
- * SLiib_Listing
- *
- * @package SLiib_Listing
+ * Namespace
  */
-class SLiib_Listing
+namespace SLiib;
+
+/**
+ * Uses
+ */
+use SLiib\Listing\Exception;
+
+/**
+ * SLiib\Listing
+ *
+ * @package SLiib\Listing
+ */
+class Listing
 {
 
     /**
@@ -65,14 +75,14 @@ class SLiib_Listing
      * @param string $listName   Nom de la liste
      * @param array  $exceptions Liste des exceptions à ne pas lister
      *
-     * @throws SLiib_Listing_Exception
+     * @throws Exception
      *
      * @return void
      */
     public function __construct($dirPath, $listName, $exceptions)
     {
         if (!is_dir($dirPath)) {
-            throw new SLiib_Listing_Exception('Directory `' . $dirPath . '` not found!');
+            throw new Exception('Directory `' . $dirPath . '` not found!');
         }
 
         $this->_path      = $dirPath;
@@ -99,7 +109,7 @@ class SLiib_Listing
     /**
      * Rangement du tableau par ordre alphabetic
      *
-     * @return SLiib_Listing
+     * @return SLiib\Listing
      */
     public function sort()
     {
@@ -115,7 +125,7 @@ class SLiib_Listing
     /**
      * Rangement du tableau par ordre alphabetic inversé
      *
-     * @return SLiib_Listing
+     * @return SLiib\Listing
      */
     public function usort()
     {

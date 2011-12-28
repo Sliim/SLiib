@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Debug
+ * @package  SLiib\Debug
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,16 @@
  */
 
 /**
- * SLiib_Debug
- *
- * @package SLiib_Debug
+ * Namespace
  */
-class SLiib_Debug
+namespace SLiib;
+
+/**
+ * SLiib\Debug
+ *
+ * @package SLiib\Debug
+ */
+class Debug
 {
 
 

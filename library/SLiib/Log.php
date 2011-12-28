@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Log
+ * @package  SLiib\Log
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,22 @@
  */
 
 /**
- * SLiib_Log
- *
- * @package SLiib_Log
+ * Namespace
  */
-class SLiib_Log
+namespace SLiib;
+
+/**
+ * Uses
+ */
+use SLiib\Log\Exception,
+    SLiib\Debug;
+
+/**
+ * SLiib\Log
+ *
+ * @package SLiib\Log
+ */
+class Log
 {
     /**
      * Date and time format
@@ -66,7 +77,7 @@ class SLiib_Log
      * @param string            $fileOutput File path
      * @param boolean[optional] $add        True add in file.
      *
-     * @throws SLiib_Log_Exception
+     * @throws SLiib\Log\Exception
      *
      * @return void
      */
@@ -80,7 +91,7 @@ class SLiib_Log
         $this->_fileOutput = @fopen($fileOutput, $opt);
 
         if (!$this->_fileOutput) {
-            throw new SLiib_Log_Exception('Cannot open file ' . $fileOutput);
+            throw new Exception('Cannot open file ' . $fileOutput);
         }
 
     }
@@ -105,9 +116,7 @@ class SLiib_Log
      * @param string            $type   Log type
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @throws SLiib_Log_Exception
-     *
-     * @return SLiib_Log
+     * @return SLiib\Log
      */
     public function log($string, $type=self::INFO, $echo=FALSE)
     {
@@ -129,11 +138,11 @@ class SLiib_Log
      * @param mixed             $var  Variable to debug
      * @param boolean[optional] $echo Print on stdout
      *
-     * @return SLiib_Log
+     * @return SLiib\Log
      */
     public function debug($var, $echo=FALSE)
     {
-        $dump = SLiib_Debug::dump($var, FALSE);
+        $dump = Debug::dump($var, FALSE);
 
         return $this->log($dump, self::DEBUG, $echo);
 
@@ -146,7 +155,7 @@ class SLiib_Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib_Log
+     * @return SLiib\Log
      */
     public function info($string, $echo=FALSE)
     {
@@ -161,7 +170,7 @@ class SLiib_Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib_Log
+     * @return SLiib\Log
      */
     public function warn($string, $echo=FALSE)
     {
@@ -176,7 +185,7 @@ class SLiib_Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib_Log
+     * @return SLiib\Log
      */
     public function error($string, $echo=FALSE)
     {
@@ -191,7 +200,7 @@ class SLiib_Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib_Log
+     * @return SLiib\Log
      */
     public function crit($string, $echo=FALSE)
     {

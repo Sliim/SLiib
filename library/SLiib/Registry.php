@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category SLiib
- * @package  SLiib_Registry
+ * @package  SLiib\Registry
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version  Release: 0.2
@@ -26,11 +26,21 @@
  */
 
 /**
- * SLiib_Registry
- *
- * @package SLiib_Registry
+ * Namespace
  */
-class SLiib_Registry
+namespace SLiib;
+
+/**
+ * Uses
+ */
+use SLiib\Registry\Exception;
+
+/**
+ * SLiib\Registry
+ *
+ * @package SLiib\Registry
+ */
+class Registry
 {
 
     /**
@@ -45,16 +55,14 @@ class SLiib_Registry
      *
      * @param string $key Key à récupérer
      *
-     * @throws SLiib_Registry_Exception
+     * @throws SLiib\Registry\Exception
      *
      * @return mixed Valeur de la clé.
      */
     public static function get($key)
     {
         if (!array_key_exists($key, self::$_registry)) {
-            throw new SLiib_Registry_Exception(
-                'Key ' . $key . ' not found in registry.'
-            );
+            throw new Exception('Key ' . $key . ' not found in registry.');
         }
 
         return self::$_registry[$key];
@@ -68,14 +76,14 @@ class SLiib_Registry
      * @param string $key   Key à définir
      * @param mixed  $value Valeur à affecter
      *
-     * @throws SLiib_Registry_Exception
+     * @throws SLiib\Registry\Exception
      *
      * @return void
      */
     public static function set($key, $value)
     {
         if (array_key_exists($key, self::$_registry)) {
-            throw new SLiib_Registry_Exception('Key ' . $key . ' already exist.');
+            throw new Exception('Key ' . $key . ' already exist.');
         }
 
         self::$_registry[$key] = $value;

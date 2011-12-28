@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_Registry
+ * @package    SLiib\Registry
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -27,12 +27,17 @@
  */
 
 /**
- * SLiib_Registry_Exception
+ * Namespace
+ */
+namespace SLiib\Registry;
+
+/**
+ * SLiib\Registry\Exception
  *
- * @package    SLiib_Registry
+ * @package    SLiib\Registry
  * @subpackage Exception
  */
-class SLiib_Registry_Exception extends SLiib_Exception
+class Exception extends \SLiib\Exception
 {
 
 }
