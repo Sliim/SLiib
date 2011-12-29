@@ -27,8 +27,6 @@
  */
 
 namespace SLiib\WebApp;
-use SLiib\WebApp\Security,
-    SLiib\WebApp\Request;
 
 /**
  * Test class for \SLiib\WebApp\Security.

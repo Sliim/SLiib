@@ -56,7 +56,7 @@ extends Model\PositiveSecurity
 
         $rule = new Rule(1200, 'Invalid request method');
         $rule->addLocation(self::LOCATION_HTTP_METHOD)
-             ->addPatternElement($allowed);
+            ->addPatternElement($allowed);
 
         $this->addRule($rule);
 

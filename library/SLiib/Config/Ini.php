@@ -28,7 +28,6 @@
 
 namespace SLiib\Config;
 use SLiib\Config,
-    SLiib\Config\Exception,
     SLiib\Utils,
     SLiib\String;
 
@@ -48,7 +47,7 @@ class Ini extends \SLiib\Config
      * @param string           $file File to read
      * @param string[optional] $env  Config environment
      *
-     * @throws \SLiib\Config\Exception\UndefinedProperty
+     * @throws Exception\UndefinedProperty
      *
      * @return \SLiib\Config
      */
@@ -94,7 +93,7 @@ class Ini extends \SLiib\Config
     /**
      * Parse le fichier de configuration
      *
-     * @throws \SLiib\Config\Exception\SyntaxError
+     * @throws Exception\SyntaxError
      *
      * @return void
      */
@@ -120,7 +119,7 @@ class Ini extends \SLiib\Config
      *
      * @param array $section Section to parse
      *
-     * @throws \SLiib\Config\Exception\SyntaxError
+     * @throws Exception\SyntaxError
      *
      * @return \SLiib\Config
      */
@@ -221,7 +220,7 @@ class Ini extends \SLiib\Config
      * @param int    $errno  Error level
      * @param string $errstr Error message
      *
-     * @throws \SLiib\Config\Exception\SyntaxError
+     * @throws Exception\SyntaxError
      *
      * @return void
      */

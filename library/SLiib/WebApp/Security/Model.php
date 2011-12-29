@@ -27,9 +27,7 @@
  */
 
 namespace SLiib\WebApp\Security;
-use SLiib\WebApp\Request,
-    SLiib\WebApp\Security\Exception,
-    SLiib\WebApp\Security\Rule;
+use SLiib\WebApp\Request;
 
 /**
  * \SLiib\WebApp\Security\Model
@@ -92,7 +90,7 @@ abstract class Model
     /**
      * Construct
      *
-     * @throws \SLiib\WebApp\Security\Exception
+     * @throws Exception
      *
      * @return void
      */
@@ -112,8 +110,8 @@ abstract class Model
     /**
      * Running checker
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
-     * @throws \SLiib\WebApp\Security\Exception\HackingAttempt
+     * @throws Exception\CheckerError
+     * @throws Exception\HackingAttempt
      *
      * @return boolean
      */
@@ -167,7 +165,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to add
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws Exception\CheckerError
      *
      * @return \SLiib\WebApp\Security\Model
      */
@@ -190,7 +188,7 @@ abstract class Model
      *
      * @param int $ruleId Rule id to delete
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws Exception\CheckerError
      *
      * @return \SLiib\WebApp\Security\Model
      */
@@ -211,7 +209,7 @@ abstract class Model
      *
      * @param int $ruleId Rule Id to get
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws Exception\CheckerError
      *
      * @return \SLiib\WebApp\Security\Rule
      */

@@ -27,8 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\WebApp,
-    SLiib\Autoloader;
 
 /**
  * Test class for \SLiib\WebApp.
@@ -97,7 +95,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         try {
             WebApp::getInstance();
-        } catch (WebApp_Exception $e) {
+        } catch (WebApp\Exception $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Exception', $e);
             return;
         } catch (\Exception $e) {
@@ -292,22 +290,6 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $params = $this->_request->getParameters();
 
         $this->assertTrue(empty($params));
-
-    }
-
-
-    /**
-     * Test specific case of autoloader
-     *
-     * @return void
-     */
-    public function testAutoloader()
-    {
-        $this->assertTrue(Autoloader::autoload('\SLiib\Config'));
-        $this->assertTrue(Autoloader::autoload('SLiib_Config'));
-        $this->assertFalse(Autoloader::autoload('SLiib'));
-        $this->assertFalse(Autoloader::autoload('\Foo\Bar'));
-        $this->assertFalse(Autoloader::autoload('\Test\Controller\Unknown'));
 
     }
 

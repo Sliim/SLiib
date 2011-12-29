@@ -93,8 +93,8 @@ extends Model\NegativeSecurity
         );
 
         $this->addRule($includeRule)
-             ->addRule($othersFunctionRule)
-             ->addRule($remoteExecRule);
+            ->addRule($othersFunctionRule)
+            ->addRule($remoteExecRule);
 
     }
 

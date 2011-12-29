@@ -26,7 +26,6 @@
  */
 
 namespace SLiib;
-use SLiib\Registry;
 
 /**
  * \SLiib\Registry
@@ -48,7 +47,7 @@ class Registry
      *
      * @param string $key Key à récupérer
      *
-     * @throws \SLiib\Registry\Exception
+     * @throws Registry\Exception
      *
      * @return mixed Valeur de la clé.
      */
@@ -69,7 +68,7 @@ class Registry
      * @param string $key   Key à définir
      * @param mixed  $value Valeur à affecter
      *
-     * @throws \SLiib\Registry\Exception
+     * @throws Registry\Exception
      *
      * @return void
      */

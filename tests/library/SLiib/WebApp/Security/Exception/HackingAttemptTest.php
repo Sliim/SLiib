@@ -27,8 +27,7 @@
  */
 
 namespace SLiib\WebApp\Security\Exception;
-use SLiib\WebApp\Security\Rule,
-    SLiib\WebApp\Security\Exception\HackingAttempt;
+use SLiib\WebApp\Security\Rule;
 
 /**
  * Test class for \SLiib\WebApp\Security\Exception\HackingAttempt.

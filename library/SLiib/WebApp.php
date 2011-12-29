@@ -26,7 +26,6 @@
  */
 
 namespace SLiib;
-use SLiib\Autoloader;
 
 require_once 'SLiib/Autoloader.php';
 
@@ -106,14 +105,14 @@ class WebApp
     /**
      * Get application instance
      *
-     * @throws \SLiib\WebApp\Exception
+     * @throws WebApp\Exception
      *
      * @return \SLiib\WebApp
      */
     public static function getInstance()
     {
         if (static::$_instance === NULL) {
-            throw new Exception('Application not initialized.');
+            throw new WebApp\Exception('Application not initialized.');
         }
 
         return static::$_instance;
@@ -139,7 +138,7 @@ class WebApp
      * @param string $appNamespace Application namespace
      * @param string $appPath      Application path
      *
-     * @throws \SLiib\WebApp\Exception
+     * @throws WebApp\Exception
      *
      * @return void
      */
@@ -150,12 +149,13 @@ class WebApp
 
         $bootstrapPath = $this->_appPath . '/Bootstrap.php';
         if (!file_exists($bootstrapPath)) {
-            throw new Exception('Error boostraping!');
+            throw new WebApp\Exception('Error boostraping!');
         }
 
         include $bootstrapPath;
 
         $bsClass = '\\' . $this->_appNamespace . '\\Bootstrap';
+
         $this->_bootstrap = new $bsClass($this->_appNamespace);
 
     }

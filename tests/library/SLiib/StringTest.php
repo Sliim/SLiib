@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\String;
 
 /**
  * Test class for \SLiib\String.

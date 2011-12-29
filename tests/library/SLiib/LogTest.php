@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\Log;
 
 /**
  * Test class for \SLiib\Log.
@@ -118,7 +117,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     /**
      * Test write log
      *
-     * @covers \SLiib\Log::log
+     * @covers \SLiib\Log::write
      * @covers \SLiib\Log::<private>
      *
      * @return void
@@ -129,7 +128,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $this->assertFileExists($this->_filename);
         $text = 'w000t from \SLiib\LogTest';
 
-        $this->_object->log($text, Log::INFO, FALSE);
+        $this->_object->write($text, Log::INFO, FALSE);
 
         $this->assertEquals(
             $text,
@@ -174,7 +173,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     /**
      * Test d'affichage pour les couleur
      *
-     * @covers \SLiib\Log::log
+     * @covers \SLiib\Log::write
      * @covers \SLiib\Log::debug
      * @covers \SLiib\Log::warn
      * @covers \SLiib\Log::error
@@ -199,7 +198,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with server Infos
      *
-     * @covers \SLiib\Log::log
+     * @covers \SLiib\Log::write
      * @covers \SLiib\Log::<private>
      *
      * @return void
@@ -211,7 +210,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $_SERVER['HTTP_USER_AGENT'] = 'w00tw00t';
 
         $this->_object->setFormat($this->_testLongFormat);
-        $this->_object->log('fooo');
+        $this->_object->write('fooo');
 
     }
 

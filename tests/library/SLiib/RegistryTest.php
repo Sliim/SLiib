@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\Registry;
 
 /**
  * Test class for \SLiib\Registry.

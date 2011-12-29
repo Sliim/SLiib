@@ -35,8 +35,8 @@ define('APP_NS', 'Test');
 
 SLiib\Autoloader::init(
     array(
-     'SLiib'  => 'SLiib',
-     'Stubs'  => STUBS_PATH,
+     'SLiib' => 'SLiib',
+     'Stubs' => STUBS_PATH,
      'Tools' => TOOLS_PATH,
     )
 );

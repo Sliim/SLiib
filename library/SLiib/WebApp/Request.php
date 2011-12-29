@@ -65,7 +65,7 @@ class Request
     /**
      * Instance getter
      *
-     * @throws \SLiib\WebApp\Request\Exception
+     * @throws Request\Exception
      *
      * @return \SLiib\WebApp\Request
      */

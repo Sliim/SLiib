@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\Utils;
 
 /**
  * Test class for \SLiib\Utils.

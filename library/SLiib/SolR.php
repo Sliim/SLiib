@@ -26,7 +26,6 @@
  */
 
 namespace SLiib;
-use SLiib\SolR;
 
 /**
  * \SLiib\SolR
@@ -84,7 +83,7 @@ class SolR
      * @param int               $port Port écouté par l'instance SolR
      * @param boolean[optional] $ping Ping SolR
      *
-     * @throws \SLiib\SolR\Exception
+     * @throws SolR\Exception
      *
      * @return void
      */

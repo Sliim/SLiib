@@ -46,7 +46,7 @@ extends \SLiib\WebApp\Security\Exception
     private $_checkerName;
 
     /**
-     * Rule
+     * Security Rule
      * @var \SLiib\WebApp\Security\Rule
      */
     private $_rule;

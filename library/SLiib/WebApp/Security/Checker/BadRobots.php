@@ -52,36 +52,35 @@ extends Model\NegativeSecurity
 
         $scanner = new Rule(1400, 'Scanner detection');
         $scanner->enablePregQuote()
-                ->disableCaseSensitivity()
-                ->addPatternElement(
-                    array(
-                     'metis',
-                     'bilbo',
-                     'n-stealth',
-                     'black widow',
-                     'brutus',
-                     'cgichk',
-                     'webtrends security analyzer',
-                     'mozilla/4.0 (compatible)',
-                     'jaascois',
-                     'pmafind',
-                     '.nasl',
-                     'nsauditor',
-                     'paros',
-                     'nessus',
-                     'nikto',
-                     'webinspect',
-                     'blackwidow',
-                     'dirbuster',
-                     'w3af',
-                     'python-httplib',
-                     'grabber',
-                     'grendel-scan',
-                     'python-urllib',
-                     'mozilla/5.0 sf',
-                    )
+            ->disableCaseSensitivity()
+            ->addPatternElement(
+                array(
+                 'metis',
+                 'bilbo',
+                 'n-stealth',
+                 'black widow',
+                 'brutus',
+                 'cgichk',
+                 'webtrends security analyzer',
+                 'mozilla/4.0 (compatible)',
+                 'jaascois',
+                 'pmafind',
+                 '.nasl',
+                 'nsauditor',
+                 'paros',
+                 'nessus',
+                 'nikto',
+                 'webinspect',
+                 'blackwidow',
+                 'dirbuster',
+                 'w3af',
+                 'python-httplib',
+                 'grabber',
+                 'grendel-scan',
+                 'python-urllib',
+                 'mozilla/5.0 sf',
                 )
-                ->addLocation(self::LOCATION_USERAGENT);
+            )->addLocation(self::LOCATION_USERAGENT);
 
         $this->addRule($scanner);
 

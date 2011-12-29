@@ -69,7 +69,7 @@ extends Model\NegativeSecurity
         )->addLocation(self::LOCATION_REQUEST_URI);
 
         $this->addRule($fileExtensionRule)
-             ->addRule($fileNameRule);
+            ->addRule($fileNameRule);
 
     }
 

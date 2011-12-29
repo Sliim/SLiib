@@ -27,10 +27,6 @@
  */
 
 namespace SLiib\WebApp;
-use SLiib\WebApp\Dispatcher,
-    SLiib\WebApp\Request,
-    SLiib\WebApp\Session,
-    SLiib\WebApp\Security;
 
 /**
  * \SLiib\WebApp\Bootstrap
@@ -197,7 +193,7 @@ abstract class Bootstrap
      *
      * @param string $path View path
      *
-     * @throws \SLiib\WebApp\Exception
+     * @throws Exception
      *
      * @return void
      */
@@ -231,11 +227,11 @@ abstract class Bootstrap
      *
      * @param Exception $e The exception object
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return void
      */
-    protected function _exceptionHandler(Exception $e)
+    protected function _exceptionHandler(\Exception $e)
     {
         throw $e;
 

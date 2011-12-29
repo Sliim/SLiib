@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\Listing;
 
 /**
  * Test class for \SLiib\Listing.

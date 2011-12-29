@@ -27,7 +27,6 @@
  */
 
 namespace SLiib\WebApp;
-use SLiib\WebApp\Session;
 
 /**
  * Test class for \SLiib\WebApp\Session.
@@ -165,7 +164,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
         try {
             unset($this->_object->notexist);
-        } catch (Session_Exception $e) {
+        } catch (Session\Exception $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Session\Exception', $e);
             return;
         } catch (\Exception $e) {

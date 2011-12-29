@@ -103,13 +103,13 @@ class View
      *
      * @param string $attr Attribut name
      *
-     * @throws \SLiib\WebApp\Exception\UndefinedProperty
+     * @throws Exception\UndefinedProperty
      *
      * @return void
      */
     public function __get($attr)
     {
-        throw new WebApp\Exception\UndefinedProperty(
+        throw new Exception\UndefinedProperty(
             'Attribut `' . $attr . '` undefined in view.'
         );
 
@@ -135,7 +135,7 @@ class View
      *
      * @param string $view View
      *
-     * @throws \SLiib\WebApp\Exception\InvalidParameter
+     * @throws Exception\InvalidParameter
      *
      * @return void
      */
@@ -144,7 +144,7 @@ class View
         if ($viewPath = $this->_viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
-            throw new WebApp\Exception\InvalidParameter(
+            throw new Exception\InvalidParameter(
                 'View `' . $view . '` is invalid.'
             );
         }
@@ -170,7 +170,7 @@ class View
      *
      * @param string $template Template to include
      *
-     * @throws \SLiib\WebApp\Exception\InvalidParameter
+     * @throws Exception\InvalidParameter
      *
      * @return \SLiib\WebApp\View
      */
@@ -184,7 +184,7 @@ class View
 
         $file = $this->_path . DIRECTORY_SEPARATOR . $template . $this->_ext;
         if (!file_exists($file)) {
-            throw new WebApp\Exception\InvalidParameter(
+            throw new Exception\InvalidParameter(
                 'Partial template ' . $template . ' not found'
             );
         }

@@ -27,8 +27,7 @@
  */
 
 namespace SLiib\WebApp\Security;
-use SLiib\WebApp\Request,
-    SLiib\WebApp\Security;
+use SLiib\WebApp\Request;
 
 /**
  * Test class for \SLiib\WebApp\Security\Model.
@@ -63,9 +62,13 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->_object->addRule(
-            new Security\Rule(1, 'Test Rule', '^w00t$', array(
-                 Security\Model::LOCATION_PARAMETERS,
-                 Security\Model::LOCATION_COOKIES,
+            new Rule(
+                1,
+                'Test Rule',
+                '^w00t$',
+                array(
+                 Model::LOCATION_PARAMETERS,
+                 Model::LOCATION_COOKIES,
                 )
             )
         );
@@ -95,7 +98,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         try {
             $this->getMockForAbstractClass('\SLiib\WebApp\Security\Model');
-        } catch (Security\Exception $e) {
+        } catch (Exception $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception', $e);
             return;
         } catch (\Exception $e) {
@@ -116,7 +119,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         try {
             $stubs = $this->getMockForAbstractClass('\Stubs\Security\Model', array('BadModel'));
-        } catch (Security\Exception $e) {
+        } catch (Exception $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception', $e);
             return;
         } catch (\Exception $e) {
@@ -129,7 +132,8 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test run
+     * Test run and check location
+     * Cover all check methods and run method
      *
      * @covers \SLiib\WebApp\Security\Model::run
      * @covers \SLiib\WebApp\Security\Model::_checkParameters
@@ -142,16 +146,16 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testRun()
     {
-        $rule = new Security\Rule(
+        $rule = new Rule(
             31337,
             'Test run rule',
             'ImALamz-GiveMeYourRoot',
             array(
-             Security\Model::LOCATION_COOKIES,
-             Security\Model::LOCATION_HTTP_METHOD,
-             Security\Model::LOCATION_PARAMETERS,
-             Security\Model::LOCATION_REFERER,
-             Security\Model::LOCATION_USERAGENT,
+             Model::LOCATION_COOKIES,
+             Model::LOCATION_HTTP_METHOD,
+             Model::LOCATION_PARAMETERS,
+             Model::LOCATION_REFERER,
+             Model::LOCATION_USERAGENT,
             )
         );
 
@@ -171,7 +175,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->run();
-        } catch (Security\Exception\CheckerError $e) {
+        } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
             return;
         } catch (\Exception $e) {
@@ -198,7 +202,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->run();
-        } catch (Security\Exception\HackingAttempt $e) {
+        } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
         } catch (\Exception $e) {
@@ -225,7 +229,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->run();
-        } catch (Security\Exception\HackingAttempt $e) {
+        } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
         } catch (\Exception $e) {
@@ -251,7 +255,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->run();
-        } catch (Security\Exception\HackingAttempt $e) {
+        } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
         } catch (\Exception $e) {
@@ -277,7 +281,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->run();
-        } catch (Security\Exception\HackingAttempt $e) {
+        } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
         } catch (\Exception $e) {
@@ -294,18 +298,18 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Model::addRule
      * @covers \SLiib\WebApp\Security\Model::getRule
-     * @covers \SLiib\WebApp\Security\Exception_CheckerError
+     * @covers \SLiib\WebApp\Security\Exception\CheckerError
      *
      * @return void
      */
     public function testAddRule()
     {
         $this->_object->addRule(
-            new Security\Rule(
+            new Rule(
                 2,
                 'Test second Rule',
                 '^foo(.*)bar$',
-                Security\Model::LOCATION_PARAMETERS
+                Model::LOCATION_PARAMETERS
             )
         );
 
@@ -315,14 +319,14 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->addRule(
-                new Security\Rule(
+                new Rule(
                     1,
                     'Test Rule with already exist id',
                     '^foo(.*)bar$',
-                    Security\Model::LOCATION_PARAMETERS
+                    Model::LOCATION_PARAMETERS
                 )
             );
-        } catch (Security\Exception\CheckerError $e) {
+        } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
             return;
         } catch (\Exception $e) {
@@ -350,7 +354,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         try {
             $rule = $this->_object->getRule(1337);
-        } catch (Security\Exception\CheckerError $e) {
+        } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
             return;
         } catch (\Exception $e) {
@@ -408,7 +412,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         try {
             $rule = $this->_object->deleteRule(1337);
-        } catch (Security\Exception\CheckerError $e) {
+        } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
             return;
         } catch (\Exception $e) {

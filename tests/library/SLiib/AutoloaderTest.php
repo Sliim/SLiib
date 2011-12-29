@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\Autoloader;
 
 /**
  * Test class for \SLiib\Autoloader.
@@ -39,6 +38,7 @@ use SLiib\Autoloader;
  */
 class AutoloaderTest extends \PHPUnit_Framework_TestCase
 {
+
 
     /**
      * Test init autoloader
@@ -76,6 +76,9 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAutoload()
     {
+        $res = Autoloader::autoload('SLiib\Listing');
+        $this->assertTrue($res);
+
         $res = Autoloader::autoload('SLiib\Listing');
         $this->assertTrue($res);
 

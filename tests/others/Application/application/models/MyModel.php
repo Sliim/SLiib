@@ -26,13 +26,15 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Test\Model;
+
 /**
  * Test models
  *
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Model_MyModel
+class MyModel
 {
 
 

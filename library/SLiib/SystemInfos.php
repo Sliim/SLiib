@@ -26,8 +26,7 @@
  */
 
 namespace SLiib;
-use SLiib\SystemInfos,
-    SLiib\SystemInfos\Interfaces;
+use SLiib\SystemInfos\Interfaces;
 
 
 /**
@@ -54,7 +53,7 @@ class SystemInfos implements
      *                          possible : 'serialize' qui permet de récupérer
      *                          le résultat de la commande sérialisé.
      *
-     * @throws \SLiib\SystemInfos\Exception\BadMethodCall
+     * @throws SystemInfos\Exception\BadMethodCall
      *
      * @return string résultat de la commande
      */
@@ -80,7 +79,7 @@ class SystemInfos implements
      *
      * @param string $cmd La commande a exécuter
      *
-     * @throws \SLiib\SystemInfos\Exception\CommandFailed
+     * @throws SystemInfos\Exception\CommandFailed
      *
      * @return array Tableau contenant le résultat de la commande.
      */

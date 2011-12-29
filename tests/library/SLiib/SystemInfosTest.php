@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\SystemInfos;
 
 /**
  * Test class for \SLiib\SystemInfos.

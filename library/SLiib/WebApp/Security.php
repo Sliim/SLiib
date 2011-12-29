@@ -27,7 +27,6 @@
  */
 
 namespace SLiib\WebApp;
-use SLiib\WebApp\Security\Model;
 
 /**
  * \SLiib\WebApp\Security
@@ -44,7 +43,7 @@ abstract class Security
      *
      * @param array $checkers Checkers to run
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws Security\Exception\CheckerError
      *
      * @return void
      */
@@ -52,7 +51,7 @@ abstract class Security
     {
         ksort($checkers);
         foreach ($checkers as $checker) {
-            if (!$checker instanceof Model) {
+            if (!$checker instanceof Security\Model) {
                 throw new Security\Exception\CheckerError(
                     $checker . ' not appear to be a valid security checker'
                 );

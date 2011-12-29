@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\SolR;
 
 /**
  * Test class for \SLiib\SolR.

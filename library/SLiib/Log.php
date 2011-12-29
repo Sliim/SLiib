@@ -26,8 +26,6 @@
  */
 
 namespace SLiib;
-use SLiib\Log,
-    SLiib\Debug;
 
 /**
  * \SLiib\Log
@@ -70,7 +68,7 @@ class Log
      * @param string            $fileOutput File path
      * @param boolean[optional] $add        True add in file.
      *
-     * @throws \SLiib\Log\Exception
+     * @throws Log\Exception
      *
      * @return void
      */
@@ -111,7 +109,7 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function log($string, $type=self::INFO, $echo=FALSE)
+    public function write($string, $type=self::INFO, $echo=FALSE)
     {
         $log = $this->_genLog($string, $type);
         fwrite($this->_fileOutput, $log . PHP_EOL);
@@ -137,7 +135,7 @@ class Log
     {
         $dump = Debug::dump($var, FALSE);
 
-        return $this->log($dump, self::DEBUG, $echo);
+        return $this->write($dump, self::DEBUG, $echo);
 
     }
 
@@ -152,7 +150,7 @@ class Log
      */
     public function info($string, $echo=FALSE)
     {
-        return $this->log($string, self::INFO, $echo);
+        return $this->write($string, self::INFO, $echo);
 
     }
 
@@ -167,7 +165,7 @@ class Log
      */
     public function warn($string, $echo=FALSE)
     {
-        return $this->log($string, self::WARN, $echo);
+        return $this->write($string, self::WARN, $echo);
 
     }
 
@@ -182,7 +180,7 @@ class Log
      */
     public function error($string, $echo=FALSE)
     {
-        return $this->log($string, self::ERROR, $echo);
+        return $this->write($string, self::ERROR, $echo);
 
     }
 
@@ -197,7 +195,7 @@ class Log
      */
     public function crit($string, $echo=FALSE)
     {
-        return $this->log($string, self::CRIT, $echo);
+        return $this->write($string, self::CRIT, $echo);
 
     }
 

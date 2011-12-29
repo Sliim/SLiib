@@ -27,7 +27,6 @@
  */
 
 namespace SLiib\WebApp;
-use SLiib\WebApp\Request;
 
 /**
  * \SLiib\WebApp\Dispatcher
@@ -62,7 +61,7 @@ class Dispatcher
     /**
      * Dispatching..
      *
-     * @throws \SLiib\WebApp\Exception\NoDispatchable
+     * @throws Exception\NoDispatchable
      *
      * @return void
      */
@@ -73,7 +72,7 @@ class Dispatcher
         $controller = $request->getController();
 
         $controllerName = sprintf(
-            "%s_Controller_%s",
+            "\\%s\\Controller\\%s",
             static::$_namespace,
             ucfirst($controller)
         );

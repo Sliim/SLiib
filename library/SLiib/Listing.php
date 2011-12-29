@@ -26,7 +26,7 @@
  */
 
 namespace SLiib;
-use SLiib\Listing;
+
 
 /**
  * \SLiib\Listing
@@ -68,7 +68,7 @@ class Listing
      * @param string $listName   Nom de la liste
      * @param array  $exceptions Liste des exceptions à ne pas lister
      *
-     * @throws Exception
+     * @throws Listing\Exception
      *
      * @return void
      */

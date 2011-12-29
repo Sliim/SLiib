@@ -27,7 +27,6 @@
  */
 
 namespace SLiib;
-use SLiib\Debug;
 
 /**
  * Test class for \SLiib\Debug.

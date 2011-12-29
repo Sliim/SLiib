@@ -27,8 +27,7 @@
  */
 
 namespace SLiib\WebApp\Security\Checker;
-use SLiib\WebApp\Security\Checker,
-    SLiib\WebApp\Security\Exception,
+use SLiib\WebApp\Security\Exception,
     SLiib\WebApp\Request;
 
 /**
@@ -55,7 +54,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new Checker\AllowedMethods();
+        $this->_object = new AllowedMethods();
 
     }
 
@@ -101,10 +100,10 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->_object->run();
-        } catch (Security\Exception\HackingAttempt $e) {
+        } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (\PHPUnit_Framework_Error $e) {
+        } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
         }
 

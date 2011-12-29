@@ -30,7 +30,7 @@ namespace SLiib;
 /**
  * \SLiib\Cli
  *
- * @package  SLiib\Cli
+ * @package SLiib\Cli
  */
 abstract class Cli
 {
