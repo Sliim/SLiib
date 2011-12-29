@@ -26,13 +26,16 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Test\Controller;
+use SLiib\WebApp\Controller;
+
 /**
  * Test controller
  *
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Controller_Index extends SLiib_WebApp_Controller
+class Index extends Controller
 {
 
 

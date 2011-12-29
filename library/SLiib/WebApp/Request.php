@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Request
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,18 +26,20 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp;
+
 /**
- * SLiib_WebApp_Request
+ * \SLiib\WebApp\Request
  *
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Request
  */
-class SLiib_WebApp_Request
+class Request
 {
 
     /**
      * Request instance
-     * @var SLiib_WebApp_Request
+     * @var \SLiib\WebApp\Request
      */
     private static $_instance = NULL;
 
@@ -51,8 +53,6 @@ class SLiib_WebApp_Request
     /**
      * Init HTTP Request
      *
-     * @throws SLiib_WebApp_Request_Exception
-     *
      * @return void
      */
     public static function init()
@@ -65,14 +65,14 @@ class SLiib_WebApp_Request
     /**
      * Instance getter
      *
-     * @throws SLiib_WebApp_Request_Exception
+     * @throws \SLiib\WebApp\Request\Exception
      *
-     * @return SLiib_WebApp_Request
+     * @return \SLiib\WebApp\Request
      */
     public static function getInstance()
     {
         if (is_null(static::$_instance)) {
-            throw new SLiib_WebApp_Request_Exception(
+            throw new Request\Exception(
                 'Request not initialized.'
             );
         }

@@ -28,7 +28,7 @@
 namespace SLiib;
 
 /**
- * SLiib\Utils
+ * \SLiib\Utils
  *
  * @package SLiib\Utils
  */

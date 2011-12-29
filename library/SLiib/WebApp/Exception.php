@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,13 +26,15 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp;
+
 /**
- * SLiib_WebApp_Exception
+ * \SLiib\WebApp\Exception
  *
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Exception
  */
-class SLiib_WebApp_Exception extends SLiib_Exception
+class Exception extends \SLiib\Exception
 {
 
 }

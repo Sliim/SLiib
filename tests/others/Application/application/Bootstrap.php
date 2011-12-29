@@ -26,13 +26,17 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Test;
+use SLiib\WebApp,
+    SLiib\WebApp\Security\Checker;
+
 /**
  * test Boostrap
  *
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Bootstrap extends SLiib_WebApp_Bootstrap
+class Bootstrap extends WebApp\Bootstrap
 {
 
 
@@ -61,17 +65,17 @@ class Test_Bootstrap extends SLiib_WebApp_Bootstrap
 
         try {
             $this->_setViewPath(APP_PATH . '/views_not_exists');
-        } catch (SLiib_WebApp_Exception $e) {
+        } catch (WebApp\Exception $e) {
             $this->_setViewPath(APP_PATH . '/views');
         }
 
-        $allowedMethod = new SLiib_WebApp_Security_Checker_AllowedMethods();
+        $allowedMethod = new Checker\AllowedMethods();
         $allowedMethod->getRule(1200)->addPatternElement('1337');
 
         $this->_setSecurityCheckers(
             array(
-             0 => new SLiib_WebApp_Security_Checker_PHPCodeInject(),
-             1 => new SLiib_WebApp_Security_Checker_FilenamePolicy(),
+             0 => new Checker\PHPCodeInject(),
+             1 => new Checker\FilenamePolicy(),
              2 => $allowedMethod,
             )
         );

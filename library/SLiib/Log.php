@@ -26,11 +26,11 @@
  */
 
 namespace SLiib;
-use SLiib\Log\Exception,
+use SLiib\Log,
     SLiib\Debug;
 
 /**
- * SLiib\Log
+ * \SLiib\Log
  *
  * @package SLiib\Log
  */
@@ -70,7 +70,7 @@ class Log
      * @param string            $fileOutput File path
      * @param boolean[optional] $add        True add in file.
      *
-     * @throws SLiib\Log\Exception
+     * @throws \SLiib\Log\Exception
      *
      * @return void
      */
@@ -84,7 +84,7 @@ class Log
         $this->_fileOutput = @fopen($fileOutput, $opt);
 
         if (!$this->_fileOutput) {
-            throw new Exception('Cannot open file ' . $fileOutput);
+            throw new Log\Exception('Cannot open file ' . $fileOutput);
         }
 
     }
@@ -109,7 +109,7 @@ class Log
      * @param string            $type   Log type
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib\Log
+     * @return \SLiib\Log
      */
     public function log($string, $type=self::INFO, $echo=FALSE)
     {
@@ -131,7 +131,7 @@ class Log
      * @param mixed             $var  Variable to debug
      * @param boolean[optional] $echo Print on stdout
      *
-     * @return SLiib\Log
+     * @return \SLiib\Log
      */
     public function debug($var, $echo=FALSE)
     {
@@ -148,7 +148,7 @@ class Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib\Log
+     * @return \SLiib\Log
      */
     public function info($string, $echo=FALSE)
     {
@@ -163,7 +163,7 @@ class Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib\Log
+     * @return \SLiib\Log
      */
     public function warn($string, $echo=FALSE)
     {
@@ -178,7 +178,7 @@ class Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib\Log
+     * @return \SLiib\Log
      */
     public function error($string, $echo=FALSE)
     {
@@ -193,7 +193,7 @@ class Log
      * @param string            $string String to write
      * @param boolean[optional] $echo   Print on stdout
      *
-     * @return SLiib\Log
+     * @return \SLiib\Log
      */
     public function crit($string, $echo=FALSE)
     {

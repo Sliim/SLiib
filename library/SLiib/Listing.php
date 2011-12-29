@@ -29,7 +29,7 @@ namespace SLiib;
 use SLiib\Listing\Exception;
 
 /**
- * SLiib\Listing
+ * \SLiib\Listing
  *
  * @package SLiib\Listing
  */
@@ -102,7 +102,7 @@ class Listing
     /**
      * Rangement du tableau par ordre alphabetic
      *
-     * @return SLiib\Listing
+     * @return \SLiib\Listing
      */
     public function sort()
     {
@@ -118,7 +118,7 @@ class Listing
     /**
      * Rangement du tableau par ordre alphabetic inversé
      *
-     * @return SLiib\Listing
+     * @return \SLiib\Listing
      */
     public function usort()
     {

@@ -28,7 +28,7 @@
 namespace SLiib\IException;
 
 /**
- * SLiib\IException\UndefinedProperty
+ * \SLiib\IException\UndefinedProperty
  *
  * @package SLiib\IException
  */

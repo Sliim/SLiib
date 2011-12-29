@@ -26,10 +26,10 @@
  */
 
 namespace SLiib;
-use SLiib\SolR\Exception;
+use SLiib\SolR;
 
 /**
- * SLiib\SolR
+ * \SLiib\SolR
  *
  * @package SLiib\SolR
  */
@@ -84,7 +84,7 @@ class SolR
      * @param int               $port Port écouté par l'instance SolR
      * @param boolean[optional] $ping Ping SolR
      *
-     * @throws SLiib\SolR\Exception
+     * @throws \SLiib\SolR\Exception
      *
      * @return void
      */
@@ -98,7 +98,7 @@ class SolR
         }
 
         if (!$this->ping()) {
-            throw new Exception('SolR is down, please verify it\'s running..');
+            throw new SolR\Exception('SolR is down, please verify it\'s running..');
         }
 
     }

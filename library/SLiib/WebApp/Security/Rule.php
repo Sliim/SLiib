@@ -18,21 +18,23 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Rule
+ * @package    SLiib\WebApp
+ * @subpackage Security
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security;
+
 /**
- * SLiib_WebApp_Security_Rule
+ * \SLiib\WebApp\Security\Rule
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Rule
+ * @package    SLiib\WebApp
+ * @subpackage Security
  */
-class SLiib_WebApp_Security_Rule
+class Rule
 {
 
     /**
@@ -176,7 +178,7 @@ class SLiib_WebApp_Security_Rule
      *
      * @param string $pattern Pattern to set
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function setPattern($pattern)
     {
@@ -196,7 +198,7 @@ class SLiib_WebApp_Security_Rule
      *
      * @param string $location Location to add
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function addLocation($location)
     {
@@ -216,7 +218,7 @@ class SLiib_WebApp_Security_Rule
      *
      * @param string $location Location to add
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function deleteLocation($location)
     {
@@ -235,7 +237,7 @@ class SLiib_WebApp_Security_Rule
      *
      * @param mixed $element Element to add
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function addPatternElement($element)
     {
@@ -256,7 +258,7 @@ class SLiib_WebApp_Security_Rule
      *
      * @param string $element Element to delete
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function deletePatternElement($element)
     {
@@ -275,7 +277,7 @@ class SLiib_WebApp_Security_Rule
     /**
      * Enable preg_quote function
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function enablePregQuote()
     {
@@ -288,7 +290,7 @@ class SLiib_WebApp_Security_Rule
     /**
      * Disable preg_quote function
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function disablePregQuote()
     {
@@ -301,7 +303,7 @@ class SLiib_WebApp_Security_Rule
     /**
      * Enable case sensitivity for preg_match pattern
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function enableCaseSensitivity()
     {
@@ -318,7 +320,7 @@ class SLiib_WebApp_Security_Rule
     /**
      * Disable case sensitivity for preg_match pattern
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function disableCaseSensitivity()
     {

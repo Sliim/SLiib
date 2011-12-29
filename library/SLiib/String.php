@@ -28,7 +28,7 @@
 namespace SLiib;
 
 /**
- * Traitement de chaine de caractères
+ * \SLiib\String
  *
  * @package SLiib\String
  */

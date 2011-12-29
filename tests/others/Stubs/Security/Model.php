@@ -57,8 +57,8 @@ abstract class Model extends \SLiib\WebApp\Security\Model
     /**
      * Check a pattern in a string
      *
-     * @param SLiib\WebApp\Security\Rule $rule   Rule to check
-     * @param string                     $string String to use
+     * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
+     * @param string                      $string String to use
      *
      * @return boolean
      */

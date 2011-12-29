@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Bootstrap
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,13 +26,19 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp;
+use SLiib\WebApp\Dispatcher,
+    SLiib\WebApp\Request,
+    SLiib\WebApp\Session,
+    SLiib\WebApp\Security;
+
 /**
- * SLiib_Bootstrap
+ * \SLiib\WebApp\Bootstrap
  *
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Bootstrap
  */
-abstract class SLiib_WebApp_Bootstrap
+abstract class Bootstrap
 {
 
     /**
@@ -99,9 +105,9 @@ abstract class SLiib_WebApp_Bootstrap
         try {
             $this->_setEnvironment();
 
-            SLiib_WebApp_Dispatcher::init($this->_appNamespace);
-            SLiib_WebApp_Dispatcher::dispatch();
-        } catch (SLiib_Exception $e) {
+            Dispatcher::init($this->_appNamespace);
+            Dispatcher::dispatch();
+        } catch (\SLiib\Exception $e) {
             $this->_exceptionHandler($e);
         }
 
@@ -179,9 +185,9 @@ abstract class SLiib_WebApp_Bootstrap
      */
     protected function _setEnvironment()
     {
-        SLiib_WebApp_Request::init();
-        SLiib_WebApp_Session::init();
-        SLiib_WebApp_Security::check($this->_securityCheckers);
+        Request::init();
+        Session::init();
+        Security::check($this->_securityCheckers);
 
     }
 
@@ -191,14 +197,14 @@ abstract class SLiib_WebApp_Bootstrap
      *
      * @param string $path View path
      *
-     * @throws SLiib_WebApp_Exception
+     * @throws \SLiib\WebApp\Exception
      *
      * @return void
      */
     protected function _setViewPath($path)
     {
         if (!file_exists($path)) {
-            throw new SLiib_WebApp_Exception('Directory ' . $path . ' not found.');
+            throw new WebApp\Exception('Directory ' . $path . ' not found.');
         }
 
         $this->_viewPath = $path;

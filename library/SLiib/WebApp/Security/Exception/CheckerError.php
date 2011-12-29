@@ -18,23 +18,25 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Exception
+ * @package    SLiib\WebApp
+ * @subpackage Security\Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Exception;
+
 /**
- * SLiib_WebApp_Security_Exception_CheckerError
+ * \SLiib\WebApp\Security\Exception\CheckerError
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Exception
+ * @package    SLiib\WebApp
+ * @subpackage Security\Exception
  */
-class SLiib_WebApp_Security_Exception_CheckerError
-extends SLiib_WebApp_Security_Exception
-implements SLiib_IException_Failure
+class CheckerError
+extends \SLiib\WebApp\Security\Exception
+implements \SLiib\IException\Failure
 {
 
 }

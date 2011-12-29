@@ -18,22 +18,26 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Checker
+ * @package    SLiib\WebApp
+ * @subpackage Security\Checker
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Checker;
+use SLiib\WebApp\Security\Model,
+    SLiib\WebApp\Security\Rule;
+
 /**
- * SLiib_WebApp_Security_Checker_PHPCodeInject
+ * \SLiib\WebApp\Security\Checker\PHPCodeInject
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Checker
+ * @package    SLiib\WebApp
+ * @subpackage Security\Checker
  */
-class SLiib_WebApp_Security_Checker_PHPCodeInject
-extends SLiib_WebApp_Security_Model_NegativeSecurity
+class PHPCodeInject
+extends Model\NegativeSecurity
 {
 
 
@@ -46,10 +50,7 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
     {
         $this->_setName('PHP Code Injection');
 
-        $includeRule = new SLiib_WebApp_Security_Rule(
-            1100,
-            'Include injection detected'
-        );
+        $includeRule = new Rule(1100, 'Include injection detected');
         $includeRule->addPatternElement(
             array(
              'include(_once)?[\( ]?[\'\"]{1}(.+)[\'\"]{1}[\)]?',
@@ -62,10 +63,7 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
             )
         );
 
-        $othersFunctionRule = new SLiib_WebApp_Security_Rule(
-            1101,
-            'Others functions injection detected'
-        );
+        $othersFunctionRule = new Rule(1101, 'Others functions injection detected');
         $othersFunctionRule->addPatternElement(
             array(
              'file_get_contents\((.*)\)',
@@ -78,10 +76,7 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
             )
         );
 
-        $remoteExecRule = new SLiib_WebApp_Security_Rule(
-            1102,
-            'Remote commande execution detected'
-        );
+        $remoteExecRule = new Rule(1102, 'Remote commande execution detected');
         $remoteExecRule->addPatternElement(
             array(
              'exec\((.*)\)',
@@ -98,8 +93,8 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
         );
 
         $this->addRule($includeRule)
-            ->addRule($othersFunctionRule)
-            ->addRule($remoteExecRule);
+             ->addRule($othersFunctionRule)
+             ->addRule($remoteExecRule);
 
     }
 

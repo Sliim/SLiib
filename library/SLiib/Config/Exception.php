@@ -29,7 +29,7 @@
 namespace SLiib\Config;
 
 /**
- * SLiib\Config\Exception
+ * \SLiib\Config\Exception
  *
  * @package    SLiib\Config
  * @subpackage Exception

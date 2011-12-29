@@ -26,13 +26,16 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Test\Controller;
+use SLiib\WebApp\Controller;
+
 /**
  * MyControllerWithMultiDash controller
  *
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Controller_MyControllerWithMultiDash extends SLiib_WebApp_Controller
+class MyControllerWithMultiDash extends Controller
 {
 
 

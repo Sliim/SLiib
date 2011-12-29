@@ -29,7 +29,7 @@
 namespace SLiib\Config\Exception;
 
 /**
- * SLiib\Config\Exception\SyntaxError
+ * \SLiib\Config\Exception\SyntaxError
  *
  * @package    SLiib\Config
  * @subpackage Exception

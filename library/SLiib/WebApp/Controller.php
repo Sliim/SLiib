@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Controller
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,18 +26,21 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp;
+use SLiib\WebApp\Request;
+
 /**
- * SLiib_WebApp_Controller
+ * \SLiib\WebApp\Controller
  *
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Controller
  */
-abstract class SLiib_WebApp_Controller
+abstract class Controller
 {
 
     /**
      * View of this controller/action
-     * @var SLiib_WebApp_View
+     * @var \SLiib\WebApp\View
      */
     protected $_view = NULL;
 
@@ -45,11 +48,11 @@ abstract class SLiib_WebApp_Controller
      * View Class
      * @var string
      */
-    protected $_viewClass = 'SLiib_WebApp_View';
+    protected $_viewClass = '\SLiib\WebApp\View';
 
     /**
      * Request instance
-     * @var SLiib_WebApp_Request
+     * @var \SLiib\WebApp\Request
      */
     protected $_request = NULL;
 
@@ -61,7 +64,7 @@ abstract class SLiib_WebApp_Controller
      */
     public function __construct()
     {
-        $this->_request = SLiib_WebApp_Request::getInstance();
+        $this->_request = Request::getInstance();
         $this->_view    = new $this->_viewClass(
             $this->_request->getController(),
             $this->_request->getAction()
@@ -76,7 +79,7 @@ abstract class SLiib_WebApp_Controller
      * @param string $action Action to call
      * @param array  $params unused
      *
-     * @throws SLiib_WebApp_Exception_NoDispatchable
+     * @throws \SLiib\WebApp\Exception\NoDispatchable
      *
      * @return void
      */
@@ -86,7 +89,7 @@ abstract class SLiib_WebApp_Controller
         $method = $action . 'Action';
 
         if (!method_exists($this, $method)) {
-            throw new SLiib_WebApp_Exception_NoDispatchable(
+            throw new WebApp\Exception\NoDispatchable(
                 'Action `' . $action . '` is invalid.'
             );
         }
@@ -101,7 +104,7 @@ abstract class SLiib_WebApp_Controller
     /**
      * Request getter
      *
-     * @return SLiib_WebApp_Request
+     * @return \SLiib\WebApp\Request
      */
     public function getRequest()
     {

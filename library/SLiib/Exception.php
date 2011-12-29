@@ -28,7 +28,7 @@
 namespace SLiib;
 
 /**
- * SLiib\Exception
+ * \SLiib\Exception
  *
  * @package SLiib\Exception
  */

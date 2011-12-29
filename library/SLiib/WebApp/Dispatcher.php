@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Dispatcher
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,13 +26,16 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp;
+use SLiib\WebApp\Request;
+
 /**
- * SLiib_WebApp_Dispatcher
+ * \SLiib\WebApp\Dispatcher
  *
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Dispatcher
  */
-class SLiib_WebApp_Dispatcher
+class Dispatcher
 {
 
     /**
@@ -59,13 +62,13 @@ class SLiib_WebApp_Dispatcher
     /**
      * Dispatching..
      *
-     * @throws SLiib_WebApp_Exception_NoDispatchable
+     * @throws \SLiib\WebApp\Exception\NoDispatchable
      *
      * @return void
      */
     public static function dispatch()
     {
-        $request    = SLiib_WebApp_Request::getInstance();
+        $request    = Request::getInstance();
         $action     = $request->getAction();
         $controller = $request->getController();
 
@@ -76,7 +79,7 @@ class SLiib_WebApp_Dispatcher
         );
 
         if (!class_exists($controllerName)) {
-            throw new SLiib_WebApp_Exception_NoDispatchable(
+            throw new WebApp\Exception\NoDispatchable(
                 'Controller `' . $controllerName . '` doesn\'t exist.'
             );
         }

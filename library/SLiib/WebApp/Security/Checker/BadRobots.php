@@ -18,22 +18,26 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Checker
+ * @package    SLiib\WebApp
+ * @subpackage Security\Checker
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Checker;
+use SLiib\WebApp\Security\Model,
+    SLiib\WebApp\Security\Rule;
+
 /**
- * SLiib_WebApp_Security_Checker_BadRobots
+ * \SLiib\WebApp\Security\Checker\BadRobots
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Checker
+ * @package    SLiib\WebApp
+ * @subpackage Security\Checker
  */
-class SLiib_WebApp_Security_Checker_BadRobots
-extends SLiib_WebApp_Security_Model_NegativeSecurity
+class BadRobots
+extends Model\NegativeSecurity
 {
 
 
@@ -46,41 +50,38 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
     {
         $this->_setName('Bad Robots');
 
-        $scanner = new SLiib_WebApp_Security_Rule(
-            1400,
-            'Scanner detection'
-        );
-
+        $scanner = new Rule(1400, 'Scanner detection');
         $scanner->enablePregQuote()
-            ->disableCaseSensitivity()
-            ->addPatternElement(
-                array(
-                 'metis',
-                 'bilbo',
-                 'n-stealth',
-                 'black widow',
-                 'brutus',
-                 'cgichk',
-                 'webtrends security analyzer',
-                 'mozilla/4.0 (compatible)',
-                 'jaascois',
-                 'pmafind',
-                 '.nasl',
-                 'nsauditor',
-                 'paros',
-                 'nessus',
-                 'nikto',
-                 'webinspect',
-                 'blackwidow',
-                 'dirbuster',
-                 'w3af',
-                 'python-httplib',
-                 'grabber',
-                 'grendel-scan',
-                 'python-urllib',
-                 'mozilla/5.0 sf',
+                ->disableCaseSensitivity()
+                ->addPatternElement(
+                    array(
+                     'metis',
+                     'bilbo',
+                     'n-stealth',
+                     'black widow',
+                     'brutus',
+                     'cgichk',
+                     'webtrends security analyzer',
+                     'mozilla/4.0 (compatible)',
+                     'jaascois',
+                     'pmafind',
+                     '.nasl',
+                     'nsauditor',
+                     'paros',
+                     'nessus',
+                     'nikto',
+                     'webinspect',
+                     'blackwidow',
+                     'dirbuster',
+                     'w3af',
+                     'python-httplib',
+                     'grabber',
+                     'grendel-scan',
+                     'python-urllib',
+                     'mozilla/5.0 sf',
+                    )
                 )
-            )->addLocation(self::LOCATION_USERAGENT);
+                ->addLocation(self::LOCATION_USERAGENT);
 
         $this->addRule($scanner);
 

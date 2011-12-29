@@ -29,7 +29,7 @@ namespace SLiib;
 use SLiib\Config\Exception;
 
 /**
- * SLiib\Config
+ * \SLiib\Config
  *
  * @package SLiib\Config
  */
@@ -48,7 +48,7 @@ class Config
      *
      * @param string $key Key to get
      *
-     * @throws SLiib\Config\Exception\UndefinedProperty
+     * @throws \SLiib\Config\Exception\UndefinedProperty
      *
      * @return void
      */
@@ -64,9 +64,9 @@ class Config
      *
      * @param string $file File to read
      *
-     * @throws SLiib\Config\Exception
+     * @throws \SLiib\Config\Exception
      *
-     * @return SLiib\Config
+     * @return \SLiib\Config
      */
     public static function read($file)
     {

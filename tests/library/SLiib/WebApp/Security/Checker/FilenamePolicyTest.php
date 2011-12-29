@@ -26,18 +26,23 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Checker;
+use SLiib\WebApp\Security\Checker,
+    SLiib\WebApp\Security\Exception,
+    SLiib\WebApp\Request;
+
 /**
- * Test class for SLiib_WebApp_Security_Checker_FilenamePolicy.
+ * Test class for \SLiib\WebApp\Security\Checker\FilenamePolicy.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework_TestCase
+class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_WebApp_Security_Checker_FilenamePolicy
+     * @var \SLiib\WebApp\Security\Checker\FilenamePolicy
      */
     protected $_object;
 
@@ -50,7 +55,7 @@ class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework
      */
     public function setUp()
     {
-        $this->_object = new SLiib_WebApp_Security_Checker_FilenamePolicy();
+        $this->_object = new Checker\FilenamePolicy();
 
     }
 
@@ -71,15 +76,15 @@ class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework
     /**
      * Test run
      *
-     * @covers SLiib_WebApp_Security_Checker_FilenamePolicy::run
-     * @covers SLiib_WebApp_Security_Model_NegativeSecurity
+     * @covers \SLiib\WebApp\Security\Checker\FilenamePolicy::run
+     * @covers \SLiib\WebApp\Security\Model\NegativeSecurity
      *
      * @return void
      */
     public function testRun()
     {
-        Tools_Request::setRequestUri('/index/index');
-        SLiib_WebApp_Request::init();
+        \Tools\Request::setRequestUri('/index/index');
+        Request::init();
 
         $result = $this->_object->run();
         $this->assertTrue($result);
@@ -94,15 +99,15 @@ class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework
      */
     public function testRunWithForbiddenExtensionFilename()
     {
-        Tools_Request::setRequestUri('/dumps/db.sql');
-        SLiib_WebApp_Request::init();
+        \Tools\Request::setRequestUri('/dumps/db.sql');
+        Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+        } catch (Security\Exception\HackingAttempt $e) {
+            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (PHPUnit_Framework_Error $e) {
+        } catch (\PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
         }
 
@@ -118,15 +123,15 @@ class SLiib_WebApp_Security_Checker_FilenamePolicyTest extends PHPUnit_Framework
      */
     public function testRunWithForbiddenFilename()
     {
-        Tools_Request::setRequestUri('../../../../etc/passwd');
-        SLiib_WebApp_Request::init();
+        \Tools\Request::setRequestUri('../../../../etc/passwd');
+        Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+        } catch (Security\Exception\HackingAttempt $e) {
+            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (PHPUnit_Framework_Error $e) {
+        } catch (\PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
         }
 

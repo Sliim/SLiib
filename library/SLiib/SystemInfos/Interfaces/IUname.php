@@ -29,7 +29,7 @@
 namespace SLiib\SystemInfos\Interfaces;
 
 /**
- * SLiib\SystemInfos\Interfaces\IUname
+ * \SLiib\SystemInfos\Interfaces\IUname
  *
  * @package    SLiib\SystemInfos
  * @subpackage Interfaces

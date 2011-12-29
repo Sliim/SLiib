@@ -18,22 +18,23 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Exception
+ * @package    SLiib\WebApp
+ * @subpackage Security
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security;
 /**
- * SLiib_WebApp_Security_Exception
+ * \SLiib\WebApp\Security\Exception
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Exception
+ * @package    SLiib\WebApp
+ * @subpackage Security
  */
-class SLiib_WebApp_Security_Exception
-extends SLiib_Exception
+class Exception
+extends \SLiib\Exception
 {
 
 }

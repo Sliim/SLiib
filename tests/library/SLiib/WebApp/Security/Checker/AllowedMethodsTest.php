@@ -26,18 +26,23 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Checker;
+use SLiib\WebApp\Security\Checker,
+    SLiib\WebApp\Security\Exception,
+    SLiib\WebApp\Request;
+
 /**
- * Test class for SLiib_WebApp_Security_Checker_AllowedMethods.
+ * Test class for \SLiib\WebApp\Security\Checker\AllowedMethods.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework_TestCase
+class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_WebApp_Security_Checker_AllowedMethods
+     * @var \SLiib\WebApp\Security\Checker\AllowedMethods
      */
     protected $_object;
 
@@ -50,7 +55,7 @@ class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework
      */
     public function setUp()
     {
-        $this->_object = new SLiib_WebApp_Security_Checker_AllowedMethods();
+        $this->_object = new Checker\AllowedMethods();
 
     }
 
@@ -75,8 +80,8 @@ class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework
      */
     public function testRun()
     {
-        Tools_Request::setRequestMethod('GET');
-        SLiib_WebApp_Request::init();
+        \Tools\Request::setRequestMethod('GET');
+        Request::init();
 
         $result = $this->_object->run();
         $this->assertTrue($result);
@@ -91,15 +96,15 @@ class SLiib_WebApp_Security_Checker_AllowedMethodsTest extends PHPUnit_Framework
      */
     public function testRunWithForbiddenHTTPMethod()
     {
-        Tools_Request::setRequestMethod('WOOT');
-        SLiib_WebApp_Request::init();
+        \Tools\Request::setRequestMethod('WOOT');
+        Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+        } catch (Security\Exception\HackingAttempt $e) {
+            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (PHPUnit_Framework_Error $e) {
+        } catch (\PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
         }
 

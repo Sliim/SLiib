@@ -29,7 +29,7 @@
 namespace SLiib\SystemInfos\Interfaces;
 
 /**
- * SLiib\SystemInfos\Interfaces\IApache2
+ * \SLiib\SystemInfos\Interfaces\IApache2
  *
  * @package    SLiib\SystemInfos
  * @subpackage Interfaces

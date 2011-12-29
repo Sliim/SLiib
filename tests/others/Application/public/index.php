@@ -18,18 +18,18 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib
- * @subpackage Tests
+ * @package    Tests
+ * @subpackage ApplicationTest
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
-require 'SLiib/Application.php';
+require 'SLiib/WebApp.php';
 
 define('ROOT_PATH', realpath(dirname(__FILE__) . '/../'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
-SLiib_WebApp::init(APP_NS, APP_PATH)->run();
+\SLiib\WebApp::init(APP_NS, APP_PATH)->run();

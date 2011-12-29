@@ -18,22 +18,25 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Exception
+ * @package    SLiib\WebApp
+ * @subpackage Security\Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Exception;
+use SLiib\WebApp\Security\Rule;
+
 /**
- * SLiib_WebApp_Security_Exception_HackingAttempt
+ * \SLiib\WebApp\Security\Exception\HackingAttempt
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Exception
+ * @package    SLiib\WebApp
+ * @subpackage Security\Exception
  */
-class SLiib_WebApp_Security_Exception_HackingAttempt
-extends SLiib_WebApp_Security_Exception
+class HackingAttempt
+extends \SLiib\WebApp\Security\Exception
 {
 
     /**
@@ -44,7 +47,7 @@ extends SLiib_WebApp_Security_Exception
 
     /**
      * Rule
-     * @var SLiib_WebApp_Security_Rule
+     * @var \SLiib\WebApp\Security\Rule
      */
     private $_rule;
 
@@ -64,18 +67,18 @@ extends SLiib_WebApp_Security_Exception
     /**
      * Exception constructor
      *
-     * @param string                     $checkerName Checker name
-     * @param SLiib_WebApp_Security_Rule $rule        Rule
-     * @param string                     $location    Location check failed
-     * @param string                     $reason      Exception reason
-     * @param int                        $code        Exception code
-     * @param Exception                  $parent      Parent exception
+     * @param string                      $checkerName Checker name
+     * @param \SLiib\WebApp\Security\Rule $rule        Rule
+     * @param string                      $location    Location check failed
+     * @param string                      $reason      Exception reason
+     * @param int                         $code        Exception code
+     * @param Exception                   $parent      Parent exception
      *
      * @return void
      */
     public function __construct(
         $checkerName,
-        SLiib_WebApp_Security_Rule $rule,
+        Rule $rule,
         $location,
         $reason,
         $code=0,
@@ -115,7 +118,7 @@ extends SLiib_WebApp_Security_Exception
     /**
      * Rule getter
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function getRule()
     {

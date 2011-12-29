@@ -17,20 +17,24 @@
  *
  * PHP version 5
  *
- * @category SLiib
- * @package  SLiib_WebApp_Session
- * @author   Sliim <sliim@mailoo.org>
- * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
- * @link     http://www.sliim-projects.eu
+ * @category   SLiib
+ * @package    SLiib\WebApp
+ * @subpackage Session
+ * @author     Sliim <sliim@mailoo.org>
+ * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @version    Release: 0.2
+ * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp;
+
 /**
- * SLiib_WebApp_Session
+ * \SLiib\WebApp\Session
  *
- * @package SLiib_WebApp_Session
+ * @package    SLiib\WebApp
+ * @subpackage Session
  */
-class SLiib_WebApp_Session
+class Session
 {
 
     /**
@@ -57,14 +61,14 @@ class SLiib_WebApp_Session
      *
      * @param string $namespace Session namespace
      *
-     * @throws SLiib_WebApp_Session_Exception
+     * @throws \SLiib\WebApp\Session\Exception
      *
      * @return void
      */
     public function __construct($namespace)
     {
         if (!static::$_started) {
-            throw new SLiib_WebApp_Session_Exception('Session not initialized.');
+            throw new Session\Exception('Session not initialized.');
         }
 
         $this->_namespace = $namespace;
@@ -83,14 +87,14 @@ class SLiib_WebApp_Session
      *
      * @param string $name Property name
      *
-     * @throws SLiib_WebApp_Session_Exception
+     * @throws \SLiib\WebApp\Session\Exception
      *
      * @return mixed
      */
     public function __get($name)
     {
         if (!array_key_exists($name, $this->_session)) {
-            throw new SLiib_WebApp_Session_Exception('Session has not `' . $name . '` index');
+            throw new Session\Exception('Session has not `' . $name . '` index');
         }
 
         return $this->_session[$name];
@@ -119,14 +123,14 @@ class SLiib_WebApp_Session
      *
      * @param string $name Property name
      *
-     * @throws SLiib_WebApp_Session_Exception
+     * @throws \SLiib\WebApp\Session\Exception
      *
      * @return void
      */
     public function __unset($name)
     {
         if (!array_key_exists($name, $this->_session)) {
-            throw new SLiib_WebApp_Session_Exception('Session has not `' . $name . '` index');
+            throw new Session\Exception('Session has not `' . $name . '` index');
         }
 
         unset($this->_session[$name]);

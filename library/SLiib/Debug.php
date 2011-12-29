@@ -28,7 +28,7 @@
 namespace SLiib;
 
 /**
- * SLiib\Debug
+ * \SLiib\Debug
  *
  * @package SLiib\Debug
  */

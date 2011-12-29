@@ -18,7 +18,7 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Exception
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
@@ -26,15 +26,17 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Exception;
+
 /**
- * SLiib_WebApp_Exception_InvalidParameter
+ * \SLiib\WebApp\Exception\InvalidParameter
  *
- * @package    SLiib_WebApp
+ * @package    SLiib\WebApp
  * @subpackage Exception
  */
-class SLiib_WebApp_Exception_InvalidParameter
-extends SLiib_WebApp_Exception
-implements SLiib_IException_InvalidParameter
+class InvalidParameter
+extends \SLiib\WebApp\Exception
+implements \SLiib\IException\InvalidParameter
 {
 
 }

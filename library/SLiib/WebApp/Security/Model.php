@@ -18,21 +18,26 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Model
+ * @package    SLiib\WebApp
+ * @subpackage Security
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security;
+use SLiib\WebApp\Request,
+    SLiib\WebApp\Security\Exception,
+    SLiib\WebApp\Security\Rule;
+
 /**
- * SLiib_WebApp_Security_Model
+ * \SLiib\WebApp\Security\Model
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Model
+ * @package    SLiib\WebApp
+ * @subpackage Security
  */
-abstract class SLiib_WebApp_Security_Model
+abstract class Model
 {
 
     /**
@@ -79,7 +84,7 @@ abstract class SLiib_WebApp_Security_Model
 
     /**
      * Request object
-     * @var SLiib_WebApp_Request
+     * @var \SLiib\WebApp\Request
      */
     private $_request;
 
@@ -87,22 +92,18 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Construct
      *
-     * @throws SLiib_WebApp_Security_Exception
+     * @throws \SLiib\WebApp\Security\Exception
      *
      * @return void
      */
     public function __construct()
     {
         if (is_null($this->_model)) {
-            throw new SLiib_WebApp_Security_Exception(
-                'Security model undefined'
-            );
+            throw new Exception('Security model undefined');
         }
 
         if (!in_array($this->_model, array('Positive', 'Negative'))) {
-            throw new SLiib_WebApp_Security_Exception(
-                'Security model `' . $this->_model . '` invalid'
-            );
+            throw new Exception('Security model `' . $this->_model . '` invalid');
         }
 
     }
@@ -111,14 +112,14 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Running checker
      *
-     * @throws SLiib_WebApp_Security_Exception_CheckerError
-     * @throws SLiib_WebApp_Security_Exception_HackingAttempt
+     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws \SLiib\WebApp\Security\Exception\HackingAttempt
      *
      * @return boolean
      */
     public final function run()
     {
-        $this->_request = SLiib_WebApp_Request::getInstance();
+        $this->_request = Request::getInstance();
 
         foreach ($this->_rules as $rule) {
             foreach ($rule->getLocation() as $location) {
@@ -142,14 +143,14 @@ abstract class SLiib_WebApp_Security_Model
                         $result = $this->_checkReferer($rule);
                         break;
                     default:
-                        throw new SLiib_WebApp_Security_Exception_CheckerError(
+                        throw new Exception\CheckerError(
                             'Location for `' . $this->_name . '` checker is not valid'
                         );
                         break;
                 }
 
                 if (!$result) {
-                    throw new SLiib_WebApp_Security_Exception_HackingAttempt(
+                    throw new Exception\HackingAttempt(
                         $this->_name, $rule, $location, $this->_patternError
                     );
                 }
@@ -164,16 +165,16 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Add a rule
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to add
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to add
      *
-     * @throws SLiib_WebApp_Security_Exception_CheckerError
+     * @throws \SLiib\WebApp\Security\Exception\CheckerError
      *
-     * @return SLiib_WebApp_Security_Model
+     * @return \SLiib\WebApp\Security\Model
      */
-    public final function addRule(SLiib_WebApp_Security_Rule $rule)
+    public final function addRule(Rule $rule)
     {
         if ($this->_ruleExists($rule->getId())) {
-            throw new SLiib_WebApp_Security_Exception_CheckerError(
+            throw new Exception\CheckerError(
                 'Id ' . $rule->getId() . ' already used by another rule.'
             );
         }
@@ -189,16 +190,14 @@ abstract class SLiib_WebApp_Security_Model
      *
      * @param int $ruleId Rule id to delete
      *
-     * @throws SLiib_WebApp_Security_Exception_CheckerError
+     * @throws \SLiib\WebApp\Security\Exception\CheckerError
      *
-     * @return SLiib_WebApp_Security_Model
+     * @return \SLiib\WebApp\Security\Model
      */
     public function deleteRule($ruleId)
     {
         if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_WebApp_Security_Exception_CheckerError(
-                'Rule ' . $ruleId . ' does not exist.'
-            );
+            throw new Exception\CheckerError('Rule ' . $ruleId . ' does not exist.');
         }
 
         unset($this->_rules[$ruleId]);
@@ -212,16 +211,14 @@ abstract class SLiib_WebApp_Security_Model
      *
      * @param int $ruleId Rule Id to get
      *
-     * @throws SLiib_WebApp_Security_Exception_CheckerError
+     * @throws \SLiib\WebApp\Security\Exception\CheckerError
      *
-     * @return SLiib_WebApp_Security_Rule
+     * @return \SLiib\WebApp\Security\Rule
      */
     public function getRule($ruleId)
     {
         if (!$this->_ruleExists($ruleId)) {
-            throw new SLiib_WebApp_Security_Exception_CheckerError(
-                'Rule ' . $ruleId . ' does not exist.'
-            );
+            throw new Exception\CheckerError('Rule ' . $ruleId . ' does not exist.');
         }
 
         return $this->_rules[$ruleId];
@@ -283,11 +280,11 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Check in request uri
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to check
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkRequestUri($rule)
+    private final function _checkRequestUri(Rule $rule)
     {
         $requestUri = $this->_request->getRequestUri();
         return $this->_check($rule, $requestUri);
@@ -298,11 +295,11 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Check in parameters
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to check
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkParameters($rule)
+    private final function _checkParameters(Rule $rule)
     {
         $params = $this->_request->getParameters();
         foreach ($params as $key => $value) {
@@ -323,11 +320,11 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Check in user agent
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to check
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkUserAgent($rule)
+    private final function _checkUserAgent(Rule $rule)
     {
         $userAgent = $this->_request->getUserAgent();
         return $this->_check($rule, $userAgent);
@@ -338,11 +335,11 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Check in http method
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to check
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkMethod($rule)
+    private final function _checkMethod(Rule $rule)
     {
         $method = $this->_request->getRequestMethod();
         return $this->_check($rule, $method);
@@ -353,11 +350,11 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Check in cookies
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to check
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkCookies($rule)
+    private final function _checkCookies(Rule $rule)
     {
         $cookies = $this->_request->getCookies();
 
@@ -379,11 +376,11 @@ abstract class SLiib_WebApp_Security_Model
     /**
      * Check in referer
      *
-     * @param SLiib_WebApp_Security_Rule $rule Rule to check
+     * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
      * @return boolean
      */
-    private final function _checkReferer($rule)
+    private final function _checkReferer(Rule $rule)
     {
         $referer = $this->_request->getReferer();
         return $this->_check($rule, $referer);

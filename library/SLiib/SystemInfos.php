@@ -26,11 +26,12 @@
  */
 
 namespace SLiib;
-use SLiib\SystemInfos\Interfaces,
-    SLiib\SystemInfos\Exception;
+use SLiib\SystemInfos,
+    SLiib\SystemInfos\Interfaces;
+
 
 /**
- * SLiib\SystemInfos
+ * \SLiib\SystemInfos
  *
  * @package SLiib\SystemInfos
  */
@@ -53,14 +54,14 @@ class SystemInfos implements
      *                          possible : 'serialize' qui permet de récupérer
      *                          le résultat de la commande sérialisé.
      *
-     * @throws SLiib\SystemInfos\Exception\BadMethodCall
+     * @throws \SLiib\SystemInfos\Exception\BadMethodCall
      *
      * @return string résultat de la commande
      */
     public static function __callStatic($name, $arguments)
     {
         if (!defined('static::' . $name)) {
-            throw new Exception\BadMethodCall('Command not found!');
+            throw new SystemInfos\Exception\BadMethodCall('Command not found!');
         }
 
         $result = self::_execute(constant('static::' . $name));
@@ -79,7 +80,7 @@ class SystemInfos implements
      *
      * @param string $cmd La commande a exécuter
      *
-     * @throws SLiib\SystemInfos\Exception\CommandFailed
+     * @throws \SLiib\SystemInfos\Exception\CommandFailed
      *
      * @return array Tableau contenant le résultat de la commande.
      */
@@ -113,7 +114,7 @@ class SystemInfos implements
             $returnValue = proc_close($process);
 
             if ($returnValue != 0) {
-                throw new Exception\CommandFailed(
+                throw new SystemInfos\Exception\CommandFailed(
                     'Command `' . $cmd . '` failed!'
                 );
             }

@@ -29,7 +29,7 @@
 namespace SLiib\SolR;
 
 /**
- * SLiib\SolR\Exception
+ * \SLiib\SolR\Exception
  *
  * @package    SLiib\SolR
  * @subpackage Exception

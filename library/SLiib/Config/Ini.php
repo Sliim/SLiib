@@ -33,7 +33,7 @@ use SLiib\Config,
     SLiib\String;
 
 /**
- * SLiib\Config\Ini
+ * \SLiib\Config\Ini
  *
  * @package    SLiib\Config
  * @subpackage Ini
@@ -48,9 +48,9 @@ class Ini extends \SLiib\Config
      * @param string           $file File to read
      * @param string[optional] $env  Config environment
      *
-     * @throws SLiib\Config\Exception\UndefinedProperty
+     * @throws \SLiib\Config\Exception\UndefinedProperty
      *
-     * @return SLiib\Config
+     * @return \SLiib\Config
      */
     public static function read($file, $env=NULL)
     {
@@ -94,7 +94,7 @@ class Ini extends \SLiib\Config
     /**
      * Parse le fichier de configuration
      *
-     * @throws SLiib\Config\Exception\SyntaxError
+     * @throws \SLiib\Config\Exception\SyntaxError
      *
      * @return void
      */
@@ -120,9 +120,9 @@ class Ini extends \SLiib\Config
      *
      * @param array $section Section to parse
      *
-     * @throws SLiib\Config\Exception\SyntaxError
+     * @throws \SLiib\Config\Exception\SyntaxError
      *
-     * @return SLiib\Config
+     * @return \SLiib\Config
      */
     private function _parseSection($section)
     {
@@ -181,7 +181,7 @@ class Ini extends \SLiib\Config
      * @param string &$key  Multiple Key
      * @param mixed  $value Origin value
      *
-     * @return SLiib\Config
+     * @return \SLiib\Config
      */
     private function _parseMultipleSection(&$key, $value)
     {
@@ -221,7 +221,7 @@ class Ini extends \SLiib\Config
      * @param int    $errno  Error level
      * @param string $errstr Error message
      *
-     * @throws SLiib\Config\Exception\SyntaxError
+     * @throws \SLiib\Config\Exception\SyntaxError
      *
      * @return void
      */

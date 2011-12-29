@@ -26,18 +26,23 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Checker;
+use SLiib\WebApp\Security\Checker,
+    SLiib\WebApp\Security\Exception,
+    SLiib\WebApp\Request;
+
 /**
- * Test class for SLiib_WebApp_Security_Checker_PHPCodeInject.
+ * Test class for \SLiib\WebApp\Security\Checker\PHPCodeInject.
  *
  * @package    Tests
  * @subpackage UnitTests
  */
-class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_TestCase
+class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
      * Test object
-     * @var SLiib_WebApp_Security_Checker_PHPCodeInject
+     * @var \SLiib\WebApp\Security\Checker\PHPCodeInject
      */
     protected $_object;
 
@@ -46,13 +51,13 @@ class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @covers SLiib_WebApp_Security_Checker_PHPCodeInject::__construct
+     * @covers \SLiib\WebApp\Security\Checker\PHPCodeInject::__construct
      *
      * @return void
      */
     public function setUp()
     {
-        $this->_object = new SLiib_WebApp_Security_Checker_PHPCodeInject();
+        $this->_object = new Checker\PHPCodeInject();
 
     }
 
@@ -73,14 +78,14 @@ class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_
     /**
      * Test run
      *
-     * @covers SLiib_WebApp_Security_Checker_PHPCodeInject::run
+     * @covers \SLiib\WebApp\Security\Checker\PHPCodeInject::run
      *
      * @return void
      */
     public function testRun()
     {
-        Tools_Request::setPost(array('foo' => 'bar'));
-        SLiib_WebApp_Request::init();
+        \Tools\Request::setPost(array('foo' => 'bar'));
+        Request::init();
 
         $result = $this->_object->run();
         $this->assertTrue($result);
@@ -95,18 +100,18 @@ class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_
      */
     public function testRunWithIncludeInjection()
     {
-        Tools_Request::setRequestMethod('POST');
-        Tools_Request::setPost(
+        \Tools\Request::setRequestMethod('POST');
+        \Tools\Request::setPost(
             array('foo' => '\'; include \'ohmygad\';')
         );
-        SLiib_WebApp_Request::init();
+        Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+        } catch (Security\Exception\HackingAttempt $e) {
+            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (PHPUnit_Framework_Error $e) {
+        } catch (\PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
         }
 
@@ -122,18 +127,18 @@ class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_
      */
     public function testRunWithFilegetcontentsInjection()
     {
-        Tools_Request::setRequestMethod('POST');
-        Tools_Request::setPost(
+        \Tools\Request::setRequestMethod('POST');
+        \Tools\Request::setPost(
             array('foo' => '\'; file_get_contents(\'/etc/hosts\');')
         );
-        SLiib_WebApp_Request::init();
+        Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+        } catch (Security\Exception\HackingAttempt $e) {
+            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (PHPUnit_Framework_Error $e) {
+        } catch (\PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
         }
 
@@ -149,18 +154,18 @@ class SLiib_WebApp_Security_Checker_PHPCodeInjectTest extends PHPUnit_Framework_
      */
     public function testRunWithRemoteCmdExec()
     {
-        Tools_Request::setRequestMethod('POST');
-        Tools_Request::setPost(
+        \Tools\Request::setRequestMethod('POST');
+        \Tools\Request::setPost(
             array('foo' => '\'; exec(\'nc -l -p 1337 -e /bin/bash\');')
         );
-        SLiib_WebApp_Request::init();
+        Request::init();
 
         try {
             $this->_object->run();
-        } catch (SLiib_WebApp_Security_Exception_HackingAttempt $e) {
-            $this->assertInstanceOf('SLiib_WebApp_Security_Exception_HackingAttempt', $e);
+        } catch (Security\Exception\HackingAttempt $e) {
+            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
             return;
-        } catch (PHPUnit_Framework_Error $e) {
+        } catch (\PHPUnit_Framework_Error $e) {
             $this->fail('Bad exception has been raised');
         }
 

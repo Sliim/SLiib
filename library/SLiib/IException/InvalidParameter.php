@@ -28,7 +28,7 @@
 namespace SLiib\IException;
 
 /**
- * SLiib\IException\InvalidParam
+ * \SLiib\IException\InvalidParam
  *
  * @package SLiib\IException
  */

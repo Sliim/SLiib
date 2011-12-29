@@ -18,22 +18,26 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Checker
+ * @package    SLiib\WebApp
+ * @subpackage Security\Checker
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Checker;
+use SLiib\WebApp\Security\Model,
+    SLiib\WebApp\Security\Rule;
+
 /**
- * SLiib_WebApp_Security_Checker_FilenamePolicy
+ * \SLiib\WebApp\Security\Checker\FilenamePolicy
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Checker
+ * @package    SLiib\WebApp
+ * @subpackage Security\Checker
  */
-class SLiib_WebApp_Security_Checker_FilenamePolicy
-extends SLiib_WebApp_Security_Model_NegativeSecurity
+class FilenamePolicy
+extends Model\NegativeSecurity
 {
 
 
@@ -46,11 +50,7 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
     {
         $this->_setName('Filename Policy');
 
-        $fileExtensionRule = new SLiib_WebApp_Security_Rule(
-            1300,
-            'Forbidden file\'s extension policy'
-        );
-
+        $fileExtensionRule = new Rule(1300, 'Forbidden file\'s extension policy');
         $fileExtensionRule->addPatternElement(
             array(
              '\.backup', '\.bak', '\.bat', '\.cfg', '\.cmd', '\.config', '\.conf', '\.dat', '\.db',
@@ -59,10 +59,7 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
             )
         )->addLocation(self::LOCATION_REQUEST_URI);
 
-        $fileNameRule = new SLiib_WebApp_Security_Rule(
-            1301,
-            'Forbidden file\'s name policy'
-        );
+        $fileNameRule = new Rule(1301, 'Forbidden file\'s name policy');
         $fileNameRule->addPatternElement(
             array(
              '\/etc\/passwd',
@@ -72,7 +69,7 @@ extends SLiib_WebApp_Security_Model_NegativeSecurity
         )->addLocation(self::LOCATION_REQUEST_URI);
 
         $this->addRule($fileExtensionRule)
-            ->addRule($fileNameRule);
+             ->addRule($fileNameRule);
 
     }
 

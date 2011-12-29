@@ -26,13 +26,17 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Test\Controller;
+use SLiib\WebApp\Controller,
+    SLiib\WebApp\Session;
+
 /**
  * Test controller
  *
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Test_Controller_Test extends SLiib_WebApp_Controller
+class Test extends Controller
 {
 
 
@@ -55,7 +59,7 @@ class Test_Controller_Test extends SLiib_WebApp_Controller
      */
     public function modelAction()
     {
-        $model = new Test_Model_MyModel();
+        $model = new \Test\Model\MyModel();
 
         $this->_view->title   = 'Test model!';
         $this->_view->message = $model->toString();
@@ -70,7 +74,7 @@ class Test_Controller_Test extends SLiib_WebApp_Controller
      */
     public function libraryAction()
     {
-        $lib = new Lib_Class();
+        $lib = new \Lib\MyClass();
 
         $this->_view->title   = 'Test library!';
         $this->_view->message = $lib->toString();
@@ -195,7 +199,7 @@ class Test_Controller_Test extends SLiib_WebApp_Controller
         $this->_view->logged   = FALSE;
 
         $params  = $this->_request->getParameters();
-        $session = new SLiib_WebApp_Session('TestSession');
+        $session = new Session('TestSession');
 
         if (array_key_exists('login', $params)) {
             if (array_key_exists('username', $params) && array_key_exists('password', $params)) {

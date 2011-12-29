@@ -29,7 +29,7 @@
 namespace SLiib\SystemInfos\Exception;
 
 /**
- * SLiib\SystemInfos\Exception\BadMethodCall
+ * \SLiib\SystemInfos\Exception\BadMethodCall
  *
  * @package    SLiib\SystemInfos
  * @subpackage Exception

@@ -29,7 +29,7 @@
 namespace SLiib\SystemInfos\Interfaces;
 
 /**
- * SLiib\SystemInfos\Interfaces\IPhp
+ * \SLiib\SystemInfos\Interfaces\IPhp
  *
  * @package    SLiib\SystemInfos
  * @subpackage Interfaces

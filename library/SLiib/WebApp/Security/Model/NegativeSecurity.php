@@ -18,22 +18,24 @@
  * PHP version 5
  *
  * @category   SLiib
- * @package    SLiib_WebApp_Security
- * @subpackage Abstract
+ * @package    SLiib\WebApp
+ * @subpackage Security\Model
  * @author     Sliim <sliim@mailoo.org>
  * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
  * @version    Release: 0.2
  * @link       http://www.sliim-projects.eu
  */
 
+namespace SLiib\WebApp\Security\Model;
+
 /**
- * SLiib_WebApp_Security_Model_NegativeSecurity
+ * \SLiib\WebApp\Security\Model\NegativeSecurity
  *
- * @package    SLiib_WebApp_Security
- * @subpackage Abstract
+ * @package    SLiib\WebApp
+ * @subpackage Security\Model
  */
-abstract class SLiib_WebApp_Security_Model_NegativeSecurity
-extends SLiib_WebApp_Security_Model
+abstract class NegativeSecurity
+extends \SLiib\WebApp\Security\Model
 {
 
     /**
@@ -46,8 +48,8 @@ extends SLiib_WebApp_Security_Model
     /**
      * Check a pattern in a string
      *
-     * @param SLiib_WebApp_Security_Rule $rule   Rule to check
-     * @param string                     $string String to use
+     * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
+     * @param  string                     $string String to use
      *
      * @return boolean
      */

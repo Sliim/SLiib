@@ -29,7 +29,7 @@
 namespace SLiib\Listing;
 
 /**
- * SLiib\Listing\Exception
+ * \SLiib\Listing\Exception
  *
  * @package    SLiib\Listing
  * @subpackage Exception

@@ -29,7 +29,7 @@
 namespace SLiib\Registry;
 
 /**
- * SLiib\Registry\Exception
+ * \SLiib\Registry\Exception
  *
  * @package    SLiib\Registry
  * @subpackage Exception

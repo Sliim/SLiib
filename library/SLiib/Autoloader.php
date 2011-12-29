@@ -28,7 +28,7 @@
 namespace SLiib;
 
 /**
- * SLiib\Autoloader
+ * \SLiib\Autoloader
  *
  * @package SLiib\Autoloader
  */

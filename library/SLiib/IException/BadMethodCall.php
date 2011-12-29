@@ -28,7 +28,7 @@
 namespace SLiib\IException;
 
 /**
- * SLiib\IException\BadMethodCall
+ * \SLiib\IException\BadMethodCall
  *
  * @package SLiib\IException
  */

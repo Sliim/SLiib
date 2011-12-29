@@ -29,7 +29,7 @@
 namespace SLiib\Log;
 
 /**
- * SLiib\Log\Exception
+ * \SLiib\Log\Exception
  *
  * @package    SLiib\Log
  * @subpackage Exception

@@ -29,7 +29,7 @@
 namespace SLiib\Config\Exception;
 
 /**
- * SLiib\Config\Exception\UndefinedProperty
+ * \SLiib\Config\Exception\UndefinedProperty
  *
  * @package    SLiib\Config
  * @subpackage Exception

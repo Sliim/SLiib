@@ -29,7 +29,7 @@
 namespace SLiib\SystemInfos;
 
 /**
- * SLiib\SystemInfos\Exception
+ * \SLiib\SystemInfos\Exception
  *
  * @package    SLiib\SystemInfos
  * @subpackage Exception
