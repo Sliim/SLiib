@@ -580,7 +580,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     private function _disablePhpUnitErrorHandler()
     {
-        $bs = new Test_Bootstrap(APP_NS);
+        $bs = new \Test\Bootstrap(APP_NS);
         set_error_handler(array($bs, 'errorHandler'));
 
     }

@@ -94,7 +94,7 @@ class Bootstrap extends WebApp\Bootstrap
      * @param string $errfile Error file
      * @param int    $errline Error line
      *
-     * @throws RuntimeException
+     * @throws \RuntimeException
      *
      * @return void
      */
@@ -107,7 +107,7 @@ class Bootstrap extends WebApp\Bootstrap
             $errline
         );
 
-        return $this->_exceptionHandler(new RuntimeException($message, $errno));
+        return $this->_exceptionHandler(new \RuntimeException($message, $errno));
 
     }
 
@@ -115,11 +115,11 @@ class Bootstrap extends WebApp\Bootstrap
     /**
      * Exception Handler
      *
-     * @param Exception $e The exception object
+     * @param \Exception $e The exception object
      *
      * @return void
      */
-    protected function _exceptionHandler(Exception $e)
+    protected function _exceptionHandler(\Exception $e)
     {
         return parent::_exceptionhandler($e);
 

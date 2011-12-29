@@ -45,7 +45,7 @@ class Request
 
     /**
      * Request data
-     * @var stdClass
+     * @var \stdClass
      */
     private $_request = NULL;
 
@@ -220,7 +220,7 @@ class Request
      */
     private function __construct()
     {
-        $this->_request = new stdClass;
+        $this->_request = new \stdClass;
         $this->_initProperties();
 
     }

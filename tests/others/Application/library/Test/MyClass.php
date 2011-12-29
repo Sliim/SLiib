@@ -26,13 +26,15 @@
  * @link       http://www.sliim-projects.eu
  */
 
+namespace Lib;
+
 /**
- * Test Lib_Class
+ * Test \Lib\MyClass
  *
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Lib_Class
+class MyClass
 {
 
 

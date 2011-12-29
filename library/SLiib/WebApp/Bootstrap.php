@@ -204,7 +204,7 @@ abstract class Bootstrap
     protected function _setViewPath($path)
     {
         if (!file_exists($path)) {
-            throw new WebApp\Exception('Directory ' . $path . ' not found.');
+            throw new Exception('Directory ' . $path . ' not found.');
         }
 
         $this->_viewPath = $path;

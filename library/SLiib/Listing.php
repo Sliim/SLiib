@@ -26,7 +26,7 @@
  */
 
 namespace SLiib;
-use SLiib\Listing\Exception;
+use SLiib\Listing;
 
 /**
  * \SLiib\Listing
@@ -75,7 +75,7 @@ class Listing
     public function __construct($dirPath, $listName, $exceptions)
     {
         if (!is_dir($dirPath)) {
-            throw new Exception('Directory `' . $dirPath . '` not found!');
+            throw new Listing\Exception('Directory `' . $dirPath . '` not found!');
         }
 
         $this->_path      = $dirPath;

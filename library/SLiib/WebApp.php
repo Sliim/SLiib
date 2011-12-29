@@ -24,10 +24,11 @@
  * @version  Release: 0.2
  * @link     http://www.sliim-projects.eu
  */
-require_once 'SLiib/Autoloader.php';
 
 namespace SLiib;
 use SLiib\Autoloader;
+
+require_once 'SLiib/Autoloader.php';
 
 /**
  * \SLiib\WebApp
@@ -153,8 +154,9 @@ class WebApp
         }
 
         include $bootstrapPath;
-        class_alias($this->_appNamespace . '_Bootstrap', 'Bootstrap');
-        $this->_bootstrap = new Bootstrap($this->_appNamespace);
+
+        $bsClass = '\\' . $this->_appNamespace . '\\Bootstrap';
+        $this->_bootstrap = new $bsClass($this->_appNamespace);
 
     }
 

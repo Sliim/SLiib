@@ -79,7 +79,7 @@ class Dispatcher
         );
 
         if (!class_exists($controllerName)) {
-            throw new WebApp\Exception\NoDispatchable(
+            throw new Exception\NoDispatchable(
                 'Controller `' . $controllerName . '` doesn\'t exist.'
             );
         }

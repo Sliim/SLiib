@@ -76,10 +76,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAutoload()
     {
-        $res = Autoloader::autoload('\SLiib\Listing');
-        $this->assertTrue($res);
-
-        $res = Autoloader::autoload('\SLiib\Listing');
+        $res = Autoloader::autoload('SLiib\Listing');
         $this->assertTrue($res);
 
         $res = Autoloader::autoload('SLiib');
