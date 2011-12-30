@@ -67,8 +67,8 @@ class ModelTest extends \PHPUnit_Framework_TestCase
                 'Test Rule',
                 '^w00t$',
                 array(
-                 Model::LOCATION_PARAMETERS,
-                 Model::LOCATION_COOKIES,
+                 Rule::LOCATION_PARAMETERS,
+                 Rule::LOCATION_COOKIES,
                 )
             )
         );
@@ -151,11 +151,11 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             'Test run rule',
             'ImALamz-GiveMeYourRoot',
             array(
-             Model::LOCATION_COOKIES,
-             Model::LOCATION_HTTP_METHOD,
-             Model::LOCATION_PARAMETERS,
-             Model::LOCATION_REFERER,
-             Model::LOCATION_USERAGENT,
+             Rule::LOCATION_COOKIES,
+             Rule::LOCATION_HTTP_METHOD,
+             Rule::LOCATION_PARAMETERS,
+             Rule::LOCATION_REFERER,
+             Rule::LOCATION_USERAGENT,
             )
         );
 
@@ -309,7 +309,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
                 2,
                 'Test second Rule',
                 '^foo(.*)bar$',
-                Model::LOCATION_PARAMETERS
+                Rule::LOCATION_PARAMETERS
             )
         );
 
@@ -323,7 +323,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
                     1,
                     'Test Rule with already exist id',
                     '^foo(.*)bar$',
-                    Model::LOCATION_PARAMETERS
+                    Rule::LOCATION_PARAMETERS
                 )
             );
         } catch (Exception\CheckerError $e) {

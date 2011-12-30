@@ -39,18 +39,6 @@ abstract class Model
 {
 
     /**
-     * Location contantes
-     *
-     * @var string
-     */
-    const LOCATION_REQUEST_URI = 'Request URI';
-    const LOCATION_PARAMETERS  = 'Parameters';
-    const LOCATION_USERAGENT   = 'UserAgent';
-    const LOCATION_HTTP_METHOD = 'HTTP Method Request';
-    const LOCATION_COOKIES     = 'Cookies';
-    const LOCATION_REFERER     = 'Referer';
-
-    /**
      * Security model
      */
     const MODEL_NEGATIVE = 'Negative';
@@ -122,22 +110,22 @@ abstract class Model
         foreach ($this->_rules as $rule) {
             foreach ($rule->getLocation() as $location) {
                 switch ($location) {
-                    case self::LOCATION_REQUEST_URI:
+                    case Rule::LOCATION_REQUEST_URI:
                         $result = $this->_checkRequestUri($rule);
                         break;
-                    case self::LOCATION_PARAMETERS:
+                    case Rule::LOCATION_PARAMETERS:
                         $result = $this->_checkParameters($rule);
                         break;
-                    case self::LOCATION_USERAGENT:
+                    case Rule::LOCATION_USERAGENT:
                         $result = $this->_checkUserAgent($rule);
                         break;
-                    case self::LOCATION_HTTP_METHOD:
+                    case Rule::LOCATION_HTTP_METHOD:
                         $result = $this->_checkMethod($rule);
                         break;
-                    case self::LOCATION_COOKIES:
+                    case Rule::LOCATION_COOKIES:
                         $result = $this->_checkCookies($rule);
                         break;
-                    case self::LOCATION_REFERER:
+                    case Rule::LOCATION_REFERER:
                         $result = $this->_checkReferer($rule);
                         break;
                     default:

@@ -38,6 +38,18 @@ class Rule
 {
 
     /**
+     * Location constantes
+     *
+     * @var string
+     */
+    const LOCATION_REQUEST_URI = 'Request URI';
+    const LOCATION_PARAMETERS  = 'Parameters';
+    const LOCATION_USERAGENT   = 'UserAgent';
+    const LOCATION_HTTP_METHOD = 'HTTP Method Request';
+    const LOCATION_COOKIES     = 'Cookies';
+    const LOCATION_REFERER     = 'Referer';
+
+    /**
      * Rule id
      * @var int
      */

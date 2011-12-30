@@ -57,7 +57,7 @@ extends Model\NegativeSecurity
              '\.inc', '\.ini', '\.lnk', '\.log', '\.old', '\.pass', '\.pwd', '\.sql', '\.xml',
              '\.xsd', '\.xsx',
             )
-        )->addLocation(self::LOCATION_REQUEST_URI);
+        )->addLocation(Rule::LOCATION_REQUEST_URI);
 
         $fileNameRule = new Rule(1301, 'Forbidden file\'s name policy');
         $fileNameRule->addPatternElement(
@@ -66,7 +66,7 @@ extends Model\NegativeSecurity
              '\/etc\/group',
              '\/etc\/shadow',
             )
-        )->addLocation(self::LOCATION_REQUEST_URI);
+        )->addLocation(Rule::LOCATION_REQUEST_URI);
 
         $this->addRule($fileExtensionRule)
             ->addRule($fileNameRule);

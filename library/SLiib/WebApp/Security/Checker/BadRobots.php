@@ -80,7 +80,7 @@ extends Model\NegativeSecurity
                  'python-urllib',
                  'mozilla/5.0 sf',
                 )
-            )->addLocation(self::LOCATION_USERAGENT);
+            )->addLocation(Rule::LOCATION_USERAGENT);
 
         $this->addRule($scanner);
 

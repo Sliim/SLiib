@@ -58,8 +58,8 @@ extends Model\NegativeSecurity
             )
         )->addLocation(
             array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+             Rule::LOCATION_PARAMETERS,
+             Rule::LOCATION_USERAGENT,
             )
         );
 
@@ -71,8 +71,8 @@ extends Model\NegativeSecurity
             )
         )->addLocation(
             array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+             Rule::LOCATION_PARAMETERS,
+             Rule::LOCATION_USERAGENT,
             )
         );
 
@@ -87,8 +87,8 @@ extends Model\NegativeSecurity
             )
         )->addLocation(
             array(
-             self::LOCATION_PARAMETERS,
-             self::LOCATION_USERAGENT,
+             Rule::LOCATION_PARAMETERS,
+             Rule::LOCATION_USERAGENT,
             )
         );
 

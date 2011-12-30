@@ -59,7 +59,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
             1337,
             'RuleTest',
             '^foo(.*)bar$',
-            Model::LOCATION_PARAMETERS
+            Rule::LOCATION_PARAMETERS
         );
 
     }
@@ -137,7 +137,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     {
         $location = $this->_object->getLocation();
         $this->assertInternalType('array', $location);
-        $this->assertTrue(in_array(Model::LOCATION_PARAMETERS, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
 
     }
 
@@ -169,28 +169,28 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddLocation()
     {
-        $this->_object->addLocation(Model::LOCATION_COOKIES);
+        $this->_object->addLocation(Rule::LOCATION_COOKIES);
         $location = $this->_object->getLocation();
 
         $this->assertInternalType('array', $location);
-        $this->assertTrue(in_array(Model::LOCATION_PARAMETERS, $location));
-        $this->assertTrue(in_array(Model::LOCATION_COOKIES, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_COOKIES, $location));
 
         $this->_object->addLocation(
             array(
-             Model::LOCATION_HTTP_METHOD,
-             Model::LOCATION_REFERER,
-             Model::LOCATION_USERAGENT,
+             Rule::LOCATION_HTTP_METHOD,
+             Rule::LOCATION_REFERER,
+             Rule::LOCATION_USERAGENT,
             )
         );
 
         $location = $this->_object->getLocation();
         $this->assertInternalType('array', $location);
-        $this->assertTrue(in_array(Model::LOCATION_PARAMETERS, $location));
-        $this->assertTrue(in_array(Model::LOCATION_COOKIES, $location));
-        $this->assertTrue(in_array(Model::LOCATION_HTTP_METHOD, $location));
-        $this->assertTrue(in_array(Model::LOCATION_REFERER, $location));
-        $this->assertTrue(in_array(Model::LOCATION_USERAGENT, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_COOKIES, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_HTTP_METHOD, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_REFERER, $location));
+        $this->assertTrue(in_array(Rule::LOCATION_USERAGENT, $location));
 
     }
 
@@ -204,7 +204,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeleteLocation()
     {
-        $this->_object->deleteLocation(Model::LOCATION_PARAMETERS);
+        $this->_object->deleteLocation(Rule::LOCATION_PARAMETERS);
         $location = $this->_object->getLocation();
 
         $this->assertInternalType('array', $location);
