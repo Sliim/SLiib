@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License along
  * with SLiib. If not, see <http://www.gnu.org/licenses/gpl-3.0.html>.
  *
- * PHP version 5
+ * PHP Version 5.3
  *
  * @category SLiib
  * @package  SLiib\IException
