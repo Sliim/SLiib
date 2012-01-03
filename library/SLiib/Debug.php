@@ -41,18 +41,17 @@ class Debug
      *
      * @param mixed             $var  Variable to dump
      * @param boolean[optional] $echo Print dump in stdout
-     * @param boolean[optional] $pre  Around dump with <pre> tag
      *
      * @return string
      */
-    public static function dump($var, $echo=TRUE, $pre=FALSE)
+    public static function dump($var, $echo=TRUE)
     {
         ob_start();
         var_dump($var);
         $dump = ob_get_contents();
         ob_end_clean();
 
-        if ($pre) {
+        if (php_sapi_name() !== 'cli') {
             $dump = '<pre>' . $dump . '</pre>';
         }
 
