@@ -1,5 +1,6 @@
 .project
 .settings
 tests/logs
+tests/others/Stubs/SolR
 docs/docblox/output
 docs/docblox/log
