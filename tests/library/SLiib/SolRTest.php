@@ -72,6 +72,35 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
 
     /**
+     * Start Solr stub instance
+     *
+     * @return void
+     */
+    public static function setUpBeforeClass()
+    {
+        if (\Stubs\SolR::installed() && \Stubs\SolR::jvmAvailable()) {
+            \Stubs\SolR::start();
+        }
+
+        //Wait for SolR started
+        sleep(5);
+
+    }
+
+
+    /**
+     * Stop Solr stub instance
+     *
+     * @return void
+     */
+    public static function tearDownAfterClass()
+    {
+        \Stubs\SolR::stop();
+
+    }
+
+
+    /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
