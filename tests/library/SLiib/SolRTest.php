@@ -35,11 +35,6 @@ namespace SLiib;
  * This test use a stub.
  * You can install it with the script tests/others/stub_solr_install.sh.
  *
- * /!\ SolR require a JVM !
- *
- * To lauch it : move in Stubs/SolR and execute :
- * java -jar start.jar
- *
  * @package    Tests
  * @subpackage UnitTests
  */
