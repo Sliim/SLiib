@@ -109,7 +109,7 @@ class Ini extends \SLiib\Config
             throw new Exception\SyntaxError('Can\'t parse `' . static::$_file . '`');
         }
 
-        Utils::mergeObject($this, $this->_parseSection($config));
+        Utils\Object::merge($this, $this->_parseSection($config));
 
     }
 
@@ -142,8 +142,8 @@ class Ini extends \SLiib\Config
                         );
                     }
 
-                    $key    = String::clean($segment[0]);
-                    $parent = String::clean($segment[1]);
+                    $key    = Utils\String::clean($segment[0]);
+                    $parent = Utils\String::clean($segment[1]);
 
                     if (!isset($object->$parent)) {
                         throw new Exception\SyntaxError(
@@ -156,11 +156,11 @@ class Ini extends \SLiib\Config
                 $object->$key = $this->_parseSection($value);
 
                 if (isset($parent)) {
-                    Utils::mergeObject($object->$key, $object->$parent);
+                    Utils\Object::merge($object->$key, $object->$parent);
                 }
             } else {
                 if (isset($object->$key)) {
-                    Utils::mergeObject($object->$key, $value);
+                    Utils\Object::merge($object->$key, $value);
                 } else {
                     $object->$key = $value;
                 }
