@@ -44,7 +44,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\Utils\String::clean
      *
-     * @return void
+     * @return \void
      */
     public function testClean()
     {

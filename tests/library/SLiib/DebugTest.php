@@ -40,13 +40,13 @@ class DebugTest extends \PHPUnit_Framework_TestCase
 
     /**
      * String test
-     * @var string
+     * @var \string
      */
     private $_string = 'foo';
 
     /**
      * Integer test
-     * @var int
+     * @var \int
      */
     private $_int = 1337;
 
@@ -54,7 +54,7 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     /**
      * Dump test with php sapi equal cli
      *
-     * @return void
+     * @return \void
      */
     public function testDumpCli()
     {
@@ -78,7 +78,7 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     /**
      * Dump test with php sapi equal 'apache'
      *
-     * @return void
+     * @return \void
      */
     public function testDumpApache()
     {

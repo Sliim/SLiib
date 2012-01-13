@@ -40,7 +40,7 @@ extends \SLiib\WebApp\Security\Model
 
     /**
      * Security model
-     * @var string
+     * @var \string
      */
     protected $_model = self::MODEL_POSITIVE;
 
@@ -49,9 +49,9 @@ extends \SLiib\WebApp\Security\Model
      * Check a pattern in a string
      *
      * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
-     * @param string                      $string String to use
+     * @param \string                     $string String to use
      *
-     * @return boolean
+     * @return \boolean
      */
     protected function _check($rule, $string)
     {

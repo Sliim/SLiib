@@ -48,16 +48,16 @@ class SystemInfos implements
      * correspond à une constante, si la constante existe, la valeur de la
      * constante est éxécuté en tant que commande.
      *
-     * @param string $name      Nom de la méthode appelée
-     * @param array  $arguments Arguments passés à la méthode. Un argument
+     * @param \string $name      Nom de la méthode appelée
+     * @param \array  $arguments Arguments passés à la méthode. Un argument
      *                          possible : 'serialize' qui permet de récupérer
      *                          le résultat de la commande sérialisé.
      *
      * @throws SystemInfos\Exception\BadMethodCall
      *
-     * @return string résultat de la commande
+     * @return \string résultat de la commande
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic($name, array $arguments)
     {
         if (!defined('static::' . $name)) {
             throw new SystemInfos\Exception\BadMethodCall('Command not found!');
@@ -77,11 +77,11 @@ class SystemInfos implements
     /**
      * Exécute une commande avec proc_open
      *
-     * @param string $cmd La commande a exécuter
+     * @param \string $cmd La commande a exécuter
      *
      * @throws SystemInfos\Exception\CommandFailed
      *
-     * @return array Tableau contenant le résultat de la commande.
+     * @return \array Tableau contenant le résultat de la commande.
      */
     private static function _execute($cmd)
     {

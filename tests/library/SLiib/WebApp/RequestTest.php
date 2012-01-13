@@ -46,43 +46,43 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Fake request uri
-     * @var string
+     * @var \string
      */
     private $_requestUri = '/foo/bar/getparam/value';
 
     /**
      * Fake client ip
-     * @var string
+     * @var \string
      */
     private $_clientIp = '127.0.0.3';
 
     /**
      * Fake user agent
-     * @var string
+     * @var \string
      */
     private $_ua = '31337bot';
 
     /**
      * Fake http method
-     * @var string
+     * @var \string
      */
     private $_method = 'GET';
 
     /**
      * Fake referer
-     * @var string
+     * @var \string
      */
     private $_referer = 'http://www.hellokitty.com';
 
     /**
      * Post params
-     * @var array
+     * @var \array
      */
     private $_post = array();
 
     /**
-     * Cookies
-     * @var array
+     * Fake client's cookies
+     * @var \array
      */
     private $_cookies = array();
 
@@ -91,7 +91,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -113,7 +113,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function tearDown()
     {
@@ -125,7 +125,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     /**
      * Test get an instance not initialized
      *
-     * @return void
+     * @return \void
      */
     public function testGetInstanceNotInit()
     {
@@ -152,7 +152,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Request::_initProperties
      * @covers \SLiib\WebApp\Request::_parseUrl
      *
-     * @return void
+     * @return \void
      */
     public function testGetInstance()
     {
@@ -167,7 +167,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getController
      *
-     * @return void
+     * @return \void
      */
     public function testGetController()
     {
@@ -180,7 +180,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     /**
      * Test index controller & index action
      *
-     * @return void
+     * @return \void
      */
     public function testIndexControllerIndexAction()
     {
@@ -195,7 +195,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     /**
      * Test index action
      *
-     * @return void
+     * @return \void
      */
     public function testIndexAction()
     {
@@ -212,7 +212,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getAction
      *
-     * @return void
+     * @return \void
      */
     public function testGetAction()
     {
@@ -227,7 +227,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getRequestUri
      *
-     * @return void
+     * @return \void
      */
     public function testGetRequestUri()
     {
@@ -242,7 +242,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getParameters
      *
-     * @return void
+     * @return \void
      */
     public function testGetParameters()
     {
@@ -272,7 +272,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getClientIp
      *
-     * @return void
+     * @return \void
      */
     public function testGetClientIp()
     {
@@ -287,7 +287,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getUserAgent
      *
-     * @return void
+     * @return \void
      */
     public function testGetUserAgent()
     {
@@ -302,7 +302,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getRequestMethod
      *
-     * @return void
+     * @return \void
      */
     public function testGetRequestMethod()
     {
@@ -317,7 +317,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getCookies
      *
-     * @return void
+     * @return \void
      */
     public function testGetCookies()
     {
@@ -332,7 +332,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::getReferer
      *
-     * @return void
+     * @return \void
      */
     public function testGetReferer()
     {
@@ -347,7 +347,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Request::isPost
      *
-     * @return void
+     * @return \void
      */
     public function testIsPost()
     {
@@ -367,7 +367,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     /**
      * Set test object
      *
-     * @return void
+     * @return \void
      */
     private function _setObject()
     {

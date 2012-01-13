@@ -51,13 +51,13 @@ class Log
 
     /**
      * Log file path
-     * @var string
+     * @var \string
      */
     private $_fileOutput = NULL;
 
     /**
      * Log format
-     * @var string
+     * @var \string
      */
     private $_format = '[%d %t] [%T] - %m';
 
@@ -65,12 +65,12 @@ class Log
     /**
      * Constructor, init file descriptor.
      *
-     * @param string            $fileOutput File path
-     * @param boolean[optional] $add        True add in file.
+     * @param \string            $fileOutput File path
+     * @param \boolean[optional] $add        True add in file.
      *
      * @throws Log\Exception
      *
-     * @return void
+     * @return \void
      */
     public function __construct($fileOutput, $add=FALSE)
     {
@@ -91,7 +91,7 @@ class Log
     /**
      * Destructeur : Close file descriptor.
      *
-     * @return void
+     * @return \void
      */
     public function __destruct()
     {
@@ -103,9 +103,9 @@ class Log
     /**
      * Write in log file
      *
-     * @param string            $string String to write
-     * @param string            $type   Log type
-     * @param boolean[optional] $echo   Print on stdout
+     * @param \string            $string String to write
+     * @param \string            $type   Log type
+     * @param \boolean[optional] $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -126,8 +126,8 @@ class Log
     /**
      * Dump a variable and save it in log file
      *
-     * @param mixed             $var  Variable to debug
-     * @param boolean[optional] $echo Print on stdout
+     * @param \mixed             $var  Variable to debug
+     * @param \boolean[optional] $echo Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -143,8 +143,8 @@ class Log
     /**
      * Write information log
      *
-     * @param string            $string String to write
-     * @param boolean[optional] $echo   Print on stdout
+     * @param \string            $string String to write
+     * @param \boolean[optional] $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -158,8 +158,8 @@ class Log
     /**
      * Write warning log
      *
-     * @param string            $string String to write
-     * @param boolean[optional] $echo   Print on stdout
+     * @param \string            $string String to write
+     * @param \boolean[optional] $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -173,8 +173,8 @@ class Log
     /**
      * Write error log
      *
-     * @param string            $string String to write
-     * @param boolean[optional] $echo   Print on stdout
+     * @param \string            $string String to write
+     * @param \boolean[optional] $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -188,8 +188,8 @@ class Log
     /**
      * Write critical log
      *
-     * @param string            $string String to write
-     * @param boolean[optional] $echo   Print on stdout
+     * @param \string            $string String to write
+     * @param \boolean[optional] $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -210,9 +210,9 @@ class Log
      * -message : %m
      * -type : %T
      *
-     * @param string $format Format to set.
+     * @param \string $format Format to set.
      *
-     * @return void
+     * @return \void
      */
     public function setFormat($format)
     {
@@ -224,7 +224,7 @@ class Log
     /**
      * Get log format
      *
-     * @return string
+     * @return \string
      */
     public function getFormat()
     {
@@ -236,10 +236,10 @@ class Log
     /**
      * Generate log string
      *
-     * @param string $message String input
-     * @param string $type    Log type (error, crit, warn, info..)
+     * @param \string $message String input
+     * @param \string $type    Log type (error, crit, warn, info..)
      *
-     * @return string
+     * @return \string
      */
     private function _genLog($message, $type)
     {
@@ -259,7 +259,7 @@ class Log
     /**
      * Get date callback (%d)
      *
-     * @return string
+     * @return \string
      */
     private static function _getDate()
     {
@@ -271,7 +271,7 @@ class Log
     /**
      * Get time callback (%t)
      *
-     * @return string
+     * @return \string
      */
     private static function _getTime()
     {
@@ -283,7 +283,7 @@ class Log
     /**
      * Get IP callback (%@)
      *
-     * @return string
+     * @return \string
      */
     private static function _getIp()
     {
@@ -299,7 +299,7 @@ class Log
     /**
      * Get user agent callback (%U)
      *
-     * @return string
+     * @return \string
      */
     private static function _getUserAgent()
     {
@@ -315,10 +315,10 @@ class Log
     /**
      * Write string on stdout
      *
-     * @param string $string String to print
-     * @param string $type   Log type
+     * @param \string $string String to print
+     * @param \string $type   Log type
      *
-     * @return void
+     * @return \void
      */
     private function _printStdout($string, $type)
     {

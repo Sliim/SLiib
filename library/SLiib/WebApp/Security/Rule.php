@@ -39,8 +39,7 @@ class Rule
 
     /**
      * Location constantes
-     *
-     * @var string
+     * @var \string
      */
     const LOCATION_REQUEST_URI = 'Request URI';
     const LOCATION_PARAMETERS  = 'Parameters';
@@ -51,43 +50,43 @@ class Rule
 
     /**
      * Rule id
-     * @var int
+     * @var \int
      */
     private $_id;
 
     /**
      * Rule message
-     * @var string
+     * @var \string
      */
     private $_message;
 
     /**
      * Rule pattern
-     * @var string
+     * @var \string
      */
     private $_pattern;
 
     /**
      * Rule locations
-     * @var array
+     * @var \array
      */
     private $_locations = array();
 
     /**
      * Element Pattern
-     * @var array
+     * @var \array
      */
     private $_patternElements = array();
 
     /**
      * preg quote enabled
-     * @var boolean
+     * @var \boolean
      */
     private $_pregQuoteEnabled = FALSE;
 
     /**
      * Flags for regular expression
-     * @var array
+     * @var \array
      */
     private $_flags = array();
 
@@ -95,12 +94,12 @@ class Rule
     /**
      * Rule init
      *
-     * @param int              $id       Rule Id
-     * @param string           $message  Rule message
-     * @param string[optional] $pattern  Rule pattern
-     * @param mixed[optional]  $location Rule location
+     * @param \int              $id       Rule Id
+     * @param \string           $message  Rule message
+     * @param \string[optional] $pattern  Rule pattern
+     * @param \mixed[optional]  $location Rule location
      *
-     * @return void
+     * @return \void
      */
     public function __construct($id, $message, $pattern=NULL, $location=NULL)
     {
@@ -127,7 +126,7 @@ class Rule
     /**
      * Id getter
      *
-     * @return int
+     * @return \int
      */
     public function getId()
     {
@@ -139,7 +138,7 @@ class Rule
     /**
      * Message getter
      *
-     * @return string
+     * @return \string
      */
     public function getMessage()
     {
@@ -151,7 +150,7 @@ class Rule
     /**
      * Pattern getter
      *
-     * @return string
+     * @return \string
      */
     public function getPattern()
     {
@@ -163,7 +162,7 @@ class Rule
     /**
      * Location getter
      *
-     * @return array
+     * @return \array
      */
     public function getLocation()
     {
@@ -175,7 +174,7 @@ class Rule
     /**
      * Get rule flags
      *
-     * @return string
+     * @return \string
      */
     public function getFlags()
     {
@@ -188,7 +187,7 @@ class Rule
      * Pattern setter
      * This disable element pattern !
      *
-     * @param string $pattern Pattern to set
+     * @param \string $pattern Pattern to set
      *
      * @return \SLiib\WebApp\Security\Rule
      */
@@ -208,7 +207,7 @@ class Rule
     /**
      * Add a rule's location
      *
-     * @param string $location Location to add
+     * @param \string $location Location to add
      *
      * @return \SLiib\WebApp\Security\Rule
      */
@@ -228,7 +227,7 @@ class Rule
     /**
      * Delete a rule's location
      *
-     * @param string $location Location to add
+     * @param \string $location Location to add
      *
      * @return \SLiib\WebApp\Security\Rule
      */
@@ -247,7 +246,7 @@ class Rule
     /**
      * Add an element Pattern
      *
-     * @param mixed $element Element to add
+     * @param \mixed $element Element to add
      *
      * @return \SLiib\WebApp\Security\Rule
      */
@@ -268,7 +267,7 @@ class Rule
     /**
      * Delete an element pattern if exists
      *
-     * @param string $element Element to delete
+     * @param \string $element Element to delete
      *
      * @return \SLiib\WebApp\Security\Rule
      */
@@ -348,7 +347,7 @@ class Rule
     /**
      * Reload rule pattern
      *
-     * @return void
+     * @return \void
      */
     private function _reloadPattern()
     {

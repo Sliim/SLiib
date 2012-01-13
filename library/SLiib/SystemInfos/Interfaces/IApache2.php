@@ -39,37 +39,37 @@ Interface IApache2
 
     /**
      * Apache version
-     * @var string
+     * @const \string
      */
     const CMD_APACHE2_VERSION = 'apache2 -v';
 
     /**
      * Apache settings
-     * @var string
+     * @const \string
      */
     const CMD_APACHE2_SETTINGS = 'apache2 -V';
 
     /**
      * Compiled
-     * @var string
+     * @const \string
      */
     const CMD_APACHE2_COMPILED_MODULES = 'apache2 -l';
 
     /**
      * Directive configuration
-     * @var string
+     * @const \string
      */
     const CMD_APACHE2_DIRECTIVES_CONFIG = 'apache2 -L';
 
     /**
      * Parsed settings
-     * @var string
+     * @const \string
      */
     const CMD_APACHE2_PARSED_SETTINGS = 'apache2 -S';
 
     /**
      * Loaded modules
-     * @var string
+     * @const \string
      */
     const CMD_APACHE2_LOADED_MODULES = 'apache2 -M';
 

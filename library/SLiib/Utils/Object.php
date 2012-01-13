@@ -41,10 +41,10 @@ class Object
      /**
      * Merge two object
      *
-     * @param mixed &$source Object source
-     * @param mixed $object  Object to merge with source
+     * @param \mixed &$source Object source
+     * @param \mixed $object  Object to merge with source
      *
-     * @return void
+     * @return \void
      */
     public static function merge(&$source, $object)
     {

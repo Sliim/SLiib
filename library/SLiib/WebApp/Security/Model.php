@@ -40,31 +40,32 @@ abstract class Model
 
     /**
      * Security model
+     * @const \string
      */
     const MODEL_NEGATIVE = 'Negative';
     const MODEL_POSITIVE = 'Positive';
 
     /**
      * Security model
-     * @var string
+     * @var \string
      */
     protected $_model = NULL;
 
     /**
      * Last pattern error
-     * @var string
+     * @var \string
      */
     protected $_patternError;
 
     /**
      * Checker name
-     * @var string
+     * @var \string
      */
     private $_name;
 
     /**
-     * List of rules
-     * @var array
+     * Model's rules list
+     * @var \array
      */
     private $_rules = array();
 
@@ -80,7 +81,7 @@ abstract class Model
      *
      * @throws Exception
      *
-     * @return void
+     * @return \void
      */
     public function __construct()
     {
@@ -101,7 +102,7 @@ abstract class Model
      * @throws Exception\CheckerError
      * @throws Exception\HackingAttempt
      *
-     * @return boolean
+     * @return \boolean
      */
     public final function run()
     {
@@ -174,7 +175,7 @@ abstract class Model
     /**
      * Delete a rule
      *
-     * @param int $ruleId Rule id to delete
+     * @param \int $ruleId Rule id to delete
      *
      * @throws Exception\CheckerError
      *
@@ -195,7 +196,7 @@ abstract class Model
     /**
      * Get a rule defined by an id
      *
-     * @param int $ruleId Rule Id to get
+     * @param \int $ruleId Rule Id to get
      *
      * @throws Exception\CheckerError
      *
@@ -215,7 +216,7 @@ abstract class Model
     /**
      * Get all added rules
      *
-     * @return array
+     * @return \array
      */
     public function getRules()
     {
@@ -227,9 +228,9 @@ abstract class Model
     /**
      * Set checker name
      *
-     * @param string $name Checker name
+     * @param \string $name Checker name
      *
-     * @return void
+     * @return \void
      */
     protected final function _setName($name)
     {
@@ -241,10 +242,10 @@ abstract class Model
     /**
      * Check a pattern in a string
      *
-     * @param string $pattern Pattern to check
-     * @param string $string  String to use
+     * @param \string $pattern Pattern to check
+     * @param \string $string  String to use
      *
-     * @return boolean
+     * @return \boolean
      */
     abstract protected function _check($pattern, $string);
 
@@ -252,9 +253,9 @@ abstract class Model
     /**
      * Check if a pattern exists
      *
-     * @param int $ruleId Rule Id
+     * @param \int $ruleId Rule Id
      *
-     * @return boolean
+     * @return \boolean
      */
     protected final function _ruleExists($ruleId)
     {
@@ -268,7 +269,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
-     * @return boolean
+     * @return \boolean
      */
     private final function _checkRequestUri(Rule $rule)
     {
@@ -283,7 +284,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
-     * @return boolean
+     * @return \boolean
      */
     private final function _checkParameters(Rule $rule)
     {
@@ -308,7 +309,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
-     * @return boolean
+     * @return \boolean
      */
     private final function _checkUserAgent(Rule $rule)
     {
@@ -323,7 +324,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
-     * @return boolean
+     * @return \boolean
      */
     private final function _checkMethod(Rule $rule)
     {
@@ -338,7 +339,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
-     * @return boolean
+     * @return \boolean
      */
     private final function _checkCookies(Rule $rule)
     {
@@ -364,7 +365,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to check
      *
-     * @return boolean
+     * @return \boolean
      */
     private final function _checkReferer(Rule $rule)
     {

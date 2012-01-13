@@ -33,7 +33,7 @@ namespace SLiib;
 /**
  * Rewrite php_sapi_name internal function in SLiib namespace
  *
- * @return string
+ * @return \string
  */
 function php_sapi_name()
 {
@@ -55,7 +55,7 @@ class Sapi
 
     /**
      * Fake php sapi name
-     * @var string
+     * @var \string
      */
     private static $_sapi = 'stub';
 
@@ -63,9 +63,9 @@ class Sapi
     /**
      * Fake sapi setter
      *
-     * @param string $value Value to set
+     * @param \string $value Value to set
      *
-     * @return void
+     * @return \void
      */
     public static function setSapi($value)
     {
@@ -77,7 +77,7 @@ class Sapi
     /**
      * Fake sapi setter
      *
-     * @return string
+     * @return \string
      */
     public static function getSapi()
     {

@@ -39,7 +39,7 @@ class SolR
 
     /**
      * Instance processus id
-     * @var int
+     * @var \int
      */
     private static $_pid = NULL;
 
@@ -47,7 +47,7 @@ class SolR
     /**
      * Check if SolR stubs is installed
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function installed()
     {
@@ -59,7 +59,7 @@ class SolR
     /**
      * Check if JVM is available
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function jvmAvailable()
     {
@@ -72,7 +72,7 @@ class SolR
     /**
      * Check if SolR stubs is started
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function started()
     {
@@ -84,7 +84,7 @@ class SolR
     /**
      * Start instance and return his pid
      *
-     * @return int|FALSE
+     * @return \mixed If already started : TRUE, if start successfuly : his pid else FALSE
      */
     public static function start()
     {
@@ -107,7 +107,7 @@ class SolR
     /**
      * Stop instance
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function stop()
     {

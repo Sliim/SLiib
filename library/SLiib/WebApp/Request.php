@@ -53,7 +53,7 @@ class Request
     /**
      * Init HTTP Request
      *
-     * @return void
+     * @return \void
      */
     public static function init()
     {
@@ -85,7 +85,7 @@ class Request
     /**
      * Get current controller
      *
-     * @return string
+     * @return \string
      */
     public function getController()
     {
@@ -97,7 +97,7 @@ class Request
     /**
      * Get current action
      *
-     * @return string
+     * @return \string
      */
     public function getAction()
     {
@@ -109,7 +109,7 @@ class Request
     /**
      * Get request URI
      *
-     * @return string
+     * @return \string
      */
     public function getRequestUri()
     {
@@ -121,7 +121,7 @@ class Request
     /**
      * Get current parameters
      *
-     * @return array
+     * @return \array
      */
     public function getParameters()
     {
@@ -140,7 +140,7 @@ class Request
     /**
      * Client ip getter
      *
-     * @return string
+     * @return \string
      */
     public function getClientIp()
     {
@@ -152,7 +152,7 @@ class Request
     /**
      * User agent getter
      *
-     * @return string
+     * @return \string
      */
     public function getUserAgent()
     {
@@ -164,7 +164,7 @@ class Request
     /**
      * Request method getter
      *
-     * @return string
+     * @return \string
      */
     public function getRequestMethod()
     {
@@ -176,7 +176,7 @@ class Request
     /**
      * Cookies getter
      *
-     * @return array
+     * @return \array
      */
     public function getCookies()
     {
@@ -188,7 +188,7 @@ class Request
     /**
      * Referer getter
      *
-     * @return string
+     * @return \string
      */
     public function getReferer()
     {
@@ -200,7 +200,7 @@ class Request
     /**
      * Check is request use post method
      *
-     * @return boolean
+     * @return \boolean
      */
     public function isPost()
     {
@@ -216,7 +216,7 @@ class Request
     /**
      * Construct request
      *
-     * @return void
+     * @return \void
      */
     private function __construct()
     {
@@ -229,7 +229,7 @@ class Request
     /**
      * Init HTTP Properties
      *
-     * @return void
+     * @return \void
      */
     private function _initProperties()
     {
@@ -262,7 +262,7 @@ class Request
     /**
      * Url parser
      *
-     * @return array
+     * @return \array
      */
     private function _parseUrl()
     {
@@ -314,9 +314,9 @@ class Request
      * Transform a string with a dash
      * my-string become myString
      *
-     * @param string $string String to transform
+     * @param \string $string String to transform
      *
-     * @return string
+     * @return \string
      */
     private function _transformDash($string)
     {

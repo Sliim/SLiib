@@ -45,7 +45,7 @@ abstract class Controller
 
     /**
      * View Class
-     * @var string
+     * @var \string
      */
     protected $_viewClass = '\SLiib\WebApp\View';
 
@@ -59,7 +59,7 @@ abstract class Controller
     /**
      * Init controller view
      *
-     * @return void
+     * @return \void
      */
     public function __construct()
     {
@@ -75,14 +75,14 @@ abstract class Controller
     /**
      * Appel des action du controller.
      *
-     * @param string $action Action to call
-     * @param array  $params unused
+     * @param \string $action Action to call
+     * @param \array  $params unused
      *
      * @throws Exception\NoDispatchable
      *
-     * @return void
+     * @return \void
      */
-    public final function __call($action, $params)
+    public final function __call($action, array $params)
     {
         unset($params);
         $method = $action . 'Action';
@@ -115,7 +115,7 @@ abstract class Controller
     /**
      * Init controller, called before action
      *
-     * @return void
+     * @return \void
      */
     abstract protected function _init();
 

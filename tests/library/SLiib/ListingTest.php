@@ -39,7 +39,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * Objet de test
+     * Test object
      * @var \SLiib\Listing
      */
     protected $_object;
@@ -52,7 +52,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Listing::__construct
      * @covers \SLiib\Listing::_list
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -65,7 +65,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function tearDown()
     {
@@ -79,7 +79,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\Listing::getList
      *
-     * @return void
+     * @return \void
      */
     public function testGetList()
     {
@@ -91,11 +91,11 @@ class ListingTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test rangement par ordre croissant
+     * Test sort list
      *
      * @covers \SLiib\Listing::sort
      *
-     * @return void
+     * @return \void
      */
     public function testSort()
     {
@@ -110,11 +110,11 @@ class ListingTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test rangement par ordre croissant inversé
+     * Test usort list
      *
      * @covers \SLiib\Listing::usort
      *
-     * @return void
+     * @return \void
      */
     public function testUsort()
     {
@@ -134,7 +134,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\Listing\Exception
      *
-     * @return void
+     * @return \void
      */
     public function testInexistDir()
     {

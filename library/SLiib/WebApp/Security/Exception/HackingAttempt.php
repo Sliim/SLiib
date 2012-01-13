@@ -41,7 +41,7 @@ extends \SLiib\WebApp\Security\Exception
 
     /**
      * Checker name
-     * @var string
+     * @var \string
      */
     private $_checkerName;
 
@@ -53,13 +53,13 @@ extends \SLiib\WebApp\Security\Exception
 
     /**
      * Rule location
-     * @var string
+     * @var \string
      */
     private $_location;
 
     /**
      * Exception reason
-     * @var string
+     * @var \string
      */
     private $_reason;
 
@@ -67,14 +67,14 @@ extends \SLiib\WebApp\Security\Exception
     /**
      * Exception constructor
      *
-     * @param string                      $checkerName Checker name
+     * @param \string                     $checkerName Checker name
      * @param \SLiib\WebApp\Security\Rule $rule        Rule
-     * @param string                      $location    Location check failed
-     * @param string                      $reason      Exception reason
-     * @param int                         $code        Exception code
-     * @param Exception                   $parent      Parent exception
+     * @param \string                     $location    Location check failed
+     * @param \string                     $reason      Exception reason
+     * @param \int                        $code        Exception code
+     * @param \Exception                  $parent      Parent exception
      *
-     * @return void
+     * @return \void
      */
     public function __construct(
         $checkerName,
@@ -82,7 +82,7 @@ extends \SLiib\WebApp\Security\Exception
         $location,
         $reason,
         $code=0,
-        $parent=NULL
+        \Exception $parent=NULL
     ) {
         $this->_checkerName = $checkerName;
         $this->_rule        = $rule;
@@ -106,7 +106,7 @@ extends \SLiib\WebApp\Security\Exception
     /**
      * Checker name getter
      *
-     * @return string
+     * @return \string
      */
     public function getCheckerName()
     {
@@ -130,7 +130,7 @@ extends \SLiib\WebApp\Security\Exception
     /**
      * Location getter
      *
-     * @return string
+     * @return \string
      */
     public function getLocation()
     {
@@ -142,7 +142,7 @@ extends \SLiib\WebApp\Security\Exception
     /**
      * Reason exception getter
      *
-     * @return string
+     * @return \string
      */
     public function getReason()
     {

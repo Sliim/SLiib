@@ -40,25 +40,25 @@ class View
 
     /**
      * Subdirectory of view
-     * @var string
+     * @var \string
      */
     protected $_subView = 'scripts';
 
     /**
      * View file extension
-     * @var string
+     * @var \string
      */
     protected $_ext = '.phtml';
 
     /**
      * Path of the .phtml view
-     * @var mixed Null if undefined, false if disabled, string if isset
+     * @var \mixed Null if undefined, false if disabled, string if isset
      */
     private $_view = NULL;
 
     /**
      * Views path
-     * @var string
+     * @var \string
      */
     private $_path;
 
@@ -66,10 +66,10 @@ class View
     /**
      * Construct, set view path
      *
-     * @param string $controller Controller Name
-     * @param string $action     Action Name
+     * @param \string $controller Controller Name
+     * @param \string $action     Action Name
      *
-     * @return void
+     * @return \void
      */
     public function __construct($controller, $action)
     {
@@ -86,10 +86,10 @@ class View
     /**
      * Set a view attribut
      *
-     * @param string $attr  Attribut name
-     * @param mixed  $value Attribut value
+     * @param \string $attr  Attribut name
+     * @param \mixed  $value Attribut value
      *
-     * @return void
+     * @return \void
      */
     public function __set($attr, $value)
     {
@@ -101,11 +101,11 @@ class View
     /**
      * Get a view attribut
      *
-     * @param string $attr Attribut name
+     * @param \string $attr Attribut name
      *
      * @throws Exception\UndefinedProperty
      *
-     * @return void
+     * @return \void
      */
     public function __get($attr)
     {
@@ -119,7 +119,7 @@ class View
     /**
      * Display view
      *
-     * @return void
+     * @return \void
      */
     public function display()
     {
@@ -133,11 +133,11 @@ class View
     /**
      * Set view
      *
-     * @param string $view View
+     * @param \string $view View
      *
      * @throws Exception\InvalidParameter
      *
-     * @return void
+     * @return \void
      */
     public function setView($view)
     {
@@ -155,7 +155,7 @@ class View
     /**
      * Set no view
      *
-     * @return void
+     * @return \void
      */
     public function setNoView()
     {
@@ -168,7 +168,7 @@ class View
      * include a template
      * Must be in view path
      *
-     * @param string $template Template to include
+     * @param \string $template Template to include
      *
      * @throws Exception\InvalidParameter
      *
@@ -198,9 +198,9 @@ class View
     /**
      * Check view exists
      *
-     * @param string $view View (without extension)
+     * @param \string $view View (without extension)
      *
-     * @return boolean|string False if not exist, else absolute path of view
+     * @return \mixed False if not exist, else absolute path of view
      */
     private final function _viewExist($view)
     {

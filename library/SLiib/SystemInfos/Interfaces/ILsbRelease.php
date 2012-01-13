@@ -39,31 +39,31 @@ Interface ILsbRelease
 
     /**
      * Distribution id
-     * @var string
+     * @const \string
      */
     const CMD_LSB_RELEASE_ID = 'lsb_release -i';
 
     /**
      * Distribution description
-     * @var string
+     * @const \string
      */
     const CMD_LSB_RELEASE_DESC = 'lsb_release -d';
 
     /**
      * Distribution release
-     * @var string
+     * @const \string
      */
     const CMD_LSB_RELEASE_RELEASE = 'lsb_release -r';
 
     /**
      * Distribution codename
-     * @var string
+     * @const \string
      */
     const CMD_LSB_RELEASE_CODENAME = 'lsb_release -c';
 
     /**
      * All infos
-     * @var string
+     * @const \string
      */
     const CMD_LSB_RELEASE_ALL = 'lsb_release -idrc';
 

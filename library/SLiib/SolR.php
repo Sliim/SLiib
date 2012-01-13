@@ -37,31 +37,31 @@ class SolR
 
     /**
      * Répertoire SolR pour les update (insertion, commit, delete ..)
-     * @const string UPDATE_DIRECTORY
+     * @const \string UPDATE_DIRECTORY
      */
     const UPDATE_DIRECTORY = '/solr/update';
 
     /**
      * Répertoire de sélection de document avec des requêtes spécifiques
-     * @const string SELECT_DIRECTORY
+     * @const \string SELECT_DIRECTORY
      */
     const SELECT_DIRECTORY = '/solr/select';
 
     /**
      * Host de l'instance SolR
-     * @var string
+     * @var \string
      */
     protected $_host;
 
     /**
      * Port écouté par l'instance SolR
-     * @var int
+     * @var \int
      */
     protected $_port;
 
     /**
      * Tableau des caractères spéciaux spécifiques à Solr
-     * @var array
+     * @var \array
      */
     protected $_specialChars = array(
                                 '+', '-',
@@ -79,13 +79,13 @@ class SolR
     /**
      * Constructeur, initialise les attributs privés.
      *
-     * @param string            $host Host de l'instance SolR
-     * @param int               $port Port écouté par l'instance SolR
-     * @param boolean[optional] $ping Ping SolR
+     * @param \string            $host Host de l'instance SolR
+     * @param \int               $port Port écouté par l'instance SolR
+     * @param \boolean[optional] $ping Ping SolR
      *
      * @throws SolR\Exception
      *
-     * @return void
+     * @return \void
      */
     public function __construct($host, $port, $ping=TRUE)
     {
@@ -106,9 +106,9 @@ class SolR
     /**
      * Index un document XML
      *
-     * @param string $xmlString Chaine de caractère XML
+     * @param \string $xmlString Chaine de caractère XML
      *
-     * @return Boolean True si OK False si KO
+     * @return \boolean True si OK False si KO
      */
     public function update($xmlString)
     {
@@ -146,7 +146,7 @@ class SolR
     /**
      * Commit de l'index SolR
      *
-     * @return void
+     * @return \void
      */
     public function commit()
     {
@@ -159,7 +159,7 @@ class SolR
     /**
      * Suppression de la totalité de l'index SolR.
      *
-     * @return void
+     * @return \void
      */
     public function deleteAll()
     {
@@ -174,10 +174,10 @@ class SolR
     /**
      * Effectue une recherche dans l'index SolR.
      *
-     * @param string $query Requête SolR à émettre (possibilité d'utilises les
+     * @param \string $query Requête SolR à émettre (possibilité d'utilises les
      *                      paramètre hl, fl etc.. spécifique à SolR).
      *
-     * @return string Résultat obtenu au format XML.
+     * @return \string Résultat obtenu au format XML.
      */
     public function get($query)
     {
@@ -218,7 +218,7 @@ class SolR
     /**
      * Récupère le nombre d'élément indexé dans solr.
      *
-     * @return int Nombre d'élément.
+     * @return \int Nombre d'élément.
      */
     public function getTotalIndexed()
     {
@@ -236,7 +236,7 @@ class SolR
     /**
      * Effectue un ping vers SolR
      *
-     * @return boolean
+     * @return \boolean
      */
     public function ping()
     {
@@ -255,9 +255,9 @@ class SolR
     /**
      * Echappe les caractères spéciaux propre à SolR d'une chaine.
      *
-     * @param string $string Chaine à traiter.
+     * @param \string $string Chaine à traiter.
      *
-     * @return string Chaine Traitée.
+     * @return \string Chaine Traitée.
      */
     public function escapeSpecialChar($string)
     {

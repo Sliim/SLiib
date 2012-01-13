@@ -45,7 +45,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\Autoloader::init
      *
-     * @return void
+     * @return \void
      */
     public function testInit()
     {
@@ -72,7 +72,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Autoloader::autoload
      * @covers \SLiib\Autoloader::_searchForInclude
      *
-     * @return void
+     * @return \void
      */
     public function testAutoload()
     {

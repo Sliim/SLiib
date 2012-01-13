@@ -50,7 +50,7 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -63,7 +63,7 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function tearDown()
     {
@@ -78,7 +78,7 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Checker\BadRobots::run
      * @covers \SLiib\WebApp\Security\Model\NegativeSecurity
      *
-     * @return void
+     * @return \void
      */
     public function testRun()
     {
@@ -94,7 +94,7 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with bad robots
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithBadRobots()
     {
@@ -118,7 +118,7 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with Nikto scanner
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithNiktoScanner()
     {

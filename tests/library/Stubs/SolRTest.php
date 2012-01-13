@@ -43,7 +43,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -63,7 +63,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Stubs\SolR::installed
      *
-     * @return void
+     * @return \void
      */
     public function testInstalled()
     {
@@ -81,7 +81,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Stubs\SolR::jvmAvailable
      *
-     * @return void
+     * @return \void
      */
     public function testJvmAvailable()
     {
@@ -95,7 +95,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Stubs\SolR::started
      *
-     * @return void
+     * @return \void
      */
     public function testStarted()
     {
@@ -113,7 +113,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Stubs\SolR::start
      *
-     * @return void
+     * @return \void
      */
     public function testStart()
     {
@@ -128,7 +128,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Stubs\SolR::stop
      *
-     * @return void
+     * @return \void
      */
     public function testStop()
     {

@@ -47,7 +47,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Fake checker name
-     * @var string
+     * @var \string
      */
     private $_checkerName = 'CheckerNameTest';
 
@@ -59,13 +59,13 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Fake location
-     * @var string
+     * @var \string
      */
     private $_location = 'LocationTest';
 
     /**
      * Fake reason
-     * @var string
+     * @var \string
      */
     private $_reason = 'ReasonTest';
 
@@ -76,7 +76,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Exception\HackingAttempt::__construct
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -95,7 +95,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function tearDown()
     {
@@ -109,7 +109,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Exception\HackingAttempt::getCheckerName
      *
-     * @return void
+     * @return \void
      */
     public function testGetCheckerName()
     {
@@ -123,7 +123,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Exception\HackingAttempt::getRule
      *
-     * @return void
+     * @return \void
      */
     public function testGetRule()
     {
@@ -140,7 +140,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Exception\HackingAttempt::getLocation
      *
-     * @return void
+     * @return \void
      */
     public function testGetLocation()
     {
@@ -154,7 +154,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Exception\HackingAttempt::getReason
      *
-     * @return void
+     * @return \void
      */
     public function testGetReason()
     {

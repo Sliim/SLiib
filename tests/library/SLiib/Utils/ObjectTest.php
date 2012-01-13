@@ -44,7 +44,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\Utils\Object::merge
      *
-     * @return void
+     * @return \void
      */
     public function testMerge()
     {

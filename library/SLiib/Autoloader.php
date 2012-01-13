@@ -36,26 +36,26 @@ class Autoloader
 {
 
     /**
-     * Array of class loaded
-     * @var array
+     * Array of already autoloaded class
+     * @var \array
      */
     private static $_isLoaded = array();
 
     /**
      * Allowed namespaces
-     * @var array
+     * @var \array
      */
     private static $_namespaces = array();
 
     /**
      * Namespaces keys
-     * @var array
+     * @var \array
      */
     private static $_namespacesKeys = array();
 
     /**
      * Sections collection
-     * @var array
+     * @var \array
      */
     private static $_sections = array();
 
@@ -63,10 +63,10 @@ class Autoloader
     /**
      * Autoloader init
      *
-     * @param array           $namespaces Allowed namespaces
-     * @param array[optional] $sections   Allowed sections
+     * @param \array           $namespaces Allowed namespaces
+     * @param \array[optional] $sections   Allowed sections
      *
-     * @return void
+     * @return \void
      */
     public static function init(array $namespaces, array $sections=array())
     {
@@ -94,9 +94,9 @@ class Autoloader
     /**
      * Class autoloader
      *
-     * @param string $class Class to load
+     * @param \string $class Class to load
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function autoload($class)
     {
@@ -146,9 +146,9 @@ class Autoloader
     /**
      * Search a file to include
      *
-     * @param string $needle File to search
+     * @param \string $needle File to search
      *
-     * @return boolean
+     * @return \boolean
      */
     private static function _searchForInclude($needle)
     {

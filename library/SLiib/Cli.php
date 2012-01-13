@@ -37,61 +37,61 @@ abstract class Cli
 
     /**
      * Script description
-     * @var string
+     * @var \string
      */
     const NO_DESCRIPTION_LABEL = 'No description';
 
     /**
      * Script author label when unknown
-     * @var string
+     * @var \string
      */
     const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
 
     /**
      * Script author label
-     * @var string
+     * @var \string
      */
     const AUTHOR_LABEL = 'Auteur';
 
     /**
      * Script version label
-     * @var string
+     * @var \string
      */
     const VERSION_LABEL = 'Version';
 
     /**
      * Help menu text
-     * @var string
+     * @var \string
      */
     const SHOW_HELP_LABEL = 'Affiche l\'aide.';
 
     /**
      * Version menu text
-     * @var string
+     * @var \string
      */
     const SHOW_VERSION_LABEL = 'Affiche la version du script.';
 
     /**
      * Version du script
-     * @var float
+     * @var \float
      */
     protected $_version = 0;
 
     /**
      * Description du script
-     * @var string
+     * @var \string
      */
     protected $_desc = self::NO_DESCRIPTION_LABEL;
 
     /**
      * Auteur du script
-     * @var string
+     * @var \string
      */
     protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
     /**
      * Options par défaut possible du script
-     * @var array
+     * @var \array
      */
     protected $_defaultOpt = array(
                               'V' => array(
@@ -106,13 +106,13 @@ abstract class Cli
 
     /**
      * Options possible du script
-     * @var array
+     * @var \array
      */
     protected $_options = NULL;
 
     /**
      * Chaine utilisée pour etre passée à getopt.
-     * @var string
+     * @var \string
      */
     protected $_params;
 
@@ -120,11 +120,11 @@ abstract class Cli
     /**
      * Constructeur
      *
-     * @param array[optional] $options Options possible pour le script
+     * @param \array[optional] $options Options possible pour le script
      *
-     * @return void
+     * @return \void
      */
-    public function __construct ($options=NULL)
+    public function __construct (array $options=NULL)
     {
         if (!is_null($options)) {
             $this->_options = array_merge($this->_defaultOpt, $options);
@@ -166,7 +166,7 @@ abstract class Cli
      * Affiche l'aide du script.
      * (Méthode utilisée par le paramètre -h par défaut)
      *
-     * @return void
+     * @return \void
      */
     protected function _help ()
     {
@@ -189,7 +189,7 @@ abstract class Cli
      * Affiche la version du script.
      * (Méthode utilisée par le paramètre -V par défaut)
      *
-     * @return void
+     * @return \void
      */
     protected function _version ()
     {

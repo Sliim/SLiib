@@ -41,7 +41,7 @@ class SystemInfos extends \SLiib\SystemInfos
 
     /**
      * Command fail constant
-     * @var string
+     * @var \string
      */
     const CMD_FAILED = CMD_FAILED;
 

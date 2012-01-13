@@ -39,19 +39,19 @@ class Session
 
     /**
      * Session started
-     * @var bool
+     * @var \bool
      */
     private static $_started = FALSE;
 
     /**
      * Session values
-     * @var array
+     * @var \array
      */
     private $_session = array();
 
     /**
      * Session namespace
-     * @var string
+     * @var \string
      */
     private $_namespace;
 
@@ -59,11 +59,11 @@ class Session
     /**
      * Construct
      *
-     * @param string $namespace Session namespace
+     * @param \string $namespace Session namespace
      *
      * @throws Session\Exception
      *
-     * @return void
+     * @return \void
      */
     public function __construct($namespace)
     {
@@ -85,11 +85,11 @@ class Session
     /**
      * Session's property getter
      *
-     * @param string $name Property name
+     * @param \string $name Property name
      *
      * @throws Session\Exception
      *
-     * @return mixed
+     * @return \mixed
      */
     public function __get($name)
     {
@@ -105,10 +105,10 @@ class Session
     /**
      * Session's property setter
      *
-     * @param string $name  Property name
-     * @param mixed  $value Value to affect
+     * @param \string $name  Property name
+     * @param \mixed  $value Value to affect
      *
-     * @return void
+     * @return \void
      */
     public function __set($name, $value)
     {
@@ -121,11 +121,11 @@ class Session
     /**
      * Unset session's property
      *
-     * @param string $name Property name
+     * @param \string $name Property name
      *
      * @throws Session\Exception
      *
-     * @return void
+     * @return \void
      */
     public function __unset($name)
     {
@@ -142,9 +142,9 @@ class Session
     /**
      * Check if property exist
      *
-     * @param string $name Property name
+     * @param \string $name Property name
      *
-     * @return bool
+     * @return \boolean
      */
     public function __isset($name)
     {
@@ -160,7 +160,7 @@ class Session
     /**
      * Session init
      *
-     * @return void
+     * @return \void
      */
     public static function init()
     {
@@ -175,7 +175,7 @@ class Session
     /**
      * Session destroy
      *
-     * @return void
+     * @return \void
      */
     public static function destroy()
     {
@@ -190,7 +190,7 @@ class Session
     /**
      * Return session status
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function started()
     {
@@ -202,9 +202,9 @@ class Session
     /**
      * Check if a namespace exists
      *
-     * @param string $namespace Namespace to check
+     * @param \string $namespace Namespace to check
      *
-     * @return boolean
+     * @return \boolean
      */
     public static function namespaceExist($namespace)
     {
@@ -220,7 +220,7 @@ class Session
     /**
      * Clear current session namespace
      *
-     * @return void
+     * @return \void
      */
     public function clear()
     {
@@ -236,7 +236,7 @@ class Session
     /**
      * Update global variable $_SESSION
      *
-     * @return void
+     * @return \void
      */
     private function _updateSession()
     {

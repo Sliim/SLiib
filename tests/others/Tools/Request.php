@@ -41,10 +41,10 @@ class Request
     /**
      * Set index of $_SERVER for tests
      *
-     * @param string $index Index of $_SERVER
-     * @param string $value Value to assign
+     * @param \string $index Index of $_SERVER
+     * @param \string $value Value to assign
      *
-     * @return void
+     * @return \void
      */
     public static function setServerInfo($index, $value)
     {
@@ -57,9 +57,9 @@ class Request
     /**
      * Set remote ip
      *
-     * @param string $value Value to assign
+     * @param \string $value Value to assign
      *
-     * @return void
+     * @return \void
      */
     public static function setRemoteIp($value)
     {
@@ -71,9 +71,9 @@ class Request
     /**
      * Set user agent
      *
-     * @param string $value Value to assign
+     * @param \string $value Value to assign
      *
-     * @return void
+     * @return \void
      */
     public static function setUserAgent($value)
     {
@@ -85,9 +85,9 @@ class Request
     /**
      * Set request method
      *
-     * @param string $value Value to assign
+     * @param \string $value Value to assign
      *
-     * @return void
+     * @return \void
      */
     public static function setRequestMethod($value)
     {
@@ -99,9 +99,9 @@ class Request
     /**
      * Set http referer
      *
-     * @param string $value Value to assign
+     * @param \string $value Value to assign
      *
-     * @return void
+     * @return \void
      */
     public static function setReferer($value)
     {
@@ -113,9 +113,9 @@ class Request
     /**
      * Set request uri
      *
-     * @param string $value Value to assign
+     * @param \string $value Value to assign
      *
-     * @return void
+     * @return \void
      */
     public static function setRequestUri($value)
     {
@@ -127,9 +127,9 @@ class Request
     /**
      * Simulate a $_POST
      *
-     * @param array $post $_POST you want
+     * @param \array $post $_POST you want
      *
-     * @return void
+     * @return \void
      */
     public static function setPost(array $post)
     {
@@ -142,9 +142,9 @@ class Request
     /**
      * Simulate a $_COOKIE
      *
-     * @param array $cookies $_COOKIE you want
+     * @param \array $cookies $_COOKIE you want
      *
-     * @return void
+     * @return \void
      */
     public static function setCookie(array $cookies)
     {

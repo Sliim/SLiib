@@ -41,9 +41,9 @@ class String
     /**
      * Supprime les espaces indésirables
      *
-     * @param string $string Chaine de caractères à nettoyer.
+     * @param \string $string Chaine de caractères à nettoyer.
      *
-     * @return string La chaine nettoyée
+     * @return \string La chaine nettoyée
      */
     public static function clean($string)
     {

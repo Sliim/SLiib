@@ -41,7 +41,7 @@ class MyModel
     /**
      * Return This is my model !
      *
-     * @return string
+     * @return \string
      */
     public function toString()
     {

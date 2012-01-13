@@ -39,43 +39,43 @@ Interface IUname
 
     /**
      * Kernel name
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_KERNEL_NAME = 'uname -s';
 
     /**
      * Hostname
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_HOSTNAME = 'uname -n';
 
     /**
      * Kernel release
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_KERNEL_RELEASE = 'uname -r';
 
     /**
      * Kernel version
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_KERNEL_VERSION = 'uname -v';
 
     /**
      * Architecture
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_ARCH = 'uname -m';
 
     /**
      * Proc
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_PROC = 'uname -p';
 
     /**
      * OS Infos
-     * @var string
+     * @const \string
      */
     const CMD_UNAME_OS_INFOS = 'uname -o';
 

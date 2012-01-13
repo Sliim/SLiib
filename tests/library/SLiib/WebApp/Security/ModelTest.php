@@ -41,7 +41,6 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test object
-     *
      * @var \Stubs\Security\Model
      */
     protected $_object;
@@ -51,7 +50,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -80,7 +79,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function tearDown()
     {
@@ -92,7 +91,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test no security model
      *
-     * @return void
+     * @return \void
      */
     public function testNoSecurityModel()
     {
@@ -113,7 +112,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test bad security model
      *
-     * @return void
+     * @return \void
      */
     public function testBadSecurityModel()
     {
@@ -142,7 +141,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Model::_checkCookies
      * @covers \SLiib\WebApp\Security\Model::_checkReferer
      *
-     * @return void
+     * @return \void
      */
     public function testRun()
     {
@@ -167,7 +166,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with bad location
      *
-     * @return void
+     * @return \void
      */
     public function testRunBadLocation()
     {
@@ -190,7 +189,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in parameter key
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithHackingAttemptParamKey()
     {
@@ -217,7 +216,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in parameter Value
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithHackingAttemptParamVal()
     {
@@ -244,7 +243,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in cookie key
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithHackingAttemptCookieKey()
     {
@@ -270,7 +269,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with hacking attempt in cookie value
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithHackingAttemptCookieVal()
     {
@@ -300,7 +299,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Model::getRule
      * @covers \SLiib\WebApp\Security\Exception\CheckerError
      *
-     * @return void
+     * @return \void
      */
     public function testAddRule()
     {
@@ -344,7 +343,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Model::getRule
      * @covers \SLiib\WebApp\Security\Exception\CheckerError
      *
-     * @return void
+     * @return \void
      */
     public function testGetRule()
     {
@@ -371,7 +370,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Model::getRules
      *
-     * @return void
+     * @return \void
      */
     public function testGetRules()
     {
@@ -389,7 +388,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Model::deleteRule
      * @covers \SLiib\WebApp\Security\Model::getRules
      *
-     * @return void
+     * @return \void
      */
     public function testDeleteRule()
     {
@@ -406,7 +405,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     /**
      * Test delete rule not exists
      *
-     * @return void
+     * @return \void
      */
     public function testDeleteRuleNotExists()
     {

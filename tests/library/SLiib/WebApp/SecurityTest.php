@@ -44,7 +44,7 @@ class SecurityTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security::check
      *
-     * @return void
+     * @return \void
      */
     public function testCheck()
     {
@@ -60,7 +60,7 @@ class SecurityTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security::check
      *
-     * @return void
+     * @return \void
      */
     public function testCheckInvalidChecker()
     {

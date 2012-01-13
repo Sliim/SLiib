@@ -41,11 +41,11 @@ abstract class Security
     /**
      * Checkers running
      *
-     * @param array $checkers Checkers to run
+     * @param \array $checkers Checkers to run
      *
      * @throws Security\Exception\CheckerError
      *
-     * @return void
+     * @return \void
      */
     public static function check(array $checkers)
     {

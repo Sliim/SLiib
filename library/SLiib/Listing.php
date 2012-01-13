@@ -38,25 +38,25 @@ class Listing
 
     /**
      * Chemin du dossier à lister
-     * @var string
+     * @var \string
      */
     private $_path = '';
 
     /**
      * Tableau comportant les éléments du dossier listé
-     * @var array
+     * @var \array
      */
     private $_list = array();
 
     /**
      * Nombre d'élément dans le dossier listé
-     * @var string
+     * @var \string
      */
     private $_contentNb;
 
     /**
      * Nom du dossier
-     * @var string
+     * @var \string
      */
     private $_name;
 
@@ -64,15 +64,15 @@ class Listing
     /**
      * Constructeur, récupère le chemin du dossier qui sera à lister
      *
-     * @param string $dirPath    Chemin du dossier à lister
-     * @param string $listName   Nom de la liste
-     * @param array  $exceptions Liste des exceptions à ne pas lister
+     * @param \string $dirPath    Chemin du dossier à lister
+     * @param \string $listName   Nom de la liste
+     * @param \array  $exceptions Liste des exceptions à ne pas lister
      *
      * @throws Listing\Exception
      *
-     * @return void
+     * @return \void
      */
-    public function __construct($dirPath, $listName, $exceptions)
+    public function __construct($dirPath, $listName, array $exceptions)
     {
         if (!is_dir($dirPath)) {
             throw new Listing\Exception('Directory `' . $dirPath . '` not found!');
@@ -90,7 +90,7 @@ class Listing
     /**
      * Retourne la liste du contenu du dossier listé
      *
-     * @return array Liste des éléments du dossier
+     * @return \array Liste des éléments du dossier
      */
     public function getList()
     {
@@ -136,11 +136,11 @@ class Listing
      * fichiers présents. 1 paramètre : tableau contenant une liste de
      * fichier / dossier à ne pas lister.
      *
-     * @param array $except Les exceptions à ne pas lister
+     * @param \array $except Les exceptions à ne pas lister
      *
-     * @return void
+     * @return \void
      */
-    private function _list($except)
+    private function _list(array $except)
     {
         $rep = opendir($this->_path);
 

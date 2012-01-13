@@ -45,13 +45,13 @@ class WebApp
 
     /**
      * Application namespace
-     * @var string
+     * @var \string
      */
     private $_appNamespace;
 
     /**
      * Application path
-     * @var string
+     * @var \string
      */
     private $_appPath;
 
@@ -65,8 +65,8 @@ class WebApp
     /**
      * Application Init
      *
-     * @param string $appNamespace Application namespace
-     * @param string $appPath      Application path
+     * @param \string $appNamespace Application namespace
+     * @param \string $appPath      Application path
      *
      * @return \SLiib\WebApp
      */
@@ -87,7 +87,7 @@ class WebApp
     /**
      * Run application
      *
-     * @return void
+     * @return \void
      */
     public function run()
     {
@@ -123,7 +123,7 @@ class WebApp
     /**
      * Get application view path
      *
-     * @return string
+     * @return \string
      */
     public function getViewPath()
     {
@@ -135,12 +135,12 @@ class WebApp
     /**
      * Constructor, use static method `init` to get an instance
      *
-     * @param string $appNamespace Application namespace
-     * @param string $appPath      Application path
+     * @param \string $appNamespace Application namespace
+     * @param \string $appPath      Application path
      *
      * @throws WebApp\Exception
      *
-     * @return void
+     * @return \void
      */
     private function __construct($appNamespace, $appPath)
     {

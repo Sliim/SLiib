@@ -50,7 +50,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function setUp()
     {
@@ -63,7 +63,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return void
+     * @return \void
      */
     public function tearDown()
     {
@@ -75,7 +75,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run
      *
-     * @return void
+     * @return \void
      */
     public function testRun()
     {
@@ -91,7 +91,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with forbidden http method
      *
-     * @return void
+     * @return \void
      */
     public function testRunWithForbiddenHTTPMethod()
     {

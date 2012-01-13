@@ -44,8 +44,8 @@ class Ini extends \SLiib\Config
     /**
      * Read a configuration file
      *
-     * @param string           $file File to read
-     * @param string[optional] $env  Config environment
+     * @param \string           $file File to read
+     * @param \string[optional] $env  Config environment
      *
      * @throws Exception\UndefinedProperty
      *
@@ -75,9 +75,9 @@ class Ini extends \SLiib\Config
     /**
      * Protected constructor
      *
-     * @param boolean[optional] $init Specify if is a config object init
+     * @param \boolean[optional] $init Specify if is a config object init
      *
-     * @return void
+     * @return \void
      */
     protected function __construct($init=FALSE)
     {
@@ -95,7 +95,7 @@ class Ini extends \SLiib\Config
      *
      * @throws Exception\SyntaxError
      *
-     * @return void
+     * @return \void
      */
     protected function _parseFile()
     {
@@ -117,13 +117,13 @@ class Ini extends \SLiib\Config
     /**
      * Section parsing
      *
-     * @param array $section Section to parse
+     * @param \array $section Section to parse
      *
      * @throws Exception\SyntaxError
      *
      * @return \SLiib\Config
      */
-    private function _parseSection($section)
+    private function _parseSection(array $section)
     {
         $object = new Config();
 
@@ -177,8 +177,8 @@ class Ini extends \SLiib\Config
      * for example : foo.bar.baz = w00t
      * result : $object->foo->bar->baz = w00t
      *
-     * @param string &$key  Multiple Key
-     * @param mixed  $value Origin value
+     * @param \string &$key  Multiple Key
+     * @param \mixed  $value Origin value
      *
      * @return \SLiib\Config
      */
@@ -217,12 +217,12 @@ class Ini extends \SLiib\Config
     /**
      * Error handler for syntax error
      *
-     * @param int    $errno  Error level
-     * @param string $errstr Error message
+     * @param \int    $errno  Error level
+     * @param \string $errstr Error message
      *
      * @throws Exception\SyntaxError
      *
-     * @return void
+     * @return \void
      */
     private function _errorHandler($errno, $errstr)
     {
