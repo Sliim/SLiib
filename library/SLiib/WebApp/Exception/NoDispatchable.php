@@ -36,6 +36,7 @@ namespace SLiib\WebApp\Exception;
  */
 class NoDispatchable
 extends \SLiib\WebApp\Exception
+implements \SLiib\IException\Runtime
 {
 
 }

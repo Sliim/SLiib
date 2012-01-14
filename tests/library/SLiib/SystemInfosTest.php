@@ -54,6 +54,8 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
             $this->assertInternalType('string', $res);
         } catch (SystemInfos\Exception\CommandFailed $e) {
             $this->assertInstanceOf('\SLiib\SystemInfos\Exception\CommandFailed', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
+            return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
         }
@@ -120,6 +122,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
             $res = SystemInfos::CMD_UNKNOWN();
         } catch (SystemInfos\Exception\BadMethodCall $e) {
             $this->assertInstanceOf('\SLiib\SystemInfos\Exception\BadMethodCall', $e);
+            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -141,6 +144,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
             $res = \Stubs\SystemInfos::CMD_FAILED();
         } catch (SystemInfos\Exception\CommandFailed $e) {
             $this->assertInstanceOf('\SLiib\SystemInfos\Exception\CommandFailed', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');

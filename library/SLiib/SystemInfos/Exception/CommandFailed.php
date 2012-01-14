@@ -36,7 +36,7 @@ namespace SLiib\SystemInfos\Exception;
  */
 class CommandFailed
 extends \SLiib\SystemInfos\Exception
-implements \SLiib\IException\Failure
+implements \SLiib\IException\Runtime
 {
 
 }

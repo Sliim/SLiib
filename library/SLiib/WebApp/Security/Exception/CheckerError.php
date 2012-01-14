@@ -36,7 +36,7 @@ namespace SLiib\WebApp\Security\Exception;
  */
 class CheckerError
 extends \SLiib\WebApp\Security\Exception
-implements \SLiib\IException\Failure
+implements \SLiib\IException\Runtime
 {
 
 }

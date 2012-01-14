@@ -36,7 +36,7 @@ namespace SLiib\WebApp\Exception;
  */
 class UndefinedProperty
 extends \SLiib\WebApp\Exception
-implements \SLiib\IException\UndefinedProperty
+implements \SLiib\IException\Logic
 {
 
 }

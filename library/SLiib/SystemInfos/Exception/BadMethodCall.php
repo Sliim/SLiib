@@ -36,7 +36,7 @@ namespace SLiib\SystemInfos\Exception;
  */
 class BadMethodCall
 extends \SLiib\SystemInfos\Exception
-implements \SLiib\IException\BadMethodCall
+implements \SLiib\IException\Logic
 {
 
 }

@@ -105,6 +105,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -129,6 +130,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');

@@ -163,5 +163,17 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test is a runtime exception
+     *
+     * @return void
+     */
+    public function testRuntimeException()
+    {
+        $this->assertInstanceOf('\SLiib\IException\Runtime', $this->_object);
+
+    }
+
+
 }
 ?>

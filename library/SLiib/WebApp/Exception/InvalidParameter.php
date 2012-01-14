@@ -36,7 +36,7 @@ namespace SLiib\WebApp\Exception;
  */
 class InvalidParameter
 extends \SLiib\WebApp\Exception
-implements \SLiib\IException\InvalidParameter
+implements \SLiib\IException\Logic
 {
 
 }

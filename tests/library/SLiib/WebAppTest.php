@@ -215,6 +215,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             $this->_runApp();
         } catch (WebApp\Exception\NoDispatchable $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Exception\NoDispatchable', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -238,6 +239,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             $this->_runApp();
         } catch (WebApp\Exception\NoDispatchable $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Exception\NoDispatchable', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -307,6 +309,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             $this->_runApp();
         } catch (WebApp\Exception\InvalidParameter $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Exception\InvalidParameter', $e);
+            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -330,6 +333,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             $this->_runApp();
         } catch (WebApp\Exception\InvalidParameter $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Exception\InvalidParameter', $e);
+            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -353,6 +357,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             $this->_runApp();
         } catch (WebApp\Exception\UndefinedProperty $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Exception\UndefinedProperty', $e);
+            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');

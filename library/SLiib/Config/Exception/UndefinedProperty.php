@@ -36,6 +36,7 @@ namespace SLiib\Config\Exception;
  */
 class UndefinedProperty
 extends \SLiib\Config\Exception
+implements \SLiib\IException\Logic
 {
 
 }

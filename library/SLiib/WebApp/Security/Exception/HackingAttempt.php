@@ -37,6 +37,7 @@ use SLiib\WebApp\Security\Rule;
  */
 class HackingAttempt
 extends \SLiib\WebApp\Security\Exception
+implements \SLiib\IException\Runtime
 {
 
     /**

@@ -36,7 +36,7 @@ namespace SLiib\Config\Exception;
  */
 class SyntaxError
 extends \SLiib\Config\Exception
-implements \SLiib\IException\Failure
+implements \SLiib\IException\Logic
 {
 
 }

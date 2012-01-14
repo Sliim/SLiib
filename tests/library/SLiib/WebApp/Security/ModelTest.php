@@ -176,6 +176,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -203,6 +204,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -230,6 +232,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -256,6 +259,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -282,6 +286,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $this->_object->run();
         } catch (Exception\HackingAttempt $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -327,6 +332,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             );
         } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -355,6 +361,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $rule = $this->_object->getRule(1337);
         } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -413,6 +420,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             $rule = $this->_object->deleteRule(1337);
         } catch (Exception\CheckerError $e) {
             $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
+            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
