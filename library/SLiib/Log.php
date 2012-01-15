@@ -130,7 +130,7 @@ class Log
     {
         $dump = Debug::dump($var, FALSE);
 
-        return $this->write($dump, self::DEBUG, $echo);
+        return $this->write($dump, self::DEBUG, $echo, FALSE);
 
     }
 
