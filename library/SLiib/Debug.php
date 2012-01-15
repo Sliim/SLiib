@@ -41,17 +41,19 @@ class Debug
      *
      * @param \mixed   $var  Variable to dump
      * @param \boolean $echo Print dump in stdout
+     * @param \boolean $pre  Allow <pre> tags,
+     *                       if disallow, dump no contains <pre> tags with any sapi value
      *
      * @return \string
      */
-    public static function dump($var, $echo=TRUE)
+    public static function dump($var, $echo=TRUE, $pre=TRUE)
     {
         ob_start();
         var_dump($var);
         $dump = ob_get_contents();
         ob_end_clean();
 
-        if (php_sapi_name() !== 'cli') {
+        if ($pre && php_sapi_name() !== 'cli') {
             $dump = '<pre>' . $dump . '</pre>';
         }
 

@@ -91,5 +91,20 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * Test force add <pre> tags
+     *
+     * @return void
+     */
+    public function testDisallowPreTagsForAnySapiValue()
+    {
+        \Stubs\Sapi::setSapi('cli');
+
+        $dump = Debug::dump($this->_int, FALSE, FALSE);
+        $this->assertStringStartsNotWith('<pre>', $dump);
+        $this->assertStringEndsNotWith('</pre>', $dump);
+
+    }
+
+
 }
-?>
