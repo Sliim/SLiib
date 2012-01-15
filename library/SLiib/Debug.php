@@ -39,8 +39,8 @@ class Debug
     /**
      * Dump a variable
      *
-     * @param \mixed             $var  Variable to dump
-     * @param \boolean[optional] $echo Print dump in stdout
+     * @param \mixed   $var  Variable to dump
+     * @param \boolean $echo Print dump in stdout
      *
      * @return \string
      */

@@ -35,41 +35,12 @@ namespace SLiib;
 abstract class Cli
 {
 
-    /**
-     * Script description
-     * @var \string
-     */
     const NO_DESCRIPTION_LABEL = 'No description';
-
-    /**
-     * Script author label when unknown
-     * @var \string
-     */
     const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
-
-    /**
-     * Script author label
-     * @var \string
-     */
-    const AUTHOR_LABEL = 'Auteur';
-
-    /**
-     * Script version label
-     * @var \string
-     */
-    const VERSION_LABEL = 'Version';
-
-    /**
-     * Help menu text
-     * @var \string
-     */
-    const SHOW_HELP_LABEL = 'Affiche l\'aide.';
-
-    /**
-     * Version menu text
-     * @var \string
-     */
-    const SHOW_VERSION_LABEL = 'Affiche la version du script.';
+    const AUTHOR_LABEL         = 'Auteur';
+    const VERSION_LABEL        = 'Version';
+    const SHOW_HELP_LABEL      = 'Affiche l\'aide.';
+    const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
 
     /**
      * Version du script
@@ -120,7 +91,7 @@ abstract class Cli
     /**
      * Constructeur
      *
-     * @param \array[optional] $options Options possible pour le script
+     * @param \array $options Options possible pour le script
      *
      * @return \void
      */

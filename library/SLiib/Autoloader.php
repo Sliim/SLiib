@@ -63,8 +63,8 @@ class Autoloader
     /**
      * Autoloader init
      *
-     * @param \array           $namespaces Allowed namespaces
-     * @param \array[optional] $sections   Allowed sections
+     * @param \array $namespaces Allowed namespaces
+     * @param \array $sections   Allowed sections
      *
      * @return \void
      */

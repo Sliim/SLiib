@@ -41,7 +41,7 @@ abstract class Model extends \SLiib\WebApp\Security\Model
     /**
      * Construct - Set model security
      *
-     * @param \string[optional] $model Model to set
+     * @param \string $model Model to set
      *
      * @return \void
      */

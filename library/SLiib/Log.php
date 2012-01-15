@@ -34,15 +34,10 @@ namespace SLiib;
  */
 class Log
 {
-    /**
-     * Date and time format
-     */
+
     const DATE_FORMAT = 'Y-m-d';
     const TIME_FORMAT = 'h:i:s';
 
-    /**
-     * Debug type
-     */
     const DEBUG = 'DEBUG';
     const INFO  = 'INFO';
     const WARN  = 'WARN';
@@ -65,8 +60,8 @@ class Log
     /**
      * Constructor, init file descriptor.
      *
-     * @param \string            $fileOutput File path
-     * @param \boolean[optional] $add        True add in file.
+     * @param \string  $fileOutput File path
+     * @param \boolean $add        True add in file.
      *
      * @throws Log\Exception
      *
@@ -103,9 +98,9 @@ class Log
     /**
      * Write in log file
      *
-     * @param \string            $string String to write
-     * @param \string            $type   Log type
-     * @param \boolean[optional] $echo   Print on stdout
+     * @param \string  $string String to write
+     * @param \string  $type   Log type
+     * @param \boolean $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -126,8 +121,8 @@ class Log
     /**
      * Dump a variable and save it in log file
      *
-     * @param \mixed             $var  Variable to debug
-     * @param \boolean[optional] $echo Print on stdout
+     * @param \mixed   $var  Variable to debug
+     * @param \boolean $echo Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -143,8 +138,8 @@ class Log
     /**
      * Write information log
      *
-     * @param \string            $string String to write
-     * @param \boolean[optional] $echo   Print on stdout
+     * @param \string  $string String to write
+     * @param \boolean $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -158,8 +153,8 @@ class Log
     /**
      * Write warning log
      *
-     * @param \string            $string String to write
-     * @param \boolean[optional] $echo   Print on stdout
+     * @param \string  $string String to write
+     * @param \boolean $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -173,8 +168,8 @@ class Log
     /**
      * Write error log
      *
-     * @param \string            $string String to write
-     * @param \boolean[optional] $echo   Print on stdout
+     * @param \string  $string String to write
+     * @param \boolean $echo   Print on stdout
      *
      * @return \SLiib\Log
      */
@@ -188,8 +183,8 @@ class Log
     /**
      * Write critical log
      *
-     * @param \string            $string String to write
-     * @param \boolean[optional] $echo   Print on stdout
+     * @param \string  $string String to write
+     * @param \boolean $echo   Print on stdout
      *
      * @return \SLiib\Log
      */

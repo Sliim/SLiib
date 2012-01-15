@@ -38,10 +38,6 @@ use SLiib\WebApp\Request;
 abstract class Model
 {
 
-    /**
-     * Security model
-     * @const \string
-     */
     const MODEL_NEGATIVE = 'Negative';
     const MODEL_POSITIVE = 'Positive';
 

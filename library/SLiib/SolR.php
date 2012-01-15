@@ -35,16 +35,7 @@ namespace SLiib;
 class SolR
 {
 
-    /**
-     * Répertoire SolR pour les update (insertion, commit, delete ..)
-     * @const \string UPDATE_DIRECTORY
-     */
     const UPDATE_DIRECTORY = '/solr/update';
-
-    /**
-     * Répertoire de sélection de document avec des requêtes spécifiques
-     * @const \string SELECT_DIRECTORY
-     */
     const SELECT_DIRECTORY = '/solr/select';
 
     /**
@@ -79,9 +70,9 @@ class SolR
     /**
      * Constructeur, initialise les attributs privés.
      *
-     * @param \string            $host Host de l'instance SolR
-     * @param \int               $port Port écouté par l'instance SolR
-     * @param \boolean[optional] $ping Ping SolR
+     * @param \string  $host Host de l'instance SolR
+     * @param \int     $port Port écouté par l'instance SolR
+     * @param \boolean $ping Ping SolR
      *
      * @throws SolR\Exception
      *

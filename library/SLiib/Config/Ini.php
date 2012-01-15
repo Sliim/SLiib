@@ -44,8 +44,8 @@ class Ini extends \SLiib\Config
     /**
      * Read a configuration file
      *
-     * @param \string           $file File to read
-     * @param \string[optional] $env  Config environment
+     * @param \string $file File to read
+     * @param \string $env  Config environment
      *
      * @throws Exception\UndefinedProperty
      *
@@ -75,7 +75,7 @@ class Ini extends \SLiib\Config
     /**
      * Protected constructor
      *
-     * @param \boolean[optional] $init Specify if is a config object init
+     * @param \boolean $init Specify if is a config object init
      *
      * @return \void
      */

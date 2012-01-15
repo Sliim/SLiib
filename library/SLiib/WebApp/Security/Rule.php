@@ -37,10 +37,6 @@ namespace SLiib\WebApp\Security;
 class Rule
 {
 
-    /**
-     * Location constantes
-     * @var \string
-     */
     const LOCATION_REQUEST_URI = 'Request URI';
     const LOCATION_PARAMETERS  = 'Parameters';
     const LOCATION_USERAGENT   = 'UserAgent';
@@ -94,10 +90,10 @@ class Rule
     /**
      * Rule init
      *
-     * @param \int              $id       Rule Id
-     * @param \string           $message  Rule message
-     * @param \string[optional] $pattern  Rule pattern
-     * @param \mixed[optional]  $location Rule location
+     * @param \int    $id       Rule Id
+     * @param \string $message  Rule message
+     * @param \string $pattern  Rule pattern
+     * @param \mixed  $location Rule location
      *
      * @return \void
      */
