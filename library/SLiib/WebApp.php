@@ -21,7 +21,6 @@
  * @package  SLiib\WebApp
  * @author   Sliim <sliim@mailoo.org>
  * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @version  Release: 0.2
  * @link     http://www.sliim-projects.eu
  */
 
