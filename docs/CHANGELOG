@@ -1,6 +1,11 @@
 CHANGELOG
 =========
-  * 2011-01-16 - SLiib v0.2
+  * 2012-01-16 - SLiib v0.2
     - First release SLiib.
+
+  * 2012-01-22 - SLiib v0.2.1
+    - English translation
+    - Unit tests for all exception
+    - Docblox parse only library directory
 
 
