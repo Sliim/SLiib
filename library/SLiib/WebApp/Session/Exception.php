@@ -34,7 +34,7 @@ namespace SLiib\WebApp\Session;
  * @subpackage Session\Exception
  */
 class Exception
-extends \SLiib\Exception
+extends \SLiib\WebApp\Exception
 {
 
 }

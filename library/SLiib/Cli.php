@@ -60,7 +60,7 @@ abstract class Cli
     protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
     /**
-     * Default options
+     * Default options of script
      * @var \array
      */
     protected $_defaultOpt = array(

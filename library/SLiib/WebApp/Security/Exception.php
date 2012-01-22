@@ -34,7 +34,7 @@ namespace SLiib\WebApp\Security;
  * @subpackage Security
  */
 class Exception
-extends \SLiib\Exception
+extends \SLiib\WebApp\Exception
 {
 
 }
