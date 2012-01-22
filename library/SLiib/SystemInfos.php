@@ -42,19 +42,14 @@ class SystemInfos implements
 
 
     /**
-     * Cette méthode magique est appelée lorqu'une méthode est appelée
-     * statiquement. Celle ci se charge de vérifier si le nom de la méthode
-     * correspond à une constante, si la constante existe, la valeur de la
-     * constante est éxécuté en tant que commande.
+     * Static call methods, a constant must be defined with the command to execute
      *
-     * @param \string $name      Nom de la méthode appelée
-     * @param \array  $arguments Arguments passés à la méthode. Un argument
-     *                          possible : 'serialize' qui permet de récupérer
-     *                          le résultat de la commande sérialisé.
+     * @param \string $name      Method name
+     * @param \array  $arguments Method parameters
      *
      * @throws SystemInfos\Exception\BadMethodCall
      *
-     * @return \string résultat de la commande
+     * @return \string
      */
     public static function __callStatic($name, array $arguments)
     {
@@ -74,13 +69,13 @@ class SystemInfos implements
 
 
     /**
-     * Exécute une commande avec proc_open
+     * Excute a command with proc_open
      *
-     * @param \string $cmd La commande a exécuter
+     * @param \string $cmd Command to execute
      *
      * @throws SystemInfos\Exception\CommandFailed
      *
-     * @return \array Tableau contenant le résultat de la commande.
+     * @return \array Command result
      */
     private static function _execute($cmd)
     {

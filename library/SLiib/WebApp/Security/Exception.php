@@ -26,6 +26,7 @@
  */
 
 namespace SLiib\WebApp\Security;
+
 /**
  * \SLiib\WebApp\Security\Exception
  *

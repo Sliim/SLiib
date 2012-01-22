@@ -35,20 +35,20 @@ class Registry
 {
 
     /**
-     * Tableau contenant le registre
+     * Registry singleton
      * @var \array
      */
     private static $_registry = array();
 
 
     /**
-     * Récupère une valeur dans le registre à partir d'une clé.
+     * Get registry balue from a key
      *
-     * @param \string $key Key à récupérer
+     * @param \string $key Key to get
      *
      * @throws Registry\Exception
      *
-     * @return \mixed Valeur de la clé.
+     * @return \mixed
      */
     public static function get($key)
     {
@@ -62,10 +62,10 @@ class Registry
 
 
     /**
-     * Définit une valeur dans le registre
+     * Set a value to a key
      *
-     * @param \string $key   Key à définir
-     * @param \mixed  $value Valeur à affecter
+     * @param \string $key   Key to set
+     * @param \mixed  $value Value to assign
      *
      * @throws Registry\Exception
      *

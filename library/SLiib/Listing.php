@@ -36,42 +36,42 @@ class Listing
 {
 
     /**
-     * Chemin du dossier à lister
+     * Directory path
      * @var \string
      */
     private $_path = '';
 
     /**
-     * Tableau comportant les éléments du dossier listé
+     * Array of directory elements
      * @var \array
      */
     private $_list = array();
 
     /**
-     * Nombre d'élément dans le dossier listé
+     * Number of elements in directory
      * @var \string
      */
     private $_contentNb;
 
     /**
-     * Nom du dossier
+     * Directory name
      * @var \string
      */
     private $_name;
 
 
     /**
-     * Constructeur, récupère le chemin du dossier qui sera à lister
+     * Constructor, get directory path
      *
-     * @param \string $dirPath    Chemin du dossier à lister
-     * @param \string $listName   Nom de la liste
-     * @param \array  $exceptions Liste des exceptions à ne pas lister
+     * @param \string $dirPath  Directory path
+     * @param \string $listName List name
+     * @param \array  $exclude  Elements to exclude
      *
      * @throws Listing\Exception
      *
      * @return \void
      */
-    public function __construct($dirPath, $listName, array $exceptions)
+    public function __construct($dirPath, $listName, array $exclude)
     {
         if (!is_dir($dirPath)) {
             throw new Listing\Exception('Directory `' . $dirPath . '` not found!');
@@ -81,13 +81,13 @@ class Listing
         $this->_contentNb = 0;
         $this->_name      = $listName;
 
-        $this->_list($exceptions);
+        $this->_list($exclude);
 
     }
 
 
     /**
-     * Retourne la liste du contenu du dossier listé
+     * Listing getter
      *
      * @return \array Liste des éléments du dossier
      */
@@ -99,7 +99,7 @@ class Listing
 
 
     /**
-     * Rangement du tableau par ordre alphabetic
+     * Sort list
      *
      * @return \SLiib\Listing
      */
@@ -115,7 +115,7 @@ class Listing
 
 
     /**
-     * Rangement du tableau par ordre alphabetic inversé
+     * Usort list
      *
      * @return \SLiib\Listing
      */
@@ -131,34 +131,26 @@ class Listing
 
 
      /**
-     * Methode de remplissage du tableau. Créé la liste des dossiers et
-     * fichiers présents. 1 paramètre : tableau contenant une liste de
-     * fichier / dossier à ne pas lister.
+     * Get directory elements and set the list
      *
-     * @param \array $except Les exceptions à ne pas lister
+     * @param \array $exclude Elements to exclude
      *
      * @return \void
      */
-    private function _list(array $except)
+    private function _list(array $exclude)
     {
-        $rep = opendir($this->_path);
+        $dir = opendir($this->_path);
 
-        while ($dossier = readdir($rep)) {
-            $ok = 1;
-
-            foreach ($except as $e) {
-                if ($dossier == $e || preg_match('/~$/i', $dossier)) {
-                    $ok = -1;
+        while ($element = readdir($dir)) {
+            foreach ($exclude as $e) {
+                if ($element != $e && !preg_match('/~$/i', $element)) {
+                    $this->_contentNb++;
+                    $this->_list[] = $element;
                 }
-            }
-
-            if ($ok == 1) {
-                $this->_contentNb++;
-                $this->_list[] = $dossier;
             }
         }
 
-        closedir($rep);
+        closedir($dir);
 
     }
 

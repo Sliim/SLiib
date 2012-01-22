@@ -38,19 +38,19 @@ class SolR
     const SELECT_DIRECTORY = '/solr/select';
 
     /**
-     * Host de l'instance SolR
+     * SolR host
      * @var \string
      */
     protected $_host;
 
     /**
-     * Port écouté par l'instance SolR
+     * SolR port
      * @var \int
      */
     protected $_port;
 
     /**
-     * Tableau des caractères spéciaux spécifiques à Solr
+     * Special characters specific to solr
      * @var \array
      */
     protected $_specialChars = array(
@@ -67,11 +67,11 @@ class SolR
 
 
     /**
-     * Constructeur, initialise les attributs privés.
+     * Constructor
      *
-     * @param \string  $host Host de l'instance SolR
-     * @param \int     $port Port écouté par l'instance SolR
-     * @param \boolean $ping Ping SolR
+     * @param \string  $host SolR host
+     * @param \int     $port SolR port
+     * @param \boolean $ping Check if accessible.
      *
      * @throws SolR\Exception
      *
@@ -94,11 +94,11 @@ class SolR
 
 
     /**
-     * Index un document XML
+     * Index an XML string
      *
-     * @param \string $xmlString Chaine de caractère XML
+     * @param \string $xmlString XML string to index
      *
-     * @return \boolean True si OK False si KO
+     * @return \boolean
      */
     public function update($xmlString)
     {
@@ -134,7 +134,7 @@ class SolR
 
 
     /**
-     * Commit de l'index SolR
+     * Index commiter
      *
      * @return \void
      */
@@ -147,7 +147,7 @@ class SolR
 
 
     /**
-     * Suppression de la totalité de l'index SolR.
+     * Delete all elements in index
      *
      * @return \void
      */
@@ -162,12 +162,11 @@ class SolR
 
 
     /**
-     * Effectue une recherche dans l'index SolR.
+     * Search in solr index
      *
-     * @param \string $query Requête SolR à émettre (possibilité d'utilises les
-     *                      paramètre hl, fl etc.. spécifique à SolR).
+     * @param \string $query Query to send
      *
-     * @return \string Résultat obtenu au format XML.
+     * @return \string
      */
     public function get($query)
     {
@@ -206,7 +205,7 @@ class SolR
 
 
     /**
-     * Récupère le nombre d'élément indexé dans solr.
+     * Get element number in solr index
      *
      * @return \int Nombre d'élément.
      */
@@ -224,7 +223,7 @@ class SolR
 
 
     /**
-     * Effectue un ping vers SolR
+     * Check if solr is accessible
      *
      * @return \boolean
      */
@@ -243,7 +242,7 @@ class SolR
 
 
     /**
-     * Echappe les caractères spéciaux propre à SolR d'une chaine.
+     * Escape special characters
      *
      * @param \string $string Chaine à traiter.
      *

@@ -42,25 +42,25 @@ abstract class Cli
     const SHOW_VERSION_LABEL   = 'Affiche la version du script.';
 
     /**
-     * Version du script
+     * Script version
      * @var \float
      */
     protected $_version = 0;
 
     /**
-     * Description du script
+     * Script description
      * @var \string
      */
     protected $_desc = self::NO_DESCRIPTION_LABEL;
 
     /**
-     * Auteur du script
+     * Script author
      * @var \string
      */
     protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
     /**
-     * Options par défaut possible du script
+     * Default options
      * @var \array
      */
     protected $_defaultOpt = array(
@@ -75,22 +75,22 @@ abstract class Cli
                              );
 
     /**
-     * Options possible du script
+     * Available options
      * @var \array
      */
     protected $_options = NULL;
 
     /**
-     * Chaine utilisée pour etre passée à getopt.
+     * GetOpt parameter
      * @var \string
      */
     protected $_params;
 
 
     /**
-     * Constructeur
+     * Constructor
      *
-     * @param \array $options Options possible pour le script
+     * @param \array $options Available options
      *
      * @return \void
      */
@@ -99,7 +99,6 @@ abstract class Cli
         if (!is_null($options)) {
             $this->_options = array_merge($this->_defaultOpt, $options);
 
-            //Initialisation des paramètres passés au script
             $params = '';
             foreach ($this->_options as $option => $desc) {
                 if (!array_key_exists('desc', $desc)) {
@@ -115,10 +114,8 @@ abstract class Cli
                 }
             }
 
-            //Récupération des paramètres passés au script
             $this->_params = getopt($params);
 
-            //Exécution de la fonction demandée s'il y a.
             foreach ($this->_params as $param => $value) {
                 if (array_key_exists('func', $this->_options[$param])) {
                     $func = $this->_options[$param]['func'];
@@ -133,8 +130,7 @@ abstract class Cli
 
 
     /**
-     * Affiche l'aide du script.
-     * (Méthode utilisée par le paramètre -h par défaut)
+     * Show help
      *
      * @return \void
      */
@@ -156,8 +152,7 @@ abstract class Cli
 
 
     /**
-     * Affiche la version du script.
-     * (Méthode utilisée par le paramètre -V par défaut)
+     * Show version
      *
      * @return \void
      */

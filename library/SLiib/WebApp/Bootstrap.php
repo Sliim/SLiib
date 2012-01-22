@@ -37,7 +37,7 @@ abstract class Bootstrap
 {
 
     /**
-     * Namespace de l'application
+     * Application namespace
      * @var \string
      */
     private $_appNamespace;
@@ -68,7 +68,7 @@ abstract class Bootstrap
 
 
     /**
-     * Initialisation du bootstrap
+     * Bootstrap init
      *
      * @param \string $appNamespace Namespace de l'application
      *
@@ -174,7 +174,7 @@ abstract class Bootstrap
 
 
     /**
-     * Initialise l'environnement de l'application
+     * Application environment init
      *
      * @return \void
      */

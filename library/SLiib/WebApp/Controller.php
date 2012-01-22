@@ -72,7 +72,7 @@ abstract class Controller
 
 
     /**
-     * Appel des action du controller.
+     * Get called action and run it
      *
      * @param \string $action Action to call
      * @param \array  $params unused

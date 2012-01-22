@@ -38,11 +38,11 @@ class String
 
 
     /**
-     * Supprime les espaces indésirables
+     * Delete undesirable spaces
      *
-     * @param \string $string Chaine de caractères à nettoyer.
+     * @param \string $string String to clean.
      *
-     * @return \string La chaine nettoyée
+     * @return \string
      */
     public static function clean($string)
     {
