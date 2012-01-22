@@ -13,7 +13,6 @@
     </parser>
     <files>
         <directory>../../library/</directory>
-        <directory>../../tests/</directory>
     </files>
     <logging>
         <level>warn</level>
