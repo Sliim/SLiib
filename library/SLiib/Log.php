@@ -109,7 +109,7 @@ class Log
         fwrite($this->_fileOutput, $log . PHP_EOL);
 
         if ($echo) {
-            $this->_printStdout($string, $type);
+            $this->_print($string, $type);
         }
 
         return $this;
@@ -307,35 +307,38 @@ class Log
 
 
     /**
-     * Write string on stdout
+     * Print string
      *
      * @param \string $string String to print
      * @param \string $type   Log type
      *
      * @return \void
      */
-    private function _printStdout($string, $type)
+    private function _print($string, $type)
     {
         $color        = "\033[0m";
         $defaultColor = $color;
+        $output       = STDOUT;
 
         switch ($type) {
             case self::DEBUG:
                 $color = "\033[34m";
                 break;
             case self::WARN:
-                $color = "\033[33m";
+                $output = STDERR;
+                $color  = "\033[33m";
                 break;
             case self::ERROR:
             case self::CRIT:
-                $color = "\033[31m";
+                $output = STDERR;
+                $color  = "\033[31m";
                 break;
             default:
                 //No color
                 break;
         }
 
-        echo $color . $string . $defaultColor . PHP_EOL;
+        fwrite($output, $color . $string . $defaultColor . PHP_EOL);
 
     }
 
