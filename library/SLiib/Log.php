@@ -57,7 +57,7 @@ class Log
 
     /**
      * Display on output with color
-     * @var boolean
+     * @var \boolean
      */
     private $_color = FALSE;
 
@@ -203,7 +203,7 @@ class Log
     /**
      * Set color for display
      *
-     * @param boolean $value True to enable color, False to disable
+     * @param \boolean $value True to enable color, False to disable
      *
      * @return \SLiib\Log
      */
