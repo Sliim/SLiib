@@ -28,19 +28,24 @@
 namespace SLiib;
 
 
-/*
- * Define STDOUT and STDERR constant in SLiib namespace
- */
-$stdout = fopen('/tmp/stdout.log', 'w');
-define('TMP_STDOUT', $stdout);
+if (in_array('php', stream_get_wrappers())) {
+    stream_wrapper_unregister('php');
+}
+
+stream_wrapper_register('php', '\Tools\StreamWrapper');
+
+
+//Move STDOUT in global variable named 'stdout'
+$fp = fopen('php://stdout', 'r+');
+define('TMP_STDOUT', $fp);
 const STDOUT = TMP_STDOUT;
-fclose($stdout);
+fclose($fp);
 
-$stderr = fopen('/tmp/stderr.log', 'w');
-define('TMP_STDERR', $stderr);
+//Move STDERR in global variable named 'stderr'
+$fp = fopen('php://stderr', 'r+');
+define('TMP_STDERR', $fp);
 const STDERR = TMP_STDERR;
-fclose($stderr);
-
+fclose($fp);
 
 /**
  * Test class for \SLiib\Log.
@@ -90,6 +95,13 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
         $this->_object = new Log($this->_filename, TRUE);
+
+        /*
+         * Purge global variable stdout and stderr
+         * See \Tools\StreamWrapper::stream_read() for more informations
+         */
+        fread(STDOUT, 1337);
+        fread(STDERR, 1337);
 
     }
 
@@ -185,19 +197,11 @@ class LogTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * Test print string in stdout/stderr with color
-     *
-     * @covers \SLiib\Log::write
-     * @covers \SLiib\Log::debug
-     * @covers \SLiib\Log::warn
-     * @covers \SLiib\Log::error
-     * @covers \SLiib\Log::crit
-     * @covers \SLiib\Log::info
-     * @covers \SLiib\Log::<private>
+     * Test print string in stdout/stderr without color
      *
      * @return \void
      */
-    public function testColor()
+    public function testPrintWithoutColor()
     {
         $this->_object->setFormat($this->_testLongFormat);
         $this->_object->debug('DEBUG', TRUE);
@@ -206,13 +210,33 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $this->_object->crit('CRIT', TRUE);
         $this->_object->info('INFO', TRUE);
 
-        $this->assertStringEqualsFile(
-            '/tmp/stdout.log',
-            "\033[34mstring(5) \"DEBUG\"\n\033[0m\n\033[0mINFO\033[0m\n"
+        $this->assertEquals("string(5) \"DEBUG\"\n\nINFO\n", $GLOBALS['stdout']);
+        $this->assertEquals("WARN\nERROR\nCRIT\n", $GLOBALS['stderr']);
+
+    }
+
+
+    /**
+     * Test print string in stdout/stderr with color
+     *
+     * @return \void
+     */
+    public function testPrintWithColor()
+    {
+        $this->_object->setFormat($this->_testLongFormat)->setColor(TRUE);
+        $this->_object->debug('DEBUG', TRUE);
+        $this->_object->warn('WARN', TRUE);
+        $this->_object->error('ERROR', TRUE);
+        $this->_object->crit('CRIT', TRUE);
+        $this->_object->info('INFO', TRUE);
+
+        $this->assertEquals(
+            "\033[34mstring(5) \"DEBUG\"\n\033[0m\n\033[0mINFO\033[0m\n",
+            $GLOBALS['stdout']
         );
-        $this->assertStringEqualsFile(
-            '/tmp/stderr.log',
-            "\033[33mWARN\033[0m\n\033[31mERROR\033[0m\n\033[31mCRIT\033[0m\n"
+        $this->assertEquals(
+            "\033[33mWARN\033[0m\n\033[31mERROR\033[0m\n\033[31mCRIT\033[0m\n",
+            $GLOBALS['stderr']
         );
 
     }

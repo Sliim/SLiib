@@ -55,6 +55,12 @@ class Log
      */
     private $_format = '[%d %t] [%T] - %m';
 
+    /**
+     * Display on output with color
+     * @var boolean
+     */
+    private $_color = FALSE;
+
 
     /**
      * Constructor, init file descriptor.
@@ -195,6 +201,21 @@ class Log
 
 
     /**
+     * Set color for display
+     *
+     * @param boolean $value True to enable color, False to disable
+     *
+     * @return \SLiib\Log
+     */
+    public function setColor($value)
+    {
+        $this->_color = $value;
+        return $this;
+
+    }
+
+
+    /**
      * Set log format
      * Available elements :
      * -date : %d
@@ -211,6 +232,7 @@ class Log
     public function setFormat($format)
     {
         $this->_format = $format;
+        return $this;
 
     }
 
@@ -318,27 +340,36 @@ class Log
     {
         $color        = "\033[0m";
         $defaultColor = $color;
-        $output       = STDOUT;
+
+        $stderr = array(
+                   self::WARN,
+                   self::ERROR,
+                   self::CRIT,
+                  );
 
         switch ($type) {
             case self::DEBUG:
                 $color = "\033[34m";
                 break;
             case self::WARN:
-                $output = STDERR;
-                $color  = "\033[33m";
+                $color = "\033[33m";
                 break;
             case self::ERROR:
             case self::CRIT:
-                $output = STDERR;
-                $color  = "\033[31m";
+                $color = "\033[31m";
                 break;
             default:
                 //No color
                 break;
         }
 
-        fwrite($output, $color . $string . $defaultColor . PHP_EOL);
+        $string = (($this->_color) ? $color . $string . $defaultColor : $string);
+
+        if (in_array($type, $stderr)) {
+            fwrite(STDERR, $string . PHP_EOL);
+        } else {
+            fwrite(STDOUT, $string . PHP_EOL);
+        }
 
     }
 
