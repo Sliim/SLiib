@@ -96,16 +96,8 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetAlreadyExistKey()
     {
-        try {
-            Registry::set('myKey', $this->_string);
-        } catch (Registry\Exception $e) {
-            $this->assertInstanceOf('\SLiib\Registry\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Registry\Exception');
+        Registry::set('myKey', $this->_string);
 
     }
 
@@ -117,16 +109,8 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetNotExistKey()
     {
-        try {
-            $res = Registry::get('notexist');
-        } catch (Registry\Exception $e) {
-            $this->assertInstanceOf('\SLiib\Registry\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Registry\Exception');
+        $res = Registry::get('notexist');
 
     }
 

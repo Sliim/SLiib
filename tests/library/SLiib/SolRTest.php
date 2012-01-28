@@ -232,12 +232,6 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      */
     public function testBadPort()
     {
-        try {
-            $object = new SolR($this->_host, 1337, TRUE);
-        } catch (SolR\Exception $e) {
-            $this->assertInstanceOf('\SLiib\SolR\Exception', $e);
-        }
-
         $object = new SolR($this->_host, 1337, FALSE);
 
         $res = $object->ping();
@@ -251,6 +245,9 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
         $res = $object->getTotalIndexed();
         $this->assertFalse($res);
+
+        $this->setExpectedException('\SLiib\SolR\Exception');
+        $object = new SolR($this->_host, 1337, TRUE);
 
     }
 

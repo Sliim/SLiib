@@ -94,16 +94,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
         Session::destroy();
 
-        try {
-            $sessionBibis = new Session('TestConstruct');
-        } catch (Session\Exception $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Session\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Session\Exception');
+        $sessionBibis = new Session('TestConstruct');
 
     }
 
@@ -120,16 +112,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $session = new Session('UnitTest');
         $this->assertEquals('bar', $session->foo);
 
-        try {
-            $property = $session->property;
-        } catch (Session\Exception $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Session\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Session\Exception');
+        $property = $session->property;
 
     }
 
@@ -161,16 +145,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         unset($this->_object->foo);
         $this->assertFalse(isset($this->_object->foo));
 
-        try {
-            unset($this->_object->notexist);
-        } catch (Session\Exception $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Session\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Session\Exception');
+        unset($this->_object->notexist);
 
     }
 

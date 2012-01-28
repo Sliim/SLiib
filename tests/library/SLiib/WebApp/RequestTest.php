@@ -128,16 +128,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetInstanceNotInit()
     {
-        try {
-            $object = Request::getInstance();
-        } catch (Request\Exception $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Request\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Request\Exception');
+        $object = Request::getInstance();
 
     }
 

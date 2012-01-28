@@ -98,23 +98,15 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunWithIncludeInjection()
     {
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
+
         \Tools\Request::setRequestMethod('POST');
         \Tools\Request::setPost(
             array('foo' => '\'; include \'ohmygad\';')
         );
         Request::init();
 
-        try {
-            $this->_object->run();
-        } catch (Exception\HackingAttempt $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->_object->run();
 
     }
 
@@ -126,23 +118,15 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunWithFilegetcontentsInjection()
     {
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
+
         \Tools\Request::setRequestMethod('POST');
         \Tools\Request::setPost(
             array('foo' => '\'; file_get_contents(\'/etc/hosts\');')
         );
         Request::init();
 
-        try {
-            $this->_object->run();
-        } catch (Exception\HackingAttempt $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->_object->run();
 
     }
 
@@ -154,23 +138,15 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunWithRemoteCmdExec()
     {
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
+
         \Tools\Request::setRequestMethod('POST');
         \Tools\Request::setPost(
             array('foo' => '\'; exec(\'nc -l -p 1337 -e /bin/bash\');')
         );
         Request::init();
 
-        try {
-            $this->_object->run();
-        } catch (Exception\HackingAttempt $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->_object->run();
 
     }
 

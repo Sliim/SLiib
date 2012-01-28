@@ -53,7 +53,6 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
             $this->assertInternalType('string', $res);
         } catch (SystemInfos\Exception\CommandFailed $e) {
             $this->assertInstanceOf('\SLiib\SystemInfos\Exception\CommandFailed', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
             return;
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
@@ -117,17 +116,8 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
      */
     public function testCmdUnknown()
     {
-        try {
-            $res = SystemInfos::CMD_UNKNOWN();
-        } catch (SystemInfos\Exception\BadMethodCall $e) {
-            $this->assertInstanceOf('\SLiib\SystemInfos\Exception\BadMethodCall', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\SystemInfos\Exception\BadMethodCall');
+        $res = SystemInfos::CMD_UNKNOWN();
 
     }
 
@@ -139,17 +129,8 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
      */
     public function testCmdFailed()
     {
-        try {
-            $res = \Stubs\SystemInfos::CMD_FAILED();
-        } catch (SystemInfos\Exception\CommandFailed $e) {
-            $this->assertInstanceOf('\SLiib\SystemInfos\Exception\CommandFailed', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\SystemInfos\Exception\CommandFailed');
+        $res = \Stubs\SystemInfos::CMD_FAILED();
 
     }
 

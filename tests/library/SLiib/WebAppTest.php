@@ -92,16 +92,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetInstance()
     {
-        try {
-            WebApp::getInstance();
-        } catch (WebApp\Exception $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception');
+        WebApp::getInstance();
 
     }
 
@@ -113,19 +105,11 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoBootstrap()
     {
-        try {
-            WebApp::init(
-                APP_NS,
-                ROOT_PATH
-            );
-        } catch (WebApp\Exception $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception');
+        WebApp::init(
+            APP_NS,
+            ROOT_PATH
+        );
 
     }
 
@@ -210,17 +194,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setRequestUri('/index/notexists');
 
-        try {
-            $this->_runApp();
-        } catch (WebApp\Exception\NoDispatchable $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception\NoDispatchable', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception\NoDispatchable');
+        $this->_runApp();
 
     }
 
@@ -234,17 +209,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setRequestUri('/notexists');
 
-        try {
-            $this->_runApp();
-        } catch (WebApp\Exception\NoDispatchable $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception\NoDispatchable', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception\NoDispatchable');
+        $this->_runApp();
 
     }
 
@@ -304,17 +270,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setrequestUri('/test/badsetview');
 
-        try {
-            $this->_runApp();
-        } catch (WebApp\Exception\InvalidParameter $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception\InvalidParameter', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception\InvalidParameter');
+        $this->_runApp();
 
     }
 
@@ -328,17 +285,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setRequestUri('/test/badpartial');
 
-        try {
-            $this->_runApp();
-        } catch (WebApp\Exception\InvalidParameter $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception\InvalidParameter', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception\InvalidParameter');
+        $this->_runApp();
 
     }
 
@@ -352,17 +300,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setRequestUri('/test/getterview');
 
-        try {
-            $this->_runApp();
-        } catch (WebApp\Exception\UndefinedProperty $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Exception\UndefinedProperty', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Exception\UNdefinedProperty');
+        $this->_runApp();
 
     }
 
@@ -377,19 +316,10 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->_disablePhpUnitErrorHandler();
         \Tools\Request::setRequestUri('/test/errorhandler');
 
-        try {
-            $this->_runApp();
-        } catch (\RuntimeException $e) {
-            $this->assertInstanceOf('\RuntimeException', $e);
-            $this->_enablePhpunitErrorHandler();
-            return;
-        } catch (\PHPUnit_Framework_Error $e) {
-            $this->_enablePhpunitErrorHandler();
-            $this->fail('Bad exception has been raised');
-        }
+        $this->setExpectedException('\RuntimeException');
+        $this->_runApp();
 
         $this->_enablePhpunitErrorHandler();
-        $this->fail('No exception has been raised');
 
     }
 

@@ -174,17 +174,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('sysInfos', $config);
         $this->assertEquals('Off', $config->sysInfos);
 
-        try {
-            $config = Ini::read($this->_iniFile, 'notexist');
-        } catch (Exception\UndefinedProperty $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception\UndefinedProperty', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception\UndefinedProperty');
+        $config = Ini::read($this->_iniFile, 'notexist');
 
     }
 
@@ -196,16 +187,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testOpenInexistantFile()
     {
-        try {
-            $config = Ini::read($this->_iniFail);
-        } catch (Exception $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception');
+        $config = Ini::read($this->_iniFail);
 
     }
 
@@ -217,17 +200,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testBadSection()
     {
-        try {
-            $config = Ini::read($this->_iniBadSection);
-        } catch (Exception\SyntaxError $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception\SyntaxError', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
+        $config = Ini::read($this->_iniBadSection);
 
     }
 
@@ -239,17 +213,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testBadKey()
     {
-        try {
-            $config = Ini::read($this->_iniBadKey);
-        } catch (Exception\SyntaxError $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception\SyntaxError', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
+        $config = Ini::read($this->_iniBadKey);
 
     }
 
@@ -261,17 +226,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testNoParent()
     {
-        try {
-            $config = Ini::read($this->_iniNoParent);
-        } catch (Exception\SyntaxError $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception\SyntaxError', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
+        $config = Ini::read($this->_iniNoParent);
 
     }
 
@@ -283,17 +239,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testSyntaxError()
     {
-        try {
-            $config = Ini::read($this->_iniSyntaxError);
-        } catch (Exception\SyntaxError $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception\SyntaxError', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
+        $config = Ini::read($this->_iniSyntaxError);
 
     }
 
@@ -307,17 +254,8 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        try {
-            $foo = $this->_object->bar;
-        } catch (Exception\UndefinedProperty $e) {
-            $this->assertInstanceOf('\SLiib\Config\Exception\UndefinedProperty', $e);
-            $this->assertInstanceOf('\SLiib\IException\Logic', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Config\Exception\UndefinedProperty');
+        $foo = $this->_object->bar;
 
     }
 

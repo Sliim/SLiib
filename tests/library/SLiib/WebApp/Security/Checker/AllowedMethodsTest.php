@@ -94,20 +94,12 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunWithForbiddenHTTPMethod()
     {
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
+
         \Tools\Request::setRequestMethod('WOOT');
         Request::init();
 
-        try {
-            $this->_object->run();
-        } catch (Exception\HackingAttempt $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->_object->run();
 
     }
 

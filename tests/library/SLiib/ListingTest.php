@@ -137,16 +137,8 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      */
     public function testInexistDir()
     {
-        try {
-            $list = new Listing('/tmp/notexists', 'fake', array());
-        } catch (Listing\Exception $e) {
-            $this->assertInstanceOf('\SLiib\Listing\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Listing\Exception');
+        $list = new Listing('/tmp/notexists', 'fake', array());
 
     }
 

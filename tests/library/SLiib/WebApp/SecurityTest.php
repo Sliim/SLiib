@@ -63,17 +63,8 @@ class SecurityTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckInvalidChecker()
     {
-        try {
-            Security::check(array('w00t'));
-        } catch (Security\Exception\CheckerError $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\CheckerError', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
+        Security::check(array('w00t'));
 
     }
 

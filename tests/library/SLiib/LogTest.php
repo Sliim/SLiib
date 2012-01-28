@@ -181,17 +181,8 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $file = 'files/unwritable.log';
         chmod($file, 0444);
 
-        try {
-            $log = new Log($file);
-            $log->debug('not permit to write');
-        } catch (Log\Exception $e) {
-            $this->assertInstanceOf('\SLiib\Log\Exception', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->setExpectedException('\SLiib\Log\Exception');
+        $log = new Log($file);
 
     }
 

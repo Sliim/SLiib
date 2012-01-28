@@ -97,20 +97,12 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunWithBadRobots()
     {
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
+
         \Tools\Request::setUserAgent('DirBuster-0.12');
         Request::init();
 
-        try {
-            $this->_object->run();
-        } catch (Exception\HackingAttempt $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->_object->run();
 
     }
 
@@ -122,20 +114,12 @@ class BadRobotsTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunWithNiktoScanner()
     {
+        $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
+
         \Tools\Request::setUserAgent('Mozilla/4.75 (Nikto/2.1.4) (Test:map_codes)');
         Request::init();
 
-        try {
-            $this->_object->run();
-        } catch (Exception\HackingAttempt $e) {
-            $this->assertInstanceOf('\SLiib\WebApp\Security\Exception\HackingAttempt', $e);
-            $this->assertInstanceOf('\SLiib\IException\Runtime', $e);
-            return;
-        } catch (\Exception $e) {
-            $this->fail('Bad exception has been raised');
-        }
-
-        $this->fail('No exception has been raised');
+        $this->_object->run();
 
     }
 
