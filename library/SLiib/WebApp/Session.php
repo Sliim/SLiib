@@ -163,10 +163,11 @@ class Session
      */
     public static function init()
     {
-        if (!static::$_started) {
+        if (!static::$_started && session_status() === PHP_SESSION_NONE) {
             session_start();
-            static::$_started = TRUE;
         }
+
+        static::$_started = TRUE;
 
     }
 
@@ -178,10 +179,11 @@ class Session
      */
     public static function destroy()
     {
-        if (static::$_started) {
+        if (static::$_started && session_status() === PHP_SESSION_ACTIVE) {
             session_destroy();
-            static::$_started = FALSE;
         }
+
+        static::$_started = FALSE;
 
     }
 
