@@ -121,6 +121,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunApp()
     {
+        $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->_runApp();
         $ip      = $this->_request->getClientIp();
         $referer = $this->_request->getReferer();
