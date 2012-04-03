@@ -57,9 +57,14 @@ class DebugTest extends \PHPUnit_Framework_TestCase
      */
     public function testDumpCli()
     {
+        \Stubs\Sapi::setSapi('cli');
+
+        $expected = 'string(' . strlen($this->_string) . ') "' . $this->_string . '"';
+
+        $this->expectOutputString($expected . PHP_EOL);
         $dump = Debug::dump($this->_string);
         $this->assertStringMatchesFormat(
-            'string(' . strlen($this->_string) . ') "' . $this->_string . '"',
+            $expected,
             $dump
         );
 
@@ -84,6 +89,7 @@ class DebugTest extends \PHPUnit_Framework_TestCase
         \Stubs\Sapi::setSapi('apache');
 
         $dump = Debug::dump($this->_int, FALSE);
+
         $this->assertStringStartsWith('<pre>', $dump);
         $this->assertStringEndsWith('</pre>', $dump);
 
@@ -93,7 +99,7 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     /**
      * Test force add <pre> tags
      *
-     * @return void
+     * @return \void
      */
     public function testDisallowPreTagsForAnySapiValue()
     {

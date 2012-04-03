@@ -143,6 +143,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testRunTestNoview()
     {
         \Tools\Request::setRequestUri('/test/noview');
+
+        $this->expectOutputString('No view for this controller');
         $this->_runApp();
 
     }
@@ -157,6 +159,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setCookie(array('foo' => 'bar'));
         \Tools\Request::setRequestUri('/test/request/foo/bar/1337/w00t');
+
+        $this->expectOutputRegex('/<h1>Test HTTP Request<\/h1>/');
         $this->_runApp();
 
         $params = $this->_request->getParameters();
@@ -180,6 +184,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testWithoutAction()
     {
         \Tools\Request::setRequestUri('/index');
+
+        $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->_runApp();
 
     }
@@ -230,6 +236,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             )
         );
 
+        $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->_runApp();
 
         $params = $this->_request->getParameters();
@@ -253,10 +260,12 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testOtherMethod()
     {
         \Tools\Request::setRequestMethod('1337');
+
+        $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->_runApp();
         $params = $this->_request->getParameters();
 
-        $this->assertTrue(empty($params));
+        $this->assertCount(0, $params);
 
     }
 
@@ -332,6 +341,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testModelAction()
     {
         \Tools\Request::setRequestUri('/test/model');
+
+        $this->expectOutputRegex('/<h1>Test controller!<\/h1>/');
         $this->_runApp();
 
     }
@@ -345,6 +356,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testLibraryAction()
     {
         \Tools\Request::setRequestUri('/test/library');
+
+        $this->expectOutputRegex('/<h1>Test controller!<\/h1>/');
         $this->_runApp();
 
     }
@@ -358,6 +371,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testCustomViewAction()
     {
         \Tools\Request::setRequestUri('/test/customview');
+
+        $this->expectOutputRegex('/Test custom view/');
         $this->_runApp();
 
     }
@@ -371,6 +386,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testJavascriptAction()
     {
         \Tools\Request::setRequestUri('/test/javascript');
+
+        $this->expectOutputRegex('/<script (.*)<\/script>/');
         $this->_runApp();
 
     }
@@ -384,6 +401,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testSessionAction()
     {
         \Tools\Request::setRequestUri('/test/session');
+
+        $this->expectOutputRegex('/<h1>Test Session<\/h1>/');
         $this->_runApp();
 
         \Tools\Request::setRequestMethod('POST');
@@ -418,6 +437,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testControllerWithDash()
     {
         \Tools\Request::setRequestUri('/my-controller');
+
+        $this->expectOutputRegex('/<h1>MyController controller!<\/h1>/');
         $this->_runApp();
 
         $controller = $this->_request->getController();
@@ -440,6 +461,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testActionWithDash()
     {
         \Tools\Request::setRequestUri('/my-controller/my-action');
+
+        $this->expectOutputRegex('/<h1>MyControllerWithMultiDash controller!<\/h1>/');
         $this->_runApp();
 
         $action = $this->_request->getAction();
@@ -465,6 +488,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             '/my-controller/my-action/my-param/foo/with-multi-dash-param/bar'
         );
         \Tools\Request::setRequestMethod('GET');
+
+        $this->expectOutputRegex('/<h1>MyController controller!<\/h1>/');
         $this->_runApp();
 
         $param = $this->_request->getParameters();
