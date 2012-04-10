@@ -11,3 +11,6 @@ CHANGELOG
   * 2012-01-26 - SLiib v0.2.2
     - \SLiib\Log - Print errors in stderr output
     - \SLiib\Log - Add method to enable/disable color in output
+
+  * 2012-04-10 - SLiib v0.2.3
+    - PHP 5.4 fixes
