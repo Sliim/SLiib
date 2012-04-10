@@ -94,9 +94,6 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
         Session::destroy();
 
-        $this->setExpectedException('\SLiib\WebApp\Session\Exception');
-        $sessionBibis = new Session('TestConstruct');
-
     }
 
 

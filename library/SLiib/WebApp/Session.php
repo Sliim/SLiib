@@ -66,7 +66,7 @@ class Session
      */
     public function __construct($namespace)
     {
-        if (!static::$_started) {
+        if (!static::started()) {
             throw new Session\Exception('Session not initialized.');
         }
 
@@ -163,7 +163,7 @@ class Session
      */
     public static function init()
     {
-        if (!static::$_started && session_status() === PHP_SESSION_NONE) {
+        if (!static::started()) {
             session_start();
         }
 
@@ -179,7 +179,7 @@ class Session
      */
     public static function destroy()
     {
-        if (static::$_started && session_status() === PHP_SESSION_ACTIVE) {
+        if (session_id() !== '') {
             session_destroy();
         }
 
@@ -195,6 +195,10 @@ class Session
      */
     public static function started()
     {
+        if (session_id() !== '' || headers_sent()) {
+            return TRUE;
+        }
+
         return static::$_started;
 
     }
