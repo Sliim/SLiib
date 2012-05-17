@@ -37,7 +37,7 @@ class Config
 
     /**
      * Configuration file
-     * @var \string
+     * @var string
      */
     protected static $_file = NULL;
 
@@ -45,11 +45,11 @@ class Config
     /**
      * Undefined property getter
      *
-     * @param \string $key Key to get
+     * @param string $key Key to get
      *
-     * @throws Exception\UndefinedProperty
+     * @throws \SLiib\Config\Exception\UndefinedProperty
      *
-     * @return \void
+     * @return void
      */
     public function __get($key)
     {
@@ -61,9 +61,9 @@ class Config
     /**
      * Read a configuration file
      *
-     * @param \string $file File to read
+     * @param string $file File to read
      *
-     * @throws Exception
+     * @throws \SLiib\Config\Exception
      *
      * @return \SLiib\Config
      */
@@ -81,7 +81,7 @@ class Config
     /**
      * Protected constructor
      *
-     * @return \void
+     * @return void
      */
     protected function __construct()
     {

@@ -39,25 +39,25 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Fake ip
-     * @var \string
+     * @var string
      */
     private $_ip = '127.0.0.1';
 
     /**
      * Fake method request
-     * @var \string
+     * @var string
      */
     private $_method = 'GET';
 
     /**
      * Fake user agent
-     * @var \string
+     * @var string
      */
     private $_userAgent = 'Units Test \SLiib\WebApp';
 
     /**
      * Fake referer
-     * @var \string
+     * @var string
      */
     private $_referer = 'http://dtc.com';
 
@@ -72,7 +72,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -88,7 +88,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test get instance of \SLiib\WebApp not initialised
      *
-     * @return \void
+     * @return void
      */
     public function testGetInstance()
     {
@@ -101,7 +101,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test no boostrap in app
      *
-     * @return \void
+     * @return void
      */
     public function testNoBootstrap()
     {
@@ -117,7 +117,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run application
      *
-     * @return \void
+     * @return void
      */
     public function testRunApp()
     {
@@ -139,7 +139,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test /test/noview
      *
-     * @return \void
+     * @return void
      */
     public function testRunTestNoview()
     {
@@ -154,7 +154,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with params (GET)
      *
-     * @return \void
+     * @return void
      */
     public function testGetParams()
     {
@@ -180,7 +180,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test without action
      *
-     * @return \void
+     * @return void
      */
     public function testWithoutAction()
     {
@@ -195,7 +195,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test bad action
      *
-     * @return \void
+     * @return void
      */
     public function testBadAction()
     {
@@ -210,7 +210,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test bad controller
      *
-     * @return \void
+     * @return void
      */
     public function testBadController()
     {
@@ -225,7 +225,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with post method
      *
-     * @return \void
+     * @return void
      */
     public function testPostMethod()
     {
@@ -256,7 +256,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test params with other method
      *
-     * @return \void
+     * @return void
      */
     public function testOtherMethod()
     {
@@ -274,7 +274,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test bad set view in \SLiib\WebApp\View
      *
-     * @return \void
+     * @return void
      */
     public function testBadSetView()
     {
@@ -289,7 +289,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test bad partial in \SLiib\WebApp\View
      *
-     * @return \void
+     * @return void
      */
     public function testBadPartial()
     {
@@ -304,7 +304,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test \SLiib\WebApp\View getter
      *
-     * @return \void
+     * @return void
      */
     public function testViewGetter()
     {
@@ -319,7 +319,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test Error Handler
      *
-     * @return \void
+     * @return void
      */
     public function testErrorHandler()
     {
@@ -337,7 +337,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test model action (Controller test)
      *
-     * @return \void
+     * @return void
      */
     public function testModelAction()
     {
@@ -352,7 +352,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test library action (Controller test)
      *
-     * @return \void
+     * @return void
      */
     public function testLibraryAction()
     {
@@ -367,7 +367,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test custom view action (Controller test)
      *
-     * @return \void
+     * @return void
      */
     public function testCustomViewAction()
     {
@@ -382,7 +382,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test javascript action (Controller test)
      *
-     * @return \void
+     * @return void
      */
     public function testJavascriptAction()
     {
@@ -397,7 +397,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test session action (Controller test)
      *
-     * @return \void
+     * @return void
      */
     public function testSessionAction()
     {
@@ -433,7 +433,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with dash in controller name
      *
-     * @return \void
+     * @return void
      */
     public function testControllerWithDash()
     {
@@ -457,7 +457,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with dash in action name
      *
-     * @return \void
+     * @return void
      */
     public function testActionWithDash()
     {
@@ -481,7 +481,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with dash in get param name
      *
-     * @return \void
+     * @return void
      */
     public function testParamWithDash()
     {
@@ -506,7 +506,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Enable PHPUnit error handler
      *
-     * @return \void
+     * @return void
      */
     private function _enablePhpunitErrorHandler()
     {
@@ -518,7 +518,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Disable PHPUnit error handler
      *
-     * @return \void
+     * @return void
      */
     private function _disablePhpUnitErrorHandler()
     {
@@ -531,7 +531,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     /**
      * Run application
      *
-     * @return \void
+     * @return void
      */
     private function _runApp()
     {

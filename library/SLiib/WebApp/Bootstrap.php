@@ -38,31 +38,31 @@ abstract class Bootstrap
 
     /**
      * Application namespace
-     * @var \string
+     * @var string
      */
     private $_appNamespace;
 
     /**
      * Web Application namespaces
-     * @var \array
+     * @var array
      */
     private $_namespaces = array();
 
     /**
      * Web Application sections
-     * @var \array
+     * @var array
      */
     private $_sections = array();
 
     /**
      * Application view path
-     * @var \string
+     * @var string
      */
     private $_viewPath = NULL;
 
     /**
      * Security checkers
-     * @var \array
+     * @var array
      */
     private $_securityCheckers = array();
 
@@ -70,9 +70,9 @@ abstract class Bootstrap
     /**
      * Bootstrap init
      *
-     * @param \string $appNamespace Namespace de l'application
+     * @param string $appNamespace Namespace de l'application
      *
-     * @return \void
+     * @return void
      */
     public final function __construct($appNamespace)
     {
@@ -85,7 +85,7 @@ abstract class Bootstrap
     /**
      * Bootstrap init before running
      *
-     * @return \void
+     * @return void
      */
     abstract public function init();
 
@@ -93,7 +93,7 @@ abstract class Bootstrap
     /**
      * Démarrage du bootstrap
      *
-     * @return \void
+     * @return void
      */
     public final function run()
     {
@@ -112,7 +112,7 @@ abstract class Bootstrap
     /**
      * Get namespaces
      *
-     * @return \array
+     * @return array
      */
     public function getNamespaces()
     {
@@ -124,7 +124,7 @@ abstract class Bootstrap
     /**
      * Get sections
      *
-     * @return \array
+     * @return array
      */
     public function getSections()
     {
@@ -136,7 +136,7 @@ abstract class Bootstrap
     /**
      * Get application view path
      *
-     * @return \string
+     * @return string
      */
     public function getViewPath()
     {
@@ -148,9 +148,9 @@ abstract class Bootstrap
     /**
      * Set namespaces
      *
-     * @param \array $namespaces Namespaces to set
+     * @param array $namespaces Namespaces to set
      *
-     * @return \void
+     * @return void
      */
     protected function _setNamespaces(array $namespaces)
     {
@@ -162,9 +162,9 @@ abstract class Bootstrap
     /**
      * Set sections
      *
-     * @param \array $sections Sections to set
+     * @param array $sections Sections to set
      *
-     * @return \void
+     * @return void
      */
     protected function _setSections(array $sections)
     {
@@ -176,7 +176,7 @@ abstract class Bootstrap
     /**
      * Application environment init
      *
-     * @return \void
+     * @return void
      */
     protected function _setEnvironment()
     {
@@ -190,11 +190,11 @@ abstract class Bootstrap
     /**
      * Set application view path
      *
-     * @param \string $path View path
+     * @param string $path View path
      *
-     * @throws Exception
+     * @throws \SLiib\WebApp\Exception
      *
-     * @return \void
+     * @return void
      */
     protected function _setViewPath($path)
     {
@@ -210,9 +210,9 @@ abstract class Bootstrap
     /**
      * Define security checker
      *
-     * @param \array $checkers Checkers to set
+     * @param array $checkers Checkers to set
      *
-     * @return \void
+     * @return void
      */
     protected function _setSecurityCheckers(array $checkers)
     {
@@ -228,7 +228,7 @@ abstract class Bootstrap
      *
      * @throws \Exception
      *
-     * @return \void
+     * @return void
      */
     protected function _exceptionHandler(\Exception $e)
     {

@@ -42,7 +42,7 @@ class Test extends Controller
     /**
      * Init controller
      *
-     * @return \void
+     * @return void
      */
     protected function _init()
     {
@@ -54,7 +54,7 @@ class Test extends Controller
     /**
      * Test model
      *
-     * @return \void
+     * @return void
      */
     public function modelAction()
     {
@@ -69,7 +69,7 @@ class Test extends Controller
     /**
      * Test library
      *
-     * @return \void
+     * @return void
      */
     public function libraryAction()
     {
@@ -84,7 +84,7 @@ class Test extends Controller
     /**
      * Test No view
      *
-     * @return \void
+     * @return void
      */
     public function noviewAction()
     {
@@ -97,7 +97,7 @@ class Test extends Controller
     /**
      * Test custom view
      *
-     * @return \void
+     * @return void
      */
     public function customViewAction()
     {
@@ -110,7 +110,7 @@ class Test extends Controller
     /**
      * Test javascript script
      *
-     * @return \void
+     * @return void
      */
     public function javascriptAction()
     {
@@ -122,7 +122,7 @@ class Test extends Controller
     /**
      * Test http request
      *
-     * @return \void
+     * @return void
      */
     public function requestAction()
     {
@@ -140,7 +140,7 @@ class Test extends Controller
     /**
      * Test setting bad view
      *
-     * @return \void
+     * @return void
      */
     public function badsetviewAction()
     {
@@ -152,7 +152,7 @@ class Test extends Controller
     /**
      * Test setting bad partial
      *
-     * @return \void
+     * @return void
      */
     public function badPartialAction()
     {
@@ -164,7 +164,7 @@ class Test extends Controller
     /**
      * Test get unknown view property
      *
-     * @return \void
+     * @return void
      */
     public function getterviewAction()
     {
@@ -177,7 +177,7 @@ class Test extends Controller
     /**
      * Test error handler
      *
-     * @return \boolean
+     * @return boolean
      */
     public function errorhandlerAction()
     {
@@ -190,7 +190,7 @@ class Test extends Controller
     /**
      * Test session
      *
-     * @return \void
+     * @return void
      */
     public function sessionAction()
     {

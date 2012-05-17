@@ -41,7 +41,7 @@ implements \SLiib\IException\Runtime
 
     /**
      * Checker name
-     * @var \string
+     * @var string
      */
     private $_checkerName;
 
@@ -53,13 +53,13 @@ implements \SLiib\IException\Runtime
 
     /**
      * Rule location
-     * @var \string
+     * @var string
      */
     private $_location;
 
     /**
      * Exception reason
-     * @var \string
+     * @var string
      */
     private $_reason;
 
@@ -67,14 +67,14 @@ implements \SLiib\IException\Runtime
     /**
      * Exception constructor
      *
-     * @param \string                     $checkerName Checker name
+     * @param string                     $checkerName Checker name
      * @param \SLiib\WebApp\Security\Rule $rule        Rule
-     * @param \string                     $location    Location check failed
-     * @param \string                     $reason      Exception reason
-     * @param \int                        $code        Exception code
+     * @param string                     $location    Location check failed
+     * @param string                     $reason      Exception reason
+     * @param int                        $code        Exception code
      * @param \Exception                  $parent      Parent exception
      *
-     * @return \void
+     * @return void
      */
     public function __construct(
         $checkerName,
@@ -106,7 +106,7 @@ implements \SLiib\IException\Runtime
     /**
      * Checker name getter
      *
-     * @return \string
+     * @return string
      */
     public function getCheckerName()
     {
@@ -130,7 +130,7 @@ implements \SLiib\IException\Runtime
     /**
      * Location getter
      *
-     * @return \string
+     * @return string
      */
     public function getLocation()
     {
@@ -142,7 +142,7 @@ implements \SLiib\IException\Runtime
     /**
      * Reason exception getter
      *
-     * @return \string
+     * @return string
      */
     public function getReason()
     {

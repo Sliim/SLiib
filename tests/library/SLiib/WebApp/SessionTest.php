@@ -48,7 +48,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -65,7 +65,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function tearDown()
     {
@@ -77,7 +77,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test constructor
      *
-     * @return \void
+     * @return void
      */
     public function testConstruct()
     {
@@ -102,7 +102,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::__get
      *
-     * @return \void
+     * @return void
      */
     public function testGet()
     {
@@ -120,7 +120,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::__set
      *
-     * @return \void
+     * @return void
      */
     public function testSet()
     {
@@ -135,7 +135,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::__unset
      *
-     * @return \void
+     * @return void
      */
     public function testUnset()
     {
@@ -153,7 +153,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::__isset
      *
-     * @return \void
+     * @return void
      */
     public function testIsset()
     {
@@ -168,7 +168,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::clear
      *
-     * @return \void
+     * @return void
      */
     public function testClear()
     {
@@ -183,7 +183,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::namespaceExist
      *
-     * @return \void
+     * @return void
      */
     public function testNamespaceExist()
     {
@@ -198,7 +198,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Session::started
      *
-     * @return \void
+     * @return void
      */
     public function testStarted()
     {

@@ -42,7 +42,7 @@ class Bootstrap extends WebApp\Bootstrap
     /**
      * Init application's namespaces & sections
      *
-     * @return \void
+     * @return void
      */
     public function init()
     {
@@ -88,14 +88,14 @@ class Bootstrap extends WebApp\Bootstrap
     /**
      * Error handler
      *
-     * @param \int    $errno   Error number
-     * @param \string $errstr  Error message
-     * @param \string $errfile Error file
-     * @param \int    $errline Error line
+     * @param int    $errno   Error number
+     * @param string $errstr  Error message
+     * @param string $errfile Error file
+     * @param int    $errline Error line
      *
      * @throws \RuntimeException
      *
-     * @return \void
+     * @return void
      */
     public function errorHandler($errno, $errstr, $errfile, $errline)
     {
@@ -116,7 +116,7 @@ class Bootstrap extends WebApp\Bootstrap
      *
      * @param \Exception $e The exception object
      *
-     * @return \void
+     * @return void
      */
     protected function _exceptionHandler(\Exception $e)
     {

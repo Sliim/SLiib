@@ -42,7 +42,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
      * Appel commande Apache2
      * apache2 on debian testing fail with normal user (not /usr/sbin in his $PATH)
      *
-     * @return \void
+     * @return void
      */
     public function testCmdApache2()
     {
@@ -64,7 +64,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     /**
      * Appel commande PHP
      *
-     * @return \void
+     * @return void
      */
     public function testCmdPHP()
     {
@@ -80,7 +80,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     /**
      * Appel commande Uname
      *
-     * @return \void
+     * @return void
      */
     public function testCmdUname()
     {
@@ -96,7 +96,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     /**
      * Appel commande LSBRelease
      *
-     * @return \void
+     * @return void
      */
     public function testCmdLsbRelease()
     {
@@ -112,7 +112,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     /**
      * Test command unknown
      *
-     * @return \void
+     * @return void
      */
     public function testCmdUnknown()
     {
@@ -125,7 +125,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     /**
      * Test command failed
      *
-     * @return \void
+     * @return void
      */
     public function testCmdFailed()
     {

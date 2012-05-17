@@ -41,7 +41,7 @@ class MyControllerWithMultiDash extends Controller
     /**
      * Init controller
      *
-     * @return \void
+     * @return void
      */
     protected function _init()
     {
@@ -53,7 +53,7 @@ class MyControllerWithMultiDash extends Controller
     /**
      * Index action
      *
-     * @return \void
+     * @return void
      */
     public function indexAction()
     {
@@ -65,7 +65,7 @@ class MyControllerWithMultiDash extends Controller
     /**
      * myActionWithMultiDash action
      *
-     * @return \void
+     * @return void
      */
     public function myActionWithMultiDashAction()
     {

@@ -39,19 +39,19 @@ class SolR
 
     /**
      * SolR host
-     * @var \string
+     * @var string
      */
     protected $_host;
 
     /**
      * SolR port
-     * @var \int
+     * @var int
      */
     protected $_port;
 
     /**
      * Special characters specific to solr
-     * @var \array
+     * @var array
      */
     protected $_specialChars = array(
                                 '+', '-',
@@ -69,13 +69,13 @@ class SolR
     /**
      * Constructor
      *
-     * @param \string  $host SolR host
-     * @param \int     $port SolR port
-     * @param \boolean $ping Check if accessible.
+     * @param string  $host SolR host
+     * @param int     $port SolR port
+     * @param boolean $ping Check if accessible.
      *
-     * @throws SolR\Exception
+     * @throws \SLiib\SolR\Exception
      *
-     * @return \void
+     * @return void
      */
     public function __construct($host, $port, $ping=TRUE)
     {
@@ -96,9 +96,9 @@ class SolR
     /**
      * Index an XML string
      *
-     * @param \string $xmlString XML string to index
+     * @param string $xmlString XML string to index
      *
-     * @return \boolean
+     * @return boolean
      */
     public function update($xmlString)
     {
@@ -136,7 +136,7 @@ class SolR
     /**
      * Index commiter
      *
-     * @return \void
+     * @return void
      */
     public function commit()
     {
@@ -149,7 +149,7 @@ class SolR
     /**
      * Delete all elements in index
      *
-     * @return \void
+     * @return void
      */
     public function deleteAll()
     {
@@ -164,9 +164,9 @@ class SolR
     /**
      * Search in solr index
      *
-     * @param \string $query Query to send
+     * @param string $query Query to send
      *
-     * @return \string
+     * @return string
      */
     public function get($query)
     {
@@ -207,7 +207,7 @@ class SolR
     /**
      * Get element number in solr index
      *
-     * @return \int Nombre d'élément.
+     * @return int Nombre d'élément.
      */
     public function getTotalIndexed()
     {
@@ -225,7 +225,7 @@ class SolR
     /**
      * Check if solr is accessible
      *
-     * @return \boolean
+     * @return boolean
      */
     public function ping()
     {
@@ -244,9 +244,9 @@ class SolR
     /**
      * Escape special characters
      *
-     * @param \string $string Chaine à traiter.
+     * @param string $string Chaine à traiter.
      *
-     * @return \string Chaine Traitée.
+     * @return string Chaine Traitée.
      */
     public function escapeSpecialChar($string)
     {

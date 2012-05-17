@@ -43,7 +43,7 @@ extends Model\PositiveSecurity
     /**
      * Checker construct
      *
-     * @return \void
+     * @return void
      */
     public function __construct()
     {

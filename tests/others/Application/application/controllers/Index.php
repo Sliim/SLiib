@@ -41,7 +41,7 @@ class Index extends Controller
     /**
      * Init controller
      *
-     * @return \void
+     * @return void
      */
     protected function _init()
     {
@@ -53,7 +53,7 @@ class Index extends Controller
     /**
      * Index action
      *
-     * @return \void
+     * @return void
      */
     public function indexAction()
     {

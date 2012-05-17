@@ -40,7 +40,7 @@ class MyClass
     /**
      * Return Hello World!
      *
-     * @return \string
+     * @return string
      */
     public function toString()
     {

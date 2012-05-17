@@ -38,12 +38,12 @@ class Debug
     /**
      * Dump a variable
      *
-     * @param \mixed   $var  Variable to dump
-     * @param \boolean $echo Print dump in stdout
-     * @param \boolean $pre  Allow <pre> tags,
+     * @param mixed   $var  Variable to dump
+     * @param boolean $echo Print dump in stdout
+     * @param boolean $pre  Allow <pre> tags,
      *                       if disallow, dump no contains <pre> tags with any sapi value
      *
-     * @return \string
+     * @return string
      */
     public static function dump($var, $echo=TRUE, $pre=TRUE)
     {

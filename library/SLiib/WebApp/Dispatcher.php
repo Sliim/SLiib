@@ -38,7 +38,7 @@ class Dispatcher
 
     /**
      * Application namespace
-     * @var \string
+     * @var string
      */
     private static $_namespace = NULL;
 
@@ -46,9 +46,9 @@ class Dispatcher
     /**
      * Init dispatcher
      *
-     * @param \string $namespace Application namespace
+     * @param string $namespace Application namespace
      *
-     * @return \void
+     * @return void
      */
     public static function init($namespace)
     {
@@ -60,9 +60,9 @@ class Dispatcher
     /**
      * Dispatching..
      *
-     * @throws Exception\NoDispatchable
+     * @throws \SLiib\WebApp\Exception\NoDispatchable
      *
-     * @return \void
+     * @return void
      */
     public static function dispatch()
     {

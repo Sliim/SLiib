@@ -40,7 +40,7 @@ class Session
     /**
      * Set $_SESSION variable
      *
-     * @return \void
+     * @return void
      */
     public static function setSession()
     {

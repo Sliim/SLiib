@@ -40,9 +40,9 @@ abstract class Model extends \SLiib\WebApp\Security\Model
     /**
      * Construct - Set model security
      *
-     * @param \string $model Model to set
+     * @param string $model Model to set
      *
-     * @return \void
+     * @return void
      */
     public function __construct($model='')
     {
@@ -57,9 +57,9 @@ abstract class Model extends \SLiib\WebApp\Security\Model
      * Check a pattern in a string
      *
      * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
-     * @param \string                     $string String to use
+     * @param string                     $string String to use
      *
-     * @return \boolean
+     * @return boolean
      */
     protected function _check($rule, $string)
     {

@@ -40,9 +40,9 @@ class String
     /**
      * Delete undesirable spaces
      *
-     * @param \string $string String to clean.
+     * @param string $string String to clean.
      *
-     * @return \string
+     * @return string
      */
     public static function clean($string)
     {

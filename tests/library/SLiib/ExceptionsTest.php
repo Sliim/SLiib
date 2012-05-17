@@ -42,7 +42,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Exceptions list to test
-     * @var \array
+     * @var array
      */
     private static $_e = array();
 
@@ -50,7 +50,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up exceptions list
      *
-     * @return \void
+     * @return void
      */
     public static function setUpBeforeClass()
     {
@@ -105,7 +105,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
     /**
      * Test all instance of exceptions
      *
-     * @return \void
+     * @return void
      */
     public function testInstanceOf()
     {

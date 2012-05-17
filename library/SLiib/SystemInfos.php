@@ -44,12 +44,12 @@ class SystemInfos implements
     /**
      * Static call methods, a constant must be defined with the command to execute
      *
-     * @param \string $name      Method name
-     * @param \array  $arguments Method parameters
+     * @param string $name      Method name
+     * @param array  $arguments Method parameters
      *
-     * @throws SystemInfos\Exception\BadMethodCall
+     * @throws \SLiib\SystemInfos\Exception\BadMethodCall
      *
-     * @return \string
+     * @return string
      */
     public static function __callStatic($name, array $arguments)
     {
@@ -71,11 +71,11 @@ class SystemInfos implements
     /**
      * Excute a command with proc_open
      *
-     * @param \string $cmd Command to execute
+     * @param string $cmd Command to execute
      *
-     * @throws SystemInfos\Exception\CommandFailed
+     * @throws \SLiib\SystemInfos\Exception\CommandFailed
      *
-     * @return \array Command result
+     * @return array Command result
      */
     private static function _execute($cmd)
     {

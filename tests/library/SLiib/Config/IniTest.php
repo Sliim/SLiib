@@ -45,37 +45,37 @@ class IniTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test file
-     * @var \string
+     * @var string
      */
     protected $_iniFile;
 
     /**
      * Not exists file
-     * @var \string
+     * @var string
      */
     protected $_iniFail;
 
     /**
      * Bad section definition
-     * @var \string
+     * @var string
      */
     protected $_iniBadSection;
 
     /**
      * No parent section
-     * @var \string
+     * @var string
      */
     protected $_iniNoParent;
 
     /**
      * Directive definition syntax error
-     * @var \string
+     * @var string
      */
     protected $_iniSyntaxError;
 
     /**
      * Directive definition syntax error bis
-     * @var \string
+     * @var string
      */
     protected $_iniSEbis;
 
@@ -84,7 +84,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -103,7 +103,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function tearDown()
     {
@@ -115,7 +115,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test get all directives
      *
-     * @return \void
+     * @return void
      */
     public function testConfig()
     {
@@ -162,7 +162,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test config with environment
      *
-     * @return \void
+     * @return void
      */
     public function testConfigWithEnv()
     {
@@ -183,7 +183,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test open inexistant file
      *
-     * @return \void
+     * @return void
      */
     public function testOpenInexistantFile()
     {
@@ -196,7 +196,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test Bad section
      *
-     * @return \void
+     * @return void
      */
     public function testBadSection()
     {
@@ -209,7 +209,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test Bad key
      *
-     * @return \void
+     * @return void
      */
     public function testBadKey()
     {
@@ -222,7 +222,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test no parent
      *
-     * @return \void
+     * @return void
      */
     public function testNoParent()
     {
@@ -235,7 +235,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     /**
      * Test Syntax error directives
      *
-     * @return \void
+     * @return void
      */
     public function testSyntaxError()
     {
@@ -250,7 +250,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\Config::__get
      *
-     * @return \void
+     * @return void
      */
     public function testGet()
     {

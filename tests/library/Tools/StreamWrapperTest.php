@@ -39,19 +39,19 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Stream name for tests
-     * @var \string
+     * @var string
      */
     private static $_stream = 'foo';
 
     /**
      * Global variable name for tests
-     * @var \string
+     * @var string
      */
     private static $_varName = 'bar';
 
     /**
      * File pointer resource
-     * @var \resource
+     * @var resource
      */
     private $_fp = NULL;
 
@@ -59,7 +59,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     /**
      * Stream register
      *
-     * @return \void
+     * @return void
      */
     public static function setUpBeforeClass()
     {
@@ -76,7 +76,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -90,7 +90,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Tools\StreamWrapper::stream_open
      *
-     * @return \void
+     * @return void
      */
     public function testStreamOpen()
     {
@@ -105,7 +105,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Tools\StreamWrapper::stream_write
      *
-     * @return \void
+     * @return void
      */
     public function testStreamWrite()
     {
@@ -120,7 +120,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \Tools\StreamWrapper::stream_read
      *
-     * @return \void
+     * @return void
      */
     public function testStreamRead()
     {

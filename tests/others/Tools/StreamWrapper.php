@@ -39,7 +39,7 @@ class StreamWrapper
 
     /**
      * Global variable name
-     * @var \string
+     * @var string
      */
     private $_name;
 
@@ -47,9 +47,9 @@ class StreamWrapper
     /**
      * Open stream, set variable name
      *
-     * @param \string $path Path to open
+     * @param string $path Path to open
      *
-     * @return \boolean
+     * @return boolean
      */
     public function stream_open($path)
     {
@@ -65,9 +65,9 @@ class StreamWrapper
     /**
      * Write stream, appends data in global variable
      *
-     * @param \string $data Data to appends
+     * @param string $data Data to appends
      *
-     * @return \int
+     * @return int
      */
     public function stream_write($data)
     {
@@ -81,7 +81,7 @@ class StreamWrapper
      * Read stream, used to set global variable to NULL.
      * It's dirty but no stream match to do this action, ftruncate report an E_WARNING :/
      *
-     * @return \void
+     * @return void
      */
     public function stream_read()
     {
@@ -93,7 +93,7 @@ class StreamWrapper
     /**
      * EOF stream, get global variable length
      *
-     * @return \int
+     * @return int
      */
     public function stream_eof()
     {

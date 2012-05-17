@@ -36,7 +36,7 @@ class Registry
 
     /**
      * Registry singleton
-     * @var \array
+     * @var array
      */
     private static $_registry = array();
 
@@ -44,11 +44,11 @@ class Registry
     /**
      * Get registry balue from a key
      *
-     * @param \string $key Key to get
+     * @param string $key Key to get
      *
-     * @throws Registry\Exception
+     * @throws \SLiib\Registry\Exception
      *
-     * @return \mixed
+     * @return mixed
      */
     public static function get($key)
     {
@@ -64,12 +64,12 @@ class Registry
     /**
      * Set a value to a key
      *
-     * @param \string $key   Key to set
-     * @param \mixed  $value Value to assign
+     * @param string $key   Key to set
+     * @param mixed  $value Value to assign
      *
-     * @throws Registry\Exception
+     * @throws \SLiib\Registry\Exception
      *
-     * @return \void
+     * @return void
      */
     public static function set($key, $value)
     {

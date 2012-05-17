@@ -38,25 +38,25 @@ Interface IPhp
 
     /**
      * PHP version
-     * @const \string
+     * @const string
      */
     const CMD_PHP_VERSION = 'php -v';
 
     /**
      * PHP infos
-     * @const \string
+     * @const string
      */
     const CMD_PHP_INFOS = 'php -i';
 
     /**
      * Modules
-     * @const \string
+     * @const string
      */
     const CMD_PHP_MODULES = 'php -m';
 
     /**
      * Ini
-     * @const \string
+     * @const string
      */
     const CMD_PHP_INI = 'php --ini';
 

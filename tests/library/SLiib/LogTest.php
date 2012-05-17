@@ -45,19 +45,19 @@ class LogTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Nom du fichier
-     * @var \string
+     * @var string
      */
     protected $_filename;
 
     /**
      * Format de test
-     * @var \string
+     * @var string
      */
     protected $_testFormat;
 
     /**
      * Format de test long
-     * @var \string
+     * @var string
      */
     protected $_testLongFormat;
 
@@ -104,7 +104,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -128,7 +128,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function tearDown()
     {
@@ -144,7 +144,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Log::setFormat
      * @covers \SLiib\Log::getFormat
      *
-     * @return \void
+     * @return void
      */
     public function testSetGetFormat()
     {
@@ -164,7 +164,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Log::write
      * @covers \SLiib\Log::<private>
      *
-     * @return \void
+     * @return void
      */
     public function testLog()
     {
@@ -192,7 +192,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     /**
      * Test write in file without perm
      *
-     * @return \void
+     * @return void
      */
     public function testWriteFailure()
     {
@@ -208,7 +208,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     /**
      * Test print string in stdout/stderr without color
      *
-     * @return \void
+     * @return void
      */
     public function testPrintWithoutColor()
     {
@@ -228,7 +228,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     /**
      * Test print string in stdout/stderr with color
      *
-     * @return \void
+     * @return void
      */
     public function testPrintWithColor()
     {
@@ -257,7 +257,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Log::write
      * @covers \SLiib\Log::<private>
      *
-     * @return \void
+     * @return void
      */
     public function testWithServerInfo()
     {

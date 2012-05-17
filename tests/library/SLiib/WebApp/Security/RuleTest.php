@@ -50,7 +50,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::__construct
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -68,7 +68,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function tearDown()
     {
@@ -82,7 +82,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::getId
      *
-     * @return \void
+     * @return void
      */
     public function testGetId()
     {
@@ -98,7 +98,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::getMessage
      *
-     * @return \void
+     * @return void
      */
     public function testGetMessage()
     {
@@ -114,7 +114,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::getPattern
      *
-     * @return \void
+     * @return void
      */
     public function testGetPattern()
     {
@@ -130,7 +130,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::getLocation
      *
-     * @return \void
+     * @return void
      */
     public function testGetLocation()
     {
@@ -146,7 +146,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::setPattern
      *
-     * @return \void
+     * @return void
      */
     public function testSetPattern()
     {
@@ -164,7 +164,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::addLocation
      *
-     * @return \void
+     * @return void
      */
     public function testAddLocation()
     {
@@ -199,7 +199,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Rule::deleteLocation
      *
-     * @return \void
+     * @return void
      */
     public function testDeleteLocation()
     {
@@ -218,7 +218,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Rule::addPatternElement
      * @covers \SLiib\WebApp\Security\Rule::_reloadPattern
      *
-     * @return \void
+     * @return void
      */
     public function testAddPatternElement()
     {
@@ -240,7 +240,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Rule::deletePatternElement
      * @covers \SLiib\WebApp\Security\Rule::_reloadPattern
      *
-     * @return \void
+     * @return void
      */
     public function testDeletePatternElement()
     {
@@ -263,7 +263,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Rule::setPattern
      * @covers \SLiib\WebApp\Security\Rule::addPatternElement
      *
-     * @return \void
+     * @return void
      */
     public function testEnablePregQuote()
     {
@@ -291,7 +291,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Rule::setPattern
      * @covers \SLiib\WebApp\Security\Rule::addPatternElement
      *
-     * @return \void
+     * @return void
      */
     public function testDisablePregQuote()
     {
@@ -318,7 +318,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Security\Rule::enableCaseSensitivity
      * @covers \SLiib\WebApp\Security\Rule::disableCaseSensitivity
      *
-     * @return \void
+     * @return void
      */
     public function testEnableAndDisableCaseSensitivity()
     {

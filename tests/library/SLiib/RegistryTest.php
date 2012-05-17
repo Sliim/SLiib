@@ -39,7 +39,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * String de test
-     * @var \string
+     * @var string
      */
     private $_string = 'This is a string';
 
@@ -50,7 +50,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Registry::set
      * @covers \SLiib\Registry::get
      *
-     * @return \void
+     * @return void
      */
     public function testGetSet()
     {
@@ -66,7 +66,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\Registry::set
      * @covers \SLiib\Registry::get
      *
-     * @return \void
+     * @return void
      */
     public function testGetSet2()
     {
@@ -92,7 +92,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     /**
      * Test set already exists key
      *
-     * @return \void
+     * @return void
      */
     public function testSetAlreadyExistKey()
     {
@@ -105,7 +105,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     /**
      * Test get not exist key
      *
-     * @return \void
+     * @return void
      */
     public function testGetNotExistKey()
     {

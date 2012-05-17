@@ -37,25 +37,25 @@ class Listing
 
     /**
      * Directory path
-     * @var \string
+     * @var string
      */
     private $_path = '';
 
     /**
      * Array of directory elements
-     * @var \array
+     * @var array
      */
     private $_list = array();
 
     /**
      * Number of elements in directory
-     * @var \string
+     * @var int
      */
     private $_contentNb;
 
     /**
      * Directory name
-     * @var \string
+     * @var string
      */
     private $_name;
 
@@ -63,13 +63,13 @@ class Listing
     /**
      * Constructor, get directory path
      *
-     * @param \string $dirPath  Directory path
-     * @param \string $listName List name
-     * @param \array  $exclude  Elements to exclude
+     * @param string $dirPath  Directory path
+     * @param string $listName List name
+     * @param array  $exclude  Elements to exclude
      *
-     * @throws Listing\Exception
+     * @throws \SLiib\Listing\Exception
      *
-     * @return \void
+     * @return void
      */
     public function __construct($dirPath, $listName, array $exclude)
     {
@@ -89,7 +89,7 @@ class Listing
     /**
      * Listing getter
      *
-     * @return \array Liste des éléments du dossier
+     * @return array Liste des éléments du dossier
      */
     public function getList()
     {
@@ -133,9 +133,9 @@ class Listing
      /**
      * Get directory elements and set the list
      *
-     * @param \array $exclude Elements to exclude
+     * @param array $exclude Elements to exclude
      *
-     * @return \void
+     * @return void
      */
     private function _list(array $exclude)
     {

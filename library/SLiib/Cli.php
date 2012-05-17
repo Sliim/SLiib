@@ -43,25 +43,25 @@ abstract class Cli
 
     /**
      * Script version
-     * @var \float
+     * @var float
      */
     protected $_version = 0;
 
     /**
      * Script description
-     * @var \string
+     * @var string
      */
     protected $_desc = self::NO_DESCRIPTION_LABEL;
 
     /**
      * Script author
-     * @var \string
+     * @var string
      */
     protected $_author = self::AUTHOR_UNKNOWN_LABEL;
 
     /**
      * Default options of script
-     * @var \array
+     * @var array
      */
     protected $_defaultOpt = array(
                               'V' => array(
@@ -76,13 +76,13 @@ abstract class Cli
 
     /**
      * Available options
-     * @var \array
+     * @var array
      */
     protected $_options = NULL;
 
     /**
      * GetOpt parameter
-     * @var \string
+     * @var string
      */
     protected $_params;
 
@@ -90,9 +90,9 @@ abstract class Cli
     /**
      * Constructor
      *
-     * @param \array $options Available options
+     * @param array $options Available options
      *
-     * @return \void
+     * @return void
      */
     public function __construct (array $options=NULL)
     {
@@ -132,7 +132,7 @@ abstract class Cli
     /**
      * Show help
      *
-     * @return \void
+     * @return void
      */
     protected function _help ()
     {
@@ -154,7 +154,7 @@ abstract class Cli
     /**
      * Show version
      *
-     * @return \void
+     * @return void
      */
     protected function _version ()
     {

@@ -51,7 +51,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Checker\PHPCodeInject::__construct
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -64,7 +64,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function tearDown()
     {
@@ -78,7 +78,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\WebApp\Security\Checker\PHPCodeInject::run
      *
-     * @return \void
+     * @return void
      */
     public function testRun()
     {
@@ -94,7 +94,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with include injection
      *
-     * @return \void
+     * @return void
      */
     public function testRunWithIncludeInjection()
     {
@@ -114,7 +114,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with eval injection
      *
-     * @return \void
+     * @return void
      */
     public function testRunWithFilegetcontentsInjection()
     {
@@ -134,7 +134,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
     /**
      * Test run with remote commande execution
      *
-     * @return \void
+     * @return void
      */
     public function testRunWithRemoteCmdExec()
     {

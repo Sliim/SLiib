@@ -48,19 +48,19 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Host
-     * @var \string
+     * @var string
      */
     protected $_host = 'localhost';
 
     /**
      * Port
-     * @var \int
+     * @var int
      */
     protected $_port = 8983;
 
     /**
      * XML string to update for test
-     * @var \string
+     * @var string
      */
     protected $_xmlStr;
 
@@ -68,7 +68,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     /**
      * Start Solr stub instance
      *
-     * @return \void
+     * @return void
      */
     public static function setUpBeforeClass()
     {
@@ -85,7 +85,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     /**
      * Stop Solr stub instance
      *
-     * @return \void
+     * @return void
      */
     public static function tearDownAfterClass()
     {
@@ -98,7 +98,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function setUp()
     {
@@ -122,7 +122,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      *
-     * @return \void
+     * @return void
      */
     public function tearDown()
     {
@@ -136,7 +136,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\SolR::ping
      *
-     * @return \void
+     * @return void
      */
     public function testPing()
     {
@@ -151,7 +151,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\SolR::deleteAll
      *
-     * @return \void
+     * @return void
      */
     public function testDeleteAll()
     {
@@ -165,7 +165,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\SolR::update
      *
-     * @return \void
+     * @return void
      */
     public function testUpdate()
     {
@@ -181,7 +181,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\SolR::commit
      *
-     * @return \void
+     * @return void
      */
     public function testCommit()
     {
@@ -196,7 +196,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\SolR::get
      * @covers \SLiib\SolR::escapeSpecialChar
      *
-     * @return \void
+     * @return void
      */
     public function testGet()
     {
@@ -215,7 +215,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      *
      * @covers \SLiib\SolR::getTotalIndexed
      *
-     * @return \void
+     * @return void
      */
     public function testGetTotalIndexed()
     {
@@ -228,7 +228,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     /**
      * Test with bad port
      *
-     * @return \void
+     * @return void
      */
     public function testBadPort()
     {
@@ -258,7 +258,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\SolR::update
      * @covers \SLiib\SolR::get
      *
-     * @return \void
+     * @return void
      */
     public function testBadXmlString()
     {
