@@ -88,12 +88,12 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_iniFile        = 'files/configs/config.ini';
-        $this->_iniFail        = 'files/configs/notexist.ini';
-        $this->_iniBadSection  = 'files/configs/badsection.ini';
-        $this->_iniBadKey      = 'files/configs/badkey.ini';
-        $this->_iniNoParent    = 'files/configs/noparent.ini';
-        $this->_iniSyntaxError = 'files/configs/syntaxerror.ini';
+        $this->_iniFile        = TEST_PATH . '/files/configs/config.ini';
+        $this->_iniFail        = TEST_PATH . '/files/configs/notexist.ini';
+        $this->_iniBadSection  = TEST_PATH . '/files/configs/badsection.ini';
+        $this->_iniBadKey      = TEST_PATH . '/files/configs/badkey.ini';
+        $this->_iniNoParent    = TEST_PATH . '/files/configs/noparent.ini';
+        $this->_iniSyntaxError = TEST_PATH . '/files/configs/syntaxerror.ini';
         $this->_object         = Ini::read($this->_iniFile);
 
     }

@@ -26,7 +26,8 @@
  */
 require_once 'SLiib/Autoloader.php';
 
-define('ROOT_PATH', realpath(dirname(__FILE__) . '/others/Application'));
+define('TEST_PATH', realpath(dirname(__FILE__)));
+define('ROOT_PATH', realpath(TEST_PATH . '/others/Application'));
 define('STUBS_PATH', realpath(ROOT_PATH . '/../Stubs'));
 define('TOOLS_PATH', realpath(ROOT_PATH . '/../Tools'));
 define('APP_PATH', realpath(ROOT_PATH . '/application/'));
