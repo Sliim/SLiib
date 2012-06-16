@@ -108,7 +108,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_filename       = 'files/LogTest.log';
+        $this->_filename       = TEST_PATH . '/files/LogTest.log';
         $this->_testFormat     = '[%T][%d]%m';
         $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
@@ -196,7 +196,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function testWriteFailure()
     {
-        $file = 'files/unwritable.log';
+        $file = TEST_PATH . '/files/unwritable.log';
         chmod($file, 0444);
 
         $this->setExpectedException('\SLiib\Log\Exception');
