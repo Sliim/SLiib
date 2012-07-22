@@ -27,15 +27,16 @@
 
 namespace SLiib\WebApp\Exception;
 
+use SLiib\WebApp\Exception as WebAppException;
+use SLiib\IException\Logic as LogicException;
+
 /**
  * \SLiib\WebApp\Exception\UndefinedProperty
  *
  * @package    SLiib\WebApp
  * @subpackage Exception
  */
-class UndefinedProperty
-extends \SLiib\WebApp\Exception
-implements \SLiib\IException\Logic
+class UndefinedProperty extends WebAppException implements LogicException
 {
-
 }
+

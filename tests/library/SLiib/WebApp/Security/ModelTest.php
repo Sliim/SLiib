@@ -26,6 +26,7 @@
  */
 
 namespace SLiib\WebApp\Security;
+
 use SLiib\WebApp\Request;
 
 /**
@@ -37,13 +38,11 @@ use SLiib\WebApp\Request;
  */
 class ModelTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \Stubs\Security\Model
      */
     protected $_object;
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -70,9 +69,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
                 )
             )
         );
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -83,9 +80,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test no security model
@@ -96,9 +91,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Security\Exception');
         $this->getMockForAbstractClass('\SLiib\WebApp\Security\Model');
-
     }
-
 
     /**
      * Test bad security model
@@ -109,20 +102,18 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Security\Exception');
         $stubs = $this->getMockForAbstractClass('\Stubs\Security\Model', array('BadModel'));
-
     }
-
 
     /**
      * Test run and check location
      * Cover all check methods and run method
      *
      * @covers \SLiib\WebApp\Security\Model::run
-     * @covers \SLiib\WebApp\Security\Model::_checkParameters
-     * @covers \SLiib\WebApp\Security\Model::_checkUserAgent
-     * @covers \SLiib\WebApp\Security\Model::_checkMethod
-     * @covers \SLiib\WebApp\Security\Model::_checkCookies
-     * @covers \SLiib\WebApp\Security\Model::_checkReferer
+     * @covers \SLiib\WebApp\Security\Model::checkParameters
+     * @covers \SLiib\WebApp\Security\Model::checkUserAgent
+     * @covers \SLiib\WebApp\Security\Model::checkMethod
+     * @covers \SLiib\WebApp\Security\Model::checkCookies
+     * @covers \SLiib\WebApp\Security\Model::checkReferer
      *
      * @return void
      */
@@ -142,9 +133,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->_object->addRule($rule)->run();
-
     }
-
 
     /**
      * Test run with bad location
@@ -157,9 +146,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $this->_object->getRule(1)->addLocation('BadLoacation');
         $this->_object->run();
-
     }
-
 
     /**
      * Test run with hacking attempt in parameter key
@@ -176,9 +163,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
         $this->_object->run();
-
     }
-
 
     /**
      * Test run with hacking attempt in parameter Value
@@ -195,9 +180,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
         $this->_object->run();
-
     }
-
 
     /**
      * Test run with hacking attempt in cookie key
@@ -213,9 +196,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
         $this->_object->run();
-
     }
-
 
     /**
      * Test run with hacking attempt in cookie value
@@ -231,9 +212,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
         $this->_object->run();
-
     }
-
 
     /**
      * Test add rule
@@ -268,9 +247,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
                 Rule::LOCATION_PARAMETERS
             )
         );
-
     }
-
 
     /**
      * Test get rule
@@ -288,9 +265,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
         $rule = $this->_object->getRule(1337);
-
     }
-
 
     /**
      * Test get all rules
@@ -305,9 +280,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $rules);
         $this->assertArrayHasKey(1, $rules);
         $this->assertEquals(1, count($rules));
-
     }
-
 
     /**
      * Test delete rule
@@ -325,9 +298,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $rules = $this->_object->getRules();
         $this->assertInternalType('array', $rules);
         $this->assertEquals(0, count($rules));
-
     }
-
 
     /**
      * Test delete rule not exists
@@ -338,8 +309,6 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
         $rule = $this->_object->deleteRule(1337);
-
     }
-
-
 }
+

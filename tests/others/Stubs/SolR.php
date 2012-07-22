@@ -35,13 +35,11 @@ namespace Stubs;
  */
 class SolR
 {
-
     /**
      * Instance processus id
      * @var int
      */
-    private static $_pid = NULL;
-
+    private static $_pid = null;
 
     /**
      * Check if SolR stubs is installed
@@ -50,10 +48,8 @@ class SolR
      */
     public static function installed()
     {
-        return (file_exists(dirname(__FILE__) . '/SolR/start.jar')) ? TRUE : FALSE;
-
+        return (file_exists(dirname(__FILE__) . '/SolR/start.jar')) ? true : false;
     }
-
 
     /**
      * Check if JVM is available
@@ -63,10 +59,8 @@ class SolR
     public static function jvmAvailable()
     {
         exec('java -version 2> /dev/null', $output, $returnCode);
-        return ($returnCode === 0) ? TRUE : FALSE;
-
+        return ($returnCode === 0) ? true : false;
     }
-
 
     /**
      * Check if SolR stubs is started
@@ -75,10 +69,8 @@ class SolR
      */
     public static function started()
     {
-        return (is_null(static::$_pid)) ? FALSE : TRUE;
-
+        return (is_null(static::$_pid)) ? false : true;
     }
-
 
     /**
      * Start instance and return his pid
@@ -88,7 +80,7 @@ class SolR
     public static function start()
     {
         if (self::started()) {
-            return TRUE;
+            return true;
         }
 
         $command  = 'cd ' . dirname(__FILE__) . '/SolR/ && ';
@@ -98,10 +90,8 @@ class SolR
         exec($command, $output, $returnCode);
         static::$_pid = $output[0];
 
-        return ($returnCode === 0) ? TRUE : FALSE;
-
+        return ($returnCode === 0) ? true : false;
     }
-
 
     /**
      * Stop instance
@@ -112,15 +102,13 @@ class SolR
     {
         if (!is_null(static::$_pid)) {
             if (posix_kill(static::$_pid, SIGKILL)) {
-                static::$_pid = NULL;
+                static::$_pid = null;
             } else {
-                return FALSE;
+                return false;
             }
         }
 
-        return TRUE;
-
+        return true;
     }
-
-
 }
+

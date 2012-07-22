@@ -35,7 +35,6 @@ namespace SLiib\SystemInfos\Interfaces;
  */
 Interface ILsbRelease
 {
-
     /**
      * Distribution id
      * @const string
@@ -65,5 +64,5 @@ Interface ILsbRelease
      * @const string
      */
     const CMD_LSB_RELEASE_ALL = 'lsb_release -idrc';
-
 }
+

@@ -27,16 +27,16 @@
 
 namespace Stubs\Security;
 
+use \SLiib\WebApp\Security\Model as SLiibModel;
+
 /**
  * Stubs\Security\Model
  *
  * @package    Tests
  * @subpackage Stubs
  */
-abstract class Model extends \SLiib\WebApp\Security\Model
+abstract class Model extends SLiibModel
 {
-
-
     /**
      * Construct - Set model security
      *
@@ -44,14 +44,12 @@ abstract class Model extends \SLiib\WebApp\Security\Model
      *
      * @return void
      */
-    public function __construct($model='')
+    public function __construct($model = '')
     {
         $this->_model   = $model;
         $this->_setName = 'Stubs Checker';
         parent::__construct();
-
     }
-
 
     /**
      * Check a pattern in a string
@@ -61,15 +59,13 @@ abstract class Model extends \SLiib\WebApp\Security\Model
      *
      * @return boolean
      */
-    protected function _check($rule, $string)
+    protected function check($rule, $string)
     {
         if (preg_match('/' . $rule->getPattern() . '/' . $rule->getFlags(), $string)) {
-            return FALSE;
+            return false;
         }
 
-        return TRUE;
-
+        return true;
     }
-
-
 }
+

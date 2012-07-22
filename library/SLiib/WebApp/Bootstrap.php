@@ -35,7 +35,6 @@ namespace SLiib\WebApp;
  */
 abstract class Bootstrap
 {
-
     /**
      * Application namespace
      * @var string
@@ -58,14 +57,13 @@ abstract class Bootstrap
      * Application view path
      * @var string
      */
-    private $_viewPath = NULL;
+    private $_viewPath = null;
 
     /**
      * Security checkers
      * @var array
      */
     private $_securityCheckers = array();
-
 
     /**
      * Bootstrap init
@@ -78,9 +76,7 @@ abstract class Bootstrap
     {
         $this->_appNamespace = $appNamespace;
         $this->init();
-
     }
-
 
     /**
      * Bootstrap init before running
@@ -88,7 +84,6 @@ abstract class Bootstrap
      * @return void
      */
     abstract public function init();
-
 
     /**
      * Démarrage du bootstrap
@@ -98,16 +93,14 @@ abstract class Bootstrap
     public final function run()
     {
         try {
-            $this->_setEnvironment();
+            $this->setEnvironment();
 
             Dispatcher::init($this->_appNamespace);
             Dispatcher::dispatch();
         } catch (\SLiib\Exception $e) {
-            $this->_exceptionHandler($e);
+            $this->exceptionHandler($e);
         }
-
     }
-
 
     /**
      * Get namespaces
@@ -117,9 +110,7 @@ abstract class Bootstrap
     public function getNamespaces()
     {
         return $this->_namespaces;
-
     }
-
 
     /**
      * Get sections
@@ -129,9 +120,7 @@ abstract class Bootstrap
     public function getSections()
     {
         return $this->_sections;
-
     }
-
 
     /**
      * Get application view path
@@ -141,9 +130,7 @@ abstract class Bootstrap
     public function getViewPath()
     {
         return $this->_viewPath;
-
     }
-
 
     /**
      * Set namespaces
@@ -152,12 +139,10 @@ abstract class Bootstrap
      *
      * @return void
      */
-    protected function _setNamespaces(array $namespaces)
+    protected function setNamespaces(array $namespaces)
     {
         $this->_namespaces = $namespaces;
-
     }
-
 
     /**
      * Set sections
@@ -166,26 +151,22 @@ abstract class Bootstrap
      *
      * @return void
      */
-    protected function _setSections(array $sections)
+    protected function setSections(array $sections)
     {
         $this->_sections = $sections;
-
     }
-
 
     /**
      * Application environment init
      *
      * @return void
      */
-    protected function _setEnvironment()
+    protected function setEnvironment()
     {
         Request::init();
         Session::init();
         Security::check($this->_securityCheckers);
-
     }
-
 
     /**
      * Set application view path
@@ -196,16 +177,14 @@ abstract class Bootstrap
      *
      * @return void
      */
-    protected function _setViewPath($path)
+    protected function setViewPath($path)
     {
         if (!file_exists($path)) {
             throw new Exception('Directory ' . $path . ' not found.');
         }
 
         $this->_viewPath = $path;
-
     }
-
 
     /**
      * Define security checker
@@ -214,12 +193,10 @@ abstract class Bootstrap
      *
      * @return void
      */
-    protected function _setSecurityCheckers(array $checkers)
+    protected function setSecurityCheckers(array $checkers)
     {
         $this->_securityCheckers = $checkers;
-
     }
-
 
     /**
      * Exception Handler
@@ -230,11 +207,9 @@ abstract class Bootstrap
      *
      * @return void
      */
-    protected function _exceptionHandler(\Exception $e)
+    protected function exceptionHandler(\Exception $e)
     {
         throw $e;
-
     }
-
-
 }
+

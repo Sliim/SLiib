@@ -37,7 +37,6 @@ namespace SLiib;
 function php_sapi_name()
 {
     return \Stubs\Sapi::getSapi();
-
 }
 
 
@@ -51,13 +50,11 @@ namespace Stubs;
  */
 class Sapi
 {
-
     /**
      * Fake php sapi name
      * @var string
      */
     private static $_sapi = 'stub';
-
 
     /**
      * Fake sapi setter
@@ -69,9 +66,7 @@ class Sapi
     public static function setSapi($value)
     {
         static::$_sapi = $value;
-
     }
-
 
     /**
      * Fake sapi setter
@@ -81,8 +76,6 @@ class Sapi
     public static function getSapi()
     {
         return static::$_sapi;
-
     }
-
-
 }
+

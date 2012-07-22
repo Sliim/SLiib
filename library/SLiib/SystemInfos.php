@@ -25,22 +25,19 @@
  */
 
 namespace SLiib;
-use SLiib\SystemInfos\Interfaces;
 
+use SLiib\SystemInfos\Interfaces\IUname;
+use SLiib\SystemInfos\Interfaces\IPhp;
+use SLiib\SystemInfos\Interfaces\IApache2;
+use SLiib\SystemInfos\Interfaces\ILsbRelease;
 
 /**
  * \SLiib\SystemInfos
  *
  * @package SLiib\SystemInfos
  */
-class SystemInfos implements
-    Interfaces\IUname,
-    Interfaces\IPhp,
-    Interfaces\IApache2,
-    Interfaces\ILsbRelease
+class SystemInfos implements IUname, IPhp, IApache2, ILsbRelease
 {
-
-
     /**
      * Static call methods, a constant must be defined with the command to execute
      *
@@ -57,16 +54,14 @@ class SystemInfos implements
             throw new SystemInfos\Exception\BadMethodCall('Command not found!');
         }
 
-        $result = self::_execute(constant('static::' . $name));
+        $result = self::execute(constant('static::' . $name));
 
         if (in_array('serialize', $arguments)) {
             return serialize($result);
         } else {
             return implode($result, '');
         }
-
     }
-
 
     /**
      * Excute a command with proc_open
@@ -77,7 +72,7 @@ class SystemInfos implements
      *
      * @return array Command result
      */
-    private static function _execute($cmd)
+    private static function execute($cmd)
     {
         $resultValue    = array();
         $descriptorspec = array(
@@ -114,8 +109,6 @@ class SystemInfos implements
         }
 
         return $resultValue;
-
     }
-
-
 }
+

@@ -35,7 +35,6 @@ namespace SLiib\SystemInfos\Interfaces;
  */
 Interface IUname
 {
-
     /**
      * Kernel name
      * @const string
@@ -77,5 +76,5 @@ Interface IUname
      * @const string
      */
     const CMD_UNAME_OS_INFOS = 'uname -o';
-
 }
+

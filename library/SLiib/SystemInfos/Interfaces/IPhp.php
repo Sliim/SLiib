@@ -35,7 +35,6 @@ namespace SLiib\SystemInfos\Interfaces;
  */
 Interface IPhp
 {
-
     /**
      * PHP version
      * @const string
@@ -59,5 +58,5 @@ Interface IPhp
      * @const string
      */
     const CMD_PHP_INI = 'php --ini';
-
 }
+

@@ -27,15 +27,16 @@
 
 namespace SLiib\SystemInfos\Exception;
 
+use SLiib\SystemInfos\Exception;
+use SLiib\IException\Logic as LogicException;
+
 /**
  * \SLiib\SystemInfos\Exception\BadMethodCall
  *
  * @package    SLiib\SystemInfos
  * @subpackage Exception
  */
-class BadMethodCall
-extends \SLiib\SystemInfos\Exception
-implements \SLiib\IException\Logic
+class BadMethodCall extends Exception implements LogicException
 {
-
 }
+

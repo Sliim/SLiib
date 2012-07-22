@@ -35,8 +35,6 @@ namespace Lib;
  */
 class MyClass
 {
-
-
     /**
      * Return Hello World!
      *
@@ -45,8 +43,6 @@ class MyClass
     public function toString()
     {
         return 'Hello World!';
-
     }
-
-
 }
+

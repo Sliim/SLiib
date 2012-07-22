@@ -27,13 +27,15 @@
 
 namespace SLiib\SystemInfos;
 
+use SLiib\Exception as SLiibException;
+
 /**
  * \SLiib\SystemInfos\Exception
  *
  * @package    SLiib\SystemInfos
  * @subpackage Exception
  */
-class Exception extends \SLiib\Exception
+class Exception extends SLiibException
 {
-
 }
+

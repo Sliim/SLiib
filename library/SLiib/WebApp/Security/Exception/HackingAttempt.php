@@ -26,6 +26,9 @@
  */
 
 namespace SLiib\WebApp\Security\Exception;
+
+use SLiib\WebApp\Security\Exception as SecurityException;
+use SLiib\IException\Runtime as RuntimeException;
 use SLiib\WebApp\Security\Rule;
 
 /**
@@ -34,11 +37,8 @@ use SLiib\WebApp\Security\Rule;
  * @package    SLiib\WebApp
  * @subpackage Security\Exception
  */
-class HackingAttempt
-extends \SLiib\WebApp\Security\Exception
-implements \SLiib\IException\Runtime
+class HackingAttempt extends SecurityException implements RuntimeException
 {
-
     /**
      * Checker name
      * @var string
@@ -63,7 +63,6 @@ implements \SLiib\IException\Runtime
      */
     private $_reason;
 
-
     /**
      * Exception constructor
      *
@@ -81,8 +80,8 @@ implements \SLiib\IException\Runtime
         Rule $rule,
         $location,
         $reason,
-        $code=0,
-        \Exception $parent=NULL
+        $code = 0,
+        \Exception $parent = null
     ) {
         $this->_checkerName = $checkerName;
         $this->_rule        = $rule;
@@ -99,9 +98,7 @@ implements \SLiib\IException\Runtime
         );
 
         parent::__construct($message, $code, $parent);
-
     }
-
 
     /**
      * Checker name getter
@@ -111,9 +108,7 @@ implements \SLiib\IException\Runtime
     public function getCheckerName()
     {
         return $this->_checkerName;
-
     }
-
 
     /**
      * Rule getter
@@ -123,9 +118,7 @@ implements \SLiib\IException\Runtime
     public function getRule()
     {
         return $this->_rule;
-
     }
-
 
     /**
      * Location getter
@@ -135,9 +128,7 @@ implements \SLiib\IException\Runtime
     public function getLocation()
     {
         return $this->_location;
-
     }
-
 
     /**
      * Reason exception getter
@@ -147,8 +138,6 @@ implements \SLiib\IException\Runtime
     public function getReason()
     {
         return $this->_reason;
-
     }
-
-
 }
+

@@ -35,12 +35,11 @@ namespace SLiib\WebApp;
  */
 class Session
 {
-
     /**
      * Session started
      * @var boolean
      */
-    private static $_started = FALSE;
+    private static $_started = false;
 
     /**
      * Session values
@@ -53,7 +52,6 @@ class Session
      * @var string
      */
     private $_namespace;
-
 
     /**
      * Construct
@@ -73,13 +71,11 @@ class Session
         $this->_namespace = $namespace;
 
         if (!array_key_exists($namespace, $_SESSION)) {
-            $this->_updateSession();
+            $this->updateSession();
         } else {
             $this->_session = $_SESSION[$namespace];
         }
-
     }
-
 
     /**
      * Session's property getter
@@ -97,9 +93,7 @@ class Session
         }
 
         return $this->_session[$name];
-
     }
-
 
     /**
      * Session's property setter
@@ -112,10 +106,8 @@ class Session
     public function __set($name, $value)
     {
         $this->_session[$name] = $value;
-        $this->_updateSession();
-
+        $this->updateSession();
     }
-
 
     /**
      * Unset session's property
@@ -133,10 +125,8 @@ class Session
         }
 
         unset($this->_session[$name]);
-        $this->_updateSession();
-
+        $this->updateSession();
     }
-
 
     /**
      * Check if property exist
@@ -148,13 +138,11 @@ class Session
     public function __isset($name)
     {
         if (!array_key_exists($name, $this->_session)) {
-            return FALSE;
+            return false;
         }
 
-        return TRUE;
-
+        return true;
     }
-
 
     /**
      * Session init
@@ -167,10 +155,8 @@ class Session
             session_start();
         }
 
-        static::$_started = TRUE;
-
+        static::$_started = true;
     }
-
 
     /**
      * Session destroy
@@ -183,10 +169,8 @@ class Session
             session_destroy();
         }
 
-        static::$_started = FALSE;
-
+        static::$_started = false;
     }
-
 
     /**
      * Return session status
@@ -196,13 +180,11 @@ class Session
     public static function started()
     {
         if (session_id() !== '' || headers_sent()) {
-            return TRUE;
+            return true;
         }
 
         return static::$_started;
-
     }
-
 
     /**
      * Check if a namespace exists
@@ -214,13 +196,11 @@ class Session
     public static function namespaceExist($namespace)
     {
         if (array_key_exists($namespace, $_SESSION)) {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
-
+        return false;
     }
-
 
     /**
      * Clear current session namespace
@@ -234,20 +214,16 @@ class Session
         if (array_key_exists($this->_namespace, $_SESSION)) {
             unset($_SESSION[$this->_namespace]);
         }
-
     }
-
 
     /**
      * Update global variable $_SESSION
      *
      * @return void
      */
-    private function _updateSession()
+    private function updateSession()
     {
         $_SESSION[$this->_namespace] = $this->_session;
-
     }
-
-
 }
+

@@ -27,14 +27,15 @@
 
 namespace SLiib\WebApp\Security;
 
+use SLiib\WebApp\Exception as WebAppException;
+
 /**
  * \SLiib\WebApp\Security\Exception
  *
  * @package    SLiib\WebApp
  * @subpackage Security
  */
-class Exception
-extends \SLiib\WebApp\Exception
+class Exception extends WebAppException
 {
-
 }
+

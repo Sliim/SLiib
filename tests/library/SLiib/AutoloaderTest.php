@@ -37,8 +37,6 @@ namespace SLiib;
  */
 class AutoloaderTest extends \PHPUnit_Framework_TestCase
 {
-
-
     /**
      * Test init autoloader
      *
@@ -61,15 +59,13 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
                        'Test2' => 'foo',
                       );
         Autoloader::init($namespace, $newSection);
-
     }
-
 
     /**
      * Test autoload
      *
      * @covers \SLiib\Autoloader::autoload
-     * @covers \SLiib\Autoloader::_searchForInclude
+     * @covers \SLiib\Autoloader::searchForInclude
      *
      * @return void
      */
@@ -95,8 +91,6 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
 
         $res = Autoloader::autoload('\SLiib\NotExist');
         $this->assertFalse($res);
-
     }
-
-
 }
+

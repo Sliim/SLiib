@@ -36,7 +36,6 @@ namespace SLiib;
  */
 class DebugTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * String test
      * @var string
@@ -48,7 +47,6 @@ class DebugTest extends \PHPUnit_Framework_TestCase
      * @var int
      */
     private $_int = 1337;
-
 
     /**
      * Dump test with php sapi equal cli
@@ -71,13 +69,11 @@ class DebugTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsNotWith('<pre>', $dump);
         $this->assertStringEndsNotWith('</pre>', $dump);
 
-        $dump = Debug::dump($this->_int, FALSE);
+        $dump = Debug::dump($this->_int, false);
         $this->assertStringMatchesFormat('int(' . $this->_int . ')', $dump);
         $this->assertStringStartsNotWith('<pre>', $dump);
         $this->assertStringEndsNotWith('</pre>', $dump);
-
     }
-
 
     /**
      * Dump test with php sapi equal 'apache'
@@ -88,13 +84,11 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     {
         \Stubs\Sapi::setSapi('apache');
 
-        $dump = Debug::dump($this->_int, FALSE);
+        $dump = Debug::dump($this->_int, false);
 
         $this->assertStringStartsWith('<pre>', $dump);
         $this->assertStringEndsWith('</pre>', $dump);
-
     }
-
 
     /**
      * Test force add <pre> tags
@@ -105,11 +99,9 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     {
         \Stubs\Sapi::setSapi('cli');
 
-        $dump = Debug::dump($this->_int, FALSE, FALSE);
+        $dump = Debug::dump($this->_int, false, false);
         $this->assertStringStartsNotWith('<pre>', $dump);
         $this->assertStringEndsNotWith('</pre>', $dump);
-
     }
-
-
 }
+

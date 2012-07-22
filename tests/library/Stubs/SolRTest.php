@@ -36,8 +36,6 @@ namespace Stubs;
  */
 class SolRTest extends \PHPUnit_Framework_TestCase
 {
-
-
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -53,9 +51,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         if (!SolR::jvmAvailable()) {
             $this->markTestSkipped('No JVM available.');
         }
-
     }
-
 
     /**
      * Test stub installed
@@ -71,9 +67,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
         rename(STUBS_PATH . '/SolR/start.jar.backup', STUBS_PATH . '/SolR/start.jar');
         $this->assertTrue(SolR::installed());
-
     }
-
 
     /**
      * Test JVM available
@@ -85,9 +79,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     public function testJvmAvailable()
     {
         $this->assertTrue(SolR::jvmAvailable());
-
     }
-
 
     /**
      * Test stub started
@@ -103,9 +95,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         SolR::start();
         $this->assertTrue(SolR::started());
         SolR::stop();
-
     }
-
 
     /**
      * Test start stub
@@ -118,9 +108,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(SolR::start());
         $this->assertTrue(SolR::start());
-
     }
-
 
     /**
      * Test stop stub
@@ -137,12 +125,10 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         $reflection = new \ReflectionClass('\Stubs\SolR');
 
         $pid = $reflection->getProperty('_pid');
-        $pid->setAccessible(TRUE);
+        $pid->setAccessible(true);
         $pid->setValue(9999999999999999999);
 
         $this->assertFalse(SolR::stop());
-
     }
-
-
 }
+

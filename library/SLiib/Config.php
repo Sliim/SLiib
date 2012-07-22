@@ -25,7 +25,8 @@
  */
 
 namespace SLiib;
-use SLiib\Config\Exception;
+
+use SLiib\Config\Exception\UndefinedProperty;
 
 /**
  * \SLiib\Config
@@ -34,13 +35,11 @@ use SLiib\Config\Exception;
  */
 class Config
 {
-
     /**
      * Configuration file
      * @var string
      */
-    protected static $_file = NULL;
-
+    protected static $_file = null;
 
     /**
      * Undefined property getter
@@ -53,10 +52,8 @@ class Config
      */
     public function __get($key)
     {
-        throw new Exception\UndefinedProperty('Property `' . $key . '` undefined in config');
-
+        throw new UndefinedProperty('Property `' . $key . '` undefined in config');
     }
-
 
     /**
      * Read a configuration file
@@ -74,9 +71,7 @@ class Config
         }
 
         static::$_file = $file;
-
     }
-
 
     /**
      * Protected constructor
@@ -87,6 +82,5 @@ class Config
     {
 
     }
-
-
 }
+

@@ -36,8 +36,6 @@ namespace SLiib\WebApp;
  */
 class SecurityTest extends \PHPUnit_Framework_TestCase
 {
-
-
     /**
      * Test check
      *
@@ -50,9 +48,7 @@ class SecurityTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMockForAbstractClass('\Stubs\Security\Model', array('Positive'));
         Request::init();
         Security::check(array($mock));
-
     }
-
 
     /**
      * Test check invalid checkers
@@ -65,9 +61,6 @@ class SecurityTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
         Security::check(array('w00t'));
-
     }
-
-
 }
 

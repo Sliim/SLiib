@@ -27,14 +27,15 @@
 
 namespace SLiib\WebApp\Request;
 
+use SLiib\WebApp\Exception as WebAppException;
+
 /**
  * \SLiib\WebApp\Request\Exception
  *
  * @package    SLiib\WebApp
  * @subpackage Request\Exception
  */
-class Exception
-extends \SLiib\WebApp\Exception
+class Exception extends WebAppException
 {
-
 }
+

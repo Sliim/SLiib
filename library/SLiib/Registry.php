@@ -33,13 +33,11 @@ namespace SLiib;
  */
 class Registry
 {
-
     /**
      * Registry singleton
      * @var array
      */
     private static $_registry = array();
-
 
     /**
      * Get registry balue from a key
@@ -57,9 +55,7 @@ class Registry
         }
 
         return self::$_registry[$key];
-
     }
-
 
     /**
      * Set a value to a key
@@ -78,8 +74,6 @@ class Registry
         }
 
         self::$_registry[$key] = $value;
-
     }
-
-
 }
+

@@ -27,15 +27,16 @@
 
 namespace SLiib\WebApp\Exception;
 
+use SLiib\WebApp\Exception as WebAppException;
+use SLiib\IException\Runtime as RuntimeException;
+
 /**
  * \SLiib\WebApp\Exception\NoDispatchable
  *
  * @package    SLiib\WebApp
  * @subpackage Exception
  */
-class NoDispatchable
-extends \SLiib\WebApp\Exception
-implements \SLiib\IException\Runtime
+class NoDispatchable extends WebAppException implements RuntimeException
 {
-
 }
+

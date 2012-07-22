@@ -27,13 +27,15 @@
 
 namespace SLiib\Registry;
 
+use SLiib\Exception as SLiibException;
+
 /**
  * \SLiib\Registry\Exception
  *
  * @package    SLiib\Registry
  * @subpackage Exception
  */
-class Exception extends \SLiib\Exception
+class Exception extends SLiibException
 {
-
 }
+

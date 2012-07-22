@@ -27,15 +27,16 @@
 
 namespace SLiib\Config\Exception;
 
+use SLiib\Config\Exception as ConfigException;
+use SLiib\IException\Logic as LogicException;
+
 /**
  * \SLiib\Config\Exception\UndefinedProperty
  *
  * @package    SLiib\Config
  * @subpackage Exception
  */
-class UndefinedProperty
-extends \SLiib\Config\Exception
-implements \SLiib\IException\Logic
+class UndefinedProperty extends ConfigException implements LogicException
 {
-
 }
+

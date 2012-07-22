@@ -27,15 +27,15 @@
 
 namespace SLiib\SystemInfos\Exception;
 
+use SLiib\SystemInfos\Exception;
+use SLiib\IException\Runtime as RuntimeException;
 /**
  * \SLiib\SystemInfos\Exception\CommandFailed
  *
  * @package    SLiib\SystemInfos
  * @subpackage Exception
  */
-class CommandFailed
-extends \SLiib\SystemInfos\Exception
-implements \SLiib\IException\Runtime
+class CommandFailed extends Exception implements RuntimeException
 {
-
 }
+

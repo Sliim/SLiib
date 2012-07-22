@@ -36,7 +36,6 @@ namespace SLiib;
  */
 class LogTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Objet de test
      * @var \SLiib\Log
@@ -73,7 +72,6 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public static $stderr;
 
-
     /**
      * Set stdout & stderr resources
      *
@@ -83,9 +81,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     {
         self::$stdout = fopen('php://stdout', 'r+');
         self::$stderr = fopen('php://stderr', 'r+');
-
     }
-
 
     /**
      * Close stdout & stderr resources
@@ -96,9 +92,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     {
         fclose(self::$stdout);
         fclose(self::$stderr);
-
     }
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -112,7 +106,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $this->_testFormat     = '[%T][%d]%m';
         $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
-        $this->_object = new Log($this->_filename, TRUE);
+        $this->_object = new Log($this->_filename, true);
 
         /*
          * Purge global variable stdout and stderr
@@ -120,9 +114,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
          */
         fread(STDOUT, 1337);
         fread(STDERR, 1337);
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -134,9 +126,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
     {
         unlink($this->_filename);
         unset($this->_object);
-
     }
-
 
     /**
      * Test Get/Set Format method
@@ -154,9 +144,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $this->_object->setFormat($this->_testFormat);
         $format = $this->_object->getFormat();
         $this->assertEquals($this->_testFormat, $format);
-
     }
-
 
     /**
      * Test write log
@@ -172,7 +160,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $this->assertFileExists($this->_filename);
         $text = 'w000t from \SLiib\LogTest';
 
-        $this->_object->write($text, Log::INFO, FALSE);
+        $this->_object->write($text, Log::INFO, false);
 
         $this->assertEquals(
             $text,
@@ -185,9 +173,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
                 file_get_contents($this->_filename)
             )
         );
-
     }
-
 
     /**
      * Test write in file without perm
@@ -201,9 +187,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\Log\Exception');
         $log = new Log($file);
-
     }
-
 
     /**
      * Test print string in stdout/stderr without color
@@ -213,17 +197,15 @@ class LogTest extends \PHPUnit_Framework_TestCase
     public function testPrintWithoutColor()
     {
         $this->_object->setFormat($this->_testLongFormat);
-        $this->_object->debug('DEBUG', TRUE);
-        $this->_object->warn('WARN', TRUE);
-        $this->_object->error('ERROR', TRUE);
-        $this->_object->crit('CRIT', TRUE);
-        $this->_object->info('INFO', TRUE);
+        $this->_object->debug('DEBUG', true);
+        $this->_object->warn('WARN', true);
+        $this->_object->error('ERROR', true);
+        $this->_object->crit('CRIT', true);
+        $this->_object->info('INFO', true);
 
         $this->assertEquals("string(5) \"DEBUG\"\n\nINFO\n", $GLOBALS['stdout']);
         $this->assertEquals("WARN\nERROR\nCRIT\n", $GLOBALS['stderr']);
-
     }
-
 
     /**
      * Test print string in stdout/stderr with color
@@ -232,12 +214,12 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function testPrintWithColor()
     {
-        $this->_object->setFormat($this->_testLongFormat)->setColor(TRUE);
-        $this->_object->debug('DEBUG', TRUE);
-        $this->_object->warn('WARN', TRUE);
-        $this->_object->error('ERROR', TRUE);
-        $this->_object->crit('CRIT', TRUE);
-        $this->_object->info('INFO', TRUE);
+        $this->_object->setFormat($this->_testLongFormat)->setColor(true);
+        $this->_object->debug('DEBUG', true);
+        $this->_object->warn('WARN', true);
+        $this->_object->error('ERROR', true);
+        $this->_object->crit('CRIT', true);
+        $this->_object->info('INFO', true);
 
         $this->assertEquals(
             "\033[34mstring(5) \"DEBUG\"\n\033[0m\n\033[0mINFO\033[0m\n",
@@ -247,9 +229,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
             "\033[33mWARN\033[0m\n\033[31mERROR\033[0m\n\033[31mCRIT\033[0m\n",
             $GLOBALS['stderr']
         );
-
     }
-
 
     /**
      * Test with server Infos
@@ -267,10 +247,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
 
         $this->_object->setFormat($this->_testLongFormat);
         $this->_object->write('fooo');
-
     }
-
-
 }
 
 //Redefine STDOUT & STDERR resources
@@ -286,3 +263,4 @@ define('TMP_STDOUT', LogTest::$stdout);
 define('TMP_STDERR', LogTest::$stderr);
 const STDOUT = TMP_STDOUT;
 const STDERR = TMP_STDERR;
+

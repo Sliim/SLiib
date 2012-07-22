@@ -26,8 +26,9 @@
  */
 
 namespace SLiib\WebApp\Security\Checker;
-use SLiib\WebApp\Security\Exception,
-    SLiib\WebApp\Request;
+
+use SLiib\WebApp\Security\Exception;
+use SLiib\WebApp\Request;
 
 /**
  * Test class for \SLiib\WebApp\Security\Checker\FilenamePolicy.
@@ -37,13 +38,11 @@ use SLiib\WebApp\Security\Exception,
  */
 class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Checker\FilenamePolicy
      */
     protected $_object;
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -54,9 +53,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->_object = new FilenamePolicy();
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -67,9 +64,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test run
@@ -86,9 +81,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->_object->run();
         $this->assertTrue($result);
-
     }
-
 
     /**
      * Test run with forbidden extension filename in request URI
@@ -103,9 +96,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
         Request::init();
 
         $this->_object->run();
-
     }
-
 
     /**
      * Test run with forbidden filename in request URI
@@ -120,8 +111,6 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
         Request::init();
 
         $this->_object->run();
-
     }
-
-
 }
+

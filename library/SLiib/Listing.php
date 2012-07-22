@@ -34,7 +34,6 @@ namespace SLiib;
  */
 class Listing
 {
-
     /**
      * Directory path
      * @var string
@@ -59,7 +58,6 @@ class Listing
      */
     private $_name;
 
-
     /**
      * Constructor, get directory path
      *
@@ -81,10 +79,8 @@ class Listing
         $this->_contentNb = 0;
         $this->_name      = $listName;
 
-        $this->_list($exclude);
-
+        $this->setList($exclude);
     }
-
 
     /**
      * Listing getter
@@ -94,9 +90,7 @@ class Listing
     public function getList()
     {
         return $this->_list;
-
     }
-
 
     /**
      * Sort list
@@ -110,9 +104,7 @@ class Listing
 
         $this->_list = array_merge($list);
         return $this;
-
     }
-
 
     /**
      * Usort list
@@ -126,9 +118,7 @@ class Listing
 
         $this->_list = array_reverse(array_merge($list));
         return $this;
-
     }
-
 
      /**
      * Get directory elements and set the list
@@ -137,7 +127,7 @@ class Listing
      *
      * @return void
      */
-    private function _list(array $exclude)
+    private function setList(array $exclude)
     {
         $dir = opendir($this->_path);
 
@@ -151,8 +141,6 @@ class Listing
         }
 
         closedir($dir);
-
     }
-
-
 }
+

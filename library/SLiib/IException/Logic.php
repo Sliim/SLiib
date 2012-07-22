@@ -35,5 +35,5 @@ namespace SLiib\IException;
  */
 interface Logic
 {
-
 }
+

@@ -26,8 +26,6 @@
 
 namespace SLiib;
 
-require_once 'SLiib/Autoloader.php';
-
 /**
  * \SLiib\WebApp
  *
@@ -35,12 +33,11 @@ require_once 'SLiib/Autoloader.php';
  */
 class WebApp
 {
-
     /**
      * Instance
      * @var \SLiib\WebApp
      */
-    private static $_instance = NULL;
+    private static $_instance = null;
 
     /**
      * Application namespace
@@ -60,7 +57,6 @@ class WebApp
      */
     private $_bootstrap;
 
-
     /**
      * Application Init
      *
@@ -71,6 +67,7 @@ class WebApp
      */
     public static function init($appNamespace, $appPath)
     {
+        //FIXME Bug $_instance tjrs à null !
         if (!is_null(static::$_instance)) {
             return static::$_instance;
         }
@@ -79,9 +76,7 @@ class WebApp
 
         static::$_instance = new self($appNamespace, $appPath);
         return static::$_instance;
-
     }
-
 
     /**
      * Run application
@@ -97,9 +92,7 @@ class WebApp
 
         Autoloader::init($namespaces, $this->_bootstrap->getSections());
         $this->_bootstrap->run();
-
     }
-
 
     /**
      * Get application instance
@@ -110,14 +103,12 @@ class WebApp
      */
     public static function getInstance()
     {
-        if (static::$_instance === NULL) {
+        if (static::$_instance === null) {
             throw new WebApp\Exception('Application not initialized.');
         }
 
         return static::$_instance;
-
     }
-
 
     /**
      * Get application view path
@@ -127,9 +118,7 @@ class WebApp
     public function getViewPath()
     {
         return $this->_bootstrap->getViewPath();
-
     }
-
 
     /**
      * Constructor, use static method `init` to get an instance
@@ -156,8 +145,6 @@ class WebApp
         $bsClass = '\\' . $this->_appNamespace . '\\Bootstrap';
 
         $this->_bootstrap = new $bsClass($this->_appNamespace);
-
     }
-
-
 }
+

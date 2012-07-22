@@ -26,8 +26,9 @@
  */
 
 namespace Test\Controller;
-use SLiib\WebApp\Controller,
-    SLiib\WebApp\Session;
+
+use SLiib\WebApp\Controller;
+use SLiib\WebApp\Session;
 
 /**
  * Test controller
@@ -37,19 +38,15 @@ use SLiib\WebApp\Controller,
  */
 class Test extends Controller
 {
-
-
     /**
      * Init controller
      *
      * @return void
      */
-    protected function _init()
+    protected function init()
     {
         $this->_view->bigtitle = 'Test controller!';
-
     }
-
 
     /**
      * Test model
@@ -62,9 +59,7 @@ class Test extends Controller
 
         $this->_view->title   = 'Test model!';
         $this->_view->message = $model->toString();
-
     }
-
 
     /**
      * Test library
@@ -77,9 +72,7 @@ class Test extends Controller
 
         $this->_view->title   = 'Test library!';
         $this->_view->message = $lib->toString();
-
     }
-
 
     /**
      * Test No view
@@ -90,9 +83,7 @@ class Test extends Controller
     {
         $this->_view->setNoView();
         echo 'No view for this controller';
-
     }
-
 
     /**
      * Test custom view
@@ -103,9 +94,7 @@ class Test extends Controller
     {
         $this->_view->setView('aview');
         $this->_view->message = 'Test custom view';
-
     }
-
 
     /**
      * Test javascript script
@@ -115,9 +104,7 @@ class Test extends Controller
     public function javascriptAction()
     {
         //Test appel script js
-
     }
-
 
     /**
      * Test http request
@@ -133,9 +120,7 @@ class Test extends Controller
         $this->_view->params    = $this->getRequest()->getParameters();
         $this->_view->cookies   = $this->getRequest()->getCookies();
         $this->_view->referer   = $this->getRequest()->getReferer();
-
     }
-
 
     /**
      * Test setting bad view
@@ -145,9 +130,7 @@ class Test extends Controller
     public function badsetviewAction()
     {
         return $this->_view->setView('notexists');
-
     }
-
 
     /**
      * Test setting bad partial
@@ -157,9 +140,7 @@ class Test extends Controller
     public function badPartialAction()
     {
         //Nothing to do
-
     }
-
 
     /**
      * Test get unknown view property
@@ -170,9 +151,7 @@ class Test extends Controller
     {
         $this->_view->setNoView();
         return $woot = $this->_view->woot;
-
     }
-
 
     /**
      * Test error handler
@@ -183,9 +162,7 @@ class Test extends Controller
     {
         $this->_view->setNoView();
         return trigger_error('Test error handler');
-
     }
-
 
     /**
      * Test session
@@ -195,7 +172,7 @@ class Test extends Controller
     public function sessionAction()
     {
         $this->_view->bigtitle = 'Test Session';
-        $this->_view->logged   = FALSE;
+        $this->_view->logged   = false;
 
         $params  = $this->_request->getParameters();
         $session = new Session('TestSession');
@@ -204,22 +181,20 @@ class Test extends Controller
             if (array_key_exists('username', $params) && array_key_exists('password', $params)) {
                 if ($params['password'] == 'isSecure') {
                     $session->username = $params['username'];
-                    $session->logged   = TRUE;
+                    $session->logged   = true;
                 }
             }
-        } else if (array_key_exists('logout', $params)) {
-            $this->_view->logged = FALSE;
+        } elseif (array_key_exists('logout', $params)) {
+            $this->_view->logged = false;
             $session->clear();
         }
 
         if (isset($session->logged)) {
             if ($session->logged) {
-                $this->_view->logged   = TRUE;
+                $this->_view->logged   = true;
                 $this->_view->username = $session->username;
             }
         }
-
     }
-
-
 }
+

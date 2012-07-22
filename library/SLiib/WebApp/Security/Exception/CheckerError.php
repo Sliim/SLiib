@@ -27,15 +27,16 @@
 
 namespace SLiib\WebApp\Security\Exception;
 
+use SLiib\WebApp\Security\Exception as SecurityException;
+use SLiib\IException\Runtime as RuntimeException;
+
 /**
  * \SLiib\WebApp\Security\Exception\CheckerError
  *
  * @package    SLiib\WebApp
  * @subpackage Security\Exception
  */
-class CheckerError
-extends \SLiib\WebApp\Security\Exception
-implements \SLiib\IException\Runtime
+class CheckerError extends SecurityException implements RuntimeException
 {
-
 }
+

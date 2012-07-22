@@ -36,7 +36,6 @@ namespace SLiib;
  */
 class WebAppTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Fake ip
      * @var string
@@ -67,7 +66,6 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     private $_request;
 
-
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -81,9 +79,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod($this->_method);
         \Tools\Request::setUserAgent($this->_userAgent);
         \Tools\Request::setReferer($this->_referer);
-
     }
-
 
     /**
      * Test get instance of \SLiib\WebApp not initialised
@@ -94,9 +90,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Exception');
         WebApp::getInstance();
-
     }
-
 
     /**
      * Test no boostrap in app
@@ -110,9 +104,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             APP_NS,
             ROOT_PATH
         );
-
     }
-
 
     /**
      * Test run application
@@ -122,7 +114,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function testRunApp()
     {
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
         $ip      = $this->_request->getClientIp();
         $referer = $this->_request->getReferer();
         $method  = $this->_request->getRequestMethod();
@@ -132,9 +124,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->_referer, $referer);
         $this->assertEquals($this->_method, $method);
         $this->assertEquals($this->_userAgent, $ua);
-
     }
-
 
     /**
      * Test /test/noview
@@ -146,10 +136,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/noview');
 
         $this->expectOutputString('No view for this controller');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test with params (GET)
@@ -162,7 +150,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/request/foo/bar/1337/w00t');
 
         $this->expectOutputRegex('/<h1>Test HTTP Request<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
 
         $params = $this->_request->getParameters();
         $this->assertInternalType('array', $params);
@@ -173,9 +161,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
 
         $method = $this->_request->getRequestMethod();
         $this->assertEquals('GET', $method);
-
     }
-
 
     /**
      * Test without action
@@ -187,10 +173,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/index');
 
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test bad action
@@ -202,10 +186,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/index/notexists');
 
         $this->setExpectedException('\SLiib\WebApp\Exception\NoDispatchable');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test bad controller
@@ -217,10 +199,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/notexists');
 
         $this->setExpectedException('\SLiib\WebApp\Exception\NoDispatchable');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test with post method
@@ -238,7 +218,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
 
         $params = $this->_request->getParameters();
         $this->assertInternalType('array', $params);
@@ -249,9 +229,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
 
         $method = $this->_request->getRequestMethod();
         $this->assertEquals('POST', $method);
-
     }
-
 
     /**
      * Test params with other method
@@ -263,13 +241,11 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod('1337');
 
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
         $params = $this->_request->getParameters();
 
         $this->assertCount(0, $params);
-
     }
-
 
     /**
      * Test bad set view in \SLiib\WebApp\View
@@ -281,10 +257,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setrequestUri('/test/badsetview');
 
         $this->setExpectedException('\SLiib\WebApp\Exception\InvalidParameter');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test bad partial in \SLiib\WebApp\View
@@ -296,10 +270,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/badpartial');
 
         $this->setExpectedException('\SLiib\WebApp\Exception\InvalidParameter');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test \SLiib\WebApp\View getter
@@ -311,10 +283,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/getterview');
 
         $this->setExpectedException('\SLiib\WebApp\Exception\UNdefinedProperty');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test Error Handler
@@ -323,16 +293,14 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     public function testErrorHandler()
     {
-        $this->_disablePhpUnitErrorHandler();
+        $this->disablePhpUnitErrorHandler();
         \Tools\Request::setRequestUri('/test/errorhandler');
 
         $this->setExpectedException('\RuntimeException');
-        $this->_runApp();
+        $this->runApp();
 
-        $this->_enablePhpunitErrorHandler();
-
+        $this->enablePhpunitErrorHandler();
     }
-
 
     /**
      * Test model action (Controller test)
@@ -344,10 +312,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/model');
 
         $this->expectOutputRegex('/<h1>Test controller!<\/h1>/');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test library action (Controller test)
@@ -359,10 +325,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/library');
 
         $this->expectOutputRegex('/<h1>Test controller!<\/h1>/');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test custom view action (Controller test)
@@ -374,10 +338,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/customview');
 
         $this->expectOutputRegex('/Test custom view/');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test javascript action (Controller test)
@@ -389,10 +351,8 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/javascript');
 
         $this->expectOutputRegex('/<script (.*)<\/script>/');
-        $this->_runApp();
-
+        $this->runApp();
     }
-
 
     /**
      * Test session action (Controller test)
@@ -404,7 +364,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/test/session');
 
         $this->expectOutputRegex('/<h1>Test Session<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
 
         \Tools\Request::setRequestMethod('POST');
         \Tools\Request::setPost(
@@ -414,21 +374,19 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
              'password' => 'isSecure',
             )
         );
-        $this->_runApp();
+        $this->runApp();
         $session = new WebApp\Session('TestSession');
         $this->assertTrue(isset($session->logged));
         $this->assertTrue(isset($session->username));
-        $this->assertEquals(TRUE, $session->logged);
+        $this->assertTrue($session->logged);
         $this->assertEquals('Sliim', $session->username);
 
         \Tools\Request::setPost(array('logout' => 'Logout'));
-        $this->_runApp();
+        $this->runApp();
         $session = new WebApp\Session('TestSession');
         $this->assertFalse(isset($session->logged));
         $this->assertFalse(isset($session->username));
-
     }
-
 
     /**
      * Test with dash in controller name
@@ -440,19 +398,17 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/my-controller');
 
         $this->expectOutputRegex('/<h1>MyController controller!<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
 
         $controller = $this->_request->getController();
         $this->assertEquals('myController', $controller);
 
         \Tools\Request::setRequestUri('/my-controller-with-multi-dash');
-        $this->_runApp();
+        $this->runApp();
 
         $controller = $this->_request->getController();
         $this->assertEquals('myControllerWithMultiDash', $controller);
-
     }
-
 
     /**
      * Test with dash in action name
@@ -464,19 +420,17 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/my-controller/my-action');
 
         $this->expectOutputRegex('/<h1>MyControllerWithMultiDash controller!<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
 
         $action = $this->_request->getAction();
         $this->assertEquals('myAction', $action);
 
         \Tools\Request::setRequestUri('/my-controller-with-multi-dash/my-action-with-multi-dash');
-        $this->_runApp();
+        $this->runApp();
 
         $action = $this->_request->getAction();
         $this->assertEquals('myActionWithMultiDash', $action);
-
     }
-
 
     /**
      * Test with dash in get param name
@@ -491,7 +445,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod('GET');
 
         $this->expectOutputRegex('/<h1>MyController controller!<\/h1>/');
-        $this->_runApp();
+        $this->runApp();
 
         $param = $this->_request->getParameters();
         $this->assertEquals(2, count($param));
@@ -499,41 +453,35 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('withMultiDashParam', $param);
         $this->assertEquals('foo', $param['myParam']);
         $this->assertEquals('bar', $param['withMultiDashParam']);
-
     }
-
 
     /**
      * Enable PHPUnit error handler
      *
      * @return void
      */
-    private function _enablePhpunitErrorHandler()
+    private function enablePhpunitErrorHandler()
     {
         set_error_handler(array('\PHPUnit_Util_ErrorHandler', 'handleError'));
-
     }
-
 
     /**
      * Disable PHPUnit error handler
      *
      * @return void
      */
-    private function _disablePhpUnitErrorHandler()
+    private function disablePhpUnitErrorHandler()
     {
         $bs = new \Test\Bootstrap(APP_NS);
         set_error_handler(array($bs, 'errorHandler'));
-
     }
-
 
     /**
      * Run application
      *
      * @return void
      */
-    private function _runApp()
+    private function runApp()
     {
         WebApp::init(
             APP_NS,
@@ -541,8 +489,6 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         )->run();
 
         $this->_request = WebApp\Request::getInstance();
-
     }
-
-
 }
+

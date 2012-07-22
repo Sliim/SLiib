@@ -26,6 +26,8 @@
 
 namespace SLiib;
 
+use SLiib\SolR\Exception as SolRException;
+
 /**
  * \SLiib\SolR
  *
@@ -33,7 +35,6 @@ namespace SLiib;
  */
 class SolR
 {
-
     const UPDATE_DIRECTORY = '/solr/update';
     const SELECT_DIRECTORY = '/solr/select';
 
@@ -65,7 +66,6 @@ class SolR
                                 ':',
                                );
 
-
     /**
      * Constructor
      *
@@ -77,7 +77,7 @@ class SolR
      *
      * @return void
      */
-    public function __construct($host, $port, $ping=TRUE)
+    public function __construct($host, $port, $ping = true)
     {
         $this->_host = $host;
         $this->_port = $port;
@@ -87,11 +87,9 @@ class SolR
         }
 
         if (!$this->ping()) {
-            throw new SolR\Exception('SolR is down, please verify it\'s running..');
+            throw new SolRException('SolR is down, please verify it\'s running..');
         }
-
     }
-
 
     /**
      * Index an XML string
@@ -104,7 +102,7 @@ class SolR
     {
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
         if (!$fp) {
-            return FALSE;
+            return false;
         }
 
         $out  = 'POST ' . self::UPDATE_DIRECTORY . " HTTP/1.1\r\n";
@@ -123,15 +121,14 @@ class SolR
 
             if (preg_match('/<lst(.*)?>(.*)?<\/lst>/', $response, $matches)) {
                 fclose($fp);
-                return TRUE;
+                return true;
             }
         }
 
         fclose($fp);
-        return FALSE;
 
+        return false;
     }
-
 
     /**
      * Index commiter
@@ -142,9 +139,7 @@ class SolR
     {
         $query = '<commit />';
         $this->update($query);
-
     }
-
 
     /**
      * Delete all elements in index
@@ -157,9 +152,7 @@ class SolR
         $this->update($query);
 
         $this->commit();
-
     }
-
 
     /**
      * Search in solr index
@@ -176,7 +169,7 @@ class SolR
         $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
 
         if (!$fp) {
-            return FALSE;
+            return false;
         }
 
         $out  = 'GET ' . self::SELECT_DIRECTORY . '/' . $query . " HTTP/1.1\r\n";
@@ -199,10 +192,8 @@ class SolR
             }
         }
 
-        return FALSE;
-
+        return false;
     }
-
 
     /**
      * Get element number in solr index
@@ -213,14 +204,12 @@ class SolR
     {
         $xml = $this->get('*%3A*');
         if (!$xml) {
-            return FALSE;
+            return false;
         }
 
         $obj = simplexml_load_string($xml);
         return (int) $obj->result['numFound'];
-
     }
-
 
     /**
      * Check if solr is accessible
@@ -232,14 +221,12 @@ class SolR
         $fp = @fsockopen($this->_host, $this->_port);
 
         if (!$fp) {
-            return FALSE;
+            return false;
         }
 
         fclose($fp);
-        return TRUE;
-
+        return true;
     }
-
 
     /**
      * Escape special characters
@@ -255,8 +242,6 @@ class SolR
         }
 
         return $string;
-
     }
-
-
 }
+

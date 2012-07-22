@@ -27,6 +27,8 @@
 
 namespace Stubs;
 
+use SLiib\SystemInfos as SLiibSystemInfos;
+
 define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');
 
 /**
@@ -35,13 +37,12 @@ define('CMD_FAILED', ROOT_PATH . '/../files/fail.sh');
  * @package    Tests
  * @subpackage Stubs
  */
-class SystemInfos extends \SLiib\SystemInfos
+class SystemInfos extends SLiibSystemInfos
 {
-
     /**
      * Command fail constant
      * @var string
      */
     const CMD_FAILED = CMD_FAILED;
-
 }
+

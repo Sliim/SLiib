@@ -35,8 +35,6 @@ namespace SLiib\WebApp;
  */
 abstract class Security
 {
-
-
     /**
      * Checkers running
      *
@@ -60,6 +58,5 @@ abstract class Security
         }
 
     }
-
-
 }
+

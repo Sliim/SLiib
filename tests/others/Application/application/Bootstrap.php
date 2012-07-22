@@ -26,8 +26,9 @@
  */
 
 namespace Test;
-use SLiib\WebApp,
-    SLiib\WebApp\Security\Checker;
+
+use SLiib\WebApp\Bootstrap as WebAppBootstrap;
+use SLiib\WebApp\Security\Checker;
 
 /**
  * test Boostrap
@@ -35,10 +36,8 @@ use SLiib\WebApp,
  * @package    Tests
  * @subpackage ApplicationTest
  */
-class Bootstrap extends WebApp\Bootstrap
+class Bootstrap extends WebAppBootstrap
 {
-
-
     /**
      * Init application's namespaces & sections
      *
@@ -46,14 +45,14 @@ class Bootstrap extends WebApp\Bootstrap
      */
     public function init()
     {
-        $this->_setNamespaces(
+        $this->setNamespaces(
             array(
              'SLiib' => 'SLiib',
              'Lib'   => ROOT_PATH . '/library/Test',
             )
         );
 
-        $this->_setSections(
+        $this->setSections(
             array(
              'Test' => array(
                         'Model'      => 'models',
@@ -63,15 +62,15 @@ class Bootstrap extends WebApp\Bootstrap
         );
 
         try {
-            $this->_setViewPath(APP_PATH . '/views_not_exists');
+            $this->setViewPath(APP_PATH . '/views_not_exists');
         } catch (WebApp\Exception $e) {
-            $this->_setViewPath(APP_PATH . '/views');
+            $this->setViewPath(APP_PATH . '/views');
         }
 
         $allowedMethod = new Checker\AllowedMethods();
         $allowedMethod->getRule(1200)->addPatternElement('1337');
 
-        $this->_setSecurityCheckers(
+        $this->setSecurityCheckers(
             array(
              0 => new Checker\PHPCodeInject(),
              1 => new Checker\FilenamePolicy(),
@@ -81,9 +80,7 @@ class Bootstrap extends WebApp\Bootstrap
 
         error_reporting(E_ALL | E_STRICT);
         set_error_handler(array($this, 'errorHandler'), E_ALL | E_STRICT);
-
     }
-
 
     /**
      * Error handler
@@ -106,8 +103,7 @@ class Bootstrap extends WebApp\Bootstrap
             $errline
         );
 
-        return $this->_exceptionHandler(new \RuntimeException($message, $errno));
-
+        return $this->exceptionHandler(new \RuntimeException($message, $errno));
     }
 
 
@@ -118,11 +114,9 @@ class Bootstrap extends WebApp\Bootstrap
      *
      * @return void
      */
-    protected function _exceptionHandler(\Exception $e)
+    protected function exceptionHandler(\Exception $e)
     {
-        return parent::_exceptionhandler($e);
-
+        return parent::exceptionhandler($e);
     }
-
-
 }
+

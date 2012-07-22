@@ -35,8 +35,6 @@ namespace Tools;
  */
 class Request
 {
-
-
     /**
      * Set index of $_SERVER for tests
      *
@@ -49,9 +47,7 @@ class Request
     {
         $GLOBALS['_SERVER'];
         $_SERVER[$index] = $value;
-
     }
-
 
     /**
      * Set remote ip
@@ -63,9 +59,7 @@ class Request
     public static function setRemoteIp($value)
     {
         static::setServerInfo('REMOTE_ADDR', $value);
-
     }
-
 
     /**
      * Set user agent
@@ -77,9 +71,7 @@ class Request
     public static function setUserAgent($value)
     {
         static::setServerInfo('HTTP_USER_AGENT', $value);
-
     }
-
 
     /**
      * Set request method
@@ -91,9 +83,7 @@ class Request
     public static function setRequestMethod($value)
     {
         static::setServerInfo('REQUEST_METHOD', $value);
-
     }
-
 
     /**
      * Set http referer
@@ -105,9 +95,7 @@ class Request
     public static function setReferer($value)
     {
         static::setServerInfo('HTTP_REFERER', $value);
-
     }
-
 
     /**
      * Set request uri
@@ -119,9 +107,7 @@ class Request
     public static function setRequestUri($value)
     {
         static::setServerInfo('REQUEST_URI', $value);
-
     }
-
 
     /**
      * Simulate a $_POST
@@ -134,9 +120,7 @@ class Request
     {
         $GLOBALS['_POST'];
         $_POST = $post;
-
     }
-
 
     /**
      * Simulate a $_COOKIE
@@ -149,8 +133,6 @@ class Request
     {
         $GLOBALS['_COOKIE'];
         $_COOKIE = $cookies;
-
     }
-
-
 }
+

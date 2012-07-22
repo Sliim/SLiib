@@ -36,13 +36,11 @@ namespace SLiib\WebApp;
  */
 class SessionTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\WebApp\Session
      */
     protected $_object;
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -57,9 +55,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->_object = new Session('UnitTest');
 
         $this->_object->foo = 'bar';
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -70,9 +66,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         Session::destroy();
-
     }
-
 
     /**
      * Test constructor
@@ -93,9 +87,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('bar', $sessionBis->foo);
 
         Session::destroy();
-
     }
-
 
     /**
      * Test get property
@@ -111,9 +103,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Session\Exception');
         $property = $session->property;
-
     }
-
 
     /**
      * Test set property
@@ -126,9 +116,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         $this->_object->myProperty = 'w00tw00t';
         $this->assertEquals('w00tw00t', $this->_object->myProperty);
-
     }
-
 
     /**
      * Test unset property
@@ -144,9 +132,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\WebApp\Session\Exception');
         unset($this->_object->notexist);
-
     }
-
 
     /**
      * Test isset property
@@ -159,9 +145,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(isset($this->_object->foo));
         $this->assertFalse(isset($this->_object->f00));
-
     }
-
 
     /**
      * Test clear
@@ -174,9 +158,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         $this->_object->clear();
         $this->assertFalse(isset($this->_object->foo));
-
     }
-
 
     /**
      * Test namespace exist
@@ -189,9 +171,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(Session::namespaceExist('UnitTest'));
         $this->assertFalse(Session::namespaceExist('MyNamespace'));
-
     }
-
 
     /**
      * Test session is started
@@ -203,8 +183,6 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     public function testStarted()
     {
         $this->assertTrue(Session::started());
-
     }
-
-
 }
+

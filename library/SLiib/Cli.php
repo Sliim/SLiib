@@ -33,7 +33,6 @@ namespace SLiib;
  */
 abstract class Cli
 {
-
     const NO_DESCRIPTION_LABEL = 'No description';
     const AUTHOR_UNKNOWN_LABEL = 'Inconnu';
     const AUTHOR_LABEL         = 'Auteur';
@@ -66,11 +65,11 @@ abstract class Cli
     protected $_defaultOpt = array(
                               'V' => array(
                                       'desc' => self::SHOW_VERSION_LABEL,
-                                      'func' => '_version',
+                                      'func' => 'version',
                                      ),
                               'h' => array(
                                       'desc' => self::SHOW_HELP_LABEL,
-                                      'func' => '_help',
+                                      'func' => 'help',
                                      )
                              );
 
@@ -78,14 +77,13 @@ abstract class Cli
      * Available options
      * @var array
      */
-    protected $_options = NULL;
+    protected $_options = null;
 
     /**
      * GetOpt parameter
      * @var string
      */
     protected $_params;
-
 
     /**
      * Constructor
@@ -94,7 +92,7 @@ abstract class Cli
      *
      * @return void
      */
-    public function __construct (array $options=NULL)
+    public function __construct (array $options = null)
     {
         if (!is_null($options)) {
             $this->_options = array_merge($this->_defaultOpt, $options);
@@ -125,16 +123,14 @@ abstract class Cli
                 }
             }
         }
-
     }
-
 
     /**
      * Show help
      *
      * @return void
      */
-    protected function _help ()
+    protected function help ()
     {
         echo $this->_desc . PHP_EOL . PHP_EOL;
         if (!is_null($this->_options)) {
@@ -147,21 +143,17 @@ abstract class Cli
         echo self::AUTHOR_LABEL . ' : ' . $this->_author . PHP_EOL;
         echo self::VERSION_LABEL . ' : ' . $this->_version . PHP_EOL;
         exit();
-
     }
-
 
     /**
      * Show version
      *
      * @return void
      */
-    protected function _version ()
+    protected function version ()
     {
         echo $this->_version . PHP_EOL;
         exit();
-
     }
-
-
 }
+

@@ -35,8 +35,6 @@ namespace SLiib\Utils;
  */
 class String
 {
-
-
     /**
      * Delete undesirable spaces
      *
@@ -64,9 +62,8 @@ class String
         );
 
         $string = trim($string);
+
         return $string;
-
     }
-
-
 }
+

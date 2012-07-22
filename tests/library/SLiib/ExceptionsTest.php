@@ -35,7 +35,6 @@ namespace SLiib;
  */
 class ExceptionsTest extends \PHPUnit_Framework_TestCase
 {
-
     const EXCEPTION_NAMESPACE = '\\SLiib\\';
     const EXCEPTION_RUNTIME   = 'IException\\Runtime';
     const EXCEPTION_LOGIC     = 'IException\\Logic';
@@ -45,7 +44,6 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
      * @var array
      */
     private static $_e = array();
-
 
     /**
      * Set up exceptions list
@@ -101,7 +99,6 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
 
     }
 
-
     /**
      * Test all instance of exceptions
      *
@@ -139,8 +136,6 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
                 }
             }
         }
-
     }
-
-
 }
+

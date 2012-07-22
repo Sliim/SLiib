@@ -36,29 +36,25 @@ namespace SLiib;
  */
 class ListingTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\Listing
      */
     protected $_object;
 
-
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      *
      * @covers \SLiib\Listing::__construct
-     * @covers \SLiib\Listing::_list
+     * @covers \SLiib\Listing::setList
      *
      * @return void
      */
     public function setUp()
     {
         $this->_object = new Listing('./', 'tests', array('.', '..'));
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -69,9 +65,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_objet);
-
     }
-
 
     /**
      * Test get list
@@ -83,11 +77,8 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     public function testGetList()
     {
         $list = $this->_object->getList();
-
         $this->assertInternalType('array', $list);
-
     }
-
 
     /**
      * Test sort list
@@ -104,9 +95,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
         $listbis = $this->_object->getList();
 
         $this->assertEquals(array_merge($list), $listbis);
-
     }
-
 
     /**
      * Test usort list
@@ -124,9 +113,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
         $this->_object->usort();
 
         $this->assertEquals($list, $this->_object->getList());
-
     }
-
 
     /**
      * Test create object with inexisting directory
@@ -139,8 +126,6 @@ class ListingTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Listing\Exception');
         $list = new Listing('/tmp/notexists', 'fake', array());
-
     }
-
-
 }
+

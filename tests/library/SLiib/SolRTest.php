@@ -39,7 +39,6 @@ namespace SLiib;
  */
 class SolRTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Objet de test
      * @var \SLiib\SolR
@@ -64,7 +63,6 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      */
     protected $_xmlStr;
 
-
     /**
      * Start Solr stub instance
      *
@@ -78,9 +76,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
         //Wait for SolR started
         sleep(10);
-
     }
-
 
     /**
      * Stop Solr stub instance
@@ -90,9 +86,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     public static function tearDownAfterClass()
     {
         \Stubs\SolR::stop();
-
     }
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -114,9 +108,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         $this->_xmlStr .= '<add><doc><field name="id">foo</field>';
         $this->_xmlStr .= '<field name="name">This is a stub';
         $this->_xmlStr .= '</field></doc></add>';
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -127,9 +119,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test Ping
@@ -142,9 +132,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->_object->ping();
         $this->assertTrue($res);
-
     }
-
 
     /**
      * Test delete all
@@ -156,9 +144,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     public function testDeleteAll()
     {
         $this->_object->deleteAll();
-
     }
-
 
     /**
      * Test update
@@ -172,9 +158,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         $res = $this->_object->update($this->_xmlStr);
 
         $this->assertTrue($res);
-
     }
-
 
     /**
      * Test commit
@@ -186,9 +170,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     public function testCommit()
     {
         $this->_object->commit();
-
     }
-
 
     /**
      * Test get
@@ -206,9 +188,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
         $this->assertObjectHasAttribute('lst', $xmlRes);
         $this->assertObjectHasAttribute('result', $xmlRes);
-
     }
-
 
     /**
      * Test get total indexed
@@ -221,9 +201,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->_object->getTotalIndexed();
         $this->assertGreaterThan(0, $res);
-
     }
-
 
     /**
      * Test with bad port
@@ -232,7 +210,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
      */
     public function testBadPort()
     {
-        $object = new SolR($this->_host, 1337, FALSE);
+        $object = new SolR($this->_host, 1337, false);
 
         $res = $object->ping();
         $this->assertFalse($res);
@@ -247,10 +225,8 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($res);
 
         $this->setExpectedException('\SLiib\SolR\Exception');
-        $object = new SolR($this->_host, 1337, TRUE);
-
+        $object = new SolR($this->_host, 1337, true);
     }
-
 
     /**
      * Test bad xml string
@@ -267,8 +243,6 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->_object->get('***');
         $this->assertFalse($res);
-
     }
-
-
 }
+

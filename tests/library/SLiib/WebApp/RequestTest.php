@@ -36,7 +36,6 @@ namespace SLiib\WebApp;
  */
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\WebApp\Request
@@ -85,7 +84,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     private $_cookies = array();
 
-
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -107,7 +105,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     }
 
-
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
@@ -117,9 +114,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test get an instance not initialized
@@ -130,9 +125,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Request\Exception');
         $object = Request::getInstance();
-
     }
-
 
     /**
      * Test get instance
@@ -140,18 +133,16 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      * @covers \SLiib\WebApp\Request::init
      * @covers \SLiib\WebApp\Request::__construct
      * @covers \SLiib\WebApp\Request::getInstance
-     * @covers \SLiib\WebApp\Request::_initProperties
-     * @covers \SLiib\WebApp\Request::_parseUrl
+     * @covers \SLiib\WebApp\Request::initProperties
+     * @covers \SLiib\WebApp\Request::parseUrl
      *
      * @return void
      */
     public function testGetInstance()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertInstanceOf('\SLiib\WebApp\Request', $this->_object);
-
     }
-
 
     /**
      * Test get controller
@@ -162,11 +153,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetController()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals('foo', $this->_object->getController());
 
     }
-
 
     /**
      * Test index controller & index action
@@ -176,12 +166,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testIndexControllerIndexAction()
     {
         \Tools\Request::setRequestUri('/');
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals('index', $this->_object->getController());
         $this->assertEquals('index', $this->_object->getAction());
-
     }
-
 
     /**
      * Test index action
@@ -191,12 +179,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testIndexAction()
     {
         \Tools\Request::setRequestUri('/foo');
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals('foo', $this->_object->getController());
         $this->assertEquals('index', $this->_object->getAction());
-
     }
-
 
     /**
      * Test get action
@@ -207,11 +193,10 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAction()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals('bar', $this->_object->getAction());
 
     }
-
 
     /**
      * Test get request uri
@@ -222,11 +207,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRequestUri()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals($this->_requestUri, $this->_object->getRequestUri());
-
     }
-
 
     /**
      * Test get parameters post | get
@@ -237,26 +220,24 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetParameters()
     {
-        $this->_setObject();
+        $this->setObject();
         $params = $this->_object->getParameters();
 
         $this->assertArrayHasKey('getparam', $params);
         $this->assertEquals('value', $params['getparam']);
 
         \Tools\Request::setRequestMethod('POST');
-        $this->_setObject();
+        $this->setObject();
 
         $params = $this->_object->getParameters();
         $this->assertEquals($this->_post, $params);
 
         \Tools\Request::setRequestMethod('WOOT');
-        $this->_setObject();
+        $this->setObject();
 
         $params = $this->_object->getParameters();
         $this->assertTrue(empty($params));
-
     }
-
 
     /**
      * Test get client ip
@@ -267,11 +248,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetClientIp()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals($this->_clientIp, $this->_object->getClientIp());
-
     }
-
 
     /**
      * Test get user agent
@@ -282,11 +261,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUserAgent()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals($this->_ua, $this->_object->getUserAgent());
-
     }
-
 
     /**
      * Test get request method
@@ -297,11 +274,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRequestMethod()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals($this->_method, $this->_object->getRequestMethod());
-
     }
-
 
     /**
      * Test get cookies
@@ -312,11 +287,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCookies()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals($this->_cookies, $this->_object->getCookies());
-
     }
-
 
     /**
      * Test get referer
@@ -327,11 +300,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetReferer()
     {
-        $this->_setObject();
+        $this->setObject();
         $this->assertEquals($this->_referer, $this->_object->getReferer());
-
     }
-
 
     /**
      * Test if request is a post method
@@ -343,29 +314,25 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testIsPost()
     {
         \Tools\Request::setRequestMethod('POST');
-        $this->_setObject();
+        $this->setObject();
 
         $this->assertTrue($this->_object->isPost());
 
         \Tools\Request::setRequestMethod('GET');
-        $this->_setObject();
+        $this->setObject();
 
         $this->assertFalse($this->_object->isPost());
-
     }
-
 
     /**
      * Set test object
      *
      * @return void
      */
-    private function _setObject()
+    private function setObject()
     {
         Request::init();
         $this->_object = Request::getInstance();
-
     }
-
-
 }
+

@@ -35,9 +35,7 @@ namespace SLiib\Utils;
  */
 class Object
 {
-
-
-     /**
+    /**
      * Merge two object
      *
      * @param mixed &$source Object source
@@ -57,8 +55,6 @@ class Object
                 static::merge($source->$key, $value);
             }
         }
-
     }
-
-
 }
+

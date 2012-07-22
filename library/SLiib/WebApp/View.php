@@ -26,6 +26,7 @@
  */
 
 namespace SLiib\WebApp;
+
 use SLiib\WebApp;
 
 /**
@@ -36,7 +37,6 @@ use SLiib\WebApp;
  */
 class View
 {
-
     /**
      * Subdirectory of view
      * @var string
@@ -53,14 +53,13 @@ class View
      * Path of the .phtml view
      * @var mixed Null if undefined, false if disabled, string if isset
      */
-    private $_view = NULL;
+    private $_view = null;
 
     /**
      * Views path
      * @var string
      */
     private $_path;
-
 
     /**
      * Construct, set view path
@@ -75,12 +74,10 @@ class View
         $this->_path = WebApp::getInstance()->getViewPath();
         $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
 
-        if ($this->_viewExist($defaultView) && $this->_view !== FALSE) {
+        if ($this->viewExist($defaultView) && $this->_view !== false) {
             $this->setView($defaultView);
         }
-
     }
-
 
     /**
      * Set a view attribut
@@ -93,9 +90,7 @@ class View
     public function __set($attr, $value)
     {
         $this->$attr = $value;
-
     }
-
 
     /**
      * Get a view attribut
@@ -111,9 +106,7 @@ class View
         throw new Exception\UndefinedProperty(
             'Attribut `' . $attr . '` undefined in view.'
         );
-
     }
-
 
     /**
      * Display view
@@ -125,9 +118,7 @@ class View
         if (!is_null($this->_view) && $this->_view) {
             include $this->_view;
         }
-
     }
-
 
     /**
      * Set view
@@ -140,16 +131,14 @@ class View
      */
     public function setView($view)
     {
-        if ($viewPath = $this->_viewExist($view)) {
+        if ($viewPath = $this->viewExist($view)) {
             $this->_view = realpath($viewPath);
         } else {
             throw new Exception\InvalidParameter(
                 'View `' . $view . '` is invalid.'
             );
         }
-
     }
-
 
     /**
      * Set no view
@@ -158,10 +147,8 @@ class View
      */
     public function setNoView()
     {
-        $this->_view = FALSE;
-
+        $this->_view = false;
     }
-
 
     /**
      * include a template
@@ -190,9 +177,7 @@ class View
 
         include $file;
         return $this;
-
     }
-
 
     /**
      * Check view exists
@@ -201,7 +186,7 @@ class View
      *
      * @return mixed False if not exist, else absolute path of view
      */
-    private final function _viewExist($view)
+    private final function viewExist($view)
     {
         $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
         $viewFile     = $view . $this->_ext;
@@ -210,9 +195,7 @@ class View
             return $absolutePath . $viewFile;
         }
 
-        return FALSE;
-
+        return false;
     }
-
-
 }
+

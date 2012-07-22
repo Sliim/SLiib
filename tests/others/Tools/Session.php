@@ -35,8 +35,6 @@ namespace Tools;
  */
 class Session
 {
-
-
     /**
      * Set $_SESSION variable
      *
@@ -46,8 +44,6 @@ class Session
     {
         $_SESSION = array();
         $GLOBALS['_SESSION'];
-
     }
-
-
 }
+

@@ -36,7 +36,6 @@ namespace Tools;
  */
 class StreamWrapperTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Stream name for tests
      * @var string
@@ -53,8 +52,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      * File pointer resource
      * @var resource
      */
-    private $_fp = NULL;
-
+    private $_fp = null;
 
     /**
      * Stream register
@@ -68,9 +66,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         }
 
         stream_wrapper_register(static::$_stream, '\Tools\StreamWrapper');
-
     }
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -81,9 +77,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->_fp = fopen(static::$_stream . '://' . static::$_varName, 'r+');
-
     }
-
 
     /**
      * Test Open stream
@@ -96,9 +90,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $this->_fp = fopen(static::$_stream . '://myvar', 'r+');
         $this->assertNull($GLOBALS['myvar']);
-
     }
-
 
     /**
      * Test Write stream
@@ -111,9 +103,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     {
         fwrite($this->_fp, 'w00t');
         $this->assertEquals('w00t', $GLOBALS[static::$_varName]);
-
     }
-
 
     /**
      * Test Read stream
@@ -126,8 +116,6 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     {
         fread($this->_fp, 1337);
         $this->assertNull($GLOBALS[static::$_varName]);
-
     }
-
-
 }
+

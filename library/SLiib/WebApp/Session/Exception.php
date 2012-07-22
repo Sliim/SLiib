@@ -27,14 +27,15 @@
 
 namespace SLiib\WebApp\Session;
 
+use SLiib\WebApp\Exception as WebAppException;
+
 /**
  * \SLiib\WebApp\Session\Exception
  *
  * @package    SLiib\WebApp
  * @subpackage Session\Exception
  */
-class Exception
-extends \SLiib\WebApp\Exception
+class Exception extends WebAppException
 {
-
 }
+

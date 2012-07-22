@@ -26,8 +26,9 @@
  */
 
 namespace SLiib\WebApp\Security\Checker;
-use SLiib\WebApp\Security\Model,
-    SLiib\WebApp\Security\Rule;
+
+use SLiib\WebApp\Security\Model\PositiveSecurity;
+use SLiib\WebApp\Security\Rule;
 
 /**
  * \SLiib\WebApp\Security\Checker\AllowedMethods
@@ -35,11 +36,8 @@ use SLiib\WebApp\Security\Model,
  * @package    SLiib\WebApp
  * @subpackage Security\Checker
  */
-class AllowedMethods
-extends Model\PositiveSecurity
+class AllowedMethods extends PositiveSecurity
 {
-
-
     /**
      * Checker construct
      *
@@ -47,7 +45,7 @@ extends Model\PositiveSecurity
      */
     public function __construct()
     {
-        $this->_setName('Allowed methods');
+        $this->setName('Allowed methods');
         $allowed = array(
                     'GET',
                     'POST',
@@ -58,8 +56,6 @@ extends Model\PositiveSecurity
             ->addPatternElement($allowed);
 
         $this->addRule($rule);
-
     }
-
-
 }
+

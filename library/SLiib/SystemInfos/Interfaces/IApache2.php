@@ -35,7 +35,6 @@ namespace SLiib\SystemInfos\Interfaces;
  */
 Interface IApache2
 {
-
     /**
      * Apache version
      * @const string
@@ -71,6 +70,5 @@ Interface IApache2
      * @const string
      */
     const CMD_APACHE2_LOADED_MODULES = 'apache2 -M';
-
 }
 

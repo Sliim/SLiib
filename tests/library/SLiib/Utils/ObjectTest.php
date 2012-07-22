@@ -36,8 +36,6 @@ namespace SLiib\Utils;
  */
 class ObjectTest extends \PHPUnit_Framework_TestCase
 {
-
-
     /**
      * Test merge object
      *
@@ -66,8 +64,6 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\stdClass', $foo->object);
         $this->assertObjectHasAttribute('foo', $foo->object);
         $this->assertObjectHasAttribute('bar', $foo->object);
-
     }
-
-
 }
+

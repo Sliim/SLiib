@@ -35,7 +35,6 @@ namespace SLiib\WebApp\Security;
  */
 class Rule
 {
-
     const LOCATION_REQUEST_URI = 'Request URI';
     const LOCATION_PARAMETERS  = 'Parameters';
     const LOCATION_USERAGENT   = 'UserAgent';
@@ -77,14 +76,13 @@ class Rule
      * preg quote enabled
      * @var boolean
      */
-    private $_pregQuoteEnabled = FALSE;
+    private $_pregQuoteEnabled = false;
 
     /**
      * Flags for regular expression
      * @var array
      */
     private $_flags = array();
-
 
     /**
      * Rule init
@@ -96,7 +94,7 @@ class Rule
      *
      * @return void
      */
-    public function __construct($id, $message, $pattern=NULL, $location=NULL)
+    public function __construct($id, $message, $pattern = null, $location = null)
     {
         $this->_id      = $id;
         $this->_message = $message;
@@ -114,9 +112,7 @@ class Rule
                 $this->addLocation($l);
             }
         }
-
     }
-
 
     /**
      * Id getter
@@ -126,9 +122,7 @@ class Rule
     public function getId()
     {
         return $this->_id;
-
     }
-
 
     /**
      * Message getter
@@ -138,9 +132,7 @@ class Rule
     public function getMessage()
     {
         return $this->_message;
-
     }
-
 
     /**
      * Pattern getter
@@ -150,9 +142,7 @@ class Rule
     public function getPattern()
     {
         return $this->_pattern;
-
     }
-
 
     /**
      * Location getter
@@ -162,9 +152,7 @@ class Rule
     public function getLocation()
     {
         return $this->_locations;
-
     }
-
 
     /**
      * Get rule flags
@@ -174,9 +162,7 @@ class Rule
     public function getFlags()
     {
         return implode('', $this->_flags);
-
     }
-
 
     /**
      * Pattern setter
@@ -195,9 +181,7 @@ class Rule
         }
 
         return $this;
-
     }
-
 
     /**
      * Add a rule's location
@@ -210,14 +194,12 @@ class Rule
     {
         if (is_array($location)) {
             $this->_locations = array_unique(array_merge($this->_locations, $location));
-        } else if (!in_array($location, $this->_locations)) {
+        } elseif (!in_array($location, $this->_locations)) {
             array_push($this->_locations, $location);
         }
 
         return $this;
-
     }
-
 
     /**
      * Delete a rule's location
@@ -234,9 +216,7 @@ class Rule
         }
 
         return $this;
-
     }
-
 
     /**
      * Add an element Pattern
@@ -253,11 +233,9 @@ class Rule
             array_push($this->_patternElements, $element);
         }
 
-        $this->_reloadPattern();
+        $this->reloadPattern();
         return $this;
-
     }
-
 
     /**
      * Delete an element pattern if exists
@@ -272,13 +250,11 @@ class Rule
             $key = array_search($element, $this->_patternElements);
             unset($this->_patternElements[$key]);
 
-            $this->_reloadPattern();
+            $this->reloadPattern();
         }
 
         return $this;
-
     }
-
 
     /**
      * Enable preg_quote function
@@ -287,11 +263,9 @@ class Rule
      */
     public function enablePregQuote()
     {
-        $this->_pregQuoteEnabled = TRUE;
+        $this->_pregQuoteEnabled = true;
         return $this;
-
     }
-
 
     /**
      * Disable preg_quote function
@@ -300,11 +274,9 @@ class Rule
      */
     public function disablePregQuote()
     {
-        $this->_pregQuoteEnabled = FALSE;
+        $this->_pregQuoteEnabled = false;
         return $this;
-
     }
-
 
     /**
      * Enable case sensitivity for preg_match pattern
@@ -319,7 +291,6 @@ class Rule
         }
 
         return $this;
-
     }
 
 
@@ -335,7 +306,6 @@ class Rule
         }
 
         return $this;
-
     }
 
 
@@ -344,7 +314,7 @@ class Rule
      *
      * @return void
      */
-    private function _reloadPattern()
+    private function reloadPattern()
     {
         $patternArray = array();
         foreach ($this->_patternElements as $key => $element) {
@@ -362,8 +332,6 @@ class Rule
         } else {
             $this->setPattern($pattern);
         }
-
     }
-
-
 }
+

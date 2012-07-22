@@ -27,15 +27,16 @@
 
 namespace SLiib\WebApp\Exception;
 
+use SLiib\WebApp\Exception as WebAppException;
+use SLiib\IException\Logic as LogicException;
+
 /**
  * \SLiib\WebApp\Exception\InvalidParameter
  *
  * @package    SLiib\WebApp
  * @subpackage Exception
  */
-class InvalidParameter
-extends \SLiib\WebApp\Exception
-implements \SLiib\IException\Logic
+class InvalidParameter extends WebAppException implements LogicException
 {
-
 }
+

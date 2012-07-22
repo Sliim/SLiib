@@ -33,7 +33,6 @@ namespace SLiib;
  */
 class Log
 {
-
     const DATE_FORMAT = 'Y-m-d';
     const TIME_FORMAT = 'h:i:s';
 
@@ -47,7 +46,7 @@ class Log
      * Log file path
      * @var string
      */
-    private $_fileOutput = NULL;
+    private $_fileOutput = null;
 
     /**
      * Log format
@@ -59,8 +58,7 @@ class Log
      * Display on output with color
      * @var boolean
      */
-    private $_color = FALSE;
-
+    private $_color = false;
 
     /**
      * Constructor, init file descriptor.
@@ -72,7 +70,7 @@ class Log
      *
      * @return void
      */
-    public function __construct($fileOutput, $add=FALSE)
+    public function __construct($fileOutput, $add = false)
     {
         $opt = 'w+b';
         if ($add) {
@@ -84,9 +82,7 @@ class Log
         if (!$this->_fileOutput) {
             throw new Log\Exception('Cannot open file ' . $fileOutput);
         }
-
     }
-
 
     /**
      * Destructeur : Close file descriptor.
@@ -96,9 +92,7 @@ class Log
     public function __destruct()
     {
         fclose($this->_fileOutput);
-
     }
-
 
     /**
      * Write in log file
@@ -109,19 +103,17 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function write($string, $type=self::INFO, $echo=FALSE)
+    public function write($string, $type = self::INFO, $echo = false)
     {
-        $log = $this->_genLog($string, $type);
+        $log = $this->genLog($string, $type);
         fwrite($this->_fileOutput, $log . PHP_EOL);
 
         if ($echo) {
-            $this->_print($string, $type);
+            $this->put($string, $type);
         }
 
         return $this;
-
     }
-
 
     /**
      * Dump a variable and save it in log file
@@ -131,14 +123,12 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function debug($var, $echo=FALSE)
+    public function debug($var, $echo = false)
     {
-        $dump = Debug::dump($var, FALSE);
+        $dump = Debug::dump($var, false);
 
-        return $this->write($dump, self::DEBUG, $echo, FALSE);
-
+        return $this->write($dump, self::DEBUG, $echo, false);
     }
-
 
     /**
      * Write information log
@@ -148,12 +138,10 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function info($string, $echo=FALSE)
+    public function info($string, $echo = false)
     {
         return $this->write($string, self::INFO, $echo);
-
     }
-
 
     /**
      * Write warning log
@@ -163,12 +151,11 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function warn($string, $echo=FALSE)
+    public function warn($string, $echo = false)
     {
         return $this->write($string, self::WARN, $echo);
 
     }
-
 
     /**
      * Write error log
@@ -178,12 +165,10 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function error($string, $echo=FALSE)
+    public function error($string, $echo = false)
     {
         return $this->write($string, self::ERROR, $echo);
-
     }
-
 
     /**
      * Write critical log
@@ -193,12 +178,10 @@ class Log
      *
      * @return \SLiib\Log
      */
-    public function crit($string, $echo=FALSE)
+    public function crit($string, $echo = false)
     {
         return $this->write($string, self::CRIT, $echo);
-
     }
-
 
     /**
      * Set color for display
@@ -211,9 +194,7 @@ class Log
     {
         $this->_color = $value;
         return $this;
-
     }
-
 
     /**
      * Set log format
@@ -233,9 +214,7 @@ class Log
     {
         $this->_format = $format;
         return $this;
-
     }
-
 
     /**
      * Get log format
@@ -245,9 +224,7 @@ class Log
     public function getFormat()
     {
         return $this->_format;
-
     }
-
 
     /**
      * Generate log string
@@ -257,76 +234,66 @@ class Log
      *
      * @return string
      */
-    private function _genLog($message, $type)
+    private function genLog($message, $type)
     {
         $log = $this->getFormat();
-        $log = preg_replace_callback('/%d/', 'self::_getDate', $log);
-        $log = preg_replace_callback('/%t/', 'self::_getTime', $log);
-        $log = preg_replace_callback('/%@/', 'self::_getIp', $log);
-        $log = preg_replace_callback('/%U/', 'self::_getUserAgent', $log);
+        $log = preg_replace_callback('/%d/', 'self::getDate', $log);
+        $log = preg_replace_callback('/%t/', 'self::getTime', $log);
+        $log = preg_replace_callback('/%@/', 'self::getIp', $log);
+        $log = preg_replace_callback('/%U/', 'self::getUserAgent', $log);
         $log = preg_replace('/%T/', $type, $log);
         $log = preg_replace('/%m/', $message, $log);
 
         return $log;
-
     }
-
 
     /**
      * Get date callback (%d)
      *
      * @return string
      */
-    private static function _getDate()
+    private static function getDate()
     {
         return date(self::DATE_FORMAT);
-
     }
-
 
     /**
      * Get time callback (%t)
      *
      * @return string
      */
-    private static function _getTime()
+    private static function getTime()
     {
         return date(self::TIME_FORMAT);
-
     }
-
 
     /**
      * Get IP callback (%@)
      *
      * @return string
      */
-    private static function _getIp()
+    private static function getIp()
     {
         if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
             return $_SERVER['REMOTE_ADDR'];
         }
 
-        return NULL;
-
+        return null;
     }
-
 
     /**
      * Get user agent callback (%U)
      *
      * @return string
      */
-    private static function _getUserAgent()
+    private static function getUserAgent()
     {
         if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
             return $_SERVER['HTTP_USER_AGENT'];
         }
 
-        return NULL;
-
+        return null;
     }
-
 
     /**
      * Print string
@@ -336,7 +303,7 @@ class Log
      *
      * @return void
      */
-    private function _print($string, $type)
+    private function put($string, $type)
     {
         $color        = "\033[0m";
         $defaultColor = $color;
@@ -370,8 +337,6 @@ class Log
         } else {
             fwrite(STDOUT, $string . PHP_EOL);
         }
-
     }
-
-
 }
+

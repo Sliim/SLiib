@@ -37,7 +37,6 @@ use SLiib\WebApp\Security\Rule;
  */
 class HackingAttemptTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Exception\HackingAttempt
@@ -54,7 +53,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      * Rule for test
      * @var \SLiib\WebApp\Security\Rule
      */
-    private $_rule = NULL;
+    private $_rule = null;
 
     /**
      * Fake location
@@ -67,7 +66,6 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      * @var string
      */
     private $_reason = 'ReasonTest';
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -86,9 +84,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
             $this->_location,
             $this->_reason
         );
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -99,9 +95,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test get checker name
@@ -113,9 +107,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
     public function testGetCheckerName()
     {
         $this->assertEquals($this->_checkerName, $this->_object->getCheckerName());
-
     }
-
 
     /**
      * Test get rule
@@ -130,9 +122,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\SLiib\WebApp\Security\Rule', $rule);
         $this->assertEquals(1337, $rule->getId());
         $this->assertEquals('RuleTest', $rule->getMessage());
-
     }
-
 
     /**
      * Test get location
@@ -144,9 +134,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
     public function testGetLocation()
     {
         $this->assertEquals($this->_location, $this->_object->getLocation());
-
     }
-
 
     /**
      * Test get reason
@@ -158,9 +146,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
     public function testGetReason()
     {
         $this->assertEquals($this->_reason, $this->_object->getReason());
-
     }
-
 
     /**
      * Test is a runtime exception
@@ -170,8 +156,6 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
     public function testRuntimeException()
     {
         $this->assertInstanceOf('\SLiib\IException\Runtime', $this->_object);
-
     }
-
-
 }
+

@@ -26,9 +26,10 @@
  */
 
 namespace SLiib\Config;
-use SLiib\Config,
-    SLiib\Utils,
-    SLiib\String;
+
+use SLiib\Config;
+use SLiib\Utils;
+use SLiib\String;
 
 /**
  * \SLiib\Config\Ini
@@ -36,10 +37,8 @@ use SLiib\Config,
  * @package    SLiib\Config
  * @subpackage Ini
  */
-class Ini extends \SLiib\Config
+class Ini extends Config
 {
-
-
     /**
      * Read a configuration file
      *
@@ -50,11 +49,11 @@ class Ini extends \SLiib\Config
      *
      * @return \SLiib\Config
      */
-    public static function read($file, $env=NULL)
+    public static function read($file, $env = null)
     {
         parent::read($file, $env);
 
-        $config = new self(TRUE);
+        $config = new self(true);
 
         if (!is_null($env)) {
             if (!isset($config->$env)) {
@@ -67,9 +66,7 @@ class Ini extends \SLiib\Config
         }
 
         return $config;
-
     }
-
 
     /**
      * Protected constructor
@@ -78,16 +75,14 @@ class Ini extends \SLiib\Config
      *
      * @return void
      */
-    protected function __construct($init=FALSE)
+    protected function __construct($init = false)
     {
         parent::__construct();
 
         if ($init) {
-            $this->_parseFile();
+            $this->parseFile();
         }
-
     }
-
 
     /**
      * Parse le fichier de configuration
@@ -96,11 +91,11 @@ class Ini extends \SLiib\Config
      *
      * @return void
      */
-    protected function _parseFile()
+    protected function parseFile()
     {
-        set_error_handler(array($this, '_errorHandler'));
+        set_error_handler(array($this, 'errorHandler'));
 
-        $config = parse_ini_file(static::$_file, TRUE, INI_SCANNER_RAW);
+        $config = parse_ini_file(static::$_file, true, INI_SCANNER_RAW);
 
         restore_error_handler();
 
@@ -108,10 +103,8 @@ class Ini extends \SLiib\Config
             throw new Exception\SyntaxError('Can\'t parse `' . static::$_file . '`');
         }
 
-        Utils\Object::merge($this, $this->_parseSection($config));
-
+        Utils\Object::merge($this, $this->parseSection($config));
     }
-
 
     /**
      * Section parsing
@@ -122,13 +115,13 @@ class Ini extends \SLiib\Config
      *
      * @return \SLiib\Config
      */
-    private function _parseSection(array $section)
+    private function parseSection(array $section)
     {
         $object = new Config();
 
         foreach ($section as $key => $value) {
             if (strpos($key, '.')) {
-                $value = $this->_parseMultipleSection($key, $value);
+                $value = $this->parseMultipleSection($key, $value);
             }
 
             if (is_array($value)) {
@@ -152,7 +145,7 @@ class Ini extends \SLiib\Config
                     }
                 }
 
-                $object->$key = $this->_parseSection($value);
+                $object->$key = $this->parseSection($value);
 
                 if (isset($parent)) {
                     Utils\Object::merge($object->$key, $object->$parent);
@@ -167,9 +160,7 @@ class Ini extends \SLiib\Config
         }
 
         return $object;
-
     }
-
 
     /**
      * Parse multiple section defined in a key
@@ -181,13 +172,13 @@ class Ini extends \SLiib\Config
      *
      * @return \SLiib\Config
      */
-    private function _parseMultipleSection(&$key, $value)
+    private function parseMultipleSection(&$key, $value)
     {
         $segment = explode('.', $key);
         $key     = array_shift($segment);
         $cSeg    = count($segment);
         $object  = new Config();
-        $parent  = NULL;
+        $parent  = null;
 
         if ($cSeg === 1) {
             $object->{array_shift($segment)} = $value;
@@ -209,9 +200,7 @@ class Ini extends \SLiib\Config
         }
 
         return $object;
-
     }
-
 
     /**
      * Error handler for syntax error
@@ -223,12 +212,10 @@ class Ini extends \SLiib\Config
      *
      * @return void
      */
-    private function _errorHandler($errno, $errstr)
+    private function errorHandler($errno, $errstr)
     {
         restore_error_handler();
         throw new Exception\SyntaxError('[' . $errno . ']' . $errstr);
-
     }
-
-
 }
+

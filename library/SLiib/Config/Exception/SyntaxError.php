@@ -27,15 +27,16 @@
 
 namespace SLiib\Config\Exception;
 
+use SLiib\Config\Exception as ConfigException;
+use SLiib\IException\Logic as LogicException;
+
 /**
  * \SLiib\Config\Exception\SyntaxError
  *
  * @package    SLiib\Config
  * @subpackage Exception
  */
-class SyntaxError
-extends \SLiib\Config\Exception
-implements \SLiib\IException\Logic
+class SyntaxError extends ConfigException implements LogicException
 {
-
 }
+

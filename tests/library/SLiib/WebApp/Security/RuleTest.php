@@ -36,13 +36,11 @@ namespace SLiib\WebApp\Security;
  */
 class RuleTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Rule
      */
     protected $_object;
-
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -60,9 +58,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
             '^foo(.*)bar$',
             Rule::LOCATION_PARAMETERS
         );
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -73,9 +69,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test get id
@@ -89,9 +83,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $id = $this->_object->getId();
         $this->assertInternalType('int', $id);
         $this->assertEquals(1337, $id);
-
     }
-
 
     /**
      * Test get message
@@ -105,9 +97,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $msg = $this->_object->getMessage();
         $this->assertInternalType('string', $msg);
         $this->assertEquals('RuleTest', $msg);
-
     }
-
 
     /**
      * Test get pattern
@@ -121,9 +111,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $pattern = $this->_object->getPattern();
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('^foo(.*)bar$', $pattern);
-
     }
-
 
     /**
      * Test get Location
@@ -137,9 +125,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $location = $this->_object->getLocation();
         $this->assertInternalType('array', $location);
         $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
-
     }
-
 
     /**
      * Test set pattern
@@ -155,9 +141,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('hacked', $pattern);
-
     }
-
 
     /**
      * Test add location
@@ -190,9 +174,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(in_array(Rule::LOCATION_HTTP_METHOD, $location));
         $this->assertTrue(in_array(Rule::LOCATION_REFERER, $location));
         $this->assertTrue(in_array(Rule::LOCATION_USERAGENT, $location));
-
     }
-
 
     /**
      * Test Delete location
@@ -208,15 +190,13 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('array', $location);
         $this->assertTrue(empty($location));
-
     }
-
 
     /**
      * Test add pattern element
      *
      * @covers \SLiib\WebApp\Security\Rule::addPatternElement
-     * @covers \SLiib\WebApp\Security\Rule::_reloadPattern
+     * @covers \SLiib\WebApp\Security\Rule::reloadPattern
      *
      * @return void
      */
@@ -230,15 +210,13 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('(hacked|foo|bar)', $pattern);
-
     }
-
 
     /**
      * Test delete pattern element
      *
      * @covers \SLiib\WebApp\Security\Rule::deletePatternElement
-     * @covers \SLiib\WebApp\Security\Rule::_reloadPattern
+     * @covers \SLiib\WebApp\Security\Rule::reloadPattern
      *
      * @return void
      */
@@ -252,9 +230,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('(bar)', $pattern);
-
     }
-
 
     /**
      * Test enable preg quote
@@ -280,9 +256,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
                 )
             );
         $this->assertEquals('(foo\/bar|w00t\.\.w00t)', $this->_object->getPattern());
-
     }
-
 
     /**
      * Test enable preg quote
@@ -308,9 +282,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
                 )
             );
         $this->assertEquals('(foo/bar|w00t..w00t)', $this->_object->getPattern());
-
     }
-
 
     /**
      * Test enable and disable case sensitivity
@@ -327,8 +299,6 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
         $this->_object->enableCaseSensitivity();
         $this->assertEmpty($this->_object->getFlags());
-
     }
-
-
 }
+

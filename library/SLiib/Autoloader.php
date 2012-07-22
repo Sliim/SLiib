@@ -33,7 +33,6 @@ namespace SLiib;
  */
 class Autoloader
 {
-
     /**
      * Array of already autoloaded class
      * @var array
@@ -58,7 +57,6 @@ class Autoloader
      */
     private static $_sections = array();
 
-
     /**
      * Autoloader init
      *
@@ -67,7 +65,7 @@ class Autoloader
      *
      * @return void
      */
-    public static function init(array $namespaces, array $sections=array())
+    public static function init(array $namespaces, array $sections = array())
     {
         static::$_namespaces = array_merge(static::$_namespaces, $namespaces);
 
@@ -86,9 +84,7 @@ class Autoloader
         static::$_namespacesKeys = array_keys(static::$_namespaces);
 
         spl_autoload_register(array(__CLASS__, 'autoload'));
-
     }
-
 
     /**
      * Class autoloader
@@ -100,19 +96,19 @@ class Autoloader
     public static function autoload($class)
     {
         if (in_array($class, static::$_isLoaded)) {
-            return TRUE;
+            return true;
         }
 
         str_replace('_', '\\', $class);
         $segment = explode('\\', $class);
         if (count($segment) < 2) {
-            return FALSE;
+            return false;
         }
 
         $namespace = array_shift($segment);
 
         if (!in_array($namespace, static::$_namespacesKeys)) {
-            return FALSE;
+            return false;
         }
 
         foreach (static::$_sections as $ns => $sections) {
@@ -130,17 +126,16 @@ class Autoloader
           static::$_namespaces[$namespace] . DIRECTORY_SEPARATOR .
           implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
-        if (!static::_searchForInclude($file)) {
-            return FALSE;
+        if (!static::searchForInclude($file)) {
+            return false;
         }
 
         include $file;
 
         array_push(static::$_isLoaded, $class);
-        return TRUE;
 
+        return true;
     }
-
 
     /**
      * Search a file to include
@@ -149,23 +144,21 @@ class Autoloader
      *
      * @return boolean
      */
-    private static function _searchForInclude($needle)
+    private static function searchForInclude($needle)
     {
         if (file_exists($needle)) {
-            return TRUE;
+            return true;
         }
 
         $includePath = explode(PATH_SEPARATOR, get_include_path());
         foreach ($includePath as $path) {
             $file = realpath($path . '/' . $needle);
             if ($file && file_exists($file)) {
-                return TRUE;
+                return true;
             }
         }
 
-        return FALSE;
-
+        return false;
     }
-
-
 }
+

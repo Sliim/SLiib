@@ -27,22 +27,21 @@
 
 namespace SLiib\WebApp\Security\Model;
 
+use SLiib\WebApp\Security\Model;
+
 /**
  * \SLiib\WebApp\Security\Model\NegativeSecurity
  *
  * @package    SLiib\WebApp
  * @subpackage Security\Model
  */
-abstract class NegativeSecurity
-extends \SLiib\WebApp\Security\Model
+abstract class NegativeSecurity extends Model
 {
-
     /**
      * Security model
      * @var string
      */
     protected $_model = self::MODEL_NEGATIVE;
-
 
     /**
      * Check a pattern in a string
@@ -52,16 +51,14 @@ extends \SLiib\WebApp\Security\Model
      *
      * @return boolean
      */
-    protected function _check($rule, $string)
+    protected function check($rule, $string)
     {
         if (preg_match('/' . $rule->getPattern() . '/' . $rule->getFlags(), $string)) {
             $this->_patternError = $string;
-            return FALSE;
+            return false;
         }
 
-        return TRUE;
-
+        return true;
     }
-
-
 }
+

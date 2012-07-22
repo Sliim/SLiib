@@ -36,7 +36,6 @@ namespace SLiib\Config;
  */
 class IniTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * Test object
      * @var \SLiib\Config\Ini
@@ -79,7 +78,6 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     protected $_iniSEbis;
 
-
     /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
@@ -95,9 +93,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
         $this->_iniNoParent    = TEST_PATH . '/files/configs/noparent.ini';
         $this->_iniSyntaxError = TEST_PATH . '/files/configs/syntaxerror.ini';
         $this->_object         = Ini::read($this->_iniFile);
-
     }
-
 
     /**
      * Tears down the fixture, for example, closes a network connection.
@@ -108,9 +104,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function tearDown()
     {
         unset($this->_object);
-
     }
-
 
     /**
      * Test get all directives
@@ -155,9 +149,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('string', $this->_object->application->test->foo->bar->z7331);
         $this->assertEquals('w00t', $this->_object->application->test->foo->bar->z1337);
         $this->assertEquals(':)', $this->_object->application->test->foo->bar->z7331);
-
     }
-
 
     /**
      * Test config with environment
@@ -176,9 +168,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\SLiib\Config\Exception\UndefinedProperty');
         $config = Ini::read($this->_iniFile, 'notexist');
-
     }
-
 
     /**
      * Test open inexistant file
@@ -189,9 +179,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Config\Exception');
         $config = Ini::read($this->_iniFail);
-
     }
-
 
     /**
      * Test Bad section
@@ -202,9 +190,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
         $config = Ini::read($this->_iniBadSection);
-
     }
-
 
     /**
      * Test Bad key
@@ -215,9 +201,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
         $config = Ini::read($this->_iniBadKey);
-
     }
-
 
     /**
      * Test no parent
@@ -228,9 +212,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
         $config = Ini::read($this->_iniNoParent);
-
     }
-
 
     /**
      * Test Syntax error directives
@@ -241,9 +223,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
         $config = Ini::read($this->_iniSyntaxError);
-
     }
-
 
     /**
      * Get undefined property test
@@ -256,8 +236,6 @@ class IniTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\Config\Exception\UndefinedProperty');
         $foo = $this->_object->bar;
-
     }
-
-
 }
+

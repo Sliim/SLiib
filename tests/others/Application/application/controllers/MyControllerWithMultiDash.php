@@ -26,6 +26,7 @@
  */
 
 namespace Test\Controller;
+
 use SLiib\WebApp\Controller;
 
 /**
@@ -36,19 +37,15 @@ use SLiib\WebApp\Controller;
  */
 class MyControllerWithMultiDash extends Controller
 {
-
-
     /**
      * Init controller
      *
      * @return void
      */
-    protected function _init()
+    protected function init()
     {
         $this->_view->bigtitle = 'MyControllerWithMultiDash controller!';
-
     }
-
 
     /**
      * Index action
@@ -58,9 +55,7 @@ class MyControllerWithMultiDash extends Controller
     public function indexAction()
     {
         $this->_view->title = 'Index action!';
-
     }
-
 
     /**
      * myActionWithMultiDash action
@@ -70,8 +65,6 @@ class MyControllerWithMultiDash extends Controller
     public function myActionWithMultiDashAction()
     {
         $this->_view->title = 'MyActionWithMultiDash action!';
-
     }
-
-
 }
+

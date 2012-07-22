@@ -26,8 +26,9 @@
  */
 
 namespace SLiib\WebApp\Security\Checker;
-use SLiib\WebApp\Security\Model,
-    SLiib\WebApp\Security\Rule;
+
+use SLiib\WebApp\Security\Model\NegativeSecurity;
+use SLiib\WebApp\Security\Rule;
 
 /**
  * \SLiib\WebApp\Security\Checker\PHPCodeInject
@@ -35,11 +36,8 @@ use SLiib\WebApp\Security\Model,
  * @package    SLiib\WebApp
  * @subpackage Security\Checker
  */
-class PHPCodeInject
-extends Model\NegativeSecurity
+class PHPCodeInject extends NegativeSecurity
 {
-
-
     /**
      * Checker construct
      *
@@ -47,7 +45,7 @@ extends Model\NegativeSecurity
      */
     public function __construct()
     {
-        $this->_setName('PHP Code Injection');
+        $this->setName('PHP Code Injection');
 
         $includeRule = new Rule(1100, 'Include injection detected');
         $includeRule->addPatternElement(
@@ -94,8 +92,6 @@ extends Model\NegativeSecurity
         $this->addRule($includeRule)
             ->addRule($othersFunctionRule)
             ->addRule($remoteExecRule);
-
     }
-
-
 }
+

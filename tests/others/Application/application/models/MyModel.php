@@ -35,8 +35,6 @@ namespace Test\Model;
  */
 class MyModel
 {
-
-
     /**
      * Return This is my model !
      *
@@ -45,8 +43,6 @@ class MyModel
     public function toString()
     {
         return 'This is my model !';
-
     }
-
-
 }
+

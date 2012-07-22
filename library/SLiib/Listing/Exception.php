@@ -27,13 +27,15 @@
 
 namespace SLiib\Listing;
 
+use SLiib\Exception as SLiibException;
+
 /**
  * \SLiib\Listing\Exception
  *
  * @package    SLiib\Listing
  * @subpackage Exception
  */
-class Exception extends \SLiib\Exception
+class Exception extends SLiibException
 {
-
 }
+

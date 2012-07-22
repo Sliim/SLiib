@@ -36,8 +36,6 @@ namespace SLiib;
  */
 class SystemInfosTest extends \PHPUnit_Framework_TestCase
 {
-
-
     /**
      * Appel commande Apache2
      * apache2 on debian testing fail with normal user (not /usr/sbin in his $PATH)
@@ -57,25 +55,21 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
         } catch (\Exception $e) {
             $this->fail('Bad exception has been raised');
         }
-
     }
-
 
     /**
      * Appel commande PHP
      *
      * @return void
      */
-    public function testCmdPHP()
+    public function testCmdPhp()
     {
         $res = SystemInfos::CMD_PHP_VERSION();
         $this->assertInternalType('string', $res);
 
         $res = SystemInfos::CMD_PHP_MODULES();
         $this->assertInternalType('string', $res);
-
     }
-
 
     /**
      * Appel commande Uname
@@ -89,9 +83,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
 
         $res = SystemInfos::CMD_UNAME_OS_INFOS('serialize');
         $this->assertInternalType('string', $res);
-
     }
-
 
     /**
      * Appel commande LSBRelease
@@ -105,9 +97,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
 
         $res = SystemInfos::CMD_LSB_RELEASE_RELEASE();
         $this->assertInternalType('string', $res);
-
     }
-
 
     /**
      * Test command unknown
@@ -118,9 +108,7 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\SystemInfos\Exception\BadMethodCall');
         $res = SystemInfos::CMD_UNKNOWN();
-
     }
-
 
     /**
      * Test command failed
@@ -131,8 +119,6 @@ class SystemInfosTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\SystemInfos\Exception\CommandFailed');
         $res = \Stubs\SystemInfos::CMD_FAILED();
-
     }
-
-
 }
+

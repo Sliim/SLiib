@@ -27,13 +27,15 @@
 
 namespace SLiib\SolR;
 
+use SLiib\Exception as SLiibException;
+
 /**
  * \SLiib\SolR\Exception
  *
  * @package    SLiib\SolR
  * @subpackage Exception
  */
-class Exception extends \SLiib\Exception
+class Exception extends SLiibException
 {
-
 }
+

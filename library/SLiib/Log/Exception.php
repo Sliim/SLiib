@@ -27,13 +27,15 @@
 
 namespace SLiib\Log;
 
+use SLiib\Exception as SLiibException;
+
 /**
  * \SLiib\Log\Exception
  *
  * @package    SLiib\Log
  * @subpackage Exception
  */
-class Exception extends \SLiib\Exception
+class Exception extends SLiibException
 {
-
 }
+

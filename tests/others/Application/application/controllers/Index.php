@@ -26,6 +26,7 @@
  */
 
 namespace Test\Controller;
+
 use SLiib\WebApp\Controller;
 
 /**
@@ -36,19 +37,15 @@ use SLiib\WebApp\Controller;
  */
 class Index extends Controller
 {
-
-
     /**
      * Init controller
      *
      * @return void
      */
-    protected function _init()
+    protected function init()
     {
         $this->_view->bigtitle = 'Index controller!';
-
     }
-
 
     /**
      * Index action
@@ -79,6 +76,5 @@ class Index extends Controller
                                  );
 
     }
-
-
 }
+

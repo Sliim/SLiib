@@ -35,19 +35,17 @@ namespace SLiib\WebApp;
  */
 class Request
 {
-
     /**
      * Request instance
      * @var \SLiib\WebApp\Request
      */
-    private static $_instance = NULL;
+    private static $_instance = null;
 
     /**
      * Request data
      * @var stdClass
      */
-    private $_request = NULL;
-
+    private $_request = null;
 
     /**
      * Init HTTP Request
@@ -57,9 +55,7 @@ class Request
     public static function init()
     {
         static::$_instance = new self();
-
     }
-
 
     /**
      * Instance getter
@@ -77,9 +73,7 @@ class Request
         }
 
         return static::$_instance;
-
     }
-
 
     /**
      * Get current controller
@@ -89,9 +83,7 @@ class Request
     public function getController()
     {
         return $this->_request->controller;
-
     }
-
 
     /**
      * Get current action
@@ -101,9 +93,7 @@ class Request
     public function getAction()
     {
         return $this->_request->action;
-
     }
-
 
     /**
      * Get request URI
@@ -113,9 +103,7 @@ class Request
     public function getRequestUri()
     {
         return $this->_request->requestUri;
-
     }
-
 
     /**
      * Get current parameters
@@ -132,9 +120,7 @@ class Request
             default:
                 return array();
         }
-
     }
-
 
     /**
      * Client ip getter
@@ -144,9 +130,7 @@ class Request
     public function getClientIp()
     {
         return $this->_request->clientIp;
-
     }
-
 
     /**
      * User agent getter
@@ -156,9 +140,7 @@ class Request
     public function getUserAgent()
     {
         return $this->_request->userAgent;
-
     }
-
 
     /**
      * Request method getter
@@ -168,9 +150,7 @@ class Request
     public function getRequestMethod()
     {
         return $this->_request->method;
-
     }
-
 
     /**
      * Cookies getter
@@ -180,9 +160,7 @@ class Request
     public function getCookies()
     {
         return $this->_request->cookies;
-
     }
-
 
     /**
      * Referer getter
@@ -192,9 +170,7 @@ class Request
     public function getReferer()
     {
         return $this->_request->referer;
-
     }
-
 
     /**
      * Check is request use post method
@@ -204,13 +180,11 @@ class Request
     public function isPost()
     {
         if ($this->getRequestMethod() === 'POST') {
-            return TRUE;
+            return true;
         }
 
-        return FALSE;
-
+        return false;
     }
-
 
     /**
      * Construct request
@@ -220,50 +194,46 @@ class Request
     private function __construct()
     {
         $this->_request = new \stdClass;
-        $this->_initProperties();
-
+        $this->initProperties();
     }
-
 
     /**
      * Init HTTP Properties
      *
      * @return void
      */
-    private function _initProperties()
+    private function initProperties()
     {
         $this->_request->clientIp =
-            array_key_exists('REMOTE_ADDR', $_SERVER) ? $_SERVER['REMOTE_ADDR'] : NULL;
+            array_key_exists('REMOTE_ADDR', $_SERVER) ? $_SERVER['REMOTE_ADDR'] : null;
 
         $this->_request->userAgent =
-            array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
+            array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : null;
 
         $this->_request->method =
-            array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : NULL;
+            array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : null;
 
         $this->_request->referer =
-            array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : NULL;
+            array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : null;
 
         $this->_request->requestUri =
             array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : '/';
 
-        $get = $this->_parseUrl();
+        $get = $this->parseUrl();
 
         $this->_request->controller = $get['controller'];
         $this->_request->action     = $get['action'];
         $this->_request->paramsGet  = $get['params'];
         $this->_request->paramsPost = $_POST;
         $this->_request->cookies    = $_COOKIE;
-
     }
-
 
     /**
      * Url parser
      *
      * @return array
      */
-    private function _parseUrl()
+    private function parseUrl()
     {
         $controller = '';
         $action     = '';
@@ -284,16 +254,16 @@ class Request
                 $action     = 'index';
             }
 
-            $controller = $this->_transformDash($controller);
-            $action     = $this->_transformDash($action);
+            $controller = $this->transformDash($controller);
+            $action     = $this->transformDash($action);
 
-            $key = NULL;
+            $key = null;
 
             foreach ($segment as $seg) {
                 if (!is_null($key)) {
-                    $params[$this->_transformDash($key)] = $seg;
+                    $params[$this->transformDash($key)] = $seg;
 
-                    $key = NULL;
+                    $key = null;
                 } else {
                     $key = (string) $seg;
                 }
@@ -305,9 +275,7 @@ class Request
                 'action'     => $action,
                 'params'     => $params,
                );
-
     }
-
 
     /**
      * Transform a string with a dash
@@ -317,22 +285,20 @@ class Request
      *
      * @return string
      */
-    private function _transformDash($string)
+    private function transformDash($string)
     {
         $pos = strpos($string, '-');
 
-        if (FALSE !== $pos) {
+        if (false !== $pos) {
             $len    = strlen($string) - 1;
             $string = substr($string, 0, $pos) . ucfirst(substr($string, $pos + 1, $len - $pos));
 
-            if (strpos($string, '-') !== FALSE) {
-                $string = $this->_transformDash($string);
+            if (strpos($string, '-') !== false) {
+                $string = $this->transformDash($string);
             }
         }
 
         return $string;
-
     }
-
-
 }
+

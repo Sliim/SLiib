@@ -26,8 +26,9 @@
  */
 
 namespace SLiib\WebApp\Security\Checker;
-use SLiib\WebApp\Security\Model,
-    SLiib\WebApp\Security\Rule;
+
+use SLiib\WebApp\Security\Model\NegativeSecurity;
+use SLiib\WebApp\Security\Rule;
 
 /**
  * \SLiib\WebApp\Security\Checker\FilenamePolicy
@@ -35,11 +36,8 @@ use SLiib\WebApp\Security\Model,
  * @package    SLiib\WebApp
  * @subpackage Security\Checker
  */
-class FilenamePolicy
-extends Model\NegativeSecurity
+class FilenamePolicy extends NegativeSecurity
 {
-
-
     /**
      * Checker construct
      *
@@ -47,7 +45,7 @@ extends Model\NegativeSecurity
      */
     public function __construct()
     {
-        $this->_setName('Filename Policy');
+        $this->setName('Filename Policy');
 
         $fileExtensionRule = new Rule(1300, 'Forbidden file\'s extension policy');
         $fileExtensionRule->addPatternElement(
@@ -69,8 +67,6 @@ extends Model\NegativeSecurity
 
         $this->addRule($fileExtensionRule)
             ->addRule($fileNameRule);
-
     }
-
-
 }
+

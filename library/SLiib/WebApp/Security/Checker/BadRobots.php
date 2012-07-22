@@ -26,8 +26,9 @@
  */
 
 namespace SLiib\WebApp\Security\Checker;
-use SLiib\WebApp\Security\Model,
-    SLiib\WebApp\Security\Rule;
+
+use SLiib\WebApp\Security\Model\NegativeSecurity;
+use SLiib\WebApp\Security\Rule;
 
 /**
  * \SLiib\WebApp\Security\Checker\BadRobots
@@ -35,11 +36,8 @@ use SLiib\WebApp\Security\Model,
  * @package    SLiib\WebApp
  * @subpackage Security\Checker
  */
-class BadRobots
-extends Model\NegativeSecurity
+class BadRobots extends NegativeSecurity
 {
-
-
     /**
      * Checker construct
      *
@@ -47,7 +45,7 @@ extends Model\NegativeSecurity
      */
     public function __construct()
     {
-        $this->_setName('Bad Robots');
+        $this->setName('Bad Robots');
 
         $scanner = new Rule(1400, 'Scanner detection');
         $scanner->enablePregQuote()
@@ -82,8 +80,6 @@ extends Model\NegativeSecurity
             )->addLocation(Rule::LOCATION_USERAGENT);
 
         $this->addRule($scanner);
-
     }
-
-
 }
+

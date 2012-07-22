@@ -33,8 +33,6 @@ namespace SLiib;
  */
 class Debug
 {
-
-
     /**
      * Dump a variable
      *
@@ -45,7 +43,7 @@ class Debug
      *
      * @return string
      */
-    public static function dump($var, $echo=TRUE, $pre=TRUE)
+    public static function dump($var, $echo = true, $pre = true)
     {
         ob_start();
         var_dump($var);
@@ -61,8 +59,6 @@ class Debug
         }
 
         return $dump;
-
     }
-
-
 }
+

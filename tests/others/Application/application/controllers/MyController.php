@@ -26,6 +26,7 @@
  */
 
 namespace Test\Controller;
+
 use SLiib\WebApp\Controller;
 
 /**
@@ -36,19 +37,15 @@ use SLiib\WebApp\Controller;
  */
 class MyController extends Controller
 {
-
-
     /**
      * Init controller
      *
      * @return void
      */
-    protected function _init()
+    protected function init()
     {
         $this->_view->bigtitle = 'MyController controller!';
-
     }
-
 
     /**
      * Index action
@@ -58,9 +55,7 @@ class MyController extends Controller
     public function indexAction()
     {
         $this->_view->title = 'Index action!';
-
     }
-
 
     /**
      * myAction action
@@ -70,8 +65,6 @@ class MyController extends Controller
     public function myActionAction()
     {
         $this->_view->title = 'MyAction action!';
-
     }
-
-
 }
+
