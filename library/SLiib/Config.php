@@ -26,6 +26,7 @@
 
 namespace SLiib;
 
+use SLiib\Config\Exception as ConfigException;
 use SLiib\Config\Exception\UndefinedProperty;
 
 /**
@@ -67,7 +68,7 @@ class Config
     public static function read($file)
     {
         if (!file_exists($file)) {
-            throw new Exception('File ' . $file . ' not found');
+            throw new ConfigException('File ' . $file . ' not found');
         }
 
         static::$_file = $file;

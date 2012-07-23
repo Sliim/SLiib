@@ -30,6 +30,8 @@ namespace SLiib\Config;
 use SLiib\Config;
 use SLiib\Utils;
 use SLiib\String;
+use SLiib\Config\Exception\UndefinedProperty;
+use SLiib\Config\Exception\SyntaxError;
 
 /**
  * \SLiib\Config\Ini
@@ -57,7 +59,7 @@ class Ini extends Config
 
         if (!is_null($env)) {
             if (!isset($config->$env)) {
-                throw new Exception\UndefinedProperty(
+                throw new UndefinedProperty(
                     'Environment `' . $env . '` does not exist.'
                 );
             }
@@ -100,7 +102,7 @@ class Ini extends Config
         restore_error_handler();
 
         if (!$config) {
-            throw new Exception\SyntaxError('Can\'t parse `' . static::$_file . '`');
+            throw new SyntaxError('Can\'t parse `' . static::$_file . '`');
         }
 
         Utils\Object::merge($this, $this->parseSection($config));
@@ -129,7 +131,7 @@ class Ini extends Config
                     $segment = explode(':', $key);
 
                     if (count($segment) != 2) {
-                        throw new Exception\SyntaxError(
+                        throw new SyntaxError(
                             'Section definition incorrect (' . $key . ')'
                         );
                     }
@@ -138,7 +140,7 @@ class Ini extends Config
                     $parent = Utils\String::clean($segment[1]);
 
                     if (!isset($object->$parent)) {
-                        throw new Exception\SyntaxError(
+                        throw new SyntaxError(
                             'Try to herite `' . $key . '` to `' . $parent .
                             '` but `' . $parent . '` does not exists.'
                         );
@@ -215,7 +217,7 @@ class Ini extends Config
     private function errorHandler($errno, $errstr)
     {
         restore_error_handler();
-        throw new Exception\SyntaxError('[' . $errno . ']' . $errstr);
+        throw new SyntaxError('[' . $errno . ']' . $errstr);
     }
 }
 

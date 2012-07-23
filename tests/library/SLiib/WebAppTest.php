@@ -113,6 +113,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunApp()
     {
+        \Tools\Request::setRequestUri('/');
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->runApp();
         $ip      = $this->_request->getClientIp();

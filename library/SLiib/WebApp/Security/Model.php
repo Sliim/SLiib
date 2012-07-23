@@ -29,6 +29,7 @@ namespace SLiib\WebApp\Security;
 
 use SLiib\WebApp\Security\Exception\CheckerError;
 use SLiib\WebApp\Security\Exception\HackingAttempt;
+use SLiib\WebApp\Security\Model\Exception as ModelException;
 use SLiib\WebApp\Request;
 
 /**
@@ -82,11 +83,11 @@ abstract class Model
     public function __construct()
     {
         if (is_null($this->_model)) {
-            throw new Exception('Security model undefined');
+            throw new ModelException('Security model undefined');
         }
 
         if (!in_array($this->_model, array('Positive', 'Negative'))) {
-            throw new Exception('Security model `' . $this->_model . '` invalid');
+            throw new ModelException('Security model `' . $this->_model . '` invalid');
         }
     }
 

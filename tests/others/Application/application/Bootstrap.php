@@ -28,6 +28,7 @@
 namespace Test;
 
 use SLiib\WebApp\Bootstrap as WebAppBootstrap;
+use SLiib\WebApp\Exception as WebAppException;
 use SLiib\WebApp\Security\Checker;
 
 /**
@@ -63,7 +64,7 @@ class Bootstrap extends WebAppBootstrap
 
         try {
             $this->setViewPath(APP_PATH . '/views_not_exists');
-        } catch (WebApp\Exception $e) {
+        } catch (WebAppException $e) {
             $this->setViewPath(APP_PATH . '/views');
         }
 

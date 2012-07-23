@@ -67,7 +67,6 @@ class WebApp
      */
     public static function init($appNamespace, $appPath)
     {
-        //FIXME Bug $_instance tjrs à null !
         if (!is_null(static::$_instance)) {
             return static::$_instance;
         }
@@ -140,9 +139,10 @@ class WebApp
             throw new WebApp\Exception('Error boostraping!');
         }
 
-        include $bootstrapPath;
-
         $bsClass = '\\' . $this->_appNamespace . '\\Bootstrap';
+        if (!class_exists($bsClass)) {
+            include $bootstrapPath;
+        }
 
         $this->_bootstrap = new $bsClass($this->_appNamespace);
     }
