@@ -37,24 +37,25 @@ use SLiib\WebApp\Security\Model;
  */
 abstract class NegativeSecurity extends Model
 {
+
     /**
      * Security model
      * @var string
      */
-    protected $_model = self::MODEL_NEGATIVE;
+    protected $model = self::MODEL_NEGATIVE;
 
     /**
      * Check a pattern in a string
      *
      * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
-     * @param string                     $string String to use
+     * @param string                      $string String to use
      *
      * @return boolean
      */
     protected function check($rule, $string)
     {
         if (preg_match('/' . $rule->getPattern() . '/' . $rule->getFlags(), $string)) {
-            $this->_patternError = $string;
+            $this->patternError = $string;
             return false;
         }
 

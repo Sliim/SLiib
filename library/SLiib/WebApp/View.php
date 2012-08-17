@@ -37,29 +37,30 @@ use SLiib\WebApp;
  */
 class View
 {
+
     /**
      * Subdirectory of view
      * @var string
      */
-    protected $_subView = 'scripts';
+    protected $subView = 'scripts';
 
     /**
      * View file extension
      * @var string
      */
-    protected $_ext = '.phtml';
+    protected $ext = '.phtml';
 
     /**
      * Path of the .phtml view
      * @var mixed Null if undefined, false if disabled, string if isset
      */
-    private $_view = null;
+    private $view = null;
 
     /**
      * Views path
      * @var string
      */
-    private $_path;
+    private $path;
 
     /**
      * Construct, set view path
@@ -71,10 +72,10 @@ class View
      */
     public function __construct($controller, $action)
     {
-        $this->_path = WebApp::getInstance()->getViewPath();
+        $this->path  = WebApp::getInstance()->getViewPath();
         $defaultView = $controller . DIRECTORY_SEPARATOR . $action;
 
-        if ($this->viewExist($defaultView) && $this->_view !== false) {
+        if ($this->viewExist($defaultView) && $this->view !== false) {
             $this->setView($defaultView);
         }
     }
@@ -115,8 +116,8 @@ class View
      */
     public function display()
     {
-        if (!is_null($this->_view) && $this->_view) {
-            include $this->_view;
+        if (!is_null($this->view) && $this->view) {
+            include $this->view;
         }
     }
 
@@ -132,7 +133,7 @@ class View
     public function setView($view)
     {
         if ($viewPath = $this->viewExist($view)) {
-            $this->_view = realpath($viewPath);
+            $this->view = realpath($viewPath);
         } else {
             throw new Exception\InvalidParameter(
                 'View `' . $view . '` is invalid.'
@@ -147,7 +148,7 @@ class View
      */
     public function setNoView()
     {
-        $this->_view = false;
+        $this->view = false;
     }
 
     /**
@@ -163,12 +164,12 @@ class View
     public function partial($template)
     {
         $template = preg_replace(
-            '/\.' . substr($this->_ext, 1, strlen($this->_ext)) . '$/',
+            '/\.' . substr($this->ext, 1, strlen($this->ext)) . '$/',
             '',
             $template
         );
 
-        $file = $this->_path . DIRECTORY_SEPARATOR . $template . $this->_ext;
+        $file = $this->path . DIRECTORY_SEPARATOR . $template . $this->ext;
         if (!file_exists($file)) {
             throw new Exception\InvalidParameter(
                 'Partial template ' . $template . ' not found'
@@ -186,10 +187,10 @@ class View
      *
      * @return mixed False if not exist, else absolute path of view
      */
-    private final function viewExist($view)
+    final private function viewExist($view)
     {
-        $absolutePath = $this->_path . DIRECTORY_SEPARATOR . $this->_subView . DIRECTORY_SEPARATOR;
-        $viewFile     = $view . $this->_ext;
+        $absolutePath = $this->path . DIRECTORY_SEPARATOR . $this->subView . DIRECTORY_SEPARATOR;
+        $viewFile     = $view . $this->ext;
 
         if (file_exists($absolutePath . $viewFile)) {
             return $absolutePath . $viewFile;

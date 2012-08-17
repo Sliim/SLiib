@@ -38,11 +38,12 @@ use SLiib\WebApp\Request;
  */
 class ModelTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \Stubs\Security\Model
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -53,12 +54,12 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         Request::init();
-        $this->_object = $this->getMockForAbstractClass(
+        $this->object = $this->getMockForAbstractClass(
             '\Stubs\Security\Model',
             array('Negative')
         );
 
-        $this->_object->addRule(
+        $this->object->addRule(
             new Rule(
                 1,
                 'Test Rule',
@@ -79,7 +80,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -132,7 +133,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $this->_object->addRule($rule)->run();
+        $this->object->addRule($rule)->run();
     }
 
     /**
@@ -144,8 +145,8 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
 
-        $this->_object->getRule(1)->addLocation('BadLoacation');
-        $this->_object->run();
+        $this->object->getRule(1)->addLocation('BadLoacation');
+        $this->object->run();
     }
 
     /**
@@ -162,7 +163,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $this->setUp();
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -179,7 +180,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $this->setUp();
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -195,7 +196,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $this->setUp();
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -211,7 +212,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $this->setUp();
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\HackingAttempt');
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -225,7 +226,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddRule()
     {
-        $this->_object->addRule(
+        $this->object->addRule(
             new Rule(
                 2,
                 'Test second Rule',
@@ -234,12 +235,12 @@ class ModelTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $rule = $this->_object->getRule(2);
+        $rule = $this->object->getRule(2);
         $this->assertInstanceOf('\SLiib\WebApp\Security\Rule', $rule);
         $this->assertEquals(2, $rule->getId());
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
-        $this->_object->addRule(
+        $this->object->addRule(
             new Rule(
                 1,
                 'Test Rule with already exist id',
@@ -259,12 +260,12 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRule()
     {
-        $rule = $this->_object->getRule(1);
+        $rule = $this->object->getRule(1);
         $this->assertInstanceOf('\SLiib\WebApp\Security\Rule', $rule);
         $this->assertEquals(1, $rule->getId());
 
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
-        $rule = $this->_object->getRule(1337);
+        $rule = $this->object->getRule(1337);
     }
 
     /**
@@ -276,7 +277,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRules()
     {
-        $rules = $this->_object->getRules();
+        $rules = $this->object->getRules();
         $this->assertInternalType('array', $rules);
         $this->assertArrayHasKey(1, $rules);
         $this->assertEquals(1, count($rules));
@@ -292,10 +293,10 @@ class ModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeleteRule()
     {
-        $result = $this->_object->deleteRule(1);
+        $result = $this->object->deleteRule(1);
         $this->assertInstanceOf('\SLiib\WebApp\Security\Model', $result);
 
-        $rules = $this->_object->getRules();
+        $rules = $this->object->getRules();
         $this->assertInternalType('array', $rules);
         $this->assertEquals(0, count($rules));
     }
@@ -308,7 +309,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
     public function testDeleteRuleNotExists()
     {
         $this->setExpectedException('\SLiib\WebApp\Security\Exception\CheckerError');
-        $rule = $this->_object->deleteRule(1337);
+        $rule = $this->object->deleteRule(1337);
     }
 }
 

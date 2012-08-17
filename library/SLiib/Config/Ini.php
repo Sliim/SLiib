@@ -97,12 +97,12 @@ class Ini extends Config
     {
         set_error_handler(array($this, 'errorHandler'));
 
-        $config = parse_ini_file(static::$_file, true, INI_SCANNER_RAW);
+        $config = parse_ini_file(static::$file, true, INI_SCANNER_RAW);
 
         restore_error_handler();
 
         if (!$config) {
-            throw new SyntaxError('Can\'t parse `' . static::$_file . '`');
+            throw new SyntaxError('Can\'t parse `' . static::$file . '`');
         }
 
         Utils\Object::merge($this, $this->parseSection($config));

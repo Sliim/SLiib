@@ -35,35 +35,36 @@ namespace SLiib\WebApp;
  */
 abstract class Bootstrap
 {
+
     /**
      * Application namespace
      * @var string
      */
-    private $_appNamespace;
+    private $appNamespace;
 
     /**
      * Web Application namespaces
      * @var array
      */
-    private $_namespaces = array();
+    private $namespaces = array();
 
     /**
      * Web Application sections
      * @var array
      */
-    private $_sections = array();
+    private $sections = array();
 
     /**
      * Application view path
      * @var string
      */
-    private $_viewPath = null;
+    private $viewPath = null;
 
     /**
      * Security checkers
      * @var array
      */
-    private $_securityCheckers = array();
+    private $securityCheckers = array();
 
     /**
      * Bootstrap init
@@ -72,9 +73,9 @@ abstract class Bootstrap
      *
      * @return void
      */
-    public final function __construct($appNamespace)
+    final public function __construct($appNamespace)
     {
-        $this->_appNamespace = $appNamespace;
+        $this->appNamespace = $appNamespace;
         $this->init();
     }
 
@@ -90,12 +91,12 @@ abstract class Bootstrap
      *
      * @return void
      */
-    public final function run()
+    final public function run()
     {
         try {
             $this->setEnvironment();
 
-            Dispatcher::init($this->_appNamespace);
+            Dispatcher::init($this->appNamespace);
             Dispatcher::dispatch();
         } catch (\SLiib\Exception $e) {
             $this->exceptionHandler($e);
@@ -109,7 +110,7 @@ abstract class Bootstrap
      */
     public function getNamespaces()
     {
-        return $this->_namespaces;
+        return $this->namespaces;
     }
 
     /**
@@ -119,7 +120,7 @@ abstract class Bootstrap
      */
     public function getSections()
     {
-        return $this->_sections;
+        return $this->sections;
     }
 
     /**
@@ -129,7 +130,7 @@ abstract class Bootstrap
      */
     public function getViewPath()
     {
-        return $this->_viewPath;
+        return $this->viewPath;
     }
 
     /**
@@ -141,7 +142,7 @@ abstract class Bootstrap
      */
     protected function setNamespaces(array $namespaces)
     {
-        $this->_namespaces = $namespaces;
+        $this->namespaces = $namespaces;
     }
 
     /**
@@ -153,7 +154,7 @@ abstract class Bootstrap
      */
     protected function setSections(array $sections)
     {
-        $this->_sections = $sections;
+        $this->sections = $sections;
     }
 
     /**
@@ -165,7 +166,7 @@ abstract class Bootstrap
     {
         Request::init();
         Session::init();
-        Security::check($this->_securityCheckers);
+        Security::check($this->securityCheckers);
     }
 
     /**
@@ -183,7 +184,7 @@ abstract class Bootstrap
             throw new Exception('Directory ' . $path . ' not found.');
         }
 
-        $this->_viewPath = $path;
+        $this->viewPath = $path;
     }
 
     /**
@@ -195,7 +196,7 @@ abstract class Bootstrap
      */
     protected function setSecurityCheckers(array $checkers)
     {
-        $this->_securityCheckers = $checkers;
+        $this->securityCheckers = $checkers;
     }
 
     /**

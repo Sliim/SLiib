@@ -38,11 +38,12 @@ use SLiib\WebApp\Request;
  */
 class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Checker\FilenamePolicy
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -52,7 +53,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new FilenamePolicy();
+        $this->object = new FilenamePolicy();
     }
 
     /**
@@ -63,7 +64,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -79,7 +80,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/index/index');
         Request::init();
 
-        $result = $this->_object->run();
+        $result = $this->object->run();
         $this->assertTrue($result);
     }
 
@@ -95,7 +96,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/dumps/db.sql');
         Request::init();
 
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -110,7 +111,7 @@ class FilenamePolicyTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('../../../../etc/passwd');
         Request::init();
 
-        $this->_object->run();
+        $this->object->run();
     }
 }
 

@@ -35,17 +35,18 @@ namespace SLiib\WebApp;
  */
 class Request
 {
+
     /**
      * Request instance
      * @var \SLiib\WebApp\Request
      */
-    private static $_instance = null;
+    private static $instance = null;
 
     /**
      * Request data
      * @var stdClass
      */
-    private $_request = null;
+    private $request = null;
 
     /**
      * Init HTTP Request
@@ -54,7 +55,7 @@ class Request
      */
     public static function init()
     {
-        static::$_instance = new self();
+        static::$instance = new self();
     }
 
     /**
@@ -66,13 +67,13 @@ class Request
      */
     public static function getInstance()
     {
-        if (is_null(static::$_instance)) {
+        if (is_null(static::$instance)) {
             throw new Request\Exception(
                 'Request not initialized.'
             );
         }
 
-        return static::$_instance;
+        return static::$instance;
     }
 
     /**
@@ -82,7 +83,7 @@ class Request
      */
     public function getController()
     {
-        return $this->_request->controller;
+        return $this->request->controller;
     }
 
     /**
@@ -92,7 +93,7 @@ class Request
      */
     public function getAction()
     {
-        return $this->_request->action;
+        return $this->request->action;
     }
 
     /**
@@ -102,7 +103,7 @@ class Request
      */
     public function getRequestUri()
     {
-        return $this->_request->requestUri;
+        return $this->request->requestUri;
     }
 
     /**
@@ -112,11 +113,11 @@ class Request
      */
     public function getParameters()
     {
-        switch ($this->_request->method) {
+        switch ($this->request->method) {
             case 'GET':
-                return $this->_request->paramsGet;
+                return $this->request->paramsGet;
             case 'POST':
-                return $this->_request->paramsPost;
+                return $this->request->paramsPost;
             default:
                 return array();
         }
@@ -129,7 +130,7 @@ class Request
      */
     public function getClientIp()
     {
-        return $this->_request->clientIp;
+        return $this->request->clientIp;
     }
 
     /**
@@ -139,7 +140,7 @@ class Request
      */
     public function getUserAgent()
     {
-        return $this->_request->userAgent;
+        return $this->request->userAgent;
     }
 
     /**
@@ -149,7 +150,7 @@ class Request
      */
     public function getRequestMethod()
     {
-        return $this->_request->method;
+        return $this->request->method;
     }
 
     /**
@@ -159,7 +160,7 @@ class Request
      */
     public function getCookies()
     {
-        return $this->_request->cookies;
+        return $this->request->cookies;
     }
 
     /**
@@ -169,7 +170,7 @@ class Request
      */
     public function getReferer()
     {
-        return $this->_request->referer;
+        return $this->request->referer;
     }
 
     /**
@@ -193,7 +194,7 @@ class Request
      */
     private function __construct()
     {
-        $this->_request = new \stdClass;
+        $this->request = new \stdClass;
         $this->initProperties();
     }
 
@@ -204,28 +205,28 @@ class Request
      */
     private function initProperties()
     {
-        $this->_request->clientIp =
+        $this->request->clientIp =
             array_key_exists('REMOTE_ADDR', $_SERVER) ? $_SERVER['REMOTE_ADDR'] : null;
 
-        $this->_request->userAgent =
+        $this->request->userAgent =
             array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : null;
 
-        $this->_request->method =
+        $this->request->method =
             array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : null;
 
-        $this->_request->referer =
+        $this->request->referer =
             array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : null;
 
-        $this->_request->requestUri =
+        $this->request->requestUri =
             array_key_exists('REQUEST_URI', $_SERVER) ? $_SERVER['REQUEST_URI'] : '/';
 
         $get = $this->parseUrl();
 
-        $this->_request->controller = $get['controller'];
-        $this->_request->action     = $get['action'];
-        $this->_request->paramsGet  = $get['params'];
-        $this->_request->paramsPost = $_POST;
-        $this->_request->cookies    = $_COOKIE;
+        $this->request->controller = $get['controller'];
+        $this->request->action     = $get['action'];
+        $this->request->paramsGet  = $get['params'];
+        $this->request->paramsPost = $_POST;
+        $this->request->cookies    = $_COOKIE;
     }
 
     /**
@@ -239,11 +240,11 @@ class Request
         $action     = '';
         $params     = array();
 
-        if ($this->_request->requestUri == '/') {
+        if ($this->request->requestUri == '/') {
             $controller = 'index';
             $action     = 'index';
         } else {
-            $segment = explode('/', $this->_request->requestUri);
+            $segment = explode('/', $this->request->requestUri);
             array_shift($segment);
 
             if (count($segment) >= 2 && !empty($segment[1])) {

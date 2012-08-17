@@ -46,19 +46,19 @@ class Log
      * Log file path
      * @var string
      */
-    private $_fileOutput = null;
+    private $fileOutput = null;
 
     /**
      * Log format
      * @var string
      */
-    private $_format = '[%d %t] [%T] - %m';
+    private $format = '[%d %t] [%T] - %m';
 
     /**
      * Display on output with color
      * @var boolean
      */
-    private $_color = false;
+    private $color = false;
 
     /**
      * Constructor, init file descriptor.
@@ -77,9 +77,9 @@ class Log
             $opt = 'a+b';
         }
 
-        $this->_fileOutput = @fopen($fileOutput, $opt);
+        $this->fileOutput = @fopen($fileOutput, $opt);
 
-        if (!$this->_fileOutput) {
+        if (!$this->fileOutput) {
             throw new Log\Exception('Cannot open file ' . $fileOutput);
         }
     }
@@ -91,7 +91,7 @@ class Log
      */
     public function __destruct()
     {
-        fclose($this->_fileOutput);
+        fclose($this->fileOutput);
     }
 
     /**
@@ -106,7 +106,7 @@ class Log
     public function write($string, $type = self::INFO, $echo = false)
     {
         $log = $this->genLog($string, $type);
-        fwrite($this->_fileOutput, $log . PHP_EOL);
+        fwrite($this->fileOutput, $log . PHP_EOL);
 
         if ($echo) {
             $this->put($string, $type);
@@ -192,7 +192,7 @@ class Log
      */
     public function setColor($value)
     {
-        $this->_color = $value;
+        $this->color = $value;
         return $this;
     }
 
@@ -212,7 +212,7 @@ class Log
      */
     public function setFormat($format)
     {
-        $this->_format = $format;
+        $this->format = $format;
         return $this;
     }
 
@@ -223,7 +223,7 @@ class Log
      */
     public function getFormat()
     {
-        return $this->_format;
+        return $this->format;
     }
 
     /**
@@ -330,7 +330,7 @@ class Log
                 break;
         }
 
-        $string = (($this->_color) ? $color . $string . $defaultColor : $string);
+        $string = (($this->color) ? $color . $string . $defaultColor : $string);
 
         if (in_array($type, $stderr)) {
             fwrite(STDERR, $string . PHP_EOL);

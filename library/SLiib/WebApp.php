@@ -33,29 +33,30 @@ namespace SLiib;
  */
 class WebApp
 {
+
     /**
      * Instance
      * @var \SLiib\WebApp
      */
-    private static $_instance = null;
+    private static $instance = null;
 
     /**
      * Application namespace
      * @var string
      */
-    private $_appNamespace;
+    private $appNamespace;
 
     /**
      * Application path
      * @var string
      */
-    private $_appPath;
+    private $appPath;
 
     /**
      * Application bootstrap
      * @var \SLiib\Bootstrap
      */
-    private $_bootstrap;
+    private $bootstrap;
 
     /**
      * Application Init
@@ -67,14 +68,14 @@ class WebApp
      */
     public static function init($appNamespace, $appPath)
     {
-        if (!is_null(static::$_instance)) {
-            return static::$_instance;
+        if (!is_null(static::$instance)) {
+            return static::$instance;
         }
 
         Autoloader::init(array('SLiib' => 'SLiib'));
 
-        static::$_instance = new self($appNamespace, $appPath);
-        return static::$_instance;
+        static::$instance = new self($appNamespace, $appPath);
+        return static::$instance;
     }
 
     /**
@@ -85,12 +86,12 @@ class WebApp
     public function run()
     {
         $namespaces = array_merge(
-            array($this->_appNamespace => $this->_appPath),
-            $this->_bootstrap->getNamespaces()
+            array($this->appNamespace => $this->appPath),
+            $this->bootstrap->getNamespaces()
         );
 
-        Autoloader::init($namespaces, $this->_bootstrap->getSections());
-        $this->_bootstrap->run();
+        Autoloader::init($namespaces, $this->bootstrap->getSections());
+        $this->bootstrap->run();
     }
 
     /**
@@ -102,11 +103,11 @@ class WebApp
      */
     public static function getInstance()
     {
-        if (static::$_instance === null) {
+        if (static::$instance === null) {
             throw new WebApp\Exception('Application not initialized.');
         }
 
-        return static::$_instance;
+        return static::$instance;
     }
 
     /**
@@ -116,7 +117,7 @@ class WebApp
      */
     public function getViewPath()
     {
-        return $this->_bootstrap->getViewPath();
+        return $this->bootstrap->getViewPath();
     }
 
     /**
@@ -131,20 +132,20 @@ class WebApp
      */
     private function __construct($appNamespace, $appPath)
     {
-        $this->_appNamespace = $appNamespace;
-        $this->_appPath      = $appPath;
+        $this->appNamespace = $appNamespace;
+        $this->appPath      = $appPath;
 
-        $bootstrapPath = $this->_appPath . '/Bootstrap.php';
+        $bootstrapPath = $this->appPath . '/Bootstrap.php';
         if (!file_exists($bootstrapPath)) {
             throw new WebApp\Exception('Error boostraping!');
         }
 
-        $bsClass = '\\' . $this->_appNamespace . '\\Bootstrap';
+        $bsClass = '\\' . $this->appNamespace . '\\Bootstrap';
         if (!class_exists($bsClass)) {
             include $bootstrapPath;
         }
 
-        $this->_bootstrap = new $bsClass($this->_appNamespace);
+        $this->bootstrap = new $bsClass($this->appNamespace);
     }
 }
 

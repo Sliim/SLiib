@@ -45,7 +45,7 @@ class Test extends Controller
      */
     protected function init()
     {
-        $this->_view->bigtitle = 'Test controller!';
+        $this->view->bigtitle = 'Test controller!';
     }
 
     /**
@@ -57,8 +57,8 @@ class Test extends Controller
     {
         $model = new \Test\Model\MyModel();
 
-        $this->_view->title   = 'Test model!';
-        $this->_view->message = $model->toString();
+        $this->view->title   = 'Test model!';
+        $this->view->message = $model->toString();
     }
 
     /**
@@ -70,8 +70,8 @@ class Test extends Controller
     {
         $lib = new \Lib\MyClass();
 
-        $this->_view->title   = 'Test library!';
-        $this->_view->message = $lib->toString();
+        $this->view->title   = 'Test library!';
+        $this->view->message = $lib->toString();
     }
 
     /**
@@ -81,7 +81,7 @@ class Test extends Controller
      */
     public function noviewAction()
     {
-        $this->_view->setNoView();
+        $this->view->setNoView();
         echo 'No view for this controller';
     }
 
@@ -92,8 +92,8 @@ class Test extends Controller
      */
     public function customViewAction()
     {
-        $this->_view->setView('aview');
-        $this->_view->message = 'Test custom view';
+        $this->view->setView('aview');
+        $this->view->message = 'Test custom view';
     }
 
     /**
@@ -113,13 +113,13 @@ class Test extends Controller
      */
     public function requestAction()
     {
-        $this->_view->bigtitle  = 'Test HTTP Request';
-        $this->_view->ip        = $this->getRequest()->getClientIp();
-        $this->_view->method    = $this->getRequest()->getRequestMethod();
-        $this->_view->userAgent = $this->getRequest()->getUserAgent();
-        $this->_view->params    = $this->getRequest()->getParameters();
-        $this->_view->cookies   = $this->getRequest()->getCookies();
-        $this->_view->referer   = $this->getRequest()->getReferer();
+        $this->view->bigtitle  = 'Test HTTP Request';
+        $this->view->ip        = $this->getRequest()->getClientIp();
+        $this->view->method    = $this->getRequest()->getRequestMethod();
+        $this->view->userAgent = $this->getRequest()->getUserAgent();
+        $this->view->params    = $this->getRequest()->getParameters();
+        $this->view->cookies   = $this->getRequest()->getCookies();
+        $this->view->referer   = $this->getRequest()->getReferer();
     }
 
     /**
@@ -129,7 +129,7 @@ class Test extends Controller
      */
     public function badsetviewAction()
     {
-        return $this->_view->setView('notexists');
+        return $this->view->setView('notexists');
     }
 
     /**
@@ -149,8 +149,8 @@ class Test extends Controller
      */
     public function getterviewAction()
     {
-        $this->_view->setNoView();
-        return $woot = $this->_view->woot;
+        $this->view->setNoView();
+        return $woot = $this->view->woot;
     }
 
     /**
@@ -160,7 +160,7 @@ class Test extends Controller
      */
     public function errorhandlerAction()
     {
-        $this->_view->setNoView();
+        $this->view->setNoView();
         return trigger_error('Test error handler');
     }
 
@@ -171,10 +171,10 @@ class Test extends Controller
      */
     public function sessionAction()
     {
-        $this->_view->bigtitle = 'Test Session';
-        $this->_view->logged   = false;
+        $this->view->bigtitle = 'Test Session';
+        $this->view->logged   = false;
 
-        $params  = $this->_request->getParameters();
+        $params  = $this->request->getParameters();
         $session = new Session('TestSession');
 
         if (array_key_exists('login', $params)) {
@@ -185,14 +185,14 @@ class Test extends Controller
                 }
             }
         } elseif (array_key_exists('logout', $params)) {
-            $this->_view->logged = false;
+            $this->view->logged = false;
             $session->clear();
         }
 
         if (isset($session->logged)) {
             if ($session->logged) {
-                $this->_view->logged   = true;
-                $this->_view->username = $session->username;
+                $this->view->logged   = true;
+                $this->view->username = $session->username;
             }
         }
     }

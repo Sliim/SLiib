@@ -46,8 +46,8 @@ abstract class Model extends SLiibModel
      */
     public function __construct($model = '')
     {
-        $this->_model   = $model;
-        $this->_setName = 'Stubs Checker';
+        $this->model   = $model;
+        $this->setName = 'Stubs Checker';
         parent::__construct();
     }
 
@@ -55,7 +55,7 @@ abstract class Model extends SLiibModel
      * Check a pattern in a string
      *
      * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
-     * @param string                     $string String to use
+     * @param string                      $string String to use
      *
      * @return boolean
      */

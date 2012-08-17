@@ -35,11 +35,12 @@ namespace SLiib\WebApp;
  */
 class Dispatcher
 {
+
     /**
      * Application namespace
      * @var string
      */
-    private static $_namespace = null;
+    private static $namespace = null;
 
     /**
      * Init dispatcher
@@ -50,7 +51,7 @@ class Dispatcher
      */
     public static function init($namespace)
     {
-        static::$_namespace = $namespace;
+        static::$namespace = $namespace;
     }
 
     /**
@@ -68,7 +69,7 @@ class Dispatcher
 
         $controllerName = sprintf(
             "\\%s\\Controller\\%s",
-            static::$_namespace,
+            static::$namespace,
             ucfirst($controller)
         );
 

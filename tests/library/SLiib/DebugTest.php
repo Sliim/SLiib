@@ -36,17 +36,18 @@ namespace SLiib;
  */
 class DebugTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * String test
      * @var string
      */
-    private $_string = 'foo';
+    private $string = 'foo';
 
     /**
      * Integer test
      * @var int
      */
-    private $_int = 1337;
+    private $int = 1337;
 
     /**
      * Dump test with php sapi equal cli
@@ -57,10 +58,10 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     {
         \Stubs\Sapi::setSapi('cli');
 
-        $expected = 'string(' . strlen($this->_string) . ') "' . $this->_string . '"';
+        $expected = 'string(' . strlen($this->string) . ') "' . $this->string . '"';
 
         $this->expectOutputString($expected . PHP_EOL);
-        $dump = Debug::dump($this->_string);
+        $dump = Debug::dump($this->string);
         $this->assertStringMatchesFormat(
             $expected,
             $dump
@@ -69,8 +70,8 @@ class DebugTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsNotWith('<pre>', $dump);
         $this->assertStringEndsNotWith('</pre>', $dump);
 
-        $dump = Debug::dump($this->_int, false);
-        $this->assertStringMatchesFormat('int(' . $this->_int . ')', $dump);
+        $dump = Debug::dump($this->int, false);
+        $this->assertStringMatchesFormat('int(' . $this->int . ')', $dump);
         $this->assertStringStartsNotWith('<pre>', $dump);
         $this->assertStringEndsNotWith('</pre>', $dump);
     }
@@ -84,7 +85,7 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     {
         \Stubs\Sapi::setSapi('apache');
 
-        $dump = Debug::dump($this->_int, false);
+        $dump = Debug::dump($this->int, false);
 
         $this->assertStringStartsWith('<pre>', $dump);
         $this->assertStringEndsWith('</pre>', $dump);
@@ -99,7 +100,7 @@ class DebugTest extends \PHPUnit_Framework_TestCase
     {
         \Stubs\Sapi::setSapi('cli');
 
-        $dump = Debug::dump($this->_int, false, false);
+        $dump = Debug::dump($this->int, false, false);
         $this->assertStringStartsNotWith('<pre>', $dump);
         $this->assertStringEndsNotWith('</pre>', $dump);
     }

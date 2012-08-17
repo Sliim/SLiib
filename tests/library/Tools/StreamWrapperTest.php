@@ -36,23 +36,24 @@ namespace Tools;
  */
 class StreamWrapperTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Stream name for tests
      * @var string
      */
-    private static $_stream = 'foo';
+    private static $stream = 'foo';
 
     /**
      * Global variable name for tests
      * @var string
      */
-    private static $_varName = 'bar';
+    private static $varName = 'bar';
 
     /**
      * File pointer resource
      * @var resource
      */
-    private $_fp = null;
+    private $fp = null;
 
     /**
      * Stream register
@@ -61,11 +62,11 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        if (in_array(static::$_stream, stream_get_wrappers())) {
-            stream_wrapper_unregister(static::$_stream);
+        if (in_array(static::$stream, stream_get_wrappers())) {
+            stream_wrapper_unregister(static::$stream);
         }
 
-        stream_wrapper_register(static::$_stream, '\Tools\StreamWrapper');
+        stream_wrapper_register(static::$stream, '\Tools\StreamWrapper');
     }
 
     /**
@@ -76,7 +77,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_fp = fopen(static::$_stream . '://' . static::$_varName, 'r+');
+        $this->fp = fopen(static::$stream . '://' . static::$varName, 'r+');
     }
 
     /**
@@ -88,7 +89,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testStreamOpen()
     {
-        $this->_fp = fopen(static::$_stream . '://myvar', 'r+');
+        $this->fp = fopen(static::$stream . '://myvar', 'r+');
         $this->assertNull($GLOBALS['myvar']);
     }
 
@@ -101,8 +102,8 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testStreamWrite()
     {
-        fwrite($this->_fp, 'w00t');
-        $this->assertEquals('w00t', $GLOBALS[static::$_varName]);
+        fwrite($this->fp, 'w00t');
+        $this->assertEquals('w00t', $GLOBALS[static::$varName]);
     }
 
     /**
@@ -114,8 +115,8 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testStreamRead()
     {
-        fread($this->_fp, 1337);
-        $this->assertNull($GLOBALS[static::$_varName]);
+        fread($this->fp, 1337);
+        $this->assertNull($GLOBALS[static::$varName]);
     }
 }
 

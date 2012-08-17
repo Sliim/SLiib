@@ -29,6 +29,7 @@ namespace SLiib\SystemInfos\Exception;
 
 use SLiib\SystemInfos\Exception;
 use SLiib\IException\Runtime as RuntimeException;
+
 /**
  * \SLiib\SystemInfos\Exception\CommandFailed
  *

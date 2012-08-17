@@ -35,11 +35,12 @@ namespace Stubs;
  */
 class SolR
 {
+
     /**
      * Instance processus id
      * @var int
      */
-    private static $_pid = null;
+    private static $pid = null;
 
     /**
      * Check if SolR stubs is installed
@@ -69,7 +70,7 @@ class SolR
      */
     public static function started()
     {
-        return (is_null(static::$_pid)) ? false : true;
+        return (is_null(static::$pid)) ? false : true;
     }
 
     /**
@@ -88,7 +89,7 @@ class SolR
         $command .= 'echo $!';
 
         exec($command, $output, $returnCode);
-        static::$_pid = $output[0];
+        static::$pid = $output[0];
 
         return ($returnCode === 0) ? true : false;
     }
@@ -100,9 +101,9 @@ class SolR
      */
     public static function stop()
     {
-        if (!is_null(static::$_pid)) {
-            if (posix_kill(static::$_pid, SIGKILL)) {
-                static::$_pid = null;
+        if (!is_null(static::$pid)) {
+            if (posix_kill(static::$pid, SIGKILL)) {
+                static::$pid = null;
             } else {
                 return false;
             }

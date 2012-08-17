@@ -46,43 +46,43 @@ class Rule
      * Rule id
      * @var int
      */
-    private $_id;
+    private $id;
 
     /**
      * Rule message
      * @var string
      */
-    private $_message;
+    private $message;
 
     /**
      * Rule pattern
      * @var string
      */
-    private $_pattern;
+    private $pattern;
 
     /**
      * Rule locations
      * @var array
      */
-    private $_locations = array();
+    private $locations = array();
 
     /**
      * Element Pattern
      * @var array
      */
-    private $_patternElements = array();
+    private $patternElements = array();
 
     /**
      * preg quote enabled
      * @var boolean
      */
-    private $_pregQuoteEnabled = false;
+    private $pregQuoteEnabled = false;
 
     /**
      * Flags for regular expression
      * @var array
      */
-    private $_flags = array();
+    private $flags = array();
 
     /**
      * Rule init
@@ -96,8 +96,8 @@ class Rule
      */
     public function __construct($id, $message, $pattern = null, $location = null)
     {
-        $this->_id      = $id;
-        $this->_message = $message;
+        $this->id      = $id;
+        $this->message = $message;
 
         if (!is_null($pattern)) {
             $this->setPattern($pattern);
@@ -121,7 +121,7 @@ class Rule
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**
@@ -131,7 +131,7 @@ class Rule
      */
     public function getMessage()
     {
-        return $this->_message;
+        return $this->message;
     }
 
     /**
@@ -141,7 +141,7 @@ class Rule
      */
     public function getPattern()
     {
-        return $this->_pattern;
+        return $this->pattern;
     }
 
     /**
@@ -151,7 +151,7 @@ class Rule
      */
     public function getLocation()
     {
-        return $this->_locations;
+        return $this->locations;
     }
 
     /**
@@ -161,7 +161,7 @@ class Rule
      */
     public function getFlags()
     {
-        return implode('', $this->_flags);
+        return implode('', $this->flags);
     }
 
     /**
@@ -174,10 +174,10 @@ class Rule
      */
     public function setPattern($pattern)
     {
-        if ($this->_pregQuoteEnabled) {
-            $this->_pattern = preg_quote($pattern, '/');
+        if ($this->pregQuoteEnabled) {
+            $this->pattern = preg_quote($pattern, '/');
         } else {
-            $this->_pattern = $pattern;
+            $this->pattern = $pattern;
         }
 
         return $this;
@@ -193,9 +193,9 @@ class Rule
     public function addLocation($location)
     {
         if (is_array($location)) {
-            $this->_locations = array_unique(array_merge($this->_locations, $location));
-        } elseif (!in_array($location, $this->_locations)) {
-            array_push($this->_locations, $location);
+            $this->locations = array_unique(array_merge($this->locations, $location));
+        } elseif (!in_array($location, $this->locations)) {
+            array_push($this->locations, $location);
         }
 
         return $this;
@@ -210,9 +210,9 @@ class Rule
      */
     public function deleteLocation($location)
     {
-        if (in_array($location, $this->_locations)) {
-            $key = array_search($location, $this->_locations);
-            unset($this->_locations[$key]);
+        if (in_array($location, $this->locations)) {
+            $key = array_search($location, $this->locations);
+            unset($this->locations[$key]);
         }
 
         return $this;
@@ -228,9 +228,9 @@ class Rule
     public function addPatternElement($element)
     {
         if (is_array($element)) {
-            $this->_patternElements = array_unique(array_merge($this->_patternElements, $element));
+            $this->patternElements = array_unique(array_merge($this->patternElements, $element));
         } else {
-            array_push($this->_patternElements, $element);
+            array_push($this->patternElements, $element);
         }
 
         $this->reloadPattern();
@@ -246,9 +246,9 @@ class Rule
      */
     public function deletePatternElement($element)
     {
-        if (in_array($element, $this->_patternElements)) {
-            $key = array_search($element, $this->_patternElements);
-            unset($this->_patternElements[$key]);
+        if (in_array($element, $this->patternElements)) {
+            $key = array_search($element, $this->patternElements);
+            unset($this->patternElements[$key]);
 
             $this->reloadPattern();
         }
@@ -263,7 +263,7 @@ class Rule
      */
     public function enablePregQuote()
     {
-        $this->_pregQuoteEnabled = true;
+        $this->pregQuoteEnabled = true;
         return $this;
     }
 
@@ -274,7 +274,7 @@ class Rule
      */
     public function disablePregQuote()
     {
-        $this->_pregQuoteEnabled = false;
+        $this->pregQuoteEnabled = false;
         return $this;
     }
 
@@ -285,9 +285,9 @@ class Rule
      */
     public function enableCaseSensitivity()
     {
-        if (in_array('i', $this->_flags)) {
-            $key = array_search('i', $this->_flags);
-            unset($this->_flags[$key]);
+        if (in_array('i', $this->flags)) {
+            $key = array_search('i', $this->flags);
+            unset($this->flags[$key]);
         }
 
         return $this;
@@ -301,8 +301,8 @@ class Rule
      */
     public function disableCaseSensitivity()
     {
-        if (!in_array('i', $this->_flags)) {
-            array_push($this->_flags, 'i');
+        if (!in_array('i', $this->flags)) {
+            array_push($this->flags, 'i');
         }
 
         return $this;
@@ -317,8 +317,8 @@ class Rule
     private function reloadPattern()
     {
         $patternArray = array();
-        foreach ($this->_patternElements as $key => $element) {
-            if ($this->_pregQuoteEnabled) {
+        foreach ($this->patternElements as $key => $element) {
+            if ($this->pregQuoteEnabled) {
                 $patternArray[$key] = preg_quote($element, '/');
             } else {
                 $patternArray[$key] = $element;
@@ -327,7 +327,7 @@ class Rule
 
         $pattern = '(' . implode('|', $patternArray) . ')';
 
-        if ($this->_pregQuoteEnabled) {
+        if ($this->pregQuoteEnabled) {
             $this->disablePregQuote()->setPattern($pattern)->enablePregQuote();
         } else {
             $this->setPattern($pattern);

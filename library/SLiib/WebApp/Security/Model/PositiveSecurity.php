@@ -37,17 +37,18 @@ use SLiib\WebApp\Security\Model;
  */
 abstract class PositiveSecurity extends Model
 {
+
     /**
      * Security model
      * @var string
      */
-    protected $_model = self::MODEL_POSITIVE;
+    protected $model = self::MODEL_POSITIVE;
 
     /**
      * Check a pattern in a string
      *
      * @param \SLiib\WebApp\Security\Rule $rule   Rule to check
-     * @param string                     $string String to use
+     * @param string                      $string String to use
      *
      * @return boolean
      */
@@ -57,7 +58,7 @@ abstract class PositiveSecurity extends Model
             return true;
         }
 
-        $this->_patternError = $string;
+        $this->patternError = $string;
         return false;
     }
 }

@@ -36,11 +36,12 @@ namespace SLiib\WebApp\Security;
  */
 class RuleTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Rule
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -52,7 +53,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new Rule(
+        $this->object = new Rule(
             1337,
             'RuleTest',
             '^foo(.*)bar$',
@@ -68,7 +69,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -80,7 +81,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetId()
     {
-        $id = $this->_object->getId();
+        $id = $this->object->getId();
         $this->assertInternalType('int', $id);
         $this->assertEquals(1337, $id);
     }
@@ -94,7 +95,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMessage()
     {
-        $msg = $this->_object->getMessage();
+        $msg = $this->object->getMessage();
         $this->assertInternalType('string', $msg);
         $this->assertEquals('RuleTest', $msg);
     }
@@ -108,7 +109,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPattern()
     {
-        $pattern = $this->_object->getPattern();
+        $pattern = $this->object->getPattern();
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('^foo(.*)bar$', $pattern);
     }
@@ -122,7 +123,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLocation()
     {
-        $location = $this->_object->getLocation();
+        $location = $this->object->getLocation();
         $this->assertInternalType('array', $location);
         $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
     }
@@ -136,8 +137,8 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetPattern()
     {
-        $this->_object->setPattern('hacked');
-        $pattern = $this->_object->getPattern();
+        $this->object->setPattern('hacked');
+        $pattern = $this->object->getPattern();
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('hacked', $pattern);
@@ -152,14 +153,14 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddLocation()
     {
-        $this->_object->addLocation(Rule::LOCATION_COOKIES);
-        $location = $this->_object->getLocation();
+        $this->object->addLocation(Rule::LOCATION_COOKIES);
+        $location = $this->object->getLocation();
 
         $this->assertInternalType('array', $location);
         $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
         $this->assertTrue(in_array(Rule::LOCATION_COOKIES, $location));
 
-        $this->_object->addLocation(
+        $this->object->addLocation(
             array(
              Rule::LOCATION_HTTP_METHOD,
              Rule::LOCATION_REFERER,
@@ -167,7 +168,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $location = $this->_object->getLocation();
+        $location = $this->object->getLocation();
         $this->assertInternalType('array', $location);
         $this->assertTrue(in_array(Rule::LOCATION_PARAMETERS, $location));
         $this->assertTrue(in_array(Rule::LOCATION_COOKIES, $location));
@@ -185,8 +186,8 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeleteLocation()
     {
-        $this->_object->deleteLocation(Rule::LOCATION_PARAMETERS);
-        $location = $this->_object->getLocation();
+        $this->object->deleteLocation(Rule::LOCATION_PARAMETERS);
+        $location = $this->object->getLocation();
 
         $this->assertInternalType('array', $location);
         $this->assertTrue(empty($location));
@@ -202,11 +203,11 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddPatternElement()
     {
-        $this->_object
+        $this->object
             ->addPatternElement('hacked')
             ->addPatternElement(array('foo', 'bar'));
 
-        $pattern = $this->_object->getPattern();
+        $pattern = $this->object->getPattern();
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('(hacked|foo|bar)', $pattern);
@@ -222,11 +223,11 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDeletePatternElement()
     {
-        $this->_object
+        $this->object
             ->addPatternElement(array('foo', 'bar'))
             ->deletePatternElement('foo');
 
-        $pattern = $this->_object->getPattern();
+        $pattern = $this->object->getPattern();
 
         $this->assertInternalType('string', $pattern);
         $this->assertEquals('(bar)', $pattern);
@@ -243,11 +244,11 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testEnablePregQuote()
     {
-        $this->_object->enablePregQuote()
+        $this->object->enablePregQuote()
             ->setPattern('foo/bar');
-        $this->assertEquals('foo\/bar', $this->_object->getPattern());
+        $this->assertEquals('foo\/bar', $this->object->getPattern());
 
-        $this->_object->disablePregQuote()
+        $this->object->disablePregQuote()
             ->enablePregQuote()
             ->addPatternElement(
                 array(
@@ -255,7 +256,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
                  'w00t..w00t',
                 )
             );
-        $this->assertEquals('(foo\/bar|w00t\.\.w00t)', $this->_object->getPattern());
+        $this->assertEquals('(foo\/bar|w00t\.\.w00t)', $this->object->getPattern());
     }
 
     /**
@@ -269,11 +270,11 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testDisablePregQuote()
     {
-        $this->_object->disablePregQuote()
+        $this->object->disablePregQuote()
             ->setPattern('foo/bar');
-        $this->assertEquals('foo/bar', $this->_object->getPattern());
+        $this->assertEquals('foo/bar', $this->object->getPattern());
 
-        $this->_object->enablePregQuote()
+        $this->object->enablePregQuote()
             ->disablePregQuote()
             ->addPatternElement(
                 array(
@@ -281,7 +282,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
                  'w00t..w00t',
                 )
             );
-        $this->assertEquals('(foo/bar|w00t..w00t)', $this->_object->getPattern());
+        $this->assertEquals('(foo/bar|w00t..w00t)', $this->object->getPattern());
     }
 
     /**
@@ -294,11 +295,11 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testEnableAndDisableCaseSensitivity()
     {
-        $this->_object->disableCaseSensitivity();
-        $this->assertEquals('i', $this->_object->getFlags());
+        $this->object->disableCaseSensitivity();
+        $this->assertEquals('i', $this->object->getFlags());
 
-        $this->_object->enableCaseSensitivity();
-        $this->assertEmpty($this->_object->getFlags());
+        $this->object->enableCaseSensitivity();
+        $this->assertEmpty($this->object->getFlags());
     }
 }
 

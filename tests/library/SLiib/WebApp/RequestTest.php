@@ -36,53 +36,54 @@ namespace SLiib\WebApp;
  */
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Request
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Fake request uri
      * @var string
      */
-    private $_requestUri = '/foo/bar/getparam/value';
+    private $requestUri = '/foo/bar/getparam/value';
 
     /**
      * Fake client ip
      * @var string
      */
-    private $_clientIp = '127.0.0.3';
+    private $clientIp = '127.0.0.3';
 
     /**
      * Fake user agent
      * @var string
      */
-    private $_ua = '31337bot';
+    private $ua = '31337bot';
 
     /**
      * Fake http method
      * @var string
      */
-    private $_method = 'GET';
+    private $method = 'GET';
 
     /**
      * Fake referer
      * @var string
      */
-    private $_referer = 'http://www.hellokitty.com';
+    private $referer = 'http://www.hellokitty.com';
 
     /**
      * Post params
      * @var array
      */
-    private $_post = array();
+    private $post = array();
 
     /**
      * Fake client's cookies
      * @var array
      */
-    private $_cookies = array();
+    private $cookies = array();
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -92,16 +93,16 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_post    = array('params' => 'baz');
-        $this->_cookies = array('user_password' => 'passSecur3d');
+        $this->post    = array('params' => 'baz');
+        $this->cookies = array('user_password' => 'passSecur3d');
 
-        \Tools\Request::setRequestUri($this->_requestUri);
-        \Tools\Request::setRemoteIp($this->_clientIp);
-        \Tools\Request::setUserAgent($this->_ua);
-        \Tools\Request::setRequestMethod($this->_method);
-        \Tools\Request::setReferer($this->_referer);
-        \Tools\Request::setPost($this->_post);
-        \Tools\Request::setCookie($this->_cookies);
+        \Tools\Request::setRequestUri($this->requestUri);
+        \Tools\Request::setRemoteIp($this->clientIp);
+        \Tools\Request::setUserAgent($this->ua);
+        \Tools\Request::setRequestMethod($this->method);
+        \Tools\Request::setReferer($this->referer);
+        \Tools\Request::setPost($this->post);
+        \Tools\Request::setCookie($this->cookies);
 
     }
 
@@ -113,7 +114,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -141,7 +142,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetInstance()
     {
         $this->setObject();
-        $this->assertInstanceOf('\SLiib\WebApp\Request', $this->_object);
+        $this->assertInstanceOf('\SLiib\WebApp\Request', $this->object);
     }
 
     /**
@@ -154,7 +155,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetController()
     {
         $this->setObject();
-        $this->assertEquals('foo', $this->_object->getController());
+        $this->assertEquals('foo', $this->object->getController());
 
     }
 
@@ -167,8 +168,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setRequestUri('/');
         $this->setObject();
-        $this->assertEquals('index', $this->_object->getController());
-        $this->assertEquals('index', $this->_object->getAction());
+        $this->assertEquals('index', $this->object->getController());
+        $this->assertEquals('index', $this->object->getAction());
     }
 
     /**
@@ -180,8 +181,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Request::setRequestUri('/foo');
         $this->setObject();
-        $this->assertEquals('foo', $this->_object->getController());
-        $this->assertEquals('index', $this->_object->getAction());
+        $this->assertEquals('foo', $this->object->getController());
+        $this->assertEquals('index', $this->object->getAction());
     }
 
     /**
@@ -194,7 +195,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetAction()
     {
         $this->setObject();
-        $this->assertEquals('bar', $this->_object->getAction());
+        $this->assertEquals('bar', $this->object->getAction());
 
     }
 
@@ -208,7 +209,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetRequestUri()
     {
         $this->setObject();
-        $this->assertEquals($this->_requestUri, $this->_object->getRequestUri());
+        $this->assertEquals($this->requestUri, $this->object->getRequestUri());
     }
 
     /**
@@ -221,7 +222,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetParameters()
     {
         $this->setObject();
-        $params = $this->_object->getParameters();
+        $params = $this->object->getParameters();
 
         $this->assertArrayHasKey('getparam', $params);
         $this->assertEquals('value', $params['getparam']);
@@ -229,13 +230,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod('POST');
         $this->setObject();
 
-        $params = $this->_object->getParameters();
-        $this->assertEquals($this->_post, $params);
+        $params = $this->object->getParameters();
+        $this->assertEquals($this->post, $params);
 
         \Tools\Request::setRequestMethod('WOOT');
         $this->setObject();
 
-        $params = $this->_object->getParameters();
+        $params = $this->object->getParameters();
         $this->assertTrue(empty($params));
     }
 
@@ -249,7 +250,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetClientIp()
     {
         $this->setObject();
-        $this->assertEquals($this->_clientIp, $this->_object->getClientIp());
+        $this->assertEquals($this->clientIp, $this->object->getClientIp());
     }
 
     /**
@@ -262,7 +263,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetUserAgent()
     {
         $this->setObject();
-        $this->assertEquals($this->_ua, $this->_object->getUserAgent());
+        $this->assertEquals($this->ua, $this->object->getUserAgent());
     }
 
     /**
@@ -275,7 +276,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetRequestMethod()
     {
         $this->setObject();
-        $this->assertEquals($this->_method, $this->_object->getRequestMethod());
+        $this->assertEquals($this->method, $this->object->getRequestMethod());
     }
 
     /**
@@ -288,7 +289,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetCookies()
     {
         $this->setObject();
-        $this->assertEquals($this->_cookies, $this->_object->getCookies());
+        $this->assertEquals($this->cookies, $this->object->getCookies());
     }
 
     /**
@@ -301,7 +302,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function testGetReferer()
     {
         $this->setObject();
-        $this->assertEquals($this->_referer, $this->_object->getReferer());
+        $this->assertEquals($this->referer, $this->object->getReferer());
     }
 
     /**
@@ -316,12 +317,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod('POST');
         $this->setObject();
 
-        $this->assertTrue($this->_object->isPost());
+        $this->assertTrue($this->object->isPost());
 
         \Tools\Request::setRequestMethod('GET');
         $this->setObject();
 
-        $this->assertFalse($this->_object->isPost());
+        $this->assertFalse($this->object->isPost());
     }
 
     /**
@@ -332,7 +333,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     private function setObject()
     {
         Request::init();
-        $this->_object = Request::getInstance();
+        $this->object = Request::getInstance();
     }
 }
 

@@ -39,38 +39,39 @@ use SLiib\WebApp\Security\Rule;
  */
 class HackingAttempt extends SecurityException implements RuntimeException
 {
+
     /**
      * Checker name
      * @var string
      */
-    private $_checkerName;
+    private $checkerName;
 
     /**
      * Security Rule
      * @var \SLiib\WebApp\Security\Rule
      */
-    private $_rule;
+    private $rule;
 
     /**
      * Rule location
      * @var string
      */
-    private $_location;
+    private $location;
 
     /**
      * Exception reason
      * @var string
      */
-    private $_reason;
+    private $reason;
 
     /**
      * Exception constructor
      *
-     * @param string                     $checkerName Checker name
+     * @param string                      $checkerName Checker name
      * @param \SLiib\WebApp\Security\Rule $rule        Rule
-     * @param string                     $location    Location check failed
-     * @param string                     $reason      Exception reason
-     * @param int                        $code        Exception code
+     * @param string                      $location    Location check failed
+     * @param string                      $reason      Exception reason
+     * @param int                         $code        Exception code
      * @param \Exception                  $parent      Parent exception
      *
      * @return void
@@ -83,10 +84,10 @@ class HackingAttempt extends SecurityException implements RuntimeException
         $code = 0,
         \Exception $parent = null
     ) {
-        $this->_checkerName = $checkerName;
-        $this->_rule        = $rule;
-        $this->_location    = $location;
-        $this->_reason      = $reason;
+        $this->checkerName = $checkerName;
+        $this->rule        = $rule;
+        $this->location    = $location;
+        $this->reason      = $reason;
 
         $message = sprintf(
             'Hacking Attempt :: [%s] : [%d] %s in %s (%s)',
@@ -107,7 +108,7 @@ class HackingAttempt extends SecurityException implements RuntimeException
      */
     public function getCheckerName()
     {
-        return $this->_checkerName;
+        return $this->checkerName;
     }
 
     /**
@@ -117,7 +118,7 @@ class HackingAttempt extends SecurityException implements RuntimeException
      */
     public function getRule()
     {
-        return $this->_rule;
+        return $this->rule;
     }
 
     /**
@@ -127,7 +128,7 @@ class HackingAttempt extends SecurityException implements RuntimeException
      */
     public function getLocation()
     {
-        return $this->_location;
+        return $this->location;
     }
 
     /**
@@ -137,7 +138,7 @@ class HackingAttempt extends SecurityException implements RuntimeException
      */
     public function getReason()
     {
-        return $this->_reason;
+        return $this->reason;
     }
 }
 

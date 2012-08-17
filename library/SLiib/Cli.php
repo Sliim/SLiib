@@ -44,25 +44,25 @@ abstract class Cli
      * Script version
      * @var float
      */
-    protected $_version = 0;
+    protected $version = 0;
 
     /**
      * Script description
      * @var string
      */
-    protected $_desc = self::NO_DESCRIPTION_LABEL;
+    protected $desc = self::NO_DESCRIPTION_LABEL;
 
     /**
      * Script author
      * @var string
      */
-    protected $_author = self::AUTHOR_UNKNOWN_LABEL;
+    protected $author = self::AUTHOR_UNKNOWN_LABEL;
 
     /**
      * Default options of script
      * @var array
      */
-    protected $_defaultOpt = array(
+    protected $defaultOpt = array(
                               'V' => array(
                                       'desc' => self::SHOW_VERSION_LABEL,
                                       'func' => 'version',
@@ -77,13 +77,13 @@ abstract class Cli
      * Available options
      * @var array
      */
-    protected $_options = null;
+    protected $options = null;
 
     /**
      * GetOpt parameter
      * @var string
      */
-    protected $_params;
+    protected $params;
 
     /**
      * Constructor
@@ -95,28 +95,28 @@ abstract class Cli
     public function __construct (array $options = null)
     {
         if (!is_null($options)) {
-            $this->_options = array_merge($this->_defaultOpt, $options);
+            $this->options = array_merge($this->defaultOpt, $options);
 
             $params = '';
-            foreach ($this->_options as $option => $desc) {
+            foreach ($this->options as $option => $desc) {
                 if (!array_key_exists('desc', $desc)) {
-                    $this->_options[$option]['desc'] = self::NO_DESCRIPTION;
+                    $this->options[$option]['desc'] = self::NO_DESCRIPTION;
                 }
 
                 $params .= $option;
 
-                $this->_options[str_replace(':', '', $option, $count)] =
-                  $this->_options[$option];
+                $this->options[str_replace(':', '', $option, $count)] =
+                  $this->options[$option];
                 if ($count > 0) {
-                    unset($this->_options[$option]);
+                    unset($this->options[$option]);
                 }
             }
 
-            $this->_params = getopt($params);
+            $this->params = getopt($params);
 
-            foreach ($this->_params as $param => $value) {
-                if (array_key_exists('func', $this->_options[$param])) {
-                    $func = $this->_options[$param]['func'];
+            foreach ($this->params as $param => $value) {
+                if (array_key_exists('func', $this->options[$param])) {
+                    $func = $this->options[$param]['func'];
                     if (function_exists($this->$func($value))) {
                         $this->$func($value);
                     }
@@ -132,16 +132,16 @@ abstract class Cli
      */
     protected function help ()
     {
-        echo $this->_desc . PHP_EOL . PHP_EOL;
-        if (!is_null($this->_options)) {
-            foreach ($this->_options as $opt => $optDesc) {
+        echo $this->desc . PHP_EOL . PHP_EOL;
+        if (!is_null($this->options)) {
+            foreach ($this->options as $opt => $optDesc) {
                 echo "\t-" . $opt . "\t" . $optDesc['desc'] . PHP_EOL;
             }
         }
 
         echo PHP_EOL;
-        echo self::AUTHOR_LABEL . ' : ' . $this->_author . PHP_EOL;
-        echo self::VERSION_LABEL . ' : ' . $this->_version . PHP_EOL;
+        echo self::AUTHOR_LABEL . ' : ' . $this->author . PHP_EOL;
+        echo self::VERSION_LABEL . ' : ' . $this->version . PHP_EOL;
         exit();
     }
 
@@ -152,7 +152,7 @@ abstract class Cli
      */
     protected function version ()
     {
-        echo $this->_version . PHP_EOL;
+        echo $this->version . PHP_EOL;
         exit();
     }
 }

@@ -43,7 +43,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
      * Exceptions list to test
      * @var array
      */
-    private static $_e = array();
+    private static $e = array();
 
     /**
      * Set up exceptions list
@@ -52,7 +52,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
      */
     public static function setUpBeforeClass()
     {
-        self::$_e = array(
+        self::$e = array(
                      'Config\\Exception'                         => array('Exception'),
                      'Config\\Exception\\SyntaxError'            => array(
                                                                      'Config\\Exception',
@@ -110,7 +110,7 @@ class ExceptionsTest extends \PHPUnit_Framework_TestCase
         $e = new \SLiib\Exception;
         $this->assertInstanceOf('\\Exception', $e);
 
-        foreach (self::$_e as $exception => $instances) {
+        foreach (self::$e as $exception => $instances) {
             $class = self::EXCEPTION_NAMESPACE . $exception;
             $e     = new $class();
 

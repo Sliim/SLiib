@@ -36,29 +36,30 @@ namespace SLiib;
  */
 class LogTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Objet de test
      * @var \SLiib\Log
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Nom du fichier
      * @var string
      */
-    protected $_filename;
+    protected $filename;
 
     /**
      * Format de test
      * @var string
      */
-    protected $_testFormat;
+    protected $testFormat;
 
     /**
      * Format de test long
      * @var string
      */
-    protected $_testLongFormat;
+    protected $testLongFormat;
 
     /**
      * stdout resource
@@ -102,11 +103,11 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_filename       = TEST_PATH . '/files/LogTest.log';
-        $this->_testFormat     = '[%T][%d]%m';
-        $this->_testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
+        $this->filename       = TEST_PATH . '/files/LogTest.log';
+        $this->testFormat     = '[%T][%d]%m';
+        $this->testLongFormat = '[%T] [%d %t] [%U] [%@] %m';
 
-        $this->_object = new Log($this->_filename, true);
+        $this->object = new Log($this->filename, true);
 
         /*
          * Purge global variable stdout and stderr
@@ -124,8 +125,8 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unlink($this->_filename);
-        unset($this->_object);
+        unlink($this->filename);
+        unset($this->object);
     }
 
     /**
@@ -138,12 +139,12 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetFormat()
     {
-        $format = $this->_object->getFormat();
+        $format = $this->object->getFormat();
         $this->assertEquals('[%d %t] [%T] - %m', $format);
 
-        $this->_object->setFormat($this->_testFormat);
-        $format = $this->_object->getFormat();
-        $this->assertEquals($this->_testFormat, $format);
+        $this->object->setFormat($this->testFormat);
+        $format = $this->object->getFormat();
+        $this->assertEquals($this->testFormat, $format);
     }
 
     /**
@@ -156,11 +157,11 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function testLog()
     {
-        $this->_object->setFormat('%m');
-        $this->assertFileExists($this->_filename);
+        $this->object->setFormat('%m');
+        $this->assertFileExists($this->filename);
         $text = 'w000t from \SLiib\LogTest';
 
-        $this->_object->write($text, Log::INFO, false);
+        $this->object->write($text, Log::INFO, false);
 
         $this->assertEquals(
             $text,
@@ -170,7 +171,7 @@ class LogTest extends \PHPUnit_Framework_TestCase
                  "\n",
                 ),
                 '',
-                file_get_contents($this->_filename)
+                file_get_contents($this->filename)
             )
         );
     }
@@ -196,12 +197,12 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function testPrintWithoutColor()
     {
-        $this->_object->setFormat($this->_testLongFormat);
-        $this->_object->debug('DEBUG', true);
-        $this->_object->warn('WARN', true);
-        $this->_object->error('ERROR', true);
-        $this->_object->crit('CRIT', true);
-        $this->_object->info('INFO', true);
+        $this->object->setFormat($this->testLongFormat);
+        $this->object->debug('DEBUG', true);
+        $this->object->warn('WARN', true);
+        $this->object->error('ERROR', true);
+        $this->object->crit('CRIT', true);
+        $this->object->info('INFO', true);
 
         $this->assertEquals("string(5) \"DEBUG\"\n\nINFO\n", $GLOBALS['stdout']);
         $this->assertEquals("WARN\nERROR\nCRIT\n", $GLOBALS['stderr']);
@@ -214,12 +215,12 @@ class LogTest extends \PHPUnit_Framework_TestCase
      */
     public function testPrintWithColor()
     {
-        $this->_object->setFormat($this->_testLongFormat)->setColor(true);
-        $this->_object->debug('DEBUG', true);
-        $this->_object->warn('WARN', true);
-        $this->_object->error('ERROR', true);
-        $this->_object->crit('CRIT', true);
-        $this->_object->info('INFO', true);
+        $this->object->setFormat($this->testLongFormat)->setColor(true);
+        $this->object->debug('DEBUG', true);
+        $this->object->warn('WARN', true);
+        $this->object->error('ERROR', true);
+        $this->object->crit('CRIT', true);
+        $this->object->info('INFO', true);
 
         $this->assertEquals(
             "\033[34mstring(5) \"DEBUG\"\n\033[0m\n\033[0mINFO\033[0m\n",
@@ -245,8 +246,8 @@ class LogTest extends \PHPUnit_Framework_TestCase
         $_SERVER['REMOTE_ADDR']     = '127.0.0.1';
         $_SERVER['HTTP_USER_AGENT'] = 'w00tw00t';
 
-        $this->_object->setFormat($this->_testLongFormat);
-        $this->_object->write('fooo');
+        $this->object->setFormat($this->testLongFormat);
+        $this->object->write('fooo');
     }
 }
 

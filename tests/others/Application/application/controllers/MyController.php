@@ -44,7 +44,7 @@ class MyController extends Controller
      */
     protected function init()
     {
-        $this->_view->bigtitle = 'MyController controller!';
+        $this->view->bigtitle = 'MyController controller!';
     }
 
     /**
@@ -54,7 +54,7 @@ class MyController extends Controller
      */
     public function indexAction()
     {
-        $this->_view->title = 'Index action!';
+        $this->view->title = 'Index action!';
     }
 
     /**
@@ -64,7 +64,7 @@ class MyController extends Controller
      */
     public function myActionAction()
     {
-        $this->_view->title = 'MyAction action!';
+        $this->view->title = 'MyAction action!';
     }
 }
 

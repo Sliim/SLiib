@@ -33,11 +33,12 @@ namespace SLiib;
  */
 class Registry
 {
+
     /**
      * Registry singleton
      * @var array
      */
-    private static $_registry = array();
+    private static $registry = array();
 
     /**
      * Get registry balue from a key
@@ -50,11 +51,11 @@ class Registry
      */
     public static function get($key)
     {
-        if (!array_key_exists($key, self::$_registry)) {
+        if (!array_key_exists($key, self::$registry)) {
             throw new Registry\Exception('Key ' . $key . ' not found in registry.');
         }
 
-        return self::$_registry[$key];
+        return self::$registry[$key];
     }
 
     /**
@@ -69,11 +70,11 @@ class Registry
      */
     public static function set($key, $value)
     {
-        if (array_key_exists($key, self::$_registry)) {
+        if (array_key_exists($key, self::$registry)) {
             throw new Registry\Exception('Key ' . $key . ' already exist.');
         }
 
-        self::$_registry[$key] = $value;
+        self::$registry[$key] = $value;
     }
 }
 

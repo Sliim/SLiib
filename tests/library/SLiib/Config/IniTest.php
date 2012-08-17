@@ -36,47 +36,48 @@ namespace SLiib\Config;
  */
 class IniTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\Config\Ini
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Test file
      * @var string
      */
-    protected $_iniFile;
+    protected $iniFile;
 
     /**
      * Not exists file
      * @var string
      */
-    protected $_iniFail;
+    protected $iniFail;
 
     /**
      * Bad section definition
      * @var string
      */
-    protected $_iniBadSection;
+    protected $iniBadSection;
 
     /**
      * No parent section
      * @var string
      */
-    protected $_iniNoParent;
+    protected $iniNoParent;
 
     /**
      * Directive definition syntax error
      * @var string
      */
-    protected $_iniSyntaxError;
+    protected $iniSyntaxError;
 
     /**
      * Directive definition syntax error bis
      * @var string
      */
-    protected $_iniSEbis;
+    protected $iniSEbis;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -86,13 +87,13 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_iniFile        = TEST_PATH . '/files/configs/config.ini';
-        $this->_iniFail        = TEST_PATH . '/files/configs/notexist.ini';
-        $this->_iniBadSection  = TEST_PATH . '/files/configs/badsection.ini';
-        $this->_iniBadKey      = TEST_PATH . '/files/configs/badkey.ini';
-        $this->_iniNoParent    = TEST_PATH . '/files/configs/noparent.ini';
-        $this->_iniSyntaxError = TEST_PATH . '/files/configs/syntaxerror.ini';
-        $this->_object         = Ini::read($this->_iniFile);
+        $this->iniFile        = TEST_PATH . '/files/configs/config.ini';
+        $this->iniFail        = TEST_PATH . '/files/configs/notexist.ini';
+        $this->iniBadSection  = TEST_PATH . '/files/configs/badsection.ini';
+        $this->iniBadKey      = TEST_PATH . '/files/configs/badkey.ini';
+        $this->iniNoParent    = TEST_PATH . '/files/configs/noparent.ini';
+        $this->iniSyntaxError = TEST_PATH . '/files/configs/syntaxerror.ini';
+        $this->object         = Ini::read($this->iniFile);
     }
 
     /**
@@ -103,7 +104,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -113,42 +114,42 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testConfig()
     {
-        $this->assertObjectHasAttribute('application', $this->_object);
-        $this->assertObjectHasAttribute('development', $this->_object);
-        $this->assertObjectHasAttribute('production', $this->_object);
+        $this->assertObjectHasAttribute('application', $this->object);
+        $this->assertObjectHasAttribute('development', $this->object);
+        $this->assertObjectHasAttribute('production', $this->object);
 
-        $this->assertInstanceOf('\SLiib\Config', $this->_object->application);
-        $this->assertInstanceOf('\SLiib\Config', $this->_object->development);
-        $this->assertInstanceOf('\SLiib\Config', $this->_object->production);
+        $this->assertInstanceOf('\SLiib\Config', $this->object->application);
+        $this->assertInstanceOf('\SLiib\Config', $this->object->development);
+        $this->assertInstanceOf('\SLiib\Config', $this->object->production);
 
-        $this->assertObjectHasAttribute('docsMenu', $this->_object->development);
-        $this->assertObjectHasAttribute('sysInfos', $this->_object->development);
-        $this->assertObjectHasAttribute('docsMenu', $this->_object->production);
-        $this->assertObjectHasAttribute('sysInfos', $this->_object->production);
+        $this->assertObjectHasAttribute('docsMenu', $this->object->development);
+        $this->assertObjectHasAttribute('sysInfos', $this->object->development);
+        $this->assertObjectHasAttribute('docsMenu', $this->object->production);
+        $this->assertObjectHasAttribute('sysInfos', $this->object->production);
 
         $this->assertInternalType(
             'string',
-            $this->_object->application->sysInfos
+            $this->object->application->sysInfos
         );
 
-        $this->assertEquals('On', $this->_object->development->docsMenu);
-        $this->assertEquals('Off', $this->_object->production->docsMenu);
+        $this->assertEquals('On', $this->object->development->docsMenu);
+        $this->assertEquals('Off', $this->object->production->docsMenu);
 
-        $this->assertEquals('On', $this->_object->development->sysInfos);
-        $this->assertEquals('Off', $this->_object->production->sysInfos);
+        $this->assertEquals('On', $this->object->development->sysInfos);
+        $this->assertEquals('Off', $this->object->production->sysInfos);
 
-        $this->assertInstanceOf('\SLiib\Config', $this->_object->application->foo);
-        $this->assertObjectHasAttribute('bar', $this->_object->application->foo);
-        $this->assertInternalType('string', $this->_object->application->foo->bar);
-        $this->assertEquals('foobar', $this->_object->application->foo->bar);
+        $this->assertInstanceOf('\SLiib\Config', $this->object->application->foo);
+        $this->assertObjectHasAttribute('bar', $this->object->application->foo);
+        $this->assertInternalType('string', $this->object->application->foo->bar);
+        $this->assertEquals('foobar', $this->object->application->foo->bar);
 
-        $this->assertInstanceOf('\SLiib\Config', $this->_object->application->test->foo->bar);
-        $this->assertObjectHasAttribute('z1337', $this->_object->application->test->foo->bar);
-        $this->assertObjectHasAttribute('z7331', $this->_object->application->test->foo->bar);
-        $this->assertInternalType('string', $this->_object->application->test->foo->bar->z1337);
-        $this->assertInternalType('string', $this->_object->application->test->foo->bar->z7331);
-        $this->assertEquals('w00t', $this->_object->application->test->foo->bar->z1337);
-        $this->assertEquals(':)', $this->_object->application->test->foo->bar->z7331);
+        $this->assertInstanceOf('\SLiib\Config', $this->object->application->test->foo->bar);
+        $this->assertObjectHasAttribute('z1337', $this->object->application->test->foo->bar);
+        $this->assertObjectHasAttribute('z7331', $this->object->application->test->foo->bar);
+        $this->assertInternalType('string', $this->object->application->test->foo->bar->z1337);
+        $this->assertInternalType('string', $this->object->application->test->foo->bar->z7331);
+        $this->assertEquals('w00t', $this->object->application->test->foo->bar->z1337);
+        $this->assertEquals(':)', $this->object->application->test->foo->bar->z7331);
     }
 
     /**
@@ -158,16 +159,16 @@ class IniTest extends \PHPUnit_Framework_TestCase
      */
     public function testConfigWithEnv()
     {
-        $config = Ini::read($this->_iniFile, 'development');
+        $config = Ini::read($this->iniFile, 'development');
         $this->assertObjectHasAttribute('sysInfos', $config);
         $this->assertEquals('On', $config->sysInfos);
 
-        $config = Ini::read($this->_iniFile, 'production');
+        $config = Ini::read($this->iniFile, 'production');
         $this->assertObjectHasAttribute('sysInfos', $config);
         $this->assertEquals('Off', $config->sysInfos);
 
         $this->setExpectedException('\SLiib\Config\Exception\UndefinedProperty');
-        $config = Ini::read($this->_iniFile, 'notexist');
+        $config = Ini::read($this->iniFile, 'notexist');
     }
 
     /**
@@ -178,7 +179,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function testOpenInexistantFile()
     {
         $this->setExpectedException('\SLiib\Config\Exception');
-        $config = Ini::read($this->_iniFail);
+        $config = Ini::read($this->iniFail);
     }
 
     /**
@@ -189,7 +190,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function testBadSection()
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
-        $config = Ini::read($this->_iniBadSection);
+        $config = Ini::read($this->iniBadSection);
     }
 
     /**
@@ -200,7 +201,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function testBadKey()
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
-        $config = Ini::read($this->_iniBadKey);
+        $config = Ini::read($this->iniBadKey);
     }
 
     /**
@@ -211,7 +212,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function testNoParent()
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
-        $config = Ini::read($this->_iniNoParent);
+        $config = Ini::read($this->iniNoParent);
     }
 
     /**
@@ -222,7 +223,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function testSyntaxError()
     {
         $this->setExpectedException('\SLiib\Config\Exception\SyntaxError');
-        $config = Ini::read($this->_iniSyntaxError);
+        $config = Ini::read($this->iniSyntaxError);
     }
 
     /**
@@ -235,7 +236,7 @@ class IniTest extends \PHPUnit_Framework_TestCase
     public function testGet()
     {
         $this->setExpectedException('\SLiib\Config\Exception\UndefinedProperty');
-        $foo = $this->_object->bar;
+        $foo = $this->object->bar;
     }
 }
 

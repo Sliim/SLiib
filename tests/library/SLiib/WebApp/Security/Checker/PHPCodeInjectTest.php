@@ -38,11 +38,12 @@ use SLiib\WebApp\Request;
  */
 class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Checker\PHPCodeInject
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -54,7 +55,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new PHPCodeInject();
+        $this->object = new PHPCodeInject();
     }
 
     /**
@@ -65,7 +66,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -80,7 +81,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setPost(array('foo' => 'bar'));
         Request::init();
 
-        $result = $this->_object->run();
+        $result = $this->object->run();
         $this->assertTrue($result);
     }
 
@@ -99,7 +100,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
         );
         Request::init();
 
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -117,7 +118,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
         );
         Request::init();
 
-        $this->_object->run();
+        $this->object->run();
     }
 
     /**
@@ -135,7 +136,7 @@ class PHPCodeInjectTest extends \PHPUnit_Framework_TestCase
         );
         Request::init();
 
-        $this->_object->run();
+        $this->object->run();
     }
 }
 

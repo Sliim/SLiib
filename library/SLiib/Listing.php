@@ -34,29 +34,30 @@ namespace SLiib;
  */
 class Listing
 {
+
     /**
      * Directory path
      * @var string
      */
-    private $_path = '';
+    private $path = '';
 
     /**
      * Array of directory elements
      * @var array
      */
-    private $_list = array();
+    private $list = array();
 
     /**
      * Number of elements in directory
      * @var int
      */
-    private $_contentNb;
+    private $contentNb;
 
     /**
      * Directory name
      * @var string
      */
-    private $_name;
+    private $name;
 
     /**
      * Constructor, get directory path
@@ -75,9 +76,9 @@ class Listing
             throw new Listing\Exception('Directory `' . $dirPath . '` not found!');
         }
 
-        $this->_path      = $dirPath;
-        $this->_contentNb = 0;
-        $this->_name      = $listName;
+        $this->path      = $dirPath;
+        $this->contentNb = 0;
+        $this->name      = $listName;
 
         $this->setList($exclude);
     }
@@ -89,7 +90,7 @@ class Listing
      */
     public function getList()
     {
-        return $this->_list;
+        return $this->list;
     }
 
     /**
@@ -102,7 +103,7 @@ class Listing
         $list = $this->getList();
         natcasesort($list);
 
-        $this->_list = array_merge($list);
+        $this->list = array_merge($list);
         return $this;
     }
 
@@ -116,7 +117,7 @@ class Listing
         $list = $this->getList();
         natcasesort($list);
 
-        $this->_list = array_reverse(array_merge($list));
+        $this->list = array_reverse(array_merge($list));
         return $this;
     }
 
@@ -129,13 +130,13 @@ class Listing
      */
     private function setList(array $exclude)
     {
-        $dir = opendir($this->_path);
+        $dir = opendir($this->path);
 
         while ($element = readdir($dir)) {
             foreach ($exclude as $e) {
                 if ($element != $e && !preg_match('/~$/i', $element)) {
-                    $this->_contentNb++;
-                    $this->_list[] = $element;
+                    $this->contentNb++;
+                    $this->list[] = $element;
                 }
             }
         }

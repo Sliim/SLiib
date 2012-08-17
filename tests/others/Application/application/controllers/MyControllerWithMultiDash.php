@@ -44,7 +44,7 @@ class MyControllerWithMultiDash extends Controller
      */
     protected function init()
     {
-        $this->_view->bigtitle = 'MyControllerWithMultiDash controller!';
+        $this->view->bigtitle = 'MyControllerWithMultiDash controller!';
     }
 
     /**
@@ -54,7 +54,7 @@ class MyControllerWithMultiDash extends Controller
      */
     public function indexAction()
     {
-        $this->_view->title = 'Index action!';
+        $this->view->title = 'Index action!';
     }
 
     /**
@@ -64,7 +64,7 @@ class MyControllerWithMultiDash extends Controller
      */
     public function myActionWithMultiDashAction()
     {
-        $this->_view->title = 'MyActionWithMultiDash action!';
+        $this->view->title = 'MyActionWithMultiDash action!';
     }
 }
 

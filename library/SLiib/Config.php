@@ -36,11 +36,12 @@ use SLiib\Config\Exception\UndefinedProperty;
  */
 class Config
 {
+
     /**
      * Configuration file
      * @var string
      */
-    protected static $_file = null;
+    protected static $file = null;
 
     /**
      * Undefined property getter
@@ -71,7 +72,7 @@ class Config
             throw new ConfigException('File ' . $file . ' not found');
         }
 
-        static::$_file = $file;
+        static::$file = $file;
     }
 
     /**

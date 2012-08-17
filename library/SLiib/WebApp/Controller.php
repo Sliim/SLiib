@@ -35,23 +35,24 @@ namespace SLiib\WebApp;
  */
 abstract class Controller
 {
+
     /**
      * View of this controller/action
      * @var \SLiib\WebApp\View
      */
-    protected $_view = null;
+    protected $view = null;
 
     /**
      * View Class
      * @var string
      */
-    protected $_viewClass = '\SLiib\WebApp\View';
+    protected $viewClass = '\SLiib\WebApp\View';
 
     /**
      * Request instance
      * @var \SLiib\WebApp\Request
      */
-    protected $_request = null;
+    protected $request = null;
 
     /**
      * Init controller view
@@ -60,10 +61,10 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->_request = Request::getInstance();
-        $this->_view    = new $this->_viewClass(
-            $this->_request->getController(),
-            $this->_request->getAction()
+        $this->request = Request::getInstance();
+        $this->view    = new $this->viewClass(
+            $this->request->getController(),
+            $this->request->getAction()
         );
     }
 
@@ -77,7 +78,7 @@ abstract class Controller
      *
      * @return void
      */
-    public final function __call($action, array $params)
+    final public function __call($action, array $params)
     {
         unset($params);
         $method = $action . 'Action';
@@ -90,7 +91,7 @@ abstract class Controller
 
         $this->init();
         $this->$method();
-        $this->_view->display();
+        $this->view->display();
     }
 
     /**
@@ -100,7 +101,7 @@ abstract class Controller
      */
     public function getRequest()
     {
-        return $this->_request;
+        return $this->request;
     }
 
     /**

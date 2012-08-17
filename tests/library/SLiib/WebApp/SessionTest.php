@@ -36,11 +36,12 @@ namespace SLiib\WebApp;
  */
 class SessionTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Session
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -52,9 +53,9 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         \Tools\Session::setSession();
         Session::init();
-        $this->_object = new Session('UnitTest');
+        $this->object = new Session('UnitTest');
 
-        $this->_object->foo = 'bar';
+        $this->object->foo = 'bar';
     }
 
     /**
@@ -114,8 +115,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      */
     public function testSet()
     {
-        $this->_object->myProperty = 'w00tw00t';
-        $this->assertEquals('w00tw00t', $this->_object->myProperty);
+        $this->object->myProperty = 'w00tw00t';
+        $this->assertEquals('w00tw00t', $this->object->myProperty);
     }
 
     /**
@@ -127,11 +128,11 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnset()
     {
-        unset($this->_object->foo);
-        $this->assertFalse(isset($this->_object->foo));
+        unset($this->object->foo);
+        $this->assertFalse(isset($this->object->foo));
 
         $this->setExpectedException('\SLiib\WebApp\Session\Exception');
-        unset($this->_object->notexist);
+        unset($this->object->notexist);
     }
 
     /**
@@ -143,8 +144,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsset()
     {
-        $this->assertTrue(isset($this->_object->foo));
-        $this->assertFalse(isset($this->_object->f00));
+        $this->assertTrue(isset($this->object->foo));
+        $this->assertFalse(isset($this->object->f00));
     }
 
     /**
@@ -156,8 +157,8 @@ class SessionTest extends \PHPUnit_Framework_TestCase
      */
     public function testClear()
     {
-        $this->_object->clear();
-        $this->assertFalse(isset($this->_object->foo));
+        $this->object->clear();
+        $this->assertFalse(isset($this->object->foo));
     }
 
     /**

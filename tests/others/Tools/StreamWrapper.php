@@ -36,11 +36,12 @@ namespace Tools;
  */
 class StreamWrapper
 {
+
     /**
      * Global variable name
      * @var string
      */
-    private $_name;
+    private $name;
 
     /**
      * Open stream, set variable name
@@ -51,9 +52,9 @@ class StreamWrapper
      */
     public function stream_open($path)
     {
-        $url                   = parse_url($path);
-        $this->_name           = $url['host'];
-        $GLOBALS[$this->_name] = null;
+        $url                  = parse_url($path);
+        $this->name           = $url['host'];
+        $GLOBALS[$this->name] = null;
 
         return true;
     }
@@ -67,7 +68,7 @@ class StreamWrapper
      */
     public function stream_write($data)
     {
-        $GLOBALS[$this->_name] .= $data;
+        $GLOBALS[$this->name] .= $data;
         return strlen($data);
     }
 
@@ -79,7 +80,7 @@ class StreamWrapper
      */
     public function stream_read()
     {
-        $GLOBALS[$this->_name] = null;
+        $GLOBALS[$this->name] = null;
     }
 
     /**
@@ -89,7 +90,7 @@ class StreamWrapper
      */
     public function stream_eof()
     {
-        return strlen($GLOBALS[$this->_name]);
+        return strlen($GLOBALS[$this->name]);
     }
 }
 

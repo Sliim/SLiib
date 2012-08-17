@@ -38,11 +38,12 @@ use SLiib\WebApp\Request;
  */
 class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Checker\AllowedMethods
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -52,7 +53,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new AllowedMethods();
+        $this->object = new AllowedMethods();
     }
 
     /**
@@ -63,7 +64,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -76,7 +77,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod('GET');
         Request::init();
 
-        $result = $this->_object->run();
+        $result = $this->object->run();
         $this->assertTrue($result);
     }
 
@@ -92,7 +93,7 @@ class AllowedMethodsTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestMethod('WOOT');
         Request::init();
 
-        $this->_object->run();
+        $this->object->run();
     }
 }
 

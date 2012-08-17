@@ -49,7 +49,8 @@ class String
              "/\t\t+/",
              "/\x20\x20+/",
              "/\xA0\xA0+/",
-            ), ' ',
+            ),
+            ' ',
             $string
         );
 
@@ -57,7 +58,8 @@ class String
             array(
              "/(\n\s*\n)/",
              "/(\n\s+)/",
-            ), "\n",
+            ),
+            "\n",
             $string
         );
 

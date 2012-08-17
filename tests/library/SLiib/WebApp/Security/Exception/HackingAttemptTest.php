@@ -26,6 +26,7 @@
  */
 
 namespace SLiib\WebApp\Security\Exception;
+
 use SLiib\WebApp\Security\Rule;
 
 /**
@@ -37,35 +38,36 @@ use SLiib\WebApp\Security\Rule;
  */
 class HackingAttemptTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\WebApp\Security\Exception\HackingAttempt
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Fake checker name
      * @var string
      */
-    private $_checkerName = 'CheckerNameTest';
+    private $checkerName = 'CheckerNameTest';
 
     /**
      * Rule for test
      * @var \SLiib\WebApp\Security\Rule
      */
-    private $_rule = null;
+    private $rule = null;
 
     /**
      * Fake location
      * @var string
      */
-    private $_location = 'LocationTest';
+    private $location = 'LocationTest';
 
     /**
      * Fake reason
      * @var string
      */
-    private $_reason = 'ReasonTest';
+    private $reason = 'ReasonTest';
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -77,12 +79,12 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_rule   = new Rule(1337, 'RuleTest');
-        $this->_object = new HackingAttempt(
-            $this->_checkerName,
-            $this->_rule,
-            $this->_location,
-            $this->_reason
+        $this->rule   = new Rule(1337, 'RuleTest');
+        $this->object = new HackingAttempt(
+            $this->checkerName,
+            $this->rule,
+            $this->location,
+            $this->reason
         );
     }
 
@@ -94,7 +96,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_object);
+        unset($this->object);
     }
 
     /**
@@ -106,7 +108,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCheckerName()
     {
-        $this->assertEquals($this->_checkerName, $this->_object->getCheckerName());
+        $this->assertEquals($this->checkerName, $this->object->getCheckerName());
     }
 
     /**
@@ -118,7 +120,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRule()
     {
-        $rule = $this->_object->getRule();
+        $rule = $this->object->getRule();
         $this->assertInstanceOf('\SLiib\WebApp\Security\Rule', $rule);
         $this->assertEquals(1337, $rule->getId());
         $this->assertEquals('RuleTest', $rule->getMessage());
@@ -133,7 +135,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetLocation()
     {
-        $this->assertEquals($this->_location, $this->_object->getLocation());
+        $this->assertEquals($this->location, $this->object->getLocation());
     }
 
     /**
@@ -145,7 +147,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetReason()
     {
-        $this->assertEquals($this->_reason, $this->_object->getReason());
+        $this->assertEquals($this->reason, $this->object->getReason());
     }
 
     /**
@@ -155,7 +157,7 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
      */
     public function testRuntimeException()
     {
-        $this->assertInstanceOf('\SLiib\IException\Runtime', $this->_object);
+        $this->assertInstanceOf('\SLiib\IException\Runtime', $this->object);
     }
 }
 

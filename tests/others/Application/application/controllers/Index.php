@@ -44,7 +44,7 @@ class Index extends Controller
      */
     protected function init()
     {
-        $this->_view->bigtitle = 'Index controller!';
+        $this->view->bigtitle = 'Index controller!';
     }
 
     /**
@@ -54,13 +54,13 @@ class Index extends Controller
      */
     public function indexAction()
     {
-        $this->_view->title    = 'Index action!';
-        $this->_view->message  = 'Cette application est un test pour les composants ';
-        $this->_view->message .= 'SLiib_WebApp, SLiib_Autoloader, ' . PHP_EOL;
-        $this->_view->message .= 'SLiib_WebApp_Bootstrap, SLiib_WebApp_Dispatcher, ';
-        $this->_view->message .= 'SLiib_WebApp_Controller, SLiib_WebApp_View, ';
-        $this->_view->message .= 'SLiib_WebApp_Request.';
-        $this->_view->tests    = array(
+        $this->view->title    = 'Index action!';
+        $this->view->message  = 'Cette application est un test pour les composants ';
+        $this->view->message .= 'SLiib_WebApp, SLiib_Autoloader, ' . PHP_EOL;
+        $this->view->message .= 'SLiib_WebApp_Bootstrap, SLiib_WebApp_Dispatcher, ';
+        $this->view->message .= 'SLiib_WebApp_Controller, SLiib_WebApp_View, ';
+        $this->view->message .= 'SLiib_WebApp_Request.';
+        $this->view->tests    = array(
                                   '/test/model/'         => 'Model',
                                   '/test/library/'       => 'Library',
                                   '/test/noview'         => 'NoView',

@@ -33,29 +33,30 @@ namespace SLiib;
  */
 class Autoloader
 {
+
     /**
      * Array of already autoloaded class
      * @var array
      */
-    private static $_isLoaded = array();
+    private static $isLoaded = array();
 
     /**
      * Allowed namespaces
      * @var array
      */
-    private static $_namespaces = array();
+    private static $namespaces = array();
 
     /**
      * Namespaces keys
      * @var array
      */
-    private static $_namespacesKeys = array();
+    private static $namespacesKeys = array();
 
     /**
      * Sections collection
      * @var array
      */
-    private static $_sections = array();
+    private static $sections = array();
 
     /**
      * Autoloader init
@@ -67,21 +68,21 @@ class Autoloader
      */
     public static function init(array $namespaces, array $sections = array())
     {
-        static::$_namespaces = array_merge(static::$_namespaces, $namespaces);
+        static::$namespaces = array_merge(static::$namespaces, $namespaces);
 
-        if (!empty(static::$_sections)) {
+        if (!empty(static::$sections)) {
             foreach ($sections as $key => $section) {
-                if (array_key_exists($key, static::$_sections)) {
-                    static::$_sections[$key] = array_merge(static::$_sections[$key], $section);
+                if (array_key_exists($key, static::$sections)) {
+                    static::$sections[$key] = array_merge(static::$sections[$key], $section);
                 } else {
-                    static::$_sections[$key] = $section;
+                    static::$sections[$key] = $section;
                 }
             }
         } else {
-            static::$_sections = $sections;
+            static::$sections = $sections;
         }
 
-        static::$_namespacesKeys = array_keys(static::$_namespaces);
+        static::$namespacesKeys = array_keys(static::$namespaces);
 
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
@@ -95,7 +96,7 @@ class Autoloader
      */
     public static function autoload($class)
     {
-        if (in_array($class, static::$_isLoaded)) {
+        if (in_array($class, static::$isLoaded)) {
             return true;
         }
 
@@ -107,11 +108,11 @@ class Autoloader
 
         $namespace = array_shift($segment);
 
-        if (!in_array($namespace, static::$_namespacesKeys)) {
+        if (!in_array($namespace, static::$namespacesKeys)) {
             return false;
         }
 
-        foreach (static::$_sections as $ns => $sections) {
+        foreach (static::$sections as $ns => $sections) {
             if ($ns == $namespace) {
                 foreach ($sections as $sectionKey => $sectionValue) {
                     if (in_array($sectionKey, $segment)) {
@@ -123,7 +124,7 @@ class Autoloader
         }
 
         $file =
-          static::$_namespaces[$namespace] . DIRECTORY_SEPARATOR .
+          static::$namespaces[$namespace] . DIRECTORY_SEPARATOR .
           implode(DIRECTORY_SEPARATOR, $segment) . '.php';
 
         if (!static::searchForInclude($file)) {
@@ -132,7 +133,7 @@ class Autoloader
 
         include $file;
 
-        array_push(static::$_isLoaded, $class);
+        array_push(static::$isLoaded, $class);
 
         return true;
     }

@@ -42,19 +42,19 @@ class SolR
      * SolR host
      * @var string
      */
-    protected $_host;
+    protected $host;
 
     /**
      * SolR port
      * @var int
      */
-    protected $_port;
+    protected $port;
 
     /**
      * Special characters specific to solr
      * @var array
      */
-    protected $_specialChars = array(
+    protected $specialChars = array(
                                 '+', '-',
                                 '&', '|',
                                 '!', '(',
@@ -79,8 +79,8 @@ class SolR
      */
     public function __construct($host, $port, $ping = true)
     {
-        $this->_host = $host;
-        $this->_port = $port;
+        $this->host = $host;
+        $this->port = $port;
 
         if (!$ping) {
             return;
@@ -100,13 +100,13 @@ class SolR
      */
     public function update($xmlString)
     {
-        $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
+        $fp = @fsockopen($this->host, $this->port, $errno, $errstr, 30);
         if (!$fp) {
             return false;
         }
 
         $out  = 'POST ' . self::UPDATE_DIRECTORY . " HTTP/1.1\r\n";
-        $out .= 'Host: ' . $this->_host . ':' . $this->_port . "\r\n";
+        $out .= 'Host: ' . $this->host . ':' . $this->port . "\r\n";
         $out .= "Accept: */*\r\n";
         $out .= "Content-Type: text/xml;charset=utf-8\r\n";
         $out .= 'Content-Length: ' . strlen($xmlString) . "\r\n";
@@ -166,14 +166,14 @@ class SolR
         $query       = '?q=' . $query;
         $xmlResponse = '';
 
-        $fp = @fsockopen($this->_host, $this->_port, $errno, $errstr, 30);
+        $fp = @fsockopen($this->host, $this->port, $errno, $errstr, 30);
 
         if (!$fp) {
             return false;
         }
 
         $out  = 'GET ' . self::SELECT_DIRECTORY . '/' . $query . " HTTP/1.1\r\n";
-        $out .= 'Host: ' . $this->_host . ':' . $this->_port . "\r\n";
+        $out .= 'Host: ' . $this->host . ':' . $this->port . "\r\n";
         $out .= "Accept: */*\r\n";
         $out .= "Connection: Close\r\n\r\n";
 
@@ -186,7 +186,9 @@ class SolR
 
             $xmlResponse = str_replace(array("\r", "\n"), '', $xmlResponse);
             if (preg_match(
-                '/<response(.*)?>(.*)?<\/response>/', $xmlResponse, $matches
+                '/<response(.*)?>(.*)?<\/response>/',
+                $xmlResponse,
+                $matches
             )) {
                 return $matches[0];
             }
@@ -218,7 +220,7 @@ class SolR
      */
     public function ping()
     {
-        $fp = @fsockopen($this->_host, $this->_port);
+        $fp = @fsockopen($this->host, $this->port);
 
         if (!$fp) {
             return false;
@@ -237,7 +239,7 @@ class SolR
      */
     public function escapeSpecialChar($string)
     {
-        foreach ($this->_specialChars as $char) {
+        foreach ($this->specialChars as $char) {
             $string = str_replace($char, '\\' . $char, $string);
         }
 

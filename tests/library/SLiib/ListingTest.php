@@ -36,11 +36,12 @@ namespace SLiib;
  */
 class ListingTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Test object
      * @var \SLiib\Listing
      */
-    protected $_object;
+    protected $object;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -53,7 +54,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new Listing('./', 'tests', array('.', '..'));
+        $this->object = new Listing('./', 'tests', array('.', '..'));
     }
 
     /**
@@ -64,7 +65,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      */
     public function tearDown()
     {
-        unset($this->_objet);
+        unset($this->objet);
     }
 
     /**
@@ -76,7 +77,7 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetList()
     {
-        $list = $this->_object->getList();
+        $list = $this->object->getList();
         $this->assertInternalType('array', $list);
     }
 
@@ -89,10 +90,10 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      */
     public function testSort()
     {
-        $list = $this->_object->getList();
+        $list = $this->object->getList();
         natcasesort($list);
-        $this->_object->sort();
-        $listbis = $this->_object->getList();
+        $this->object->sort();
+        $listbis = $this->object->getList();
 
         $this->assertEquals(array_merge($list), $listbis);
     }
@@ -106,13 +107,13 @@ class ListingTest extends \PHPUnit_Framework_TestCase
      */
     public function testUsort()
     {
-        $this->_object->sort();
-        $list = $this->_object->getList();
+        $this->object->sort();
+        $list = $this->object->getList();
 
         $list = array_reverse($list);
-        $this->_object->usort();
+        $this->object->usort();
 
-        $this->assertEquals($list, $this->_object->getList());
+        $this->assertEquals($list, $this->object->getList());
     }
 
     /**

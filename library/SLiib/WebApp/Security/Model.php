@@ -47,31 +47,31 @@ abstract class Model
      * Security model
      * @var string
      */
-    protected $_model = null;
+    protected $model = null;
 
     /**
      * Last pattern error
      * @var string
      */
-    protected $_patternError;
+    protected $patternError;
 
     /**
      * Checker name
      * @var string
      */
-    private $_name;
+    private $name;
 
     /**
      * Model's rules list
      * @var array
      */
-    private $_rules = array();
+    private $rules = array();
 
     /**
      * Request object
      * @var \SLiib\WebApp\Request
      */
-    private $_request;
+    private $request;
 
     /**
      * Construct
@@ -82,12 +82,12 @@ abstract class Model
      */
     public function __construct()
     {
-        if (is_null($this->_model)) {
+        if (is_null($this->model)) {
             throw new ModelException('Security model undefined');
         }
 
-        if (!in_array($this->_model, array('Positive', 'Negative'))) {
-            throw new ModelException('Security model `' . $this->_model . '` invalid');
+        if (!in_array($this->model, array('Positive', 'Negative'))) {
+            throw new ModelException('Security model `' . $this->model . '` invalid');
         }
     }
 
@@ -99,11 +99,11 @@ abstract class Model
      *
      * @return boolean
      */
-    public final function run()
+    final public function run()
     {
-        $this->_request = Request::getInstance();
+        $this->request = Request::getInstance();
 
-        foreach ($this->_rules as $rule) {
+        foreach ($this->rules as $rule) {
             foreach ($rule->getLocation() as $location) {
                 switch ($location) {
                     case Rule::LOCATION_REQUEST_URI:
@@ -126,14 +126,17 @@ abstract class Model
                         break;
                     default:
                         throw new CheckerError(
-                            'Location for `' . $this->_name . '` checker is not valid'
+                            'Location for `' . $this->name . '` checker is not valid'
                         );
                         break;
                 }
 
                 if (!$result) {
                     throw new HackingAttempt(
-                        $this->_name, $rule, $location, $this->_patternError
+                        $this->name,
+                        $rule,
+                        $location,
+                        $this->patternError
                     );
                 }
             }
@@ -151,7 +154,7 @@ abstract class Model
      *
      * @return \SLiib\WebApp\Security\Model
      */
-    public final function addRule(Rule $rule)
+    final public function addRule(Rule $rule)
     {
         if ($this->ruleExists($rule->getId())) {
             throw new CheckerError(
@@ -159,7 +162,7 @@ abstract class Model
             );
         }
 
-        $this->_rules[$rule->getId()] = $rule;
+        $this->rules[$rule->getId()] = $rule;
         return $this;
     }
 
@@ -178,7 +181,7 @@ abstract class Model
             throw new CheckerError('Rule ' . $ruleId . ' does not exist.');
         }
 
-        unset($this->_rules[$ruleId]);
+        unset($this->rules[$ruleId]);
         return $this;
     }
 
@@ -197,7 +200,7 @@ abstract class Model
             throw new CheckerError('Rule ' . $ruleId . ' does not exist.');
         }
 
-        return $this->_rules[$ruleId];
+        return $this->rules[$ruleId];
     }
 
     /**
@@ -207,7 +210,7 @@ abstract class Model
      */
     public function getRules()
     {
-        return $this->_rules;
+        return $this->rules;
 
     }
 
@@ -218,9 +221,9 @@ abstract class Model
      *
      * @return void
      */
-    protected final function setName($name)
+    final protected function setName($name)
     {
-        $this->_name = $name;
+        $this->name = $name;
     }
 
     /**
@@ -240,9 +243,9 @@ abstract class Model
      *
      * @return boolean
      */
-    protected final function ruleExists($ruleId)
+    final protected function ruleExists($ruleId)
     {
-        return array_key_exists($ruleId, $this->_rules);
+        return array_key_exists($ruleId, $this->rules);
     }
 
     /**
@@ -252,9 +255,9 @@ abstract class Model
      *
      * @return boolean
      */
-    private final function checkRequestUri(Rule $rule)
+    final private function checkRequestUri(Rule $rule)
     {
-        $requestUri = $this->_request->getRequestUri();
+        $requestUri = $this->request->getRequestUri();
         return $this->check($rule, $requestUri);
     }
 
@@ -265,9 +268,9 @@ abstract class Model
      *
      * @return boolean
      */
-    private final function checkParameters(Rule $rule)
+    final private function checkParameters(Rule $rule)
     {
-        $params = $this->_request->getParameters();
+        $params = $this->request->getParameters();
         foreach ($params as $key => $value) {
             if (!$this->check($rule, $key)) {
                 return false;
@@ -288,9 +291,9 @@ abstract class Model
      *
      * @return boolean
      */
-    private final function checkUserAgent(Rule $rule)
+    final private function checkUserAgent(Rule $rule)
     {
-        $userAgent = $this->_request->getUserAgent();
+        $userAgent = $this->request->getUserAgent();
         return $this->check($rule, $userAgent);
     }
 
@@ -301,9 +304,9 @@ abstract class Model
      *
      * @return boolean
      */
-    private final function checkMethod(Rule $rule)
+    final private function checkMethod(Rule $rule)
     {
-        $method = $this->_request->getRequestMethod();
+        $method = $this->request->getRequestMethod();
         return $this->check($rule, $method);
     }
 
@@ -314,9 +317,9 @@ abstract class Model
      *
      * @return boolean
      */
-    private final function checkCookies(Rule $rule)
+    final private function checkCookies(Rule $rule)
     {
-        $cookies = $this->_request->getCookies();
+        $cookies = $this->request->getCookies();
 
         foreach ($cookies as $key => $value) {
             if (!$this->check($rule, $key)) {
@@ -338,9 +341,9 @@ abstract class Model
      *
      * @return boolean
      */
-    private final function checkReferer(Rule $rule)
+    final private function checkReferer(Rule $rule)
     {
-        $referer = $this->_request->getReferer();
+        $referer = $this->request->getReferer();
         return $this->check($rule, $referer);
     }
 }

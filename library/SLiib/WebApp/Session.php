@@ -35,23 +35,24 @@ namespace SLiib\WebApp;
  */
 class Session
 {
+
     /**
      * Session started
      * @var boolean
      */
-    private static $_started = false;
+    private static $started = false;
 
     /**
      * Session values
      * @var array
      */
-    private $_session = array();
+    private $session = array();
 
     /**
      * Session namespace
      * @var string
      */
-    private $_namespace;
+    private $namespace;
 
     /**
      * Construct
@@ -68,12 +69,12 @@ class Session
             throw new Session\Exception('Session not initialized.');
         }
 
-        $this->_namespace = $namespace;
+        $this->namespace = $namespace;
 
         if (!array_key_exists($namespace, $_SESSION)) {
             $this->updateSession();
         } else {
-            $this->_session = $_SESSION[$namespace];
+            $this->session = $_SESSION[$namespace];
         }
     }
 
@@ -88,11 +89,11 @@ class Session
      */
     public function __get($name)
     {
-        if (!array_key_exists($name, $this->_session)) {
+        if (!array_key_exists($name, $this->session)) {
             throw new Session\Exception('Session has not `' . $name . '` index');
         }
 
-        return $this->_session[$name];
+        return $this->session[$name];
     }
 
     /**
@@ -105,7 +106,7 @@ class Session
      */
     public function __set($name, $value)
     {
-        $this->_session[$name] = $value;
+        $this->session[$name] = $value;
         $this->updateSession();
     }
 
@@ -120,11 +121,11 @@ class Session
      */
     public function __unset($name)
     {
-        if (!array_key_exists($name, $this->_session)) {
+        if (!array_key_exists($name, $this->session)) {
             throw new Session\Exception('Session has not `' . $name . '` index');
         }
 
-        unset($this->_session[$name]);
+        unset($this->session[$name]);
         $this->updateSession();
     }
 
@@ -137,7 +138,7 @@ class Session
      */
     public function __isset($name)
     {
-        if (!array_key_exists($name, $this->_session)) {
+        if (!array_key_exists($name, $this->session)) {
             return false;
         }
 
@@ -155,7 +156,7 @@ class Session
             session_start();
         }
 
-        static::$_started = true;
+        static::$started = true;
     }
 
     /**
@@ -169,7 +170,7 @@ class Session
             session_destroy();
         }
 
-        static::$_started = false;
+        static::$started = false;
     }
 
     /**
@@ -183,7 +184,7 @@ class Session
             return true;
         }
 
-        return static::$_started;
+        return static::$started;
     }
 
     /**
@@ -209,10 +210,10 @@ class Session
      */
     public function clear()
     {
-        $this->_session = array();
+        $this->session = array();
 
-        if (array_key_exists($this->_namespace, $_SESSION)) {
-            unset($_SESSION[$this->_namespace]);
+        if (array_key_exists($this->namespace, $_SESSION)) {
+            unset($_SESSION[$this->namespace]);
         }
     }
 
@@ -223,7 +224,7 @@ class Session
      */
     private function updateSession()
     {
-        $_SESSION[$this->_namespace] = $this->_session;
+        $_SESSION[$this->namespace] = $this->session;
     }
 }
 

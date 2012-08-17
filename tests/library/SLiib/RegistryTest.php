@@ -36,11 +36,12 @@ namespace SLiib;
  */
 class RegistryTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * String de test
      * @var string
      */
-    private $_string = 'This is a string';
+    private $string = 'This is a string';
 
     /**
      * Test Registry
@@ -52,8 +53,8 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSet()
     {
-        Registry::set('myKey', $this->_string);
-        $this->assertEquals($this->_string, Registry::get('myKey'));
+        Registry::set('myKey', $this->string);
+        $this->assertEquals($this->string, Registry::get('myKey'));
     }
 
     /**
@@ -80,7 +81,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', Registry::get('myObj')->attr);
         $this->assertEquals('bar', Registry::get('myObj')->attrTwo);
 
-        $this->assertEquals($this->_string, Registry::get('myKey'));
+        $this->assertEquals($this->string, Registry::get('myKey'));
     }
 
     /**
@@ -91,7 +92,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     public function testSetAlreadyExistKey()
     {
         $this->setExpectedException('\SLiib\Registry\Exception');
-        Registry::set('myKey', $this->_string);
+        Registry::set('myKey', $this->string);
     }
 
     /**

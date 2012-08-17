@@ -36,35 +36,36 @@ namespace SLiib;
  */
 class WebAppTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * Fake ip
      * @var string
      */
-    private $_ip = '127.0.0.1';
+    private $ip = '127.0.0.1';
 
     /**
      * Fake method request
      * @var string
      */
-    private $_method = 'GET';
+    private $method = 'GET';
 
     /**
      * Fake user agent
      * @var string
      */
-    private $_userAgent = 'Units Test \SLiib\WebApp';
+    private $userAgent = 'Units Test \SLiib\WebApp';
 
     /**
      * Fake referer
      * @var string
      */
-    private $_referer = 'http://dtc.com';
+    private $referer = 'http://dtc.com';
 
     /**
      * Request instance
      * @var \SLiib\WebApp\Request
      */
-    private $_request;
+    private $request;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -75,10 +76,10 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         \Tools\Session::setSession();
-        \Tools\Request::setRemoteIp($this->_ip);
-        \Tools\Request::setRequestMethod($this->_method);
-        \Tools\Request::setUserAgent($this->_userAgent);
-        \Tools\Request::setReferer($this->_referer);
+        \Tools\Request::setRemoteIp($this->ip);
+        \Tools\Request::setRequestMethod($this->method);
+        \Tools\Request::setUserAgent($this->userAgent);
+        \Tools\Request::setReferer($this->referer);
     }
 
     /**
@@ -116,15 +117,15 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         \Tools\Request::setRequestUri('/');
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->runApp();
-        $ip      = $this->_request->getClientIp();
-        $referer = $this->_request->getReferer();
-        $method  = $this->_request->getRequestMethod();
-        $ua      = $this->_request->getUserAgent();
+        $ip      = $this->request->getClientIp();
+        $referer = $this->request->getReferer();
+        $method  = $this->request->getRequestMethod();
+        $ua      = $this->request->getUserAgent();
 
-        $this->assertEquals($this->_ip, $ip);
-        $this->assertEquals($this->_referer, $referer);
-        $this->assertEquals($this->_method, $method);
-        $this->assertEquals($this->_userAgent, $ua);
+        $this->assertEquals($this->ip, $ip);
+        $this->assertEquals($this->referer, $referer);
+        $this->assertEquals($this->method, $method);
+        $this->assertEquals($this->userAgent, $ua);
     }
 
     /**
@@ -153,14 +154,14 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/<h1>Test HTTP Request<\/h1>/');
         $this->runApp();
 
-        $params = $this->_request->getParameters();
+        $params = $this->request->getParameters();
         $this->assertInternalType('array', $params);
         $this->assertArrayHasKey('foo', $params);
         $this->assertEquals('bar', $params['foo']);
         $this->assertArrayHasKey('1337', $params);
         $this->assertEquals('w00t', $params['1337']);
 
-        $method = $this->_request->getRequestMethod();
+        $method = $this->request->getRequestMethod();
         $this->assertEquals('GET', $method);
     }
 
@@ -221,14 +222,14 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->runApp();
 
-        $params = $this->_request->getParameters();
+        $params = $this->request->getParameters();
         $this->assertInternalType('array', $params);
         $this->assertArrayHasKey('foo', $params);
         $this->assertEquals('bar', $params['foo']);
         $this->assertArrayHasKey('1337', $params);
         $this->assertEquals('w00t', $params['1337']);
 
-        $method = $this->_request->getRequestMethod();
+        $method = $this->request->getRequestMethod();
         $this->assertEquals('POST', $method);
     }
 
@@ -243,7 +244,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
 
         $this->expectOutputRegex('/<h1>Index controller!<\/h1>/');
         $this->runApp();
-        $params = $this->_request->getParameters();
+        $params = $this->request->getParameters();
 
         $this->assertCount(0, $params);
     }
@@ -401,13 +402,13 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/<h1>MyController controller!<\/h1>/');
         $this->runApp();
 
-        $controller = $this->_request->getController();
+        $controller = $this->request->getController();
         $this->assertEquals('myController', $controller);
 
         \Tools\Request::setRequestUri('/my-controller-with-multi-dash');
         $this->runApp();
 
-        $controller = $this->_request->getController();
+        $controller = $this->request->getController();
         $this->assertEquals('myControllerWithMultiDash', $controller);
     }
 
@@ -423,13 +424,13 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/<h1>MyControllerWithMultiDash controller!<\/h1>/');
         $this->runApp();
 
-        $action = $this->_request->getAction();
+        $action = $this->request->getAction();
         $this->assertEquals('myAction', $action);
 
         \Tools\Request::setRequestUri('/my-controller-with-multi-dash/my-action-with-multi-dash');
         $this->runApp();
 
-        $action = $this->_request->getAction();
+        $action = $this->request->getAction();
         $this->assertEquals('myActionWithMultiDash', $action);
     }
 
@@ -448,7 +449,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputRegex('/<h1>MyController controller!<\/h1>/');
         $this->runApp();
 
-        $param = $this->_request->getParameters();
+        $param = $this->request->getParameters();
         $this->assertEquals(2, count($param));
         $this->assertArrayHasKey('myParam', $param);
         $this->assertArrayHasKey('withMultiDashParam', $param);
@@ -489,7 +490,7 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
             APP_PATH
         )->run();
 
-        $this->_request = WebApp\Request::getInstance();
+        $this->request = WebApp\Request::getInstance();
     }
 }
 

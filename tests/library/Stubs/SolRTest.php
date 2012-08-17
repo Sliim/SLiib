@@ -124,7 +124,7 @@ class SolRTest extends \PHPUnit_Framework_TestCase
 
         $reflection = new \ReflectionClass('\Stubs\SolR');
 
-        $pid = $reflection->getProperty('_pid');
+        $pid = $reflection->getProperty('pid');
         $pid->setAccessible(true);
         $pid->setValue(9999999999999999999);
 
