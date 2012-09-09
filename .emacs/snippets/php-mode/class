@@ -1,0 +1,15 @@
+#contributor : Satoshi Nishimura <nishim314@gmail.com>
+#contributor : Sliim <sliim@mailoo.org>
+#name : class ...
+#group : definitions
+# --
+class ${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}
+{
+   public function __construct()
+   {
+      $0
+   }
+}
+
+
+
