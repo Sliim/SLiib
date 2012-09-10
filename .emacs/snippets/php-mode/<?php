@@ -1,6 +1,6 @@
 #contributor : Satoshi Nishimura <nishim314@gmail.com>
 #contributor : Sliim <sliim@mailoo.org>
-#name : <?php /* ... */ class ...{...}
+#name : SLiib: <?php /* ... */ class ...{...}
 #group : definitions
 # --
 <?php
@@ -22,15 +22,14 @@
  *
  * PHP Version 5.3
  *
- * @category   SLiib
- * @package    ${1:package}
- * @subpackage ${2:subpackage}
- * @author     Sliim <sliim@mailoo.org>
- * @license    GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
- * @link       http://www.sliim-projects.eu
+ * @category SLiib
+ * @package  ${1:package}
+ * @author   Sliim <sliim@mailoo.org>
+ * @license  GNU/GPL http://www.gnu.org/licenses/gpl-3.0.html
+ * @link     http://www.sliim-projects.eu
  */
 
-namespace ${3:`(mapconcat
+namespace ${2:`(mapconcat
   'identity
   (butlast
     (split-string
@@ -43,14 +42,18 @@ namespace ${3:`(mapconcat
       ) "/")) "\\\")`};
 
 /**
- * ${4:description}
+ * ${3:description}
  *
- * @package    $1
- * @subpackage $2
+ * @package $1
  */
-class ${5:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}
+class ${4:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}
 {
-   public function ${6:__construct}()
+   /**
+    * $4 Constructor
+    *
+    * @return void
+    */
+   public function ${5:__construct}()
    {
       $0
    }
