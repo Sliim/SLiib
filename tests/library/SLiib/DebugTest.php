@@ -105,4 +105,3 @@ class DebugTest extends \PHPUnit_Framework_TestCase
         $this->assertStringEndsNotWith('</pre>', $dump);
     }
 }
-

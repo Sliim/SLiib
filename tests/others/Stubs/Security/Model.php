@@ -68,4 +68,3 @@ abstract class Model extends SLiibModel
         return true;
     }
 }
-

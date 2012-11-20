@@ -40,7 +40,7 @@ abstract class Security
      *
      * @param array $checkers Checkers to run
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws Security\Exception\CheckerError
      *
      * @return void
      */
@@ -59,4 +59,3 @@ abstract class Security
 
     }
 }
-

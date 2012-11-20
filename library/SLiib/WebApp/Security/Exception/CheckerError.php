@@ -39,4 +39,3 @@ use SLiib\IException\Runtime as RuntimeException;
 class CheckerError extends SecurityException implements RuntimeException
 {
 }
-

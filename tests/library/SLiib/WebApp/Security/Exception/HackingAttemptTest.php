@@ -160,4 +160,3 @@ class HackingAttemptTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\SLiib\IException\Runtime', $this->object);
     }
 }
-

@@ -129,4 +129,3 @@ class ListingTest extends \PHPUnit_Framework_TestCase
         $list = new Listing('/tmp/notexists', 'fake', array());
     }
 }
-

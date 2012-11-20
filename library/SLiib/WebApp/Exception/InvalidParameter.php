@@ -39,4 +39,3 @@ use SLiib\IException\Logic as LogicException;
 class InvalidParameter extends WebAppException implements LogicException
 {
 }
-

@@ -73,7 +73,7 @@ class SolR
      * @param int     $port SolR port
      * @param boolean $ping Check if accessible.
      *
-     * @throws \SLiib\SolR\Exception
+     * @throws SolRException
      *
      * @return void
      */
@@ -246,4 +246,3 @@ class SolR
         return $string;
     }
 }
-

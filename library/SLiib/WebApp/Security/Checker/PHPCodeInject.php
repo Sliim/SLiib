@@ -94,4 +94,3 @@ class PHPCodeInject extends NegativeSecurity
             ->addRule($remoteExecRule);
     }
 }
-

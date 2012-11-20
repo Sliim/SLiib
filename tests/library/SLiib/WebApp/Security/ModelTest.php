@@ -312,4 +312,3 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $rule = $this->object->deleteRule(1337);
     }
 }
-

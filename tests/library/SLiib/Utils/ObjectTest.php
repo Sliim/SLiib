@@ -66,4 +66,3 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('bar', $foo->object);
     }
 }
-

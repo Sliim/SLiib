@@ -40,4 +40,3 @@ SLiib\Autoloader::init(
      'Tools' => TOOLS_PATH,
     )
 );
-

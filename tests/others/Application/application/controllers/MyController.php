@@ -67,4 +67,3 @@ class MyController extends Controller
         $this->view->title = 'MyAction action!';
     }
 }
-

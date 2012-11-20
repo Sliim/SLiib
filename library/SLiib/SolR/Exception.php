@@ -38,4 +38,3 @@ use SLiib\Exception as SLiibException;
 class Exception extends SLiibException
 {
 }
-

@@ -59,7 +59,7 @@ class Session
      *
      * @param string $namespace Session namespace
      *
-     * @throws \SLiib\WebApp\Session\Exception
+     * @throws Session\Exception
      *
      * @return void
      */
@@ -83,7 +83,7 @@ class Session
      *
      * @param string $name Property name
      *
-     * @throws \SLiib\WebApp\Session\Exception
+     * @throws Session\Exception
      *
      * @return mixed
      */
@@ -115,7 +115,7 @@ class Session
      *
      * @param string $name Property name
      *
-     * @throws \SLiib\WebApp\Session\Exception
+     * @throws Session\Exception
      *
      * @return void
      */
@@ -227,4 +227,3 @@ class Session
         $_SESSION[$this->namespace] = $this->session;
     }
 }
-

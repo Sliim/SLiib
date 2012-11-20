@@ -39,4 +39,3 @@ use SLiib\IException\Logic as LogicException;
 class UndefinedProperty extends WebAppException implements LogicException
 {
 }
-

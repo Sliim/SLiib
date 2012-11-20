@@ -174,7 +174,7 @@ abstract class Bootstrap
      *
      * @param string $path View path
      *
-     * @throws \SLiib\WebApp\Exception
+     * @throws Exception
      *
      * @return void
      */
@@ -213,4 +213,3 @@ abstract class Bootstrap
         throw $e;
     }
 }
-

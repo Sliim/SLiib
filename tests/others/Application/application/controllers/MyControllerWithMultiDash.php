@@ -67,4 +67,3 @@ class MyControllerWithMultiDash extends Controller
         $this->view->title = 'MyActionWithMultiDash action!';
     }
 }
-

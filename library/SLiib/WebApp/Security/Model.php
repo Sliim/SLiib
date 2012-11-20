@@ -76,7 +76,7 @@ abstract class Model
     /**
      * Construct
      *
-     * @throws \SLiib\WebApp\Security\Exception
+     * @throws ModelException
      *
      * @return void
      */
@@ -94,8 +94,8 @@ abstract class Model
     /**
      * Running checker
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
-     * @throws \SLiib\WebApp\Security\Exception\HackingAttempt
+     * @throws CheckerError
+     * @throws HackingAttempt
      *
      * @return boolean
      */
@@ -125,10 +125,7 @@ abstract class Model
                         $result = $this->checkReferer($rule);
                         break;
                     default:
-                        throw new CheckerError(
-                            'Location for `' . $this->name . '` checker is not valid'
-                        );
-                        break;
+                        throw new CheckerError('Location for `' . $this->name . '` is invalid');
                 }
 
                 if (!$result) {
@@ -150,7 +147,7 @@ abstract class Model
      *
      * @param \SLiib\WebApp\Security\Rule $rule Rule to add
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws CheckerError
      *
      * @return \SLiib\WebApp\Security\Model
      */
@@ -171,7 +168,7 @@ abstract class Model
      *
      * @param int $ruleId Rule id to delete
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws CheckerError
      *
      * @return \SLiib\WebApp\Security\Model
      */
@@ -190,7 +187,7 @@ abstract class Model
      *
      * @param int $ruleId Rule Id to get
      *
-     * @throws \SLiib\WebApp\Security\Exception\CheckerError
+     * @throws CheckerError
      *
      * @return \SLiib\WebApp\Security\Rule
      */
@@ -347,4 +344,3 @@ abstract class Model
         return $this->check($rule, $referer);
     }
 }
-

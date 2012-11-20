@@ -74,7 +74,7 @@ abstract class Controller
      * @param string $action Action to call
      * @param array  $params unused
      *
-     * @throws \SLiib\WebApp\Exception\NoDispatchable
+     * @throws Exception\NoDispatchable
      *
      * @return void
      */
@@ -111,4 +111,3 @@ abstract class Controller
      */
     abstract protected function init();
 }
-

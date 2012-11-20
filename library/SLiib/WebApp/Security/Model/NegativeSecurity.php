@@ -62,4 +62,3 @@ abstract class NegativeSecurity extends Model
         return true;
     }
 }
-

@@ -39,4 +39,3 @@ use SLiib\IException\Runtime as RuntimeException;
 class NoDispatchable extends WebAppException implements RuntimeException
 {
 }
-

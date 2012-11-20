@@ -47,7 +47,7 @@ class Ini extends Config
      * @param string $file File to read
      * @param string $env  Config environment
      *
-     * @throws \SLiib\Config\Exception\UndefinedProperty
+     * @throws UndefinedProperty
      *
      * @return \SLiib\Config
      */
@@ -89,7 +89,7 @@ class Ini extends Config
     /**
      * Parse le fichier de configuration
      *
-     * @throws \SLiib\Config\Exception\SyntaxError
+     * @throws SyntaxError
      *
      * @return void
      */
@@ -113,7 +113,7 @@ class Ini extends Config
      *
      * @param array $section Section to parse
      *
-     * @throws \SLiib\Config\Exception\SyntaxError
+     * @throws SyntaxError
      *
      * @return \SLiib\Config
      */
@@ -210,7 +210,7 @@ class Ini extends Config
      * @param int    $errno  Error level
      * @param string $errstr Error message
      *
-     * @throws \SLiib\Config\Exception\SyntaxError
+     * @throws SyntaxError
      *
      * @return void
      */
@@ -220,4 +220,3 @@ class Ini extends Config
         throw new SyntaxError('[' . $errno . ']' . $errstr);
     }
 }
-

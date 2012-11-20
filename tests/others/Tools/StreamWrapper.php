@@ -93,4 +93,3 @@ class StreamWrapper
         return strlen($GLOBALS[$this->name]);
     }
 }
-

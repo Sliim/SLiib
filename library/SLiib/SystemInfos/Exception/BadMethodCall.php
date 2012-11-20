@@ -39,4 +39,3 @@ use SLiib\IException\Logic as LogicException;
 class BadMethodCall extends Exception implements LogicException
 {
 }
-

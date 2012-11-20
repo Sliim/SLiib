@@ -45,7 +45,7 @@ class Registry
      *
      * @param string $key Key to get
      *
-     * @throws \SLiib\Registry\Exception
+     * @throws Registry\Exception
      *
      * @return mixed
      */
@@ -64,7 +64,7 @@ class Registry
      * @param string $key   Key to set
      * @param mixed  $value Value to assign
      *
-     * @throws \SLiib\Registry\Exception
+     * @throws Registry\Exception
      *
      * @return void
      */
@@ -77,4 +77,3 @@ class Registry
         self::$registry[$key] = $value;
     }
 }
-

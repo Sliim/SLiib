@@ -68,4 +68,3 @@ class String
         return $string;
     }
 }
-

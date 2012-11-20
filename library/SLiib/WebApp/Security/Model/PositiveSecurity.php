@@ -62,4 +62,3 @@ abstract class PositiveSecurity extends Model
         return false;
     }
 }
-

@@ -69,4 +69,3 @@ class FilenamePolicy extends NegativeSecurity
             ->addRule($fileNameRule);
     }
 }
-

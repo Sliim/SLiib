@@ -239,4 +239,3 @@ class IniTest extends \PHPUnit_Framework_TestCase
         $foo = $this->object->bar;
     }
 }
-

@@ -57,7 +57,7 @@ class Dispatcher
     /**
      * Dispatching..
      *
-     * @throws \SLiib\WebApp\Exception\NoDispatchable
+     * @throws Exception\NoDispatchable
      *
      * @return void
      */
@@ -83,4 +83,3 @@ class Dispatcher
         $c->$action();
     }
 }
-

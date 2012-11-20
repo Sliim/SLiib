@@ -246,4 +246,3 @@ class SolRTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($res);
     }
 }
-

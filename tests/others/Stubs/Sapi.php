@@ -79,4 +79,3 @@ class Sapi
         return static::$sapi;
     }
 }
-

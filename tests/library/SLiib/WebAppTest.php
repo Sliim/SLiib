@@ -493,4 +493,3 @@ class WebAppTest extends \PHPUnit_Framework_TestCase
         $this->request = WebApp\Request::getInstance();
     }
 }
-

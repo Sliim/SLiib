@@ -77,4 +77,3 @@ Interface IUname
      */
     const CMD_UNAME_OS_INFOS = 'uname -o';
 }
-

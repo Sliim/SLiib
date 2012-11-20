@@ -135,4 +135,3 @@ class Request
         $_COOKIE = $cookies;
     }
 }
-

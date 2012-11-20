@@ -65,4 +65,3 @@ Interface ILsbRelease
      */
     const CMD_LSB_RELEASE_ALL = 'lsb_release -idrc';
 }
-

@@ -66,7 +66,7 @@ class Log
      * @param string  $fileOutput File path
      * @param boolean $add        True add in file.
      *
-     * @throws \SLiib\Log\Exception
+     * @throws Log\Exception
      *
      * @return void
      */
@@ -339,4 +339,3 @@ class Log
         }
     }
 }
-

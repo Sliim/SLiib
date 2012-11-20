@@ -62,4 +62,3 @@ class StringTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(34, strlen($cleaned));
     }
 }
-

@@ -59,4 +59,3 @@ Interface IPhp
      */
     const CMD_PHP_INI = 'php --ini';
 }
-

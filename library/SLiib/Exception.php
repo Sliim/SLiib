@@ -34,4 +34,3 @@ namespace SLiib;
 class Exception extends \Exception
 {
 }
-

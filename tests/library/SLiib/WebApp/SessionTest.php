@@ -186,4 +186,3 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(Session::started());
     }
 }
-

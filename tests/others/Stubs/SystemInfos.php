@@ -45,4 +45,3 @@ class SystemInfos extends SLiibSystemInfos
      */
     const CMD_FAILED = CMD_FAILED;
 }
-

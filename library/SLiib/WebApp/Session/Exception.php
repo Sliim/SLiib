@@ -38,4 +38,3 @@ use SLiib\WebApp\Exception as WebAppException;
 class Exception extends WebAppException
 {
 }
-

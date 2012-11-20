@@ -48,7 +48,7 @@ class Config
      *
      * @param string $key Key to get
      *
-     * @throws \SLiib\Config\Exception\UndefinedProperty
+     * @throws UndefinedProperty
      *
      * @return void
      */
@@ -62,7 +62,7 @@ class Config
      *
      * @param string $file File to read
      *
-     * @throws \SLiib\Config\Exception
+     * @throws ConfigException
      *
      * @return \SLiib\Config
      */
@@ -85,4 +85,3 @@ class Config
 
     }
 }
-

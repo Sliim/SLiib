@@ -45,4 +45,3 @@ class MyClass
         return 'Hello World!';
     }
 }
-

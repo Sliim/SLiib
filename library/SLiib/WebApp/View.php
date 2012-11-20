@@ -98,7 +98,7 @@ class View
      *
      * @param string $attr Attribut name
      *
-     * @throws \SLiib\WebApp\View\Exception\UndefinedProperty
+     * @throws Exception\UndefinedProperty
      *
      * @return void
      */
@@ -126,7 +126,7 @@ class View
      *
      * @param string $view View
      *
-     * @throws \SLiib\WebApp\View\Exception\InvalidParameter
+     * @throws Exception\InvalidParameter
      *
      * @return void
      */
@@ -157,7 +157,7 @@ class View
      *
      * @param string $template Template to include
      *
-     * @throws \SLiib\WebApp\View\Exception\InvalidParameter
+     * @throws Exception\InvalidParameter
      *
      * @return \SLiib\WebApp\View
      */
@@ -199,4 +199,3 @@ class View
         return false;
     }
 }
-

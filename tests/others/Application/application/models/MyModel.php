@@ -45,4 +45,3 @@ class MyModel
         return 'This is my model !';
     }
 }
-

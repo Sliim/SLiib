@@ -38,4 +38,3 @@ use SLiib\WebApp\Security\Exception as SecurityException;
 class Exception extends SecurityException
 {
 }
-

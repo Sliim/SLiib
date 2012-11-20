@@ -156,4 +156,3 @@ abstract class Cli
         exit();
     }
 }
-

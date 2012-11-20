@@ -61,4 +61,3 @@ class Debug
         return $dump;
     }
 }
-

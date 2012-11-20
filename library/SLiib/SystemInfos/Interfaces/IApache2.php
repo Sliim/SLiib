@@ -71,4 +71,3 @@ Interface IApache2
      */
     const CMD_APACHE2_LOADED_MODULES = 'apache2 -M';
 }
-

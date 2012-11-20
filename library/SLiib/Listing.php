@@ -66,7 +66,7 @@ class Listing
      * @param string $listName List name
      * @param array  $exclude  Elements to exclude
      *
-     * @throws \SLiib\Listing\Exception
+     * @throws Listing\Exception
      *
      * @return void
      */
@@ -144,4 +144,3 @@ class Listing
         closedir($dir);
     }
 }
-

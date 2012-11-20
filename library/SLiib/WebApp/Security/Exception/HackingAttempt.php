@@ -141,4 +141,3 @@ class HackingAttempt extends SecurityException implements RuntimeException
         return $this->reason;
     }
 }
-

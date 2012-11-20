@@ -39,4 +39,3 @@ use SLiib\IException\Runtime as RuntimeException;
 class CommandFailed extends Exception implements RuntimeException
 {
 }
-

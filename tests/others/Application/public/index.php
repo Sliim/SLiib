@@ -32,4 +32,3 @@ define('APP_PATH', realpath(ROOT_PATH . '/application/'));
 define('APP_NS', 'Test');
 
 \SLiib\WebApp::init(APP_NS, APP_PATH)->run();
-

@@ -44,7 +44,7 @@ class SystemInfos implements IUname, IPhp, IApache2, ILsbRelease
      * @param string $name      Method name
      * @param array  $arguments Method parameters
      *
-     * @throws \SLiib\SystemInfos\Exception\BadMethodCall
+     * @throws SystemInfos\Exception\BadMethodCall
      *
      * @return string
      */
@@ -68,7 +68,7 @@ class SystemInfos implements IUname, IPhp, IApache2, ILsbRelease
      *
      * @param string $cmd Command to execute
      *
-     * @throws \SLiib\SystemInfos\Exception\CommandFailed
+     * @throws SystemInfos\Exception\CommandFailed
      *
      * @return array Command result
      */
@@ -111,4 +111,3 @@ class SystemInfos implements IUname, IPhp, IApache2, ILsbRelease
         return $resultValue;
     }
 }
-

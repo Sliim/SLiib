@@ -97,7 +97,7 @@ class WebApp
     /**
      * Get application instance
      *
-     * @throws \SLiib\WebApp\Exception
+     * @throws WebApp\Exception
      *
      * @return \SLiib\WebApp
      */
@@ -126,7 +126,7 @@ class WebApp
      * @param string $appNamespace Application namespace
      * @param string $appPath      Application path
      *
-     * @throws \SLiib\WebApp\Exception
+     * @throws WebApp\Exception
      *
      * @return void
      */
@@ -148,4 +148,3 @@ class WebApp
         $this->bootstrap = new $bsClass($this->appNamespace);
     }
 }
-

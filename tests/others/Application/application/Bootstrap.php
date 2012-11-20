@@ -120,4 +120,3 @@ class Bootstrap extends WebAppBootstrap
         return parent::exceptionhandler($e);
     }
 }
-

@@ -82,4 +82,3 @@ class BadRobots extends NegativeSecurity
         $this->addRule($scanner);
     }
 }
-

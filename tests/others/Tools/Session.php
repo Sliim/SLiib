@@ -46,4 +46,3 @@ class Session
         $GLOBALS['_SESSION'];
     }
 }
-

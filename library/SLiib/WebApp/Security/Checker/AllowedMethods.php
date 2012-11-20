@@ -58,4 +58,3 @@ class AllowedMethods extends PositiveSecurity
         $this->addRule($rule);
     }
 }
-

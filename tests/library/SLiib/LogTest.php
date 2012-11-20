@@ -264,4 +264,3 @@ define('TMP_STDOUT', LogTest::$stdout);
 define('TMP_STDERR', LogTest::$stderr);
 const STDOUT = TMP_STDOUT;
 const STDERR = TMP_STDERR;
-

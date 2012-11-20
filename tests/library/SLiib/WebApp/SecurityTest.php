@@ -63,4 +63,3 @@ class SecurityTest extends \PHPUnit_Framework_TestCase
         Security::check(array('w00t'));
     }
 }
-
