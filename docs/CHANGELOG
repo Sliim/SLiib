@@ -16,4 +16,5 @@ CHANGELOG
     - PHP 5.4 fixes
 
   * 2012-11-20 - SLiib v0.2.4
-    -
+    - PHPCS (PSR2)
+    - Somes bugs fix and code refacto
