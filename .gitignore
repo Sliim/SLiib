@@ -2,5 +2,5 @@ tests/logs
 tests/others/Stubs/SolR
 docs/docblox/output
 docs/docblox/log
-.emacs/TAGS
-.emacs/.emacs.desktop*
+.project/TAGS
+.project/emacs.desktop*
